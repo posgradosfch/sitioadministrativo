@@ -17,6 +17,7 @@ import { NoticiasMantenimientoComponent } from './noticias-mantenimiento/noticia
 import { RolesMantenimientoComponent } from './roles-mantenimiento/roles-mantenimiento.component';
 import { UsuariosMantenimientoComponent } from './usuarios-mantenimiento/usuarios-mantenimiento.component';
 import { PermisosMantenimientoComponent } from './permisos-mantenimiento/permisos-mantenimiento.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 const routes: Routes = [
 {path: 'home', component: HomeComponent},
@@ -39,7 +40,8 @@ const routes: Routes = [
     NoticiasMantenimientoComponent,
     RolesMantenimientoComponent,
     UsuariosMantenimientoComponent,
-    PermisosMantenimientoComponent
+    PermisosMantenimientoComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule,
