@@ -1,0 +1,9 @@
+{
+	"/services/*": {
+
+		"target": "https://postgrados.herokuapp.com/",
+		"segure": false,
+		"changeOrigin": true
+
+	}
+}

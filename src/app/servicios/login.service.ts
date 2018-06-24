@@ -10,6 +10,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   loginUsuario(userData): Observable<any> {
-  	return this.http.post('https://posgrados.herokuapp.com/services/', userData);
+  	return this.http.post('https://postgrados.herokuapp.com/services/usuarios', userData);
   }
 }

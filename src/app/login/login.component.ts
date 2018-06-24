@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
     this.login = {
       usuario: '',
       contra: '',
-      errorMsj: ''
     };
   }
 
@@ -29,14 +28,14 @@ export class LoginComponent implements OnInit {
       response => {
         console. log(response);
         alert(this.login.usuario + 'Bienvenido');
-        this.router.navigate(['/noticias']);
+        this.router.navigate(['/mantenimientoRoles']);
       },
       error => {
         console. log('Usuario o password incorrecto', error);
         this.router.navigate(['/home']);
       } 
     );
-
+    
   }
 
 }

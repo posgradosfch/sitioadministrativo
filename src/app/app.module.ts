@@ -18,14 +18,21 @@ import { RolesMantenimientoComponent } from './roles-mantenimiento/roles-manteni
 import { UsuariosMantenimientoComponent } from './usuarios-mantenimiento/usuarios-mantenimiento.component';
 import { PermisosMantenimientoComponent } from './permisos-mantenimiento/permisos-mantenimiento.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { TableRolesComponent } from './table-roles/table-roles.component';
+import { AgregarEditarRolComponent } from './agregar-editar-rol/agregar-editar-rol.component';
+import { LoginService } from './servicios/login.service';
+import { MantenimientoRolesService } from './servicios/mantenimiento-roles.service';
 
 const routes: Routes = [
 {path: 'home', component: HomeComponent},
 {path: 'noticias', component: NoticiasComponent},
 {path: 'privado', component: PrivatePageComponent},
+{path: 'mantenimientoRoles', component: RolesMantenimientoComponent},
+{path: 'rol', component: AgregarEditarRolComponent},
 {path: '**', component: PageNotFoundComponent}
 
 ];
+
 
 @NgModule({
   declarations: [
@@ -41,7 +48,9 @@ const routes: Routes = [
     RolesMantenimientoComponent,
     UsuariosMantenimientoComponent,
     PermisosMantenimientoComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    TableRolesComponent,
+    AgregarEditarRolComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +58,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [LoginService, MantenimientoRolesService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
