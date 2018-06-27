@@ -15,21 +15,22 @@ export class MantenimientoRolesService {
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-  agregarRol(rol:Roles){
-  	return this.http.post(this.urlRol,rol,{headers:this.headers});
+  agregarRol(rol:Roles): Observable<Roles>{
+  	return this.http.post<Roles>(this.urlRol,rol,{headers:this.headers});
 
   }
 
-  getRoles (){
-  	return this.http.get(this.rolesurl,{headers:this.headers});
+  getRoles (): Observable<Roles[]>{
+  	return this.http.get<Roles[]>(this.rolesurl,{headers:this.headers});
   }
 
-  editarRol (rol:Roles){
-  	return this.http.put(this.urlRol,rol,{headers:this.headers});
+  editarRol (rol:Roles): Observable<Roles>{
+  	return this.http.put<Roles>(this.urlRol,rol,{headers:this.headers});
   }
 
-   eliminarRol (id:number){
-  	return this.http.delete(this.urlRol+'/'+id,{headers:this.headers});
+   eliminarRol (id:number): Observable<{}>{
+    const url = `${this.rolesurl}/${id}`;
+  	return this.http.delete(url,{headers:this.headers});
   }
 
   errorHandler(error:Response){
