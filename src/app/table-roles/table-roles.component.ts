@@ -28,13 +28,13 @@ export class TableRolesComponent implements OnInit {
   	});
   }
 
-  deleteRol(rol){
+  /*deleteRol(rol){
     this._rolService.eliminarRol(rol.id).subscribe((data)=>{
       this.roles.splice(this.roles.indexOf(rol),1);
     }, (error)=>{
       console.log(error);
     })
-  }
+  }*/
 
   updateRol(rol){
     this._rolService.setter(rol);

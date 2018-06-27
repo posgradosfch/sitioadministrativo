@@ -26,21 +26,12 @@ export class AgregarEditarRolComponent implements OnInit {
   	}
 
   processForm(){
-    if(this.rol.$id==undefined){
-      this._rolService.agregarRol(this.rol).subscribe((rol)=>{
+    this._rolService.agregarRol(this.rol).subscribe((rol)=>{
         console.log(rol);
       }, (error)=>{
         console.log(error);
         this._router.navigate(['/mantenimientoRoles']);
       });
-    }else{
-      this._rolService.editarRol(this.rol).subscribe((rol)=>{
-        console.log(rol);
-      }, (error)=>{
-        console.log(error);
-        this._router.navigate(['/mantenimientoRoles']);
-      });
-    }
   }
 
 }

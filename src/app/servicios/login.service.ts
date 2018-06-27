@@ -7,8 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
+  private url= 'https://postgrados.herokuapp.com/auth/';
+  loggedInStatus = false;
+
   constructor(private http: HttpClient) { }
 
-  getUserDetails() {
+  getUserDetails(username, password) {
+    return this.http.post(this.url, {
+      username,
+      password
+      }).subscribe(data => {
+      console.log(data,"logueado")
+    })
   }
 }

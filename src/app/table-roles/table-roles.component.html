@@ -1,20 +1,19 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Roles</th>
-      <th scope="col">Acciones</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Permisos</th>
     </tr>
   </thead>
   <tbody>
     <tr class="table-light" *ngFor='let rol of roles'>
-      <td>{{rol.rolid}}</td>
-      <td>{{rol.nombre}}</td>
-      <td>
+      <td>{{rol.name}}</td>
+      <td>{{rol.permissions}}</td>
+      <!--td>
         <button>Permisos</button>
         <button (click)="updateRol(rol)">Editar</button>
         <button (click)="deleteRol(rol)">Eliminar</button>
-      </td>
+      </td-->
     </tr>
   </tbody>
 </table> 

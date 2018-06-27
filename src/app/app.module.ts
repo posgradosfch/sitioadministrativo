@@ -22,15 +22,28 @@ import { TableRolesComponent } from './table-roles/table-roles.component';
 import { AgregarEditarRolComponent } from './agregar-editar-rol/agregar-editar-rol.component';
 import { LoginService } from './servicios/login.service';
 import { MantenimientoRolesService } from './servicios/mantenimiento-roles.service';
+import { AuthGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
-{path: 'home', component: HomeComponent},
-{path: 'noticias', component: NoticiasComponent},
+{path: 'home',
+  component: HomeComponent
+},
+{path: 'noticias',
+  component: NoticiasComponent
+},
 {path: 'privado', component: PrivatePageComponent},
-{path: 'mantenimientoRoles', component: RolesMantenimientoComponent},
-{path: 'rol', component: AgregarEditarRolComponent},
-{path: '**', component: PageNotFoundComponent}
-
+{path: 'mantenimientoRoles',
+  component: RolesMantenimientoComponent,
+  canActivate: [AuthGuard]
+},
+{path: 'rol', 
+  component: AgregarEditarRolComponent,
+  canActivate: [AuthGuard]
+},
+{path: '**', 
+  component: PageNotFoundComponent
+},
 ];
 
 
@@ -58,7 +71,11 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [LoginService, MantenimientoRolesService],
+  providers: [
+    LoginService, 
+    MantenimientoRolesService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

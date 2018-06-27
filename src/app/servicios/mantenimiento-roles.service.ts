@@ -24,14 +24,14 @@ export class MantenimientoRolesService {
   	return this.http.get<Roles[]>(this.rolesurl,{headers:this.headers});
   }
 
-  editarRol (rol:Roles): Observable<Roles>{
+  /*editarRol (rol:Roles): Observable<Roles>{
   	return this.http.put<Roles>(this.urlRol,rol,{headers:this.headers});
   }
 
-   eliminarRol (id:number): Observable<{}>{
+  eliminarRol (id:number): Observable<{}>{
     const url = `${this.rolesurl}/${id}`;
   	return this.http.delete(url,{headers:this.headers});
-  }
+  }*/
 
   errorHandler(error:Response){
     return Observable.throw(error||"SERVER ERROR");
