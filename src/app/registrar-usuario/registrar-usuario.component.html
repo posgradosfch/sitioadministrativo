@@ -1,3 +1,44 @@
-<p>
-  registrar-usuario works!
-</p>
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+         <h1 class="text-center"> FORMULARIO DE REGISTRO</h1>
+      
+       <form>    
+        <div class="form-group">
+          <label for="usuario"> Nombre de usuario</label>
+          <input [(ngModel)]="register.username"  type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      
+        <div class="form-group">
+            <label for="email"> Correo electronico</label>
+            <input [(ngModel)]="register.email" type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su correo electronico" required>
+            <small id="passwordHelp" class="form-text text-muted">ejemplo: ejemplo@gmail.com</small>
+        </div>
+
+       <div class="form-group">
+          <label for="password"> contraseña</label>
+          <input [(ngModel)]="register.password" type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelp" placeholder="Ingrese su contraseña" required minlength="3">
+          <small id="passwordHelp" class="form-text text-muted">puede combinar caracteres y números</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="usuario"> Ingrese sus Nombres</label>
+        <input [(ngModel)]="register.nombres"  type="text" name="nombres" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
+        <small id="emailHelp" class="form-text text-muted"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="usuario"> Ingrese sus apellidos </label>
+        <input [(ngModel)]="register.apellidos"  type="text" name="apellidos" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
+        <small id="emailHelp" class="form-text text-muted"></small>
+      </div>     
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="registrarUsuario()" >Registrarme</button>
+      
+    </form>
+    </div>
+  </div>
+</div>
+</div>      

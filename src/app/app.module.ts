@@ -38,11 +38,11 @@ const routes: Routes = [
   component: RolesMantenimientoComponent,
   canActivate: [AuthGuard]
 },
-{path: 'rol', 
+{path: 'rol',
   component: AgregarEditarRolComponent,
   canActivate: [AuthGuard]
 },
-{path: '**', 
+{path: '**',
   component: PageNotFoundComponent
 },
 ];
@@ -74,7 +74,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    LoginService, 
+    LoginService,
     MantenimientoRolesService,
     AuthGuard
   ],
