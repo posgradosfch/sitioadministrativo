@@ -23,6 +23,7 @@ import { AgregarEditarRolComponent } from './agregar-editar-rol/agregar-editar-r
 import { LoginService } from './servicios/login.service';
 import { MantenimientoRolesService } from './servicios/mantenimiento-roles.service';
 import { AuthGuard } from './guards/auth.guard';
+import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 
 
 const routes: Routes = [
@@ -63,7 +64,8 @@ const routes: Routes = [
     PermisosMantenimientoComponent,
     NavMenuComponent,
     TableRolesComponent,
-    AgregarEditarRolComponent
+    AgregarEditarRolComponent,
+    RegistrarUsuarioComponent
   ],
   imports: [
     BrowserModule,
