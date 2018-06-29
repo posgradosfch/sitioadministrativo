@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
+//Modulos
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
 
+//componentes
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,12 +22,23 @@ import { PermisosMantenimientoComponent } from './permisos-mantenimiento/permiso
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { TableRolesComponent } from './table-roles/table-roles.component';
 import { AgregarEditarRolComponent } from './agregar-editar-rol/agregar-editar-rol.component';
+import { TableNoticiasComponent } from './table-noticias/table-noticias.component';
+
+//servicios
 import { LoginService } from './servicios/login.service';
 import { MantenimientoRolesService } from './servicios/mantenimiento-roles.service';
+import { MantenimientoNoticiasService } from './servicios/mantenimiento-noticias.service';
+import { AgregarEditarNoticiaComponent } from './agregar-editar-noticia/agregar-editar-noticia.component';
+import { GlobalService } from './servicios/global.service';
+
+//guard
 import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
+{path: '', redirectTo: '/home', 
+  pathMatch: 'full'
+},
 {path: 'home',
   component: HomeComponent
 },
@@ -37,13 +50,21 @@ const routes: Routes = [
   component: RolesMantenimientoComponent,
   canActivate: [AuthGuard]
 },
+{path: 'mantenimientoNoticias',
+  component: NoticiasMantenimientoComponent,
+  canActivate: [AuthGuard]
+},
 {path: 'rol', 
   component: AgregarEditarRolComponent,
   canActivate: [AuthGuard]
 },
+{path: 'noticia', 
+  component: AgregarEditarNoticiaComponent,
+  canActivate: [AuthGuard]
+},
 {path: '**', 
   component: PageNotFoundComponent
-},
+}
 ];
 
 
@@ -63,7 +84,9 @@ const routes: Routes = [
     PermisosMantenimientoComponent,
     NavMenuComponent,
     TableRolesComponent,
-    AgregarEditarRolComponent
+    AgregarEditarRolComponent,
+    TableNoticiasComponent,
+    AgregarEditarNoticiaComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +97,9 @@ const routes: Routes = [
   providers: [
     LoginService, 
     MantenimientoRolesService,
-    AuthGuard
+    MantenimientoNoticiasService,
+    AuthGuard,
+    GlobalService
   ],
   bootstrap: [AppComponent],
 })

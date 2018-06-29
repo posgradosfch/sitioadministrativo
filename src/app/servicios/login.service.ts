@@ -8,16 +8,14 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   private url= 'https://postgrados.herokuapp.com/auth/';
-  loggedInStatus = false;
+  headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8'});
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+    //this.headers.append("Authorization", localStorage.getItem("token"));
+  }
 
-  getUserDetails(username, password) {
-    return this.http.post(this.url, {
-      username,
-      password
-      }).subscribe(data => {
-      console.log(data,"logueado")
-    })
+  loginUsuario(username, password) {
+    return this.http.post(this.url, {username, password}, {headers:this.headers});
   }
 }

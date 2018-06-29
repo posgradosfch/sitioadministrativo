@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Roles } from "./roles";
+import { LoginService } from '../servicios/login.service';
 
 
 @Injectable({
@@ -10,18 +11,23 @@ import { Roles } from "./roles";
 export class MantenimientoRolesService {
 
   private rolesurl='/services/roles';
-  private urlRol='https:postgrados.herokuApp.com/services/roles'
+  private urlRol='https://postgrados.herokuapp.com/services/roles/'
   private rol:Roles;
-  private headers = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) { }
+  headers = new HttpHeaders();
+
+  constructor(private http: HttpClient, private loginService: LoginService) { 
+    this.headers.append('Content-Type', 'application/json; charset=utf-8');
+   // this.headers.append (localStorage.getItem("token");
+    this.headers.append('Authorization', localStorage.getItem('token'));
+}
 
   agregarRol(rol:Roles): Observable<Roles>{
-  	return this.http.post<Roles>(this.urlRol,rol,{headers:this.headers});
+  	return this.http.post<Roles>(this.urlRol,rol, {headers: this.headers});
 
   }
 
   getRoles (): Observable<Roles[]>{
-  	return this.http.get<Roles[]>(this.rolesurl,{headers:this.headers});
+  	return this.http.get<Roles[]>(this.urlRol,{headers:this.headers});
   }
 
   /*editarRol (rol:Roles): Observable<Roles>{

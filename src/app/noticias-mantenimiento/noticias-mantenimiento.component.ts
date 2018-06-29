@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { MantenimientoNoticiasService } from '../servicios/mantenimiento-noticias.service';
+import { Noticias } from '../servicios/noticias';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-noticias-mantenimiento',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoticiasMantenimientoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private noticiaService : MantenimientoNoticiasService, private _router:Router) { 
 
-  ngOnInit() {
+
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  newNoticia(){
+    let noticias = new Noticias();
+    this.noticiaService.setter(noticias);
+    this._router.navigate(['/noticia']);
   }
 
 }

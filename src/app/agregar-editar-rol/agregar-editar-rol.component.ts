@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Roles } from '../servicios/roles';
-import { MantenimientoRolesService } from '../servicios/mantenimiento-roles.service'
+import { Permisos } from '../servicios/permisos';
+import { MantenimientoRolesService } from '../servicios/mantenimiento-roles.service';
 import { Router } from '@angular/router';
-
+import { MantenimientoPermisosService } from '../servicios/mantenimiento-permisos.service';
 
 @Component({
   selector: 'app-agregar-editar-rol',
@@ -13,9 +13,11 @@ import { Router } from '@angular/router';
 export class AgregarEditarRolComponent implements OnInit {
 
 	private rol: Roles;
+  private permisos: Permisos[];
 
-
-  constructor(private _rolService : MantenimientoRolesService, private _router:Router) { }
+  constructor(private _rolService : MantenimientoRolesService,
+    private _router:Router,
+    private permisoServicio: MantenimientoPermisosService) { }
 
   onNameKeyUp(event:any){
   	console.log(event.target.value);
@@ -23,6 +25,12 @@ export class AgregarEditarRolComponent implements OnInit {
 
   ngOnInit(): void{
       this.rol=this._rolService.getter();
+      this.permisoServicio.getPermisos().subscribe(permisos => {
+        console.log(permisos);
+        this.permisos = permisos;
+      }, (error)=> {
+        console.log(error);
+      })
   	}
 
   processForm(){

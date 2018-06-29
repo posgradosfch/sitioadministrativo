@@ -1,0 +1,9 @@
+.active{
+	background-color: #ADD5F7;
+}
+a .nav-brand{
+	background-color: #ADD5F7;
+}
+a .active{
+	color: white;
+}
