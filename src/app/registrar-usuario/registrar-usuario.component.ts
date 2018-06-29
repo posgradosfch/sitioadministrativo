@@ -17,8 +17,8 @@ export class RegistrarUsuarioComponent implements OnInit {
   ngOnInit() {
     this.register = {
        username: '',
-       email: '',
        password: '',
+       email: '',
        nombres: '',
        apellidos: ''
     };
@@ -26,7 +26,7 @@ export class RegistrarUsuarioComponent implements OnInit {
  registrarUsuario() {
    this.usuarioService.registerUser(this.register).subscribe(
      response => {
-       alert('User' + ' ' + this.register.username + ' ' + 'has been created' );
+       alert('Usuario' + ' ' + this.register.username + ' ' + 'ha sido creado' );
      },
      error => console.log('error', error)
    );
