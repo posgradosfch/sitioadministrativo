@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Roles } from "./roles";
+import { Permisos } from "./permisos";
 import { LoginService } from '../servicios/login.service';
 import { environment } from '../../environments/environment';
 
@@ -11,11 +12,11 @@ import { environment } from '../../environments/environment';
 })
 export class MantenimientoRolesService {
 
-  private rolesurl='/services/roles';
   baseUrl: string = environment.apiUrl + "services/roles/";
-  private rol:Roles;
+  rol:Roles;
   headers = new HttpHeaders();
   token= localStorage.getItem('token');
+
   constructor(private http: HttpClient, private loginService: LoginService) { 
     this.headers.append('Content-Type', 'application/json; charset=utf-8');
    // this.headers.append (localStorage.getItem("token");
