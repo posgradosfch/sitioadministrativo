@@ -47,7 +47,6 @@ import { GlobalService } from './servicios/global.service';
 import { AuthGuard } from './guards/auth.guard';
 import { NavSettingsComponent } from './nav-settings/nav-settings.component';
 
-
 const routes: Routes = [
 {path: '', redirectTo: '/home', 
   pathMatch: 'full'
