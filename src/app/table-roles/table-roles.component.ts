@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 export class TableRolesComponent implements OnInit {
 
-  private roles:Roles[];
+  roles:Roles[];
 
   constructor(private _rolService: MantenimientoRolesService, private _router:Router) { }
 

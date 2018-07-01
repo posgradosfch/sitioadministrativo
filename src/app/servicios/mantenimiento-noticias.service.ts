@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Noticias } from "./noticias";
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -9,17 +10,17 @@ import { Noticias } from "./noticias";
 })
 export class MantenimientoNoticiasService {
 
-  private noturl='/services/noticia';
-  private url='https://postgrados.herokuapp.com/services/noticia/'
+  baseUrl: string = environment.apiUrl + "services/noticia/";
+  //private url='https://postgrados.herokuapp.com/services/noticia/'
   private noticia:Noticias;
   constructor(private http: HttpClient) { }
 
   getNoticias (): Observable<any>{
-  	return this.http.get(this.url,this.getAuthHeaders());
+  	return this.http.get(this.baseUrl,this.getAuthHeaders());
   }
 
   agregarNoticia(userData: any): Observable<any>{
-  	return this.http.post(this.url,userData,this.getAuthHeaders());
+  	return this.http.post(this.baseUrl ,userData,this.getAuthHeaders());
   }
 
   public setter(noticia : Noticias) {

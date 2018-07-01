@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class TableNoticiasComponent implements OnInit {
 
-   private noticias:Noticias[];
+   noticias:Noticias[];
 
   constructor(private noticiaServicio: MantenimientoNoticiasService, private _router:Router) { }
 

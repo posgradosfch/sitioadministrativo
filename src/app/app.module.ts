@@ -130,7 +130,8 @@ const routes: Routes = [
   ],
   exports: [
     MatButtonModule, 
-    MatCheckboxModule
+    MatCheckboxModule,
+    RouterModule
   ],
   providers: [
     LoginService,

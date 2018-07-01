@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private url= 'https://postgrados.herokuapp.com/auth/';
+  baseUrl: string = environment.apiUrl;
+
   headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8'});
   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
 
@@ -25,7 +28,7 @@ export class LoginService {
 
   loginUsuario(userData: any): Observable<any> {
   	this.loggedIn.next(true);
-    return this.http.post(this.url, userData, {headers:this.headers});
+    return this.http.post(this.baseUrl + "auth/", userData, {headers:this.headers});
   }
   logout(){
   	this.loggedIn.next(false);

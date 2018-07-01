@@ -12,8 +12,8 @@ import { MantenimientoPermisosService } from '../servicios/mantenimiento-permiso
 })
 export class AgregarEditarRolComponent implements OnInit {
 
-	private rol: Roles;
-  private permisos: Permisos[];
+	rol: Roles;
+  permisos: Permisos[];
 
   constructor(private _rolService : MantenimientoRolesService,
     private _router:Router,
