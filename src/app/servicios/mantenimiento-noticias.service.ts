@@ -12,15 +12,14 @@ export class MantenimientoNoticiasService {
   private noturl='/services/noticia';
   private url='https://postgrados.herokuapp.com/services/noticia/'
   private noticia:Noticias;
-  private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-  getNoticias (): Observable<Noticias[]>{
-  	return this.http.get<Noticias[]>(this.url,{headers:this.headers});
+  getNoticias (): Observable<any>{
+  	return this.http.get(this.url,this.getAuthHeaders());
   }
 
-  agregarNoticia(noticia:Noticias): Observable<Noticias>{
-  	return this.http.post<Noticias>(this.url,noticia,{headers:this.headers});
+  agregarNoticia(userData: any): Observable<any>{
+  	return this.http.post(this.url,userData,this.getAuthHeaders());
   }
 
   public setter(noticia : Noticias) {
@@ -29,5 +28,11 @@ export class MantenimientoNoticiasService {
 
   public getter() {
     return this.noticia;
+  }
+
+   private getAuthHeaders(){
+    const token = localStorage.getItem('token');
+    const  headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});
+    return {headers: headers};
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormGroup } from '@angular/forms';
+import { FormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpResponse} from '@angular/common/http';
 import { LoginService } from '../servicios/login.service';
@@ -14,32 +14,39 @@ import { GlobalService } from '../servicios/global.service';
 export class LoginComponent implements OnInit {
  
   userLogin: FormGroup;
+  loading: boolean;
 
-  constructor(private loginService: LoginService,
-              private router: Router, private global: GlobalService) { }
+  constructor(private loginService: LoginService, private router: Router, private global: GlobalService, private fb: FormBuilder) { 
+    
+    this.userLogin = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
-    if (localStorage.getItem('token') && localStorage.getItem('account')){
-     // this.global.me = JSON.parse(localStorage.getItem('account'));
-      this.router.navigate(['/mantenimientoRoles']);
+    this.loading = false;
+    if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
+      this.global.me = JSON.parse(localStorage.getItem('account'));
+      this.router.navigate(['/mantenimientoUsuarios']);
     }
   }
 
-  onlogin(event){
-    event.preventDefault();
-    const target = event.target;
-    const username = target.querySelector('#username').value;
-    const password = target.querySelector('#password').value;
-    this.loginService.loginUsuario(username, password).subscribe(
+  onlogin(){
+    this.loading = true;
+    this.loginService.loginUsuario(this.userLogin.value).subscribe(
       response => {
-        localStorage.setItem('token', response['token']);
+        this.loading = false;
+        localStorage.setItem('token', response['token'])
         this.global.me = response['user'];
-        this.router.navigate(['/mantenimientoRoles']);
         console.log('token', response['token']);
-      },
-      error => {
+        this.router.navigate(['/mantenimientoUsuarios']);
+      }, error => {
+        this.loading = false;
         console.log('error', error);
       })
+    console.log(this.userLogin.value);
+    this.router.navigate(['/home']);
     
   }
 

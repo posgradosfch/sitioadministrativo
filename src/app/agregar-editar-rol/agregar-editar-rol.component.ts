@@ -19,10 +19,6 @@ export class AgregarEditarRolComponent implements OnInit {
     private _router:Router,
     private permisoServicio: MantenimientoPermisosService) { }
 
-  onNameKeyUp(event:any){
-  	console.log(event.target.value);
-  }
-
   ngOnInit(): void{
       this.rol=this._rolService.getter();
       this.permisoServicio.getPermisos().subscribe(permisos => {

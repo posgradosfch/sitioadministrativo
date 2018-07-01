@@ -1,13 +1,19 @@
-<form #loginForm="ngForm" (submit)="onlogin($event)">
+<form (submit)="onlogin()" [formGroup]="userLogin">
   <div class="form-group">
     <label for="username">Usuario:</label>
-    <input #username  class="form-control" id="username" aria-describedby="emailHelp" placeholder="Ingresar Usuario" type="text" required>
+    <input class="form-control" placeholder="Ingresar Usuario" type="text" formControlName="username">
+    <mat-error *ngIf="userLogin.get('username').hasError('requerid')">
+      El usuario es <strong>requerido</strong>
+    </mat-error>
   </div>
   <div class="form-group">
     <label for="password">Password:</label>
-    <input #password class="form-control" id="password" placeholder="Ingresar Contraseña" type="password" required>
+    <input class="form-control" placeholder="Ingresar Contraseña" type="password" formControlName="password">
+    <mat-error *ngIf="userLogin.get('password').hasError('requerid')">
+      El usuario es <strong>requerido</strong>
+    </mat-error>
   </div>
-  <button type="submit" class="btn btn-info btn-lg" [disabled]="!loginForm.valid">INGRESAR</button>
+  <button type="submit" class="btn btn-info btn-lg card" [disabled]="userLogin.invalid || loading">INGRESAR</button>
   <div class="form-group mx-auto" style="padding-top: 2rem; text-align: right; color: blue;">
     <a href="" routerLink="/registro" style="color: blue;">Registrarse</a>
   </div>

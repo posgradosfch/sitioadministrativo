@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Noticias } from '../servicios/noticias';
 import { MantenimientoNoticiasService } from '../servicios/mantenimiento-noticias.service';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-editar-noticia',
@@ -11,21 +13,33 @@ import { Router } from '@angular/router';
 export class AgregarEditarNoticiaComponent implements OnInit {
 
   private noticia: Noticias;
+  register:FormGroup;
+  loading: boolean;
 
   constructor(private noticiasService : MantenimientoNoticiasService,
-    private _router:Router) { }
+    private router:Router, private fb: FormBuilder) {
+      this.register = this.fb.group({
+      cuerpo: ['', Validators.required],
+      emcabezado: ['', Validators.required]
+    });
+     }
 
   ngOnInit(): void{
-      this.noticia=this.noticiasService.getter();
+      this.loading = false;
   	}
 
   processForm(){
-    this.noticiasService.agregarNoticia(this.noticia).subscribe((noticia)=>{
-        console.log(this.noticia);
-        this._router.navigate(['/mantenimientoNoticias']);
-      }, (error)=>{
-        console.log(error);
-      });
-  }
+    this.loading = true;
+     this.noticiasService.agregarNoticia(this.register.value).subscribe(
+      response => {
+        this.loading = false;
+        this.router.navigate(['/mantenimientoNoticias']);
+        console.log(response);
+      }, error => {
+        this.loading = false;
+        console.log('error', error);
+      })
+    console.log(this.register.value);
+ }
 
 }

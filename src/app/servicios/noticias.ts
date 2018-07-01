@@ -1,6 +1,7 @@
 export class Noticias {
-	id_noticias: number;
-	encabezado: string;
+	id: number;
+	emcabezado: string;
 	cuerpo: string;
+	fecha: string;
 	//id_usuario: number;
 }

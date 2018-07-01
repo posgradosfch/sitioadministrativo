@@ -3,12 +3,14 @@
     <tr>
       <th scope="col">Encabezado</th>
       <th scope="col">Cuerpo</th>
+      <th scope="col">fecha de Publicacion</th>
     </tr>
   </thead>
   <tbody>
     <tr class="table-light" *ngFor='let noticia of noticias'>
       <td>{{noticia.emcabezado}}</td>
       <td>{{noticia.cuerpo}}</td>
+      <td>{{noticia.fecha}}</td>
       <!--td>
         <button>Permisos</button>
         <button (click)="updateRol(rol)">Editar</button>

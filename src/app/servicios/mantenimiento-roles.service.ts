@@ -14,7 +14,7 @@ export class MantenimientoRolesService {
   private urlRol='https://postgrados.herokuapp.com/services/roles/'
   private rol:Roles;
   headers = new HttpHeaders();
-
+  token= localStorage.getItem('token');
   constructor(private http: HttpClient, private loginService: LoginService) { 
     this.headers.append('Content-Type', 'application/json; charset=utf-8');
    // this.headers.append (localStorage.getItem("token");
@@ -27,7 +27,7 @@ export class MantenimientoRolesService {
   }
 
   getRoles (): Observable<Roles[]>{
-  	return this.http.get<Roles[]>(this.urlRol,{headers:this.headers});
+  	return this.http.get<Roles[]>(this.urlRol, {headers:this.headers});
   }
 
   /*editarRol (rol:Roles): Observable<Roles>{

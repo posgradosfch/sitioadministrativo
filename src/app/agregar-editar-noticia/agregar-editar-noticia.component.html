@@ -1,14 +1,18 @@
 <div class="container row col-md-6 mx-auto mt-5 mb-5 card" style="padding: 2rem, 2rem, 2rem;">
 	<h1 class="text-center"><strong>INGRESAR NOTICIA</strong></h1>
-	<form (ngSubmit) = "processForm()">
+	<form #notiForm="ngForm" (submit) = "processForm()" [formGroup]="register">
 	  	<div class="form-group">
 	    	<label for="encabezado">Encabezado:</label>
-	    	<input class="form-control" id="encabezado" aria-describedby="emailHelp" placeholder="Ingresar rol" type="text">
+	    	<input formControlName="emcabezado" class="form-control" id="encabezado" aria-describedby="emailHelp" placeholder="Ingresar titulo de la noticia" type="text">
 	  	</div>
 	  	<div class="form-group">
-	    	<label for="cuerpo">Contenido:</label>
-	    	<input class="form-control" id="cuerpo" aria-describedby="emailHelp" placeholder="Ingresar rol" type="text">
-	  	</div>
-	  	<input type="submit" value="GUARDAR" class="btn btn-info btn-lg btn-block">
+    		<label for="cuerpo">Contenido:</label>
+   			<textarea formControlName="cuerpo" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingresar contenido"></textarea>
+ 		</div>
+ 		<div class="form-group">
+	    	<label for="exampleFormControlFile1">Subir imagen:</label>
+	    	<input type="file" class="form-control-file" id="exampleFormControlFile1">
+		</div>
+	  	<input type="submit" id="cuerpo" value="GUARDAR" class="btn btn-info btn-lg btn-block" [disabled]="register.invalid || loading">
 	</form>
 </div>

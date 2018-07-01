@@ -25,5 +25,4 @@ export class NoticiasMantenimientoComponent implements OnInit {
     this.noticiaService.setter(noticias);
     this._router.navigate(['/noticia']);
   }
-
 }

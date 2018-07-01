@@ -12,10 +12,9 @@ export class LoginService {
 
   constructor(private http: HttpClient) {
     
-    //this.headers.append("Authorization", localStorage.getItem("token"));
   }
 
-  loginUsuario(username, password) {
-    return this.http.post(this.url, {username, password}, {headers:this.headers});
+  loginUsuario(userData: any): Observable<any> {
+    return this.http.post(this.url, userData, {headers:this.headers});
   }
 }
