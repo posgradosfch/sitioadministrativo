@@ -1,3 +1,5 @@
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+<h1 class="text-center"><strong>INICIO DE SESION</strong></h1>
 <form (submit)="onlogin()" [formGroup]="userLogin">
   <div class="form-group">
     <label for="username">Usuario:</label>
@@ -14,7 +16,4 @@
     </mat-error>
   </div>
   <button type="submit" class="btn btn-info btn-lg" [disabled]="userLogin.invalid || loading">INGRESAR</button>
-  <div class="form-group mx-auto" style="padding-top: 2rem; text-align: right; color: blue;">
-    <a href="" routerLink="/registro" style="color: blue;">Registrarse</a>
-  </div>
 </form>

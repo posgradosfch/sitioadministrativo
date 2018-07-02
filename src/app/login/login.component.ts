@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpResponse} from '@angular/common/http';
 import { LoginService } from '../servicios/login.service';
 import { GlobalService } from '../servicios/global.service';
 
@@ -42,9 +41,10 @@ export class LoginComponent implements OnInit {
         console.log('token', response['token']);
         this.router.navigate(['/mantenimientoUsuarios']);
       }, error => {
+        this.loginService.logout();
         this.loading = false;
         console.log('error', error);
-        //this.loginService.logout();
+        this.loginService.logout();
       })
     console.log(this.userLogin.value);
     this.router.navigate(['/home']);

@@ -1,13 +1,16 @@
-<div class="row mx-auto hidden-xs">
-	<div class="col-md-2 hidden-xs">
-		<img style="display: block;" src="/assets/logo.png">
-	</div>
-  	<div class="col-md-8 hidden-xs">
-  		<h1><strong>ESCUELA DE POSGRADOS</strong></h1>
-  		<h2><strong>FACULTAD DE CIENCIAS Y HUMANIDADES</strong></h2>
-  		<h2><strong>UNIVERSIDAD DE EL SALVADOR</strong></h2>
-  	</div>
-  	<div class="col-md-2">
-		
-	</div>
-</div>
+<div class="jumbotron collapsed hidden-xs" style="text-align:center" *ngIf="isLoggedOut$ | async">
+    <div class="row mx-auto hidden-xs">
+      <div class="col-md-2 hidden-xs left">
+        <img style="display: block;" src="/assets/logo.png">
+      </div>
+      <div class="col-md-8 hidden-xs center">
+        <h1><strong>ESCUELA DE POSGRADOS</strong></h1>
+        <h2><strong>FACULTAD DE CIENCIAS Y HUMANIDADES</strong></h2>
+        <h2><strong>UNIVERSIDAD DE EL SALVADOR</strong></h2>
+      </div>
+      <div class="col-md-2 rigth">
+      </div>
+    </div>
+  </div>
+
+

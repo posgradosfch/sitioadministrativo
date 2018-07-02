@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Roles } from "./roles";
-import { Permisos } from "./permisos";
 import { LoginService } from '../servicios/login.service';
 import { environment } from '../../environments/environment';
 
@@ -14,22 +13,17 @@ export class MantenimientoRolesService {
 
   baseUrl: string = environment.apiUrl + "services/roles/";
   rol:Roles;
-  headers = new HttpHeaders();
-  token= localStorage.getItem('token');
 
   constructor(private http: HttpClient, private loginService: LoginService) { 
-    this.headers.append('Content-Type', 'application/json; charset=utf-8');
-   // this.headers.append (localStorage.getItem("token");
-    this.headers.append('Authorization', localStorage.getItem('token'));
-}
+   }
 
   agregarRol(rol:Roles): Observable<Roles>{
-  	return this.http.post<Roles>(this.baseUrl,rol, {headers: this.headers});
+  	return this.http.post<Roles>(this.baseUrl,rol,this.getAuthHeaders());
 
   }
 
   getRoles (): Observable<Roles[]>{
-  	return this.http.get<Roles[]>(this.baseUrl, {headers:this.headers});
+  	return this.http.get<Roles[]>(this.baseUrl,this.getAuthHeaders());
   }
 
   /*editarRol (rol:Roles): Observable<Roles>{
@@ -51,6 +45,12 @@ export class MantenimientoRolesService {
 
   public getter() {
     return this.rol;
+  }
+
+  private getAuthHeaders(){
+    const token = localStorage.getItem('token');
+    const  headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});
+    return {headers: headers};
   }
 
 }

@@ -12,7 +12,8 @@ export class LoginService {
   baseUrl: string = environment.apiUrl;
 
   headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8'});
-  private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  loggedIn = new BehaviorSubject<boolean>(false);
+  loggedOut = new BehaviorSubject<boolean>(true);
 
   get isLoggedIn() {
     if (localStorage.getItem('token') && localStorage.getItem('account')){
@@ -20,18 +21,30 @@ export class LoginService {
     } else {
       this.loggedIn.next(false);
     }
-    return this.loggedIn.asObservable(); // {2}
+    return this.loggedIn.asObservable();
   }
+
+  get isLoggedOut() {
+    if (localStorage.getItem('token') && localStorage.getItem('account')){
+      this.loggedOut.next(false);
+    } else {
+      this.loggedOut.next(true);
+    }
+    return this.loggedOut.asObservable();
+  }
+
   constructor(private http: HttpClient) {
     
   }
 
   loginUsuario(userData: any): Observable<any> {
-  	this.loggedIn.next(true);
+    this.loggedIn.next(true);
+    this.loggedOut.next(false);
     return this.http.post(this.baseUrl + "auth/", userData, {headers:this.headers});
   }
   logout(){
-  	this.loggedIn.next(false);
+    this.loggedIn.next(false);
+    this.loggedOut.next(true);
   }
 
 }
