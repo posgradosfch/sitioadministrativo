@@ -11,7 +11,7 @@ export class GenerarCodigoService {
 
   constructor(private http: HttpClient) { }
   generarcodigo(userData): Observable<any> {
-    return this.http.post('https://posgrados.herokuapp.co/codigos/crear', userData);
+    return this.http.post('https://posgrados.herokuapp.com/codigos/crear', userData);
 
   }
 }

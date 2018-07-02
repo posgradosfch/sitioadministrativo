@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Noticias } from "./noticias";
-import { environment } from '../../environments/environment';
 
+import { Noticias } from './noticias';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MantenimientoNoticiasService {
 
-  baseUrl: string = environment.apiUrl + "services/noticia/";
-  //private url='https://postgrados.herokuapp.com/services/noticia/'
+  private noturl='/services/noticia';
+  private url='https://postgrados.herokuapp.com/services/noticia/'
   private noticia:Noticias;
+  private apiUrl = 'https://postgrados.herokuapp.com/services/';
   constructor(private http: HttpClient) { }
 
   getNoticias (): Observable<any>{
-  	return this.http.get(this.baseUrl,this.getAuthHeaders());
+  	return this.http.get(this.url,this.getAuthHeaders());
   }
 
   agregarNoticia(userData: any): Observable<any>{
-  	return this.http.post(this.baseUrl ,userData,this.getAuthHeaders());
+  	return this.http.post(this.url,userData,this.getAuthHeaders());
   }
 
   public setter(noticia : Noticias) {
@@ -31,9 +33,27 @@ export class MantenimientoNoticiasService {
     return this.noticia;
   }
 
-   private getAuthHeaders(){
+   private getAuthHeaders() {
     const token = localStorage.getItem('token');
-    const  headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});
+    const  headers = new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});
     return {headers: headers};
   }
+  addnoticias(model: any): Observable<any> {
+    return this.http.post(this.getUrl('noticia/?format=json'), model).map(this.getDatos).catch(this.error);
+}
+getDatos(data: Response) {
+  let datos = data.json();
+  console.log(datos);
+  return datos || [];
+}
+private getUrl(modelo: String) {
+  // console.log(this.apiUrl +modelo);
+  return this.apiUrl + modelo;
+}
+private error(error:any){
+  let msg= (error.message) ? error.message: 'Error desconocido en la conexion con la Api con noticia';
+  console.error(msg);
+  return Observable.throw(msg);
+}
+
 }
