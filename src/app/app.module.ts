@@ -46,6 +46,7 @@ import { GlobalService } from './servicios/global.service';
 //guard
 import { AuthGuard } from './guards/auth.guard';
 import { NavSettingsComponent } from './nav-settings/nav-settings.component';
+import { GenerarCodigoComponent } from './generar-codigo/generar-codigo.component';
 
 const routes: Routes = [
 {path: '', redirectTo: '/home', 
@@ -110,6 +111,7 @@ const routes: Routes = [
     RegistrarUsuarioComponent,
     TableUsuariosComponent,
     NavSettingsComponent,
+    GenerarCodigoComponent,
   ],
   imports: [
     BrowserModule,
