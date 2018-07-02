@@ -34,6 +34,8 @@ import { TableNoticiasComponent } from './table-noticias/table-noticias.componen
 import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 import { TableUsuariosComponent } from './table-usuarios/table-usuarios.component';
 import { AgregarEditarNoticiaComponent } from './agregar-editar-noticia/agregar-editar-noticia.component';
+import { NavSettingsComponent } from './nav-settings/nav-settings.component';
+import { GenerarCodigoComponent } from './generar-codigo/generar-codigo.component';
 
 //servicios globales
 import { LoginService } from './servicios/login.service';
@@ -45,8 +47,6 @@ import { GlobalService } from './servicios/global.service';
 
 //guard
 import { AuthGuard } from './guards/auth.guard';
-import { NavSettingsComponent } from './nav-settings/nav-settings.component';
-import { GenerarCodigoComponent } from './generar-codigo/generar-codigo.component';
 
 const routes: Routes = [
 {path: '', redirectTo: '/home', 
@@ -81,6 +81,10 @@ const routes: Routes = [
 },
 {path: 'noticia', 
   component: AgregarEditarNoticiaComponent,
+  canActivate: [AuthGuard]
+},
+{path: 'generarCodigo', 
+  component: GenerarCodigoComponent,
   canActivate: [AuthGuard]
 },
 {path: '**', 
