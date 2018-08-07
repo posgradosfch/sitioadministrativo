@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { MantenimientoRolesService } from '../servicios/mantenimiento-roles.service';
-import { Roles } from '../servicios/roles';
+import { MantenimientoRolesService } from '../../servicios/mantenimiento-roles.service';
+import { Roles } from '../../servicios/roles';
 import { Router } from '@angular/router';
 
 @Component({

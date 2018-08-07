@@ -1,0 +1,13 @@
+.form-inline{
+    padding-bottom: 2rem;
+}
+.container{
+    text-align: end;
+    display: block;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}

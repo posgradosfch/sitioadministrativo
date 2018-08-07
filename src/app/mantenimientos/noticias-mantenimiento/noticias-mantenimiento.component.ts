@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { MantenimientoNoticiasService } from '../servicios/mantenimiento-noticias.service';
-import { Noticias } from '../servicios/noticias';
+import { MantenimientoNoticiasService } from '../../servicios/mantenimiento-noticias.service';
+import { Noticias } from '../../servicios/noticias';
 import { Router } from '@angular/router';
 
 @Component({

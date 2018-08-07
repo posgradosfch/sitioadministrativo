@@ -1,6 +1,43 @@
-<app-nav-settings></app-nav-settings>
-<app-header></app-header>
-<app-navbar></app-navbar>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <app-nav-menu></app-nav-menu>
+  </mat-drawer>
+  <div class="example-sidenav-content">    
+    <mat-toolbar *ngIf="isLoggedIn$ | async">
+      <div class="container">
+        <div class="left">
+          <button type="button" mat-button (click)="drawer.toggle()">
+              <i class="fa fa-bars fa-lg"></i>
+          </button>
+        </div>
+        
+        <div class="rigth">
+          <span>
+            {{account.username}}
+          </span>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logoutClicked()">
+              <i class="fa fa-sign-out fa-lg"></i>
+              <span>Salir</span>
+            </button>
+            <!--button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voicemail</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button-->
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar>
+    <app-header></app-header>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

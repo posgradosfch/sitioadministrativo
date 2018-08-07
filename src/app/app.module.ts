@@ -23,10 +23,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PrivatePageComponent } from './private-page/private-page.component';
-import { NoticiasMantenimientoComponent } from './noticias-mantenimiento/noticias-mantenimiento.component';
-import { RolesMantenimientoComponent } from './roles-mantenimiento/roles-mantenimiento.component';
-import { UsuariosMantenimientoComponent } from './usuarios-mantenimiento/usuarios-mantenimiento.component';
-import { PermisosMantenimientoComponent } from './permisos-mantenimiento/permisos-mantenimiento.component';
+import { NoticiasMantenimientoComponent } from './mantenimientos/noticias-mantenimiento/noticias-mantenimiento.component';
+import { RolesMantenimientoComponent } from './mantenimientos/roles-mantenimiento/roles-mantenimiento.component';
+import { UsuariosMantenimientoComponent } from './mantenimientos/usuarios-mantenimiento/usuarios-mantenimiento.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { TableRolesComponent } from './table-roles/table-roles.component';
 import { AgregarEditarRolComponent } from './agregar-editar-rol/agregar-editar-rol.component';
@@ -106,7 +105,6 @@ const routes: Routes = [
     NoticiasMantenimientoComponent,
     RolesMantenimientoComponent,
     UsuariosMantenimientoComponent,
-    PermisosMantenimientoComponent,
     NavMenuComponent,
     TableRolesComponent,
     AgregarEditarRolComponent,
