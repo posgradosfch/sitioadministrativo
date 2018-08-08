@@ -2,7 +2,7 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <app-nav-menu></app-nav-menu>
   </mat-drawer>
-  <div class="example-sidenav-content">    
+  <div class="example-sidenav-content">
     <mat-toolbar *ngIf="isLoggedIn$ | async">
       <div class="container">
         <div class="left">
@@ -34,7 +34,7 @@
           </mat-menu>
         </div>
       </div>
-    </mat-toolbar>
+    </mat-toolbar>    
     <app-header></app-header>
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>

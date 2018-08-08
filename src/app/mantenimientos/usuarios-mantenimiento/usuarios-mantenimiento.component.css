@@ -1,13 +1,7 @@
-.form-inline{
-    padding-bottom: 2rem;
+.navbar-light{
+    border: 0;
 }
-.container{
+nav¨{
+    display: inline;
     text-align: end;
-    display: block;
-}
-.left{
-    float: left;
-}
-.right{
-    float: right;
 }

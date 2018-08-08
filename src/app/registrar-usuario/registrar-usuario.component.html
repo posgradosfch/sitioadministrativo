@@ -3,43 +3,53 @@
   <div class="col-md-6 mx-auto mt-5">
     <div class="card">
       <div class="card-body">
-         <h1 class="text-center"> FORMULARIO DE REGISTRO</h1>
-      
-       <form (submit)="registrarUsuario()" [formGroup]="register">    
-        <div class="form-group">
-          <label for="usuario"> Nombre de usuario</label>
-          <input formControlName="username" type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        
-       <div class="form-group">
-          <label for="password"> contraseña</label>
-          <input formControlName="password" type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelp" placeholder="Ingrese su contraseña" required minlength="3">
-          <small id="passwordHelp" class="form-text text-muted">puede combinar caracteres y números</small>
-      </div>
-
-      <div class="form-group">
+        <h1 class="text-center"> FORMULARIO DE REGISTRO</h1>
+        <form (submit)="registrarUsuario()" [formGroup]="register">    
+          <div class="form-group">
+            <label for="usuario"> Nombre de usuario</label>
+            <input formControlName="username" type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+            <label for="password"> contraseña</label>
+            <input formControlName="password" type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelp" placeholder="Ingrese su contraseña" required minlength="3">
+            <small id="passwordHelp" class="form-text text-muted">puede combinar caracteres y números</small>
+          </div>
+          <div class="form-group">
             <label for="email"> Correo electronico</label>
             <input formControlName="email" type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su correo electronico" required>
             <small id="passwordHelp" class="form-text text-muted">ejemplo: ejemplo@gmail.com</small>
-        </div>
-
-      <div class="form-group">
-        <label for="usuario"> Ingrese sus Nombres</label>
-        <input formControlName="first_name"  type="text" name="nombres" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
-        <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+            <label for="usuario"> Ingrese sus Nombres</label>
+            <input formControlName="first_name"  type="text" name="nombres" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+            <label for="usuario"> Ingrese sus apellidos </label>
+            <input formControlName="last_name"  type="text" name="apellidos" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+          <div class="form-inline" style="display: inline;">
+            <button type="submit" class="btn btn-info btn-lg" [disabled]="register.invalid || loading" style="width: 50%;">Registrar Usuario</button>
+            <button class="btn btn-primary btn-lg" style="width: 50%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+          </div>     
+        </form>
       </div>
-
-      <div class="form-group">
-        <label for="usuario"> Ingrese sus apellidos </label>
-        <input formControlName="last_name"  type="text" name="apellidos" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
-        <small id="emailHelp" class="form-text text-muted"></small>
-      </div>     
-
-        <button type="submit" class="btn btn-info btn-lg btn-block" [disabled]="register.invalid || loading">Registrarme</button>
-      
-    </form>
     </div>
   </div>
-</div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Cancelar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoUsuarios" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
 </div>      

@@ -1,16 +1,18 @@
 <div class="container">
 	<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
 		<label><h2><strong>MANTENIMIENTO DE USUARIOS</strong></h2></label>
-		<div class="container form-inline" style="padding-left: 1rem; padding-right: 1rem">
-			<div class="left">
-				<input class="form-control" type="text" placeholder="Search">
-				<button class="btn btn-secondary" type="submit">Search</button>
+		<nav class="navbar navbar-expand-lg navbar-light" style="text-align: end; display: block;">
+			<div style="float: left;">
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="text" placeholder="Escriba el nombre de Usuario">
+					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
 			</div>
-			<div class="rigth">
+			<div style="float: right;">
 				<button mat-fab color="primary" (click) = "newUsuarios()">Agregar</button>
 				<!--i class="fa fa-plus-circle fa-lg"></i-->
 			</div>
-		</div>
+		</nav>
 		<table class="table table-hover">
 			<thead>
 				<tr>

@@ -129,7 +129,7 @@ const routes: Routes = [
     ReactiveFormsModule ,
     MatToolbarModule,
     MatMenuModule,
-    NgbModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   exports: [
