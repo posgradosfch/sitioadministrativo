@@ -1,4 +1,6 @@
 export class Roles {
-	nombre?: string;
+	id: number;
+	name?: string;
+	
 	permisos?: string[];
 }

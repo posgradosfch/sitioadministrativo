@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Roles } from '../servicios/roles'
 
 @Injectable({
 providedIn: 'root'
@@ -10,13 +11,14 @@ providedIn: 'root'
 export class UsuarioService {
 
   baseUrl: string = environment.apiUrl + "services/usuarios/";
-
+  rol: Roles;
   constructor(private http: HttpClient) {
     
   }
 
   registerUser(userData: any): Observable<any> {
-    return this.http.post(this.baseUrl, userData, this.getAuthHeaders());
+    let id = this.rol.id;
+    return this.http.post(this.baseUrl+`${id}`, userData, this.getAuthHeaders());
   }
 
   getUsers(): Observable<any> {
