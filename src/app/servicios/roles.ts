@@ -1,6 +1,5 @@
 export class Roles {
 	id: number;
-	name?: string;
-	
-	permisos?: string[];
+	name: string;
+	permisos: string[];
 }

@@ -23,17 +23,8 @@ export class MantenimientoRolesService {
   }
 
   getRoles (): Observable<Roles[]>{
-  	return this.http.get<Roles[]>(this.baseUrl,this.getAuthHeaders());
+  	return this.http.get<Roles[]>(this.baseUrl, this.getAuthHeaders());
   }
-
-  /*editarRol (rol:Roles): Observable<Roles>{
-  	return this.http.put<Roles>(this.urlRol,rol,{headers:this.headers});
-  }
-
-  eliminarRol (id:number): Observable<{}>{
-    const url = `${this.rolesurl}/${id}`;
-  	return this.http.delete(url,{headers:this.headers});
-  }*/
 
   errorHandler(error:Response){
     return Observable.throw(error||"SERVER ERROR");

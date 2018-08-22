@@ -1,19 +1,29 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Permisos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="table-light" *ngFor='let rol of roles'>
-      <td>{{rol.name}}</td>
-      <td>{{rol.permissions}}</td>
-      <!--td>
-        <button>Permisos</button>
-        <button (click)="updateRol(rol)">Editar</button>
-        <button (click)="deleteRol(rol)">Eliminar</button>
-      </td-->
-    </tr>
-  </tbody>
-</table> 
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let rol"> {{rol.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Permissions Column -->
+    <ng-container matColumnDef="permissions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Permisos </mat-header-cell>
+      <mat-cell *matCellDef="let rol"> {{rol.permissions}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let rol; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>

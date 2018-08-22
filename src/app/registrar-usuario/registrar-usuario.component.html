@@ -3,44 +3,50 @@
   <div class="col-md-6 mx-auto mt-5">
     <div class="card">
       <div class="card-body">
-        <h1 class="text-center"> FORMULARIO DE REGISTRO</h1>
-        <form (submit)="registrarUsuario()" [formGroup]="register">    
-          <div class="form-group">
-            <label for="usuario"> Nombre de usuario</label>
-            <input formControlName="username" type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
-          <div class="form-group">
-            <label for="password"> contraseña</label>
-            <input formControlName="password" type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelp" placeholder="Ingrese su contraseña" required minlength="3">
-            <small id="passwordHelp" class="form-text text-muted">puede combinar caracteres y números</small>
-          </div>
-          <div class="form-group">
-            <label for="email"> Correo electronico</label>
-            <input formControlName="email" type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su correo electronico" required>
-            <small id="passwordHelp" class="form-text text-muted">ejemplo: ejemplo@gmail.com</small>
-          </div>
-          <div class="form-group">
-            <label for="usuario"> Ingrese sus Nombres</label>
-            <input formControlName="first_name"  type="text" name="nombres" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
-          <div class="form-group">
-            <label for="usuario"> Ingrese sus apellidos </label>
-            <input formControlName="last_name"  type="text" name="apellidos" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su nombre de usuario" required>
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
-          <div class="form-group">
-            <label for="rol"> Seleccione el rol: </label>
-            <select class="form-control" id="exampleSelect1" required>
-              <option>seleccione una opción</option>
-              <option *ngFor='let rol of roles' [value]="rol.id">{{rol.name}}</option>
-            </select>            
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
-          <div class="form-inline" style="display: inline;">
-            <button type="submit" class="btn btn-info btn-lg" [disabled]="register.invalid || loading" style="width: 50%;">Registrar Usuario</button>
-            <button class="btn btn-primary btn-lg" style="width: 50%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarUsuario()" [formGroup]="register"> 
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Nombres</mat-label>
+              <input matInput placeholder="Escriba su nombre" formControlName="first_name" required>
+              <mat-error *ngIf="register.get('first_name').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Apellidos</mat-label>
+              <input matInput placeholder="Escriba sus apellidos" formControlName="last_name" required>
+              <mat-error *ngIf="register.get('last_name').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
+            </mat-form-field>   
+            <mat-form-field>
+              <mat-label>Correo</mat-label>
+              <input matInput placeholder="Escriba su correo" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="Seleccione Rol" [formControl]="rolCtrl" #singleSelect required>
+                <mat-option *ngFor="let rol of roles" [value]="rol.id">
+                  {{rol.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Usuario</mat-label>
+              <input matInput placeholder="Escriba su nombre de usuario" formControlName="username" required>
+              <mat-error *ngIf="register.get('username').hasError('required')">El usuario es <strong>requerido</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Contraseña</mat-label>
+              <input matInput placeholder="Escriba su contraseña" formControlName="password" required>
+              <mat-error *ngIf="register.get('password').hasError('required')">Debe introducir una contraseña es <strong>requerido</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Repetir Contraseña</mat-label>
+                <input matInput placeholder="Escriba su contraseña" formControlName="password2" required>
+                <mat-error *ngIf="register.get('password2').hasError('required')">Debe introducir una contraseña es <strong>requerido</strong></mat-error>
+            </mat-form-field>       
+            <div class="form-inline" style="display: inline;">
+              <button type="submit" class="btn btn-info btn-lg"  style="width: 50%;">Registrar Usuario</button>
+              <button class="btn btn-primary btn-lg" style="width: 50%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
           </div>     
         </form>
       </div>
@@ -61,3 +67,4 @@
     </div>
   </ng-template>
 </div>      
+

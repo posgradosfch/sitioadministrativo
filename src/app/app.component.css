@@ -30,3 +30,6 @@ mat-toolbar{
     float: right;
     text-align:right;
 }
+mat-drawer-container{
+    background-color: transparent;
+}

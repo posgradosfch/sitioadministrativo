@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Roles } from '../servicios/roles'
+import { User } from './user';
 
 @Injectable({
 providedIn: 'root'
@@ -17,12 +18,11 @@ export class UsuarioService {
   }
 
   registerUser(userData: any): Observable<any> {
-    let id = this.rol.id;
-    return this.http.post(this.baseUrl+`${id}`, userData, this.getAuthHeaders());
+    return this.http.post(this.baseUrl, userData, this.getAuthHeaders());
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get(this.baseUrl, this.getAuthHeaders());
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl, this.getAuthHeaders());
   }
 
   private getAuthHeaders(){

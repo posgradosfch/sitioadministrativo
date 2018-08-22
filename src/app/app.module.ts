@@ -13,6 +13,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatSelectModule} from '@angular/material/select';
+import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material"
+import { AppRoutingModule } from '../app/app-routing.module'
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 //componentes
 import { AppComponent } from './app.component';
@@ -46,51 +50,6 @@ import { GlobalService } from './servicios/global.service';
 
 //guard
 import { AuthGuard } from './guards/auth.guard';
-
-const routes: Routes = [
-{path: '', redirectTo: '/home', 
-  pathMatch: 'full'
-},
-{path: 'home',
-  component: HomeComponent
-},
-{path: 'noticias',
-  component: NoticiasComponent
-},
-{path: 'privado', component: PrivatePageComponent},
-{path: 'mantenimientoRoles',
-  component: RolesMantenimientoComponent,
-  canActivate: [AuthGuard]
-},
-{path: 'mantenimientoNoticias',
-  component: NoticiasMantenimientoComponent,
-  canActivate: [AuthGuard]
-},
-{path: 'mantenimientoUsuarios', 
-  component: UsuariosMantenimientoComponent,
-  canActivate: [AuthGuard]
-},
-{path: 'rol', 
-  component: AgregarEditarRolComponent,
-  canActivate: [AuthGuard]
-},
-{path: 'usuario', 
-  component: RegistrarUsuarioComponent,
-  canActivate: [AuthGuard]
-},
-{path: 'noticia', 
-  component: AgregarEditarNoticiaComponent,
-  canActivate: [AuthGuard]
-},
-{path: 'generarCodigo', 
-  component: GenerarCodigoComponent,
-  canActivate: [AuthGuard]
-},
-{path: '**', 
-  component: PageNotFoundComponent
-}
-];
-
 
 @NgModule({
   declarations: [
@@ -129,8 +88,14 @@ const routes: Routes = [
     ReactiveFormsModule ,
     MatToolbarModule,
     MatMenuModule,
+    MatPaginatorModule, 
+    MatProgressSpinnerModule, 
+    MatSortModule, 
+    MatTableModule,
+    MatSelectModule,
+    AppRoutingModule,
+    MatTooltipModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(routes)
   ],
   exports: [
     MatButtonModule, 
