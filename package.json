@@ -16,6 +16,8 @@
     "@angular/animations": "^6.0.7",
     "@angular/cdk": "^6.3.1",
     "@angular/cli": "~6.0.8",
+    "typescript": "~2.7.2",
+    "@angular/compiler-cli": "^6.0.3",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
     "@angular/core": "^6.0.3",
@@ -64,5 +66,6 @@
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"
-  }
+  },
+  "engine": { "node": "8.9.4", "npm": "6.2.0" }
 }
