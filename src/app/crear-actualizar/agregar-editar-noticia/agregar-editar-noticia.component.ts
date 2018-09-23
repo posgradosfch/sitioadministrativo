@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Noticias } from '../clases/noticias';
-import { MantenimientoNoticiasService } from '../servicios/mantenimiento-noticias.service';
+import { Noticias } from '../../clases/noticias';
+import { MantenimientoNoticiasService } from '../../servicios/mantenimiento-noticias.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-editar-noticia',

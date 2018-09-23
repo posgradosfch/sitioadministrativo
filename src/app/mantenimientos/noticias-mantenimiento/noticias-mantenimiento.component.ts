@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MantenimientoNoticiasService } from '../../servicios/mantenimiento-noticias.service';
-import { Noticias } from '../../servicios/noticias';
+import { Noticias } from '../../clases/noticias';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatPaginator, MatSort } from '../../../../node_modules/@angular/material';
-import { User } from '../../servicios/user';
-import { Subscription } from '../../../../node_modules/rxjs';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { User } from '../../clases/user';
+import { Subscription } from 'rxjs';
 import { GlobalService } from '../../servicios/global.service';
 
 @Component({
@@ -53,6 +53,7 @@ export class NoticiasMantenimientoComponent implements OnInit {
     this.noticiaService.setter(noticias);
     this._router.navigate(['/noticia']);
   }
+  
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

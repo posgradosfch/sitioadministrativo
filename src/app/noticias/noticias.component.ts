@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MantenimientoNoticiasService } from '../servicios/mantenimiento-noticias.service';
-import { Noticias } from '../servicios/noticias';
+import { Noticias } from '../clases/noticias';
 import { Router } from '@angular/router';
 
 @Component({

@@ -25,7 +25,11 @@
 			<!-- Permissions Column -->
 			<ng-container matColumnDef="permissions">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Permisos </mat-header-cell>
-			<mat-cell *matCellDef="let rol"> {{rol.permissions}}</mat-cell>
+			<mat-cell *matCellDef="let rol">
+				<li ng-repeat="permissions in rol.permissions">
+					{{rol.permissions}}
+				</li> 
+			</mat-cell>
 			</ng-container>
 
 			<!-- Opciones Column -->

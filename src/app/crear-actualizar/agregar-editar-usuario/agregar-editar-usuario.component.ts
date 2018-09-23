@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../servicios/usuario.service';
+import { UsuarioService } from '../../servicios/usuario.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { MantenimientoRolesService } from '../servicios/mantenimiento-roles.service';
-import { Roles } from '../servicios/roles';
+import { MantenimientoRolesService } from '../../servicios/mantenimiento-roles.service';
+import { Roles } from '../../clases/roles';
 
 @Component({
-  selector: 'app-registrar-usuario',
-  templateUrl: './registrar-usuario.component.html',
-  styleUrls: ['./registrar-usuario.component.css'],
+  selector: 'app-agregar-editar-usuario',
+  templateUrl: './agregar-editar-usuario.component.html',
+  styleUrls: ['./agregar-editar-usuario.component.css'],
   providers: [UsuarioService],
 })
 
-export class RegistrarUsuarioComponent implements OnInit {
+export class AgregarEditarUsuarioComponent implements OnInit {
   
   register:FormGroup;
   loading: boolean;
@@ -27,6 +27,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   closeResult: string;
   options: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
+  hide = true;
 
     constructor(private usuarioService: UsuarioService, private rolService: MantenimientoRolesService, private fb: FormBuilder, private router: Router, private ngModal: NgbModal) {
     this.options = this.fb.group({
@@ -39,11 +40,11 @@ export class RegistrarUsuarioComponent implements OnInit {
     this.loading = false;
     this.register = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.required, Validators.minLength(8)],
       password2: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', Validators.required, Validators.email]
     });
     this.mostrarRol();
     this._success.subscribe((message) => this.successMessage = message);
@@ -65,7 +66,7 @@ export class RegistrarUsuarioComponent implements OnInit {
         console.log('error', error);
       })
  }
- //Metodo para abrir el modal al cancelar
+ //Metodo para abrir ventana emergente
  openVerticallyCentered(content) {
   this.ngModal.open(content, { centered: true });
   }

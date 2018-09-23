@@ -1,4 +1,6 @@
+<!--Alerta-->
 <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
 <div class="row">
   <div class="col-md-6 mx-auto mt-5">
     <div class="card">
@@ -14,7 +16,7 @@
             <mat-form-field>
               <mat-label>Apellidos</mat-label>
               <input matInput placeholder="Escriba sus apellidos" formControlName="last_name" required>
-              <mat-error *ngIf="register.get('last_name').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
+              <mat-error *ngIf="register.get('last_name').hasError('required')">Los apellidos  son<strong>requerido</strong></mat-error>
             </mat-form-field>   
             <mat-form-field>
               <mat-label>Correo</mat-label>
@@ -22,7 +24,7 @@
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="Seleccione Rol" [formControl]="rolCtrl" #singleSelect required>
+              <mat-select placeholder="Seleccione Rol" [formControl]="rolCtrl" #singleSelect>
                 <mat-option *ngFor="let rol of roles" [value]="rol.id">
                   {{rol.name}}
                 </mat-option>
@@ -35,16 +37,16 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Contraseña</mat-label>
-              <input matInput placeholder="Escriba su contraseña" formControlName="password" required>
+              <input matInput placeholder="Escriba su contraseña" formControlName="password" required [type]="hide ? 'password' : 'text'" minlength="10">
               <mat-error *ngIf="register.get('password').hasError('required')">Debe introducir una contraseña es <strong>requerido</strong></mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Repetir Contraseña</mat-label>
-                <input matInput placeholder="Escriba su contraseña" formControlName="password2" required>
+                <input matInput placeholder="Escriba su contraseña" formControlName="password2" required [type]="hide ? 'password' : 'text'" minlength="10">
                 <mat-error *ngIf="register.get('password2').hasError('required')">Debe introducir una contraseña es <strong>requerido</strong></mat-error>
             </mat-form-field>       
             <div class="form-inline" style="display: inline;">
-              <button type="submit" class="btn btn-info btn-lg"  style="width: 50%;">Registrar Usuario</button>
+              <button type="submit" class="btn btn-info btn-lg"  style="width: 50%;" [disabled]="register.invalid || loading">Registrar Usuario</button>
               <button class="btn btn-primary btn-lg" style="width: 50%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
             </div>
           </div>     
@@ -52,6 +54,7 @@
       </div>
     </div>
   </div>
+  <!--Ventana emergente-->
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Cancelar</h4>

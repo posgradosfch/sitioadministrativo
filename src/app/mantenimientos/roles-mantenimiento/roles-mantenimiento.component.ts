@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MantenimientoRolesService } from '../../servicios/mantenimiento-roles.service';
-import { Roles } from '../../servicios/roles';
+import { Roles } from '../../clases/roles';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatPaginator, MatSort } from '../../../../node_modules/@angular/material';
-import { User } from '../../servicios/user';
-import { Subscription } from '../../../../node_modules/rxjs';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { User } from '../../clases/user';
+import { Subscription } from 'rxjs';
 import { GlobalService } from '../../servicios/global.service';
+import { Permisos } from '../../clases/permisos';
 
 @Component({
   selector: 'app-roles-mantenimiento',
@@ -27,8 +28,10 @@ export class RolesMantenimientoComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {this.userSub = this.global.user.subscribe(
-    me => this.account = me);	
+  ngOnInit(): void {
+    //mostrar mensaje
+    this.userSub = this.global.user.subscribe(me => this.account = me);	
+    //Verificar el logueo
     if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
       this.global.me = JSON.parse(localStorage.getItem('account'));
       this.getRoles();

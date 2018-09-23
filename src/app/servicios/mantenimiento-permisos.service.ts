@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Permisos } from "./permisos";
+import { Permisos } from "../clases/permisos";
 
 @Injectable({
   providedIn: 'root'

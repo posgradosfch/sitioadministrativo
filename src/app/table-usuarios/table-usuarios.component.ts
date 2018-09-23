@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { User } from '../servicios/user';
+import { User } from '../clases/user';
 import { GlobalService } from '../servicios/global.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';

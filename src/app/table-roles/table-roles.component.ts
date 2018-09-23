@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MantenimientoRolesService } from '../servicios/mantenimiento-roles.service';
-import { Roles } from '../servicios/roles';
+import { Roles } from '../clases/roles';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatPaginator, MatSort } from '../../../node_modules/@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-table-roles',

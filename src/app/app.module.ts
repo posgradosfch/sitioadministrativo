@@ -15,7 +15,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material"
-import { AppRoutingModule } from '../app/app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 //componentes
@@ -31,18 +31,14 @@ import { NoticiasMantenimientoComponent } from './mantenimientos/noticias-manten
 import { RolesMantenimientoComponent } from './mantenimientos/roles-mantenimiento/roles-mantenimiento.component';
 import { UsuariosMantenimientoComponent } from './mantenimientos/usuarios-mantenimiento/usuarios-mantenimiento.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { TableRolesComponent } from './table-roles/table-roles.component';
-import { AgregarEditarRolComponent } from './agregar-editar-rol/agregar-editar-rol.component';
-import { TableNoticiasComponent } from './table-noticias/table-noticias.component';
-import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
-import { TableUsuariosComponent } from './table-usuarios/table-usuarios.component';
-import { AgregarEditarNoticiaComponent } from './agregar-editar-noticia/agregar-editar-noticia.component';
+import { AgregarEditarRolComponent } from './crear-actualizar/agregar-editar-rol/agregar-editar-rol.component';
+import { AgregarEditarUsuarioComponent } from './crear-actualizar/agregar-editar-usuario/agregar-editar-usuario.component';
+import { AgregarEditarNoticiaComponent } from './crear-actualizar/agregar-editar-noticia/agregar-editar-noticia.component';
 import { NavSettingsComponent } from './nav-settings/nav-settings.component';
 import { GenerarCodigoComponent } from './generar-codigo/generar-codigo.component';
 
 //servicios globales
 import { LoginService } from './servicios/login.service';
-import { MantenimientoPermisosService } from './servicios/mantenimiento-permisos.service';
 import { MantenimientoRolesService } from './servicios/mantenimiento-roles.service';
 import { MantenimientoNoticiasService } from './servicios/mantenimiento-noticias.service';
 import { UsuarioService } from './servicios/usuario.service';
@@ -65,12 +61,9 @@ import { AuthGuard } from './guards/auth.guard';
     RolesMantenimientoComponent,
     UsuariosMantenimientoComponent,
     NavMenuComponent,
-    TableRolesComponent,
     AgregarEditarRolComponent,
-    TableNoticiasComponent,
     AgregarEditarNoticiaComponent,
-    RegistrarUsuarioComponent,
-    TableUsuariosComponent,
+    AgregarEditarUsuarioComponent,
     NavSettingsComponent,
     GenerarCodigoComponent,
   ],

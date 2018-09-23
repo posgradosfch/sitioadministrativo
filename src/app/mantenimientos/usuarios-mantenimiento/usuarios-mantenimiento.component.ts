@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../../servicios/usuario.service';
-import { User } from '../../servicios/user';
+import { User } from '../../clases/user';
 import { GlobalService } from '../../servicios/global.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MatTableDataSource, MatPaginator, MatSort } from '../../../../node_modules/@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 
 @Component({
@@ -26,8 +26,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
   constructor(private userService: UsuarioService, private router: Router, private global: GlobalService) { }
 
   ngOnInit() {
-  	this.userSub = this.global.user.subscribe(
-      me => this.account = me);	
+  	this.userSub = this.global.user.subscribe( me => this.account = me);	
   	  if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
         this.global.me = JSON.parse(localStorage.getItem('account'));
         this.getUsuarios();
@@ -40,6 +39,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
       this.users = users;
       this.dataSource.data = users;
       this.ngAfterViewInit();
+      this.users = users;
   		console.log('users', users);
   	}, error =>{
   		console.log('error', error);

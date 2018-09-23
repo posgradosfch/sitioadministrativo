@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Roles } from "./roles";
-import { LoginService } from '../servicios/login.service';
+import { Roles } from "../clases/roles";
+import { LoginService } from './login.service';
 import { environment } from '../../environments/environment';
 
 
