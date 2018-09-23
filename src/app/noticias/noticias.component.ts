@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MantenimientoNoticiasService } from '../servicios/mantenimiento-noticias.service';
 import { Noticias } from '../clases/noticias';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-noticias',
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NoticiasComponent implements OnInit {
 
-  private noticias:Noticias[];
+  noticias:Noticias[];
 
   constructor(private noticiaServicio:MantenimientoNoticiasService) { }
 

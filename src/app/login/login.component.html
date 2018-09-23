@@ -1,19 +1,28 @@
-<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
-<h1 class="text-center"><strong>INICIO DE SESION</strong></h1>
-<form (submit)="onlogin()" [formGroup]="userLogin">
-  <div class="form-group">
-    <label for="username">Usuario:</label>
-    <input class="form-control" placeholder="Ingresar Usuario" type="text" formControlName="username">
-    <mat-error *ngIf="userLogin.get('username').hasError('requerid')">
-      El usuario es <strong>requerido</strong>
-    </mat-error>
-  </div>
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input class="form-control" placeholder="Ingresar Contraseña" type="password" formControlName="password">
-    <mat-error *ngIf="userLogin.get('password').hasError('requerid')">
-      El usuario es <strong>requerido</strong>
-    </mat-error>
-  </div>
-  <button type="submit" class="btn btn-info btn-lg" [disabled]="userLogin.invalid || loading">INGRESAR</button>
-</form>
+<!--ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert-->
+<div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <div class="card">
+        <div class="card-body">
+            <h1 class="text-center"><strong>INICIO DE SESION</strong></h1>
+            <form (submit)="onlogin()" [formGroup]="userLogin">
+              <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Usuario</mat-label>
+                    <input matInput placeholder="Escriba su nombre de usuario" formControlName="username" required>
+                    <mat-error *ngIf="userLogin.get('username').hasError('required')">El usuario es <strong>requerido</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="password">Password:</mat-label>
+                    <input matInput type="password" placeholder="Ingresar Contraseña" formControlName="password" required>
+                    <mat-error *ngIf="userLogin.get('password').hasError('requerid')">
+                      La contraseña es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+              </div>
+              <button type="submit" class="btn btn-info btn-lg btn-block" [disabled]="userLogin.invalid || loading">INGRESAR</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>      
+  

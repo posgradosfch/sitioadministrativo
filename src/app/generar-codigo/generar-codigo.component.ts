@@ -13,7 +13,7 @@ import { ConsultarCodigosService } from './servicios/consultar-codigos.service';
      })
      export class GenerarCodigoComponent implements OnInit {
    //  myForm: FormGroup;
-private codigosAspirante: CodigosAspirante[];
+       codigosAspirante: CodigosAspirante[];
        codigo: any ;
        correlativo: any;
        vigencia: any;

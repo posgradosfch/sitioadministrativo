@@ -46,6 +46,7 @@ import { GlobalService } from './servicios/global.service';
 
 //guard
 import { AuthGuard } from './guards/auth.guard';
+import { DocentesMantenimientoComponent } from './mantenimientos/docentes-mantenimiento/docentes-mantenimiento.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { AuthGuard } from './guards/auth.guard';
     AgregarEditarUsuarioComponent,
     NavSettingsComponent,
     GenerarCodigoComponent,
+    DocentesMantenimientoComponent,
   ],
   imports: [
     BrowserModule,
