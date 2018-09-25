@@ -23,7 +23,7 @@ export class MantenimientoRolesService {
   }
 
   getRoles (): Observable<Roles[]>{
-  	return this.http.get<Roles[]>(this.baseUrl, this.getAuthHeaders());
+    return this.http.get<Roles[]>(this.baseUrl, this.getAuthHeaders());
   }
 
   errorHandler(error:Response){
