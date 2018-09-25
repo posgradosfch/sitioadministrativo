@@ -1,55 +1,55 @@
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
-		<label><h2><strong>MANTENIMIENTO DE NOTICIAS</strong></h2></label>
-	  	<div class="example-header">
-			<div class="left">
-				<mat-form-field>
-					<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-				</mat-form-field>
-			</div>
-			<div class="rigth">
-				<button mat-fab class="col" (click) = "newNoticia()" matTooltip="Crear una nueva Noticia">
-					<mat-icon>add</mat-icon>
-				</button>		  
-			</div>
-		</div>  
-		<br><br>
-		<div class="example-container mat-elevation-z8">
-			<mat-table [dataSource]="dataSource" matSort>
+	<label><h2><strong>MANTENIMIENTO DE NOTICIAS</strong></h2></label>
+	<div class="example-header">
+		<div class="left">
+			<mat-form-field>
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		</div>
+		<div class="rigth">
+			<button mat-fab class="col" (click) = "newNoticia()" matTooltip="Crear una nueva Noticia">
+				<mat-icon>add</mat-icon>
+			</button>		  
+		</div>
+	</div>  
+	<br><br>
+	<div class="example-container mat-elevation-z8">
+		<mat-table [dataSource]="dataSource" matSort>
+		
+			<!-- Titulo Column -->
+			<ng-container matColumnDef="titulo">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </mat-header-cell>
+			<mat-cell *matCellDef="let noticia"> {{noticia.emcabezado}} </mat-cell>
+			</ng-container>
+		
+			<!-- Contenido Column -->
+			<ng-container matColumnDef="cuerpo">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Contenido </mat-header-cell>
+			<mat-cell *matCellDef="let noticia"> {{noticia.cuerpo}}</mat-cell>
+			</ng-container>
 			
-				<!-- Header Column -->
-				<ng-container matColumnDef="titulo">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </mat-header-cell>
-				<mat-cell *matCellDef="let noticia"> {{noticia.emcabezado}} </mat-cell>
-				</ng-container>
-			
-				<!-- Body Column -->
-				<ng-container matColumnDef="cuerpo">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> Contenido </mat-header-cell>
-				<mat-cell *matCellDef="let noticia"> {{noticia.cuerpo}}</mat-cell>
-				</ng-container>
-				
-				<!-- Date Column -->
-				<ng-container matColumnDef="fecha">
-						<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
-						<mat-cell *matCellDef="let noticia"> {{noticia.fecha}}</mat-cell>
-						</ng-container>
+			<!-- Fecha Column -->
+			<ng-container matColumnDef="fecha">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+					<mat-cell *matCellDef="let noticia"> {{noticia.fecha}}</mat-cell>
+					</ng-container>
 
-				<!-- Opciones Column -->
-				<ng-container matColumnDef="opcion" style="text-align: center;">
-					<mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
-					<mat-cell *matCellDef="let noticia">
-						<mat-icon class="icono">mode_edit</mat-icon>
-						<mat-icon class="icono">delete</mat-icon>
-					</mat-cell>
-				</ng-container>
+			<!-- Opciones Column -->
+			<ng-container matColumnDef="opcion" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+				<mat-cell *matCellDef="let user">
+					<i class="edit fa fa-edit fa-lg">   </i>
+					<i class="delete fa fa-trash-o fa-lg">   </i>
+				</mat-cell>
+			</ng-container>
 	
 			
-				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-				<mat-row *matRowDef="let rol; columns: displayedColumns;">
-				</mat-row>
-			</mat-table>
-			
-			<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-			</div>
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let rol; columns: displayedColumns;">
+			</mat-row>
+		</mat-table>
+		
+		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+		</div>
 	</div>
 	

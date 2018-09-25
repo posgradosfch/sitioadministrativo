@@ -1,0 +1,112 @@
+<!--Alerta-->
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarDocente()" [formGroup]="register"> 
+          <div class="example-container">
+              <mat-form-field>
+                <mat-label>Nombres</mat-label>
+                <input matInput type="text" placeholder="Escriba su nombre" formControlName="nombre" required pattern="[A-Za-z ]{1,50}">
+                <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Apellidos</mat-label>
+                <input matInput placeholder="Escriba sus apellidos" formControlName="apellido" required pattern="[A-Za-z ]{1,50}">
+                <mat-error *ngIf="register.get('apellido').hasError('required')">Los apellidos son <strong>requeridos</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>DUI</mat-label>
+                <input matInput placeholder="Escriba su numero de DUI" formControlName="dui" required maxlength="10" minlength="10">
+                <mat-error *ngIf="register.get('dui').hasError('required')">El numero de DUI es <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="register.get('dui').hasError('minlength') || register.get('dui').hasError('pattern')">Formato Incorrecto, debe tener 10 caracteres en formato 00000000-0</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Formación Academica</mat-label>
+                <input matInput placeholder="Escriba su formación academica" formControlName="formacion" required pattern="[A-Za-z ,]{1,256}">
+                <mat-error *ngIf="register.get('formacion').hasError('required')">La formación academica es <strong>requerida</strong></mat-error>
+              </mat-form-field> 
+              <mat-form-field>
+                <mat-label>Titulo Pregrado</mat-label>
+                <input matInput placeholder="Escriba su titulo de pregrado" formControlName="titulo" required pattern="[A-Za-z ]{1,100}">
+                <mat-error *ngIf="register.get('titulo').hasError('required')">El titulo de pregrado es <strong>requerido</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input matInput type="date" placeholder="Escriba su fecha de nacimiento" formControlName="fech_nacimiento" required>
+                <mat-error *ngIf="register.get('fech_nacimiento').hasError('required')">La fecha de nacimiento <strong>requerida</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Seleccione Genero" formControlName="genero" required>
+                  <mat-option *ngFor="let genero of generos" [value]="genero.id">
+                    {{genero.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="register.get('genero').hasError('required')">El genero es <strong>requerido</strong></mat-error>
+              </mat-form-field>             
+              <mat-form-field>
+                <mat-label>Telefono Fijo</mat-label>
+                <input matInput placeholder="Escriba su numero de telefono fijo en formato 2222-2222" formControlName="telefono" required maxlength="9">
+                <mat-error *ngIf="register.get('telefono').hasError('required')">El numero de telefono fijo es <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="register.get('telefono').hasError('minlength') || register.get('telefono').hasError('pattern')">Formato Incorrecto, debe comenzar con 2 en formato 2222-2222</mat-error>
+              </mat-form-field> 
+              <mat-form-field>
+                <mat-label>Telefono Movil</mat-label>
+                <input matInput placeholder="Escriba su numero de telefono movil" formControlName="movil" required maxlength="9">
+                <mat-error *ngIf="register.get('movil').hasError('required')">El numero de telefono movil <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="register.get('movil').hasError('minlength') || register.get('movil').hasError('pattern')">Formato Incorrecto, debe comenzar con 6 o 7 en formato 6000-0000</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Escriba su correo electronico" formControlName="email" required>
+                <mat-error *ngIf="register.get('email').hasError('required')">El correo electronico es <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="register.get('email').hasError('email')">El correo electronico es <strong>incorrecto</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Escriba su nombre de usuario" formControlName="usuario" required>
+                <mat-error *ngIf="register.get('usuario').hasError('required')">El nombre de Usuario es <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="register.get('usuario').hasError('minlength') || register.get('usuario').hasError('pattern')">El usuario debe tener al menos 5 carecteres incluye Mayusculas y Minusculas, Numeros y _</mat-error>
+              </mat-form-field>  
+              <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" placeholder="Escriba su contraseña de usuario" formControlName="password" required>
+                <mat-error *ngIf="register.get('password').hasError('required')">La contraseña es <strong>requerida</strong></mat-error>
+                <mat-error *ngIf="register.get('password').hasError('minlength')">La contraseña debe tener al menos <strong>8 caracteres</strong></mat-error>
+              </mat-form-field> 
+              <mat-form-field>
+                <mat-label>Confirmar Contraseña</mat-label>
+                <input matInput type="password" placeholder="Escriba de nuevo su contraseña de usuario" formControlName="password2" required>
+                <mat-error *ngIf="register.get('password2').hasError('required')">La contraseña es <strong>requerida</strong></mat-error>
+                <mat-error *ngIf="register.get('password2').hasError('minlength')">La contraseña debe tener al menos <strong>8 caracteres</strong></mat-error>
+                <mat-error *ngIf="cpwd.hasError('invalid')"> contraseña invalida </mat-error>              
+              </mat-form-field> 
+            <div class="button-row">
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
+              <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title"><strong>Cancelar</strong></h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoDocente" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
+</div>      
+

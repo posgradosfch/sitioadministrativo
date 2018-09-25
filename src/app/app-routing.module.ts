@@ -13,6 +13,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { GenerarCodigoComponent } from './generar-codigo/generar-codigo.component';
 import { AgregarEditarNoticiaComponent } from './crear-actualizar/agregar-editar-noticia/agregar-editar-noticia.component';
 import { AgregarEditarUsuarioComponent } from './crear-actualizar/agregar-editar-usuario/agregar-editar-usuario.component';
+import { DocentesMantenimientoComponent } from './mantenimientos/docentes-mantenimiento/docentes-mantenimiento.component';
+import { AgregarEditarDocenteComponent } from './crear-actualizar/agregar-editar-docente/agregar-editar-docente.component';
+import { ProcedimientosMantenimientoComponent } from './mantenimientos/procedimientos-mantenimiento/procedimientos-mantenimiento.component';
+import { PasosMantenimientoComponent } from './mantenimientos/pasos-mantenimiento/pasos-mantenimiento.component';
+import { AgregarEditarPasoComponent } from './crear-actualizar/agregar-editar-paso/agregar-editar-paso.component';
+import { AgregarEditarProcedimientoComponent } from './crear-actualizar/agregar-editar-procedimiento/agregar-editar-procedimiento.component';
+import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -38,6 +45,18 @@ const routes: Routes = [
     component: UsuariosMantenimientoComponent,
     canActivate: [AuthGuard]
   },
+  {path: 'mantenimientoDocentes', 
+    component: DocentesMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoProcedimientos', 
+    component: ProcedimientosMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoPasos', 
+    component: PasosMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
   {path: 'rol', 
     component: AgregarEditarRolComponent,
     canActivate: [AuthGuard]
@@ -50,11 +69,26 @@ const routes: Routes = [
     component: AgregarEditarNoticiaComponent,
     canActivate: [AuthGuard]
   },
+  {path: 'docente', 
+    component: AgregarEditarDocenteComponent,
+    canActivate: [AuthGuard]
+  },
   {path: 'generarCodigo', 
     component: GenerarCodigoComponent,
     canActivate: [AuthGuard]
   },
-  
+  {path: 'citas', 
+    component: ManejoCitasComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'paso', 
+    component: AgregarEditarPasoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'procedimiento', 
+    component: AgregarEditarProcedimientoComponent,
+    canActivate: [AuthGuard]
+  },
   {path: '**', 
     component: PageNotFoundComponent
   }

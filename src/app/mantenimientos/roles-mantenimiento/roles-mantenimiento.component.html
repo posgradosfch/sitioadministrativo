@@ -26,7 +26,7 @@
 			<ng-container matColumnDef="permissions">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Permisos </mat-header-cell>
 			<mat-cell *matCellDef="let rol">
-				<li ng-repeat="permissions in rol.permissions">
+				<li ng-repeat="rol in permiso.name">
 					{{rol.permissions}}
 				</li> 
 			</mat-cell>
@@ -34,10 +34,10 @@
 
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let rol">
-					<mat-icon class="icono">mode_edit</mat-icon>
-					<mat-icon class="icono">delete</mat-icon>
+					<i class="edit fa fa-edit fa-lg">   </i>
+					<i class="delete fa fa-trash-o fa-lg">   </i>
 				</mat-cell>
 			</ng-container>
 		
@@ -48,4 +48,7 @@
 		
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 	</div>
+	<div *ngFor="let rol of roles">
+
+		  </div>
 </div>

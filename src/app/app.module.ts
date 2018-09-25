@@ -1,7 +1,7 @@
 //Modulos
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
@@ -17,6 +17,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material"
 import { AppRoutingModule } from './app-routing.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatBadgeModule } from '@angular/material/badge'
 
 //componentes
 import { AppComponent } from './app.component';
@@ -36,6 +39,12 @@ import { AgregarEditarUsuarioComponent } from './crear-actualizar/agregar-editar
 import { AgregarEditarNoticiaComponent } from './crear-actualizar/agregar-editar-noticia/agregar-editar-noticia.component';
 import { NavSettingsComponent } from './nav-settings/nav-settings.component';
 import { GenerarCodigoComponent } from './generar-codigo/generar-codigo.component';
+import { DocentesMantenimientoComponent } from './mantenimientos/docentes-mantenimiento/docentes-mantenimiento.component';
+import { AgregarEditarDocenteComponent } from './crear-actualizar/agregar-editar-docente/agregar-editar-docente.component';
+import { ProcedimientosMantenimientoComponent } from './mantenimientos/procedimientos-mantenimiento/procedimientos-mantenimiento.component';
+import { PasosMantenimientoComponent } from './mantenimientos/pasos-mantenimiento/pasos-mantenimiento.component';
+import { AgregarEditarProcedimientoComponent } from './crear-actualizar/agregar-editar-procedimiento/agregar-editar-procedimiento.component';
+import { AgregarEditarPasoComponent } from './crear-actualizar/agregar-editar-paso/agregar-editar-paso.component';
 
 //servicios globales
 import { LoginService } from './servicios/login.service';
@@ -46,7 +55,7 @@ import { GlobalService } from './servicios/global.service';
 
 //guard
 import { AuthGuard } from './guards/auth.guard';
-import { DocentesMantenimientoComponent } from './mantenimientos/docentes-mantenimiento/docentes-mantenimiento.component';
+import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +77,12 @@ import { DocentesMantenimientoComponent } from './mantenimientos/docentes-manten
     NavSettingsComponent,
     GenerarCodigoComponent,
     DocentesMantenimientoComponent,
+    AgregarEditarDocenteComponent,
+    ProcedimientosMantenimientoComponent,
+    PasosMantenimientoComponent,
+    AgregarEditarProcedimientoComponent,
+    AgregarEditarPasoComponent,
+    ManejoCitasComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,12 +105,17 @@ import { DocentesMantenimientoComponent } from './mantenimientos/docentes-manten
     MatSelectModule,
     AppRoutingModule,
     MatTooltipModule,
-    NgbModule.forRoot(),
+    AngularSvgIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatBadgeModule,
+    NgbModule.forRoot()
   ],
   exports: [
     MatButtonModule, 
     MatCheckboxModule,
-    RouterModule
+    RouterModule,
+    MatBadgeModule
   ],
   providers: [
     LoginService,

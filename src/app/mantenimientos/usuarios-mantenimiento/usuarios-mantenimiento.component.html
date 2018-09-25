@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<br><br>
-	<div class="example-container mat-elevation-z8">
+	<div class="example-container mat-elevation-z8" style="text-align: center;">
 		<mat-table [dataSource]="dataSource" matSort>
 			<!-- First_Name Column -->
 			<ng-container matColumnDef="nombre">
@@ -34,7 +34,7 @@
 				<mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
 			</ng-container>
 
-			<!-- Permissions Column -->
+			<!-- Email Column -->
 			<ng-container matColumnDef="email">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
 				<mat-cell *matCellDef="let user"> {{user.email}}</mat-cell>
@@ -42,10 +42,10 @@
 
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let user">
-					<mat-icon class="icono">mode_edit</mat-icon>
-					<mat-icon class="icono">delete</mat-icon>
+					<i class="edit fa fa-edit fa-lg">   </i>
+					<i class="delete fa fa-trash-o fa-lg">   </i>
 				</mat-cell>
 			</ng-container>
 		

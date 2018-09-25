@@ -3,13 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js && ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod",
-    "deploy": "git push origin master && git push heroku master"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +26,7 @@
     "@angular/router": "^6.0.3",
     "@ng-bootstrap/ng-bootstrap": "^2.2.0",
     "angular-font-awesome": "^3.1.2",
+    "angular-svg-icon": "^6.0.0",
     "angular-ui-bootstrap": "^2.5.6",
     "bootstrap": "^4.1.1",
     "bootswatch": "^4.1.1",

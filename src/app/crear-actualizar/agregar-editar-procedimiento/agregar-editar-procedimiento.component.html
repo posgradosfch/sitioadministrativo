@@ -1,0 +1,46 @@
+<!--Alerta-->
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarProcedimiento()" [formGroup]="register"> 
+          <div class="example-container">
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" placeholder="Escriba el nombre del procedimiento" formControlName="nombre" required pattern="[A-Za-z ]{1,50}">
+                <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Descripcion</mat-label>
+                <input matInput placeholder="Escriba en que consiste el procedimiento" formControlName="descripcion" required pattern="[A-Za-z ]{1,1000}">
+                <mat-error *ngIf="register.get('descripcion').hasError('required')">La Descripcion es <strong>requerida</strong></mat-error>
+              </mat-form-field>         
+            <div class="button-row">
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
+              <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Cancelar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoProcedimientos" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
+</div>      
+

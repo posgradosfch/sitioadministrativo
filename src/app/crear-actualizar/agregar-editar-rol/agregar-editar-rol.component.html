@@ -1,36 +1,78 @@
+<!--Alerta-->
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
 
-<div class="container row col-md-6 mx-auto mt-5 mb-5 card" style="padding: 2rem, 2rem, 2rem;">
-	<h1 class="text-center"><strong>INGRESAR ROL</strong></h1>
-	<form (ngSubmit) = "processForm()">
-	  	<div class="form-group">
-	    	<label for="rol">Nombre del rol:</label>
-	    	<input class="form-control" id="rol" aria-describedby="emailHelp" placeholder="Ingresar rol" type="text">
-	  	</div>
-	  	<div class="form-group">
-	      	<label for="permisos">Permisos:</label>
-	      	<select multiple="" class="form-control" id="permisos">
-	        	<option *ngFor='let permiso of permisos'>
-	        		{{permiso.name}}
-	    		</option>
-	      	</select>
-	   		</div>
-	   		<div class="form-group">
-	      		<label for="permisosAsignar">Permisos a asignar:</label>
-	      		<table class="table table-hover">
-		  			<thead>
-		    			<tr>
-		      				<th scope="col">Numero del Permiso</th>
-						    <th scope="col">Permiso</th>
-						</tr>
-		  			</thead>
-		  			<tbody>
-		    			<tr>
-			      			<td>1</td>
-			      			<td>Can add log entry</td>
-		    			</tr>
-		    		</tbody>
-		    	</table>
-	   		</div>
-	  	<input type="submit" value="GUARDAR" class="btn btn-info btn-lg btn-block">
-	</form>
-</div>
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarRoles()" [formGroup]="register"> 
+          <div class="example-container">
+            <mat-form-field>
+                <mat-label>Nombre del Rol</mat-label>
+                <input matInput type="text" placeholder="Escriba el nombre del rol" formControlName="name" required pattern="[A-Za-z ]{1,50}">
+                <mat-error *ngIf="register.get('name').hasError('required')">El nombre del rol es <strong>requerido</strong></mat-error>
+              </mat-form-field>
+              <h6><strong>PERMISOS A ASIGNAR</strong></h6>
+              <small>Seleccione los Permisos que desea asignar al Rol</small>
+               <br>
+              <br>
+            <div class="example-table-container">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row.id) : null"
+                                  [checked]="selection.isSelected(row.id)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let permiso"> {{permiso.name}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    (click)="selection.toggle(row)">
+                </tr>
+              </table>
+            </div>
+            <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+              
+            <div class="button-row">
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
+              <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Cancelar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoUsuarios" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
+</div>      
+
+

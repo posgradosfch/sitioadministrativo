@@ -20,6 +20,7 @@ export class RolesMantenimientoComponent implements OnInit {
   dataSource = new MatTableDataSource();
   account: User = new User();
   userSub: Subscription;
+  permisos: Permisos;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -30,8 +30,12 @@ mat-table {
       text-align: left;
       width: 80%;
   }
-  .icono{
+  .edit{
     color: #35478C;
+  }
+
+  .delete{
+    color: #A10000;
   }
   .col{
     background-color: #029ACF;
