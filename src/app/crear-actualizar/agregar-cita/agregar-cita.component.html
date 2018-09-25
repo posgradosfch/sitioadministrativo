@@ -1,0 +1,59 @@
+ <div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO PARA CREAR UN EVENTO</strong></h1>
+        <form (submit)="registrarUsuario()" [formGroup]="nuevaCita"> 
+          <div class="example-container">
+            <!--class="example-full-width"
+              <mat-form-field>
+                  <mat-label>Nombre del evento</mat-label>
+                  <input matInput placeholder="Escriba el nombre del evento" formControlName="evento" required>
+                  <mat-error *ngIf="nuevaCita.get('evento').hasError('required')">El nombre del evento es un dato <strong>requerido</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput placeholder="ingresa la descripcion del evento" formControlName="evento" required>
+                  <mat-error *ngIf="nuevaCita.get('evento').hasError('required')">El nombre del evento es un dato <strong>requerido</strong></mat-error>
+              </mat-form-field>-->
+              <mat-form-field>
+                  <mat-label>Nombre del evento</mat-label>
+                  <input matInput placeholder="ingresa la descripcion del evento" formControlName="evento" required>
+               <!--   <mat-error *ngIf="register.get('evento').hasError('required')">El nombre del evento es <strong>requerido</strong></mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Descripcion </mat-label>
+                  <textarea matInput placeholder="ingresa la descripcion del evento"></textarea>
+              </mat-form-field>
+              <mat-checkbox>Evento de un dia</mat-checkbox>
+              <mat-form-field>
+                  <mat-label>Fecha de Inicio</mat-label>
+                  <input matInput type="date" placeholder="Escriba su fecha de nacimiento" formControlName="fech_nacimiento" required>
+                <!--  <mat-error *ngIf="register.get('fech_nacimiento').hasError('required')">La fecha de nacimiento <strong>requerida</strong></mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Fecha de Finalizacion</mat-label>
+                  <input matInput type="date" placeholder="Escriba su fecha de nacimiento" formControlName="fech_nacimiento" required>
+               <!--   <mat-error *ngIf="register.get('fech_nacimiento').hasError('required')">La fecha de nacimiento <strong>requerida</strong></mat-error> -->
+              </mat-form-field>
+<!--date time validado
+              <mat-form-field class="example-full-width">
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+   -->             
+
+              <mat-form-field>
+                  <mat-label>Lugar</mat-label>
+                  <input matInput placeholder="ingresa la descripcion del evento" formControlName="lugar" required>
+               <!--   <mat-error *ngIf="register.get('evento').hasError('required')">El nombre del evento es <strong>requerido</strong></mat-error> -->
+              </mat-form-field>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

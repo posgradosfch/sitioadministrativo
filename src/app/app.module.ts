@@ -56,6 +56,8 @@ import { GlobalService } from './servicios/global.service';
 //guard
 import { AuthGuard } from './guards/auth.guard';
 import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
+import { AgregarCitaComponent } from './crear-actualizar/agregar-cita/agregar-cita.component';
+import { NotificarCitaComponent } from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
     AgregarEditarProcedimientoComponent,
     AgregarEditarPasoComponent,
     ManejoCitasComponent,
+    AgregarCitaComponent,
+    NotificarCitaComponent,
   ],
   imports: [
     BrowserModule,
