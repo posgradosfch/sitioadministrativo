@@ -20,6 +20,8 @@ import { PasosMantenimientoComponent } from './mantenimientos/pasos-mantenimient
 import { AgregarEditarPasoComponent } from './crear-actualizar/agregar-editar-paso/agregar-editar-paso.component';
 import { AgregarEditarProcedimientoComponent } from './crear-actualizar/agregar-editar-procedimiento/agregar-editar-procedimiento.component';
 import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
+import {AgregarCitaComponent} from './crear-actualizar/agregar-cita/agregar-cita.component';
+import {NotificarCitaComponent} from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -79,6 +81,14 @@ const routes: Routes = [
   },
   {path: 'citas', 
     component: ManejoCitasComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'agregarCita',
+    component: AgregarCitaComponent ,
+    canActivate: [AuthGuard]
+  },
+  {path: 'notificarCita',
+    component:  NotificarCitaComponent,
     canActivate: [AuthGuard]
   },
   {path: 'paso', 
