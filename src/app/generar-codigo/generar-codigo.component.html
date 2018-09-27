@@ -1,20 +1,103 @@
+<!--Alerta-->
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+<!--
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+      -->
+      <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+        <h1 class="text-center"> <strong>GENERADOR DE CODIGOS PARA EL INGRESO AL SITIO WEB DE ESTUDIANTES</strong></h1>
+        <form (submit)="generarcodigo()" [formGroup]="datosCodigo"> 
+          <div class="example-container">
+              <mat-form-field>
+                <mat-label>Cantidad de códigos a generar</mat-label>
+                <input matInput type="number" placeholder="Ingrese un numero" formControlName="cantidad" required pattern="[0-9]">
+                <mat-error *ngIf="datosCodigo.get('cantidad').hasError('required')">la cantidad es <strong>requerida</strong></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Seleccione el tiempo de vigencia</mat-label>
+                <input matInput type="date" placeholder="Ingrese la fecha de vigencia del codigo" formControlName="vigencia" required>
+                <mat-error *ngIf="datosCodigo.get('vigencia').hasError('required')">La fecha de vigencia es <strong>requerida</strong></mat-error>
+              </mat-form-field>
+              <div class="button-row">
+                <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="datosCodigo.invalid || loading">Generar codigo</button>   
+              </div>
+          </div>  
+          </form>
+          
+          <!--
+              <div id="customers" class="mt-5" id="content" #customers ></div>
+              <table id="tabcustomers" class="table table-hover" #tabcustomers ></table>
+-->
+              <div class="example-container mat-elevation-z8" style="text-align: center;" id="customers" id="content" #customers>
+                <mat-table [dataSource]="dataSource" matSort id="tabcustomers" #tabcustomers>
+                  <!-- First_Name Column -->
+                  <ng-container matColumnDef="correlativo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Correlativo </mat-header-cell>
+                    <mat-cell *matCellDef="let ca"> {{ca.id}}</mat-cell>
+                  </ng-container>
+                  
+                  <!-- Last_Name Column -->
+                  <ng-container matColumnDef="codigo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
+                    <mat-cell *matCellDef="let ca"> {{ca.codigo}} </mat-cell>
+                  </ng-container>
+            
+                  <!-- Username Column -->
+                  <ng-container matColumnDef="vigencia">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Vigencia </mat-header-cell>
+                    <mat-cell *matCellDef="let ca"> {{ca.vigencia}} </mat-cell>
+                  </ng-container>                
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let ca; columns: displayedColumns;">
+                  </mat-row>
+                </mat-table>
+            </div>
+            <div class="button-row">  
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="datosCodigo.invalid || loading" (click)="downloadPDFTable()"> Imprimir codigo</button>
+            </div>
+            
+</div>
+
+<!--
+        </div>
+      </div>
+    </div>
+  </div>      
 
 <div class="row">
   <div class="col-md-6 mx-auto mt-5">
     <div class="card">
         <h1>Bienvenido al generador de códigos para el ingreso al sitio web de estudiantes </h1>
          
-   
-   <!-- <div class="form-group">
-        <input formControlName="cantidad" class="form-control" type="number" min="1" max="100" required>
-       </div>-->
-
-<button type="submit" class="btn btn-info btn-lg" (click)='generarcodigo()' > Generar codigo</button>
-
+   <form (submit)="generarcodigo()" [formGroup]="datosCodigo">
+   <div class="form-group">
+      <label for="fecha">Cantidad de códigos a generar</label>
+        <input formControlName="cantidad" class="form-control" type="number" min="1" max="100"  [ngClass]="{ 'is-invalid': submitted && f.cantidad.errors }">
+        <div *ngIf="submitted && f.cantidad.errors" class="invalid-feedback">
+            <div *ngIf="f.cantidad.errors.required">la cantidad es un dato requerido</div>
+          </div>
+         
+   </div>
+    
+     <div class="form-group">
+      <label for="fecha"> Seleccione el tiempo de vigencia</label>
+      <input type="date" formControlName="vigencia" id="vigencia" class="form-control" aria-describedby="fechaHelp" placeholder="Ingrese la vigencia" [ngClass]="{ 'is-invalid': submitted && f.vigencia.errors }" >
+      <small id="vigenciaHelp" class="form-text text-muted"></small>
+      <div *ngIf="submitted && f.vigencia.errors" class="invalid-feedback">
+        <div *ngIf="f.vigencia.errors.required">la fecha de vigencia es un dato requerido</div>
+      </div>
+  </div>
+  <div class="form-inline" style="display: inline;">
+<button type="submit" class="btn btn-info btn-lg" [disabled]="datosCodigo.invalid"> Generar codigo</button>
+</div>
+</form>
 <br>
 <br>
-<div class="mt-5" id="content" >
-<table class="table table-hover">
+<div id="customers" class="mt-5" id="content" #customers >
+<table id="tabcustomers" class="table table-hover" #tabcustomers >
+
   <thead>
       <tr>
         <th scope="col">Correlativo</th>
@@ -22,20 +105,22 @@
         <th scope="col">Vigencia</th>
       </tr>
     </thead>
+ 
 <thead>
-<tr class="table-light" *ngFor='let codigoAspirante of codigosAspirante' ng-repeat="codigoAspirante in codigosAspirante | orderBy: 'codigosAspirante.id' :reverse" >
-<td>{{codigoAspirante.id}}</td>
-<td>{{codigoAspirante.cod_validacion}}</td>
-<td>{{vigencia}}</td>
+<tr class="table-light" *ngFor='let codigoAsp of ca' ng-repeat="codigoAsp in ca | orderBy: 'codigoAsp.id' :reverse" >
+<td>{{codigoAsp.id}}</td>
+<td>{{codigoAsp.codigo}}</td>
+<td>{{codigoAsp.vigencia}}</td>
 </tr>
 </thead>
-<tbody>
-
- 
+<tbody>  
 </tbody>
+
 </table>
 </div>
-<!--button type="submit" class="btn btn-info btn-lg" (click)="downloadPDF()"> Imprimir codigo</button-->
+
+<button type="submit" class="btn btn-info btn-lg" (click)="downloadPDFTable()"> Imprimir codigo</button>
 </div>
 </div>
 </div>
+-->
