@@ -1,37 +1,5 @@
-.example-container {
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
-    text-align: center;
-  }
-  
-  .example-header {
-    min-height: 64px;
-    padding: 8px 24px 0;
-    display: block;
-  }
-  
-mat-form-field {
-    font-size: 14px;
-    width: 80%;
-  }
-  
-mat-table {
-    overflow: auto;
-    max-height: 500px;
-  }
-  .rigth{
-      float: right;
-      text-align: right;
-  }
-  .left{
-      float: left;
-      text-align: left;
-      width: 80%;
-  }
-  .icono{
-    color: #35478C;
-  }
-  .col{
-    background-color: #029ACF;
-  }
+mat-expansion-panel-header{
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}

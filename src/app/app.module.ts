@@ -20,6 +20,19 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatBadgeModule } from '@angular/material/badge'
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
+
+//servicios globales
+import { LoginService } from './servicios/login.service';
+import { MantenimientoRolesService } from './servicios/mantenimiento-roles.service';
+import { MantenimientoNoticiasService } from './servicios/mantenimiento-noticias.service';
+import { UsuarioService } from './servicios/usuario.service';
+import { GlobalService } from './servicios/global.service';
+import { EventService } from "./servicios/event.service";
+
+//guard
+import { AuthGuard } from './guards/auth.guard';
 
 //componentes
 import { AppComponent } from './app.component';
@@ -45,19 +58,11 @@ import { ProcedimientosMantenimientoComponent } from './mantenimientos/procedimi
 import { PasosMantenimientoComponent } from './mantenimientos/pasos-mantenimiento/pasos-mantenimiento.component';
 import { AgregarEditarProcedimientoComponent } from './crear-actualizar/agregar-editar-procedimiento/agregar-editar-procedimiento.component';
 import { AgregarEditarPasoComponent } from './crear-actualizar/agregar-editar-paso/agregar-editar-paso.component';
-
-//servicios globales
-import { LoginService } from './servicios/login.service';
-import { MantenimientoRolesService } from './servicios/mantenimiento-roles.service';
-import { MantenimientoNoticiasService } from './servicios/mantenimiento-noticias.service';
-import { UsuarioService } from './servicios/usuario.service';
-import { GlobalService } from './servicios/global.service';
-
-//guard
-import { AuthGuard } from './guards/auth.guard';
 import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
 import { AgregarCitaComponent } from './crear-actualizar/agregar-cita/agregar-cita.component';
 import { NotificarCitaComponent } from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
+import { AceptacionAspirantesComponent } from './aceptacion-aspirantes/aceptacion-aspirantes.component';
+import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vista.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +92,9 @@ import { NotificarCitaComponent } from './manejo-citas/notificaciones/notificar-
     ManejoCitasComponent,
     AgregarCitaComponent,
     NotificarCitaComponent,
+    AceptacionAspirantesComponent,
+    ManejoCitasVistaComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -113,6 +121,8 @@ import { NotificarCitaComponent } from './manejo-citas/notificaciones/notificar-
     MatDatepickerModule,
     MatNativeDateModule,
     MatBadgeModule,
+    MatExpansionModule,
+    MatListModule,
     NgbModule.forRoot()
   ],
   exports: [
@@ -127,7 +137,8 @@ import { NotificarCitaComponent } from './manejo-citas/notificaciones/notificar-
     GlobalService,
     MantenimientoRolesService,
     MantenimientoNoticiasService,
-    UsuarioService
+    UsuarioService, 
+    EventService
   ],
   bootstrap: [AppComponent],
 })

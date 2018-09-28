@@ -40,9 +40,9 @@ export class ProcedimientosMantenimientoComponent implements OnInit {
 }
   getProcedimientos(){
     this.procedimientoService.getProcedimiento().subscribe(procedimientos =>{
-      this.dataSource.data = this.procedimientos;
+      this.dataSource.data = procedimientos;
       this.ngAfterViewInit();
-      this.procedimientos = this.procedimientos;
+      this.procedimientos = procedimientos;
       console.log('procedimientos', procedimientos);
     }, error =>{
       console.log('error', error);

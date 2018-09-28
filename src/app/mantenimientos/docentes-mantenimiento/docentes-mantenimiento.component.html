@@ -17,9 +17,9 @@
 	<div class="example-container mat-elevation-z8">
 		<mat-table [dataSource]="dataSource" matSort>
 			<!-- Id Column -->
-				<ng-container matColumnDef="id">
-			<mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-			<mat-cell *matCellDef="let docente"> {{docente.id}} </mat-cell>
+			<ng-container matColumnDef="id">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+				<mat-cell *matCellDef="let docente"> {{docente.id}} </mat-cell>
 			</ng-container>
 			<!-- Nombre Column -->
 			<ng-container matColumnDef="nombre">
@@ -59,7 +59,7 @@
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
-				<mat-cell *matCellDef="let user">
+				<mat-cell *matCellDef="let docente">
 					<i class="edit fa fa-edit fa-lg">   </i>
 					<i class="delete fa fa-trash-o fa-lg">   </i>
 				</mat-cell>

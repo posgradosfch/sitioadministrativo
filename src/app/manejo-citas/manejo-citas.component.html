@@ -1,22 +1,217 @@
-<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
-  <label><h2><strong>MANEJO DE CITAS</strong></h2></label>	
-  
-  <div class="example-header">
-		<div class="rigth">
-			<button mat-fab class="col" (click) = "newEvent()" matTooltip="Crear un evento">
-				<mat-icon>add</mat-icon>
-			</button>
-    </div>
-    <div class="rigth">
-		<!--	<button mat-fab class="col" (click) = "newEvent()" matTooltip="citas proximas"> -->
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title><strong>ENERO</strong></mat-panel-title>
+            </mat-expansion-panel-header>
         
-        <button mat-fab class="col" (click) = "notificaciones()" matTooltip="Citas del siguiente dia">
-          <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
-        </button>
+            <mat-list role="list">
+              <mat-list-item role="listitem">Item 1</mat-list-item>
+              <mat-list-item role="listitem">Item 2</mat-list-item>
+              <mat-list-item role="listitem">Item 3</mat-list-item>
+            </mat-list>
+            
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Febrero
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
         
-		<!--	</button> -->
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Marzo
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Abril
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Mayo
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Junio
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Julio
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Agosto
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Septiembre
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Octubre
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Noviembre
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Diciembre
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+        </mat-accordion>
+        
+      </div>
     </div>
-
-    
   </div>
-</div>
+</div>      
+
+

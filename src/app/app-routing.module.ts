@@ -22,6 +22,7 @@ import { AgregarEditarProcedimientoComponent } from './crear-actualizar/agregar-
 import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
 import {AgregarCitaComponent} from './crear-actualizar/agregar-cita/agregar-cita.component';
 import {NotificarCitaComponent} from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
+import { AceptacionAspirantesComponent } from './aceptacion-aspirantes/aceptacion-aspirantes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -81,6 +82,14 @@ const routes: Routes = [
   },
   {path: 'citas', 
     component: ManejoCitasComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'aspirantes', 
+    component: AceptacionAspirantesComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'aspirantes/:id_aspirante', 
+    component: AceptacionAspirantesComponent,
     canActivate: [AuthGuard]
   },
   {path: 'agregarCita',

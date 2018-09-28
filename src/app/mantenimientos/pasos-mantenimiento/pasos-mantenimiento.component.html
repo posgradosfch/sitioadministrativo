@@ -7,7 +7,7 @@
 			</mat-form-field>
 		</div>
 		<div class="rigth">
-			<button mat-fab class="col" (click) = "newPaso()" matTooltip="Crear un nuevo Rol">
+			<button mat-fab class="col" (click) = "newPaso()" matTooltip="Crear un nuevo Paso">
 				<mat-icon>add</mat-icon>
 			</button>
 		</div>
@@ -54,7 +54,7 @@
 			</ng-container>
 		
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-			<mat-row *matRowDef="let procedimiento; columns: displayedColumns;">
+			<mat-row *matRowDef="let paso; columns: displayedColumns;">
 			</mat-row>
 		</mat-table>
 		

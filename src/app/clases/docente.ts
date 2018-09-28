@@ -5,11 +5,11 @@ export class Docente {
     usuario: string;
     password: string;
     email: string;
-    fech_nacimiento: Date;
+    fecha_naci: Date;
     genero: string;
     dui: string;
     telefono: string;
     moovil: string;
-    formacion: string;
-    titulo_pregrado: string;
+    formacion: Array<string>[];
+    titulo_pregrado: Array<string>[];
 }

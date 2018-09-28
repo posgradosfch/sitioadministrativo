@@ -52,7 +52,7 @@ export class AgregarEditarDocenteComponent implements OnInit {
   closeResult: string;
   options: FormGroup;
   hide = true;
-  generos: Genero[]
+  generos: Genero[];
   /*
   -Objetivo: Obtener el valor de la variable password2.
   */

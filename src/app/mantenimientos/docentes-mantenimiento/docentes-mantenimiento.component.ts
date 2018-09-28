@@ -23,7 +23,8 @@ export class DocentesMantenimientoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private docenteService: MantenimientoDocentesService, private router: Router, private global: GlobalService) { }
+  constructor(private docenteService: MantenimientoDocentesService, private router: Router, 
+    private global: GlobalService) { }
 
   ngOnInit() {
   	this.userSub = this.global.user.subscribe( me => this.account = me);	

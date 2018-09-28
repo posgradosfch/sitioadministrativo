@@ -40,7 +40,7 @@ export class PasosMantenimientoComponent implements OnInit {
 }
   getProcedimientos(){
     this.pasoService.getPasos().subscribe(pasos =>{
-      this.dataSource.data = this.pasos;
+      this.dataSource.data = pasos;
       this.ngAfterViewInit();
       this.pasos = this.pasos;
       console.log('pasos', pasos);

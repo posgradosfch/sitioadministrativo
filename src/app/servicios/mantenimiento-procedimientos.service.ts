@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MantenimientoProcedimientosService {
 
-  baseUrl: string = environment.apiUrl + "services/procedimientos/";
+  baseUrl: string = environment.apiUrl + "services/procedimiento/";
   constructor(private http: HttpClient) { }
 
   registrarProcedimiento(procedimientoData: any): Observable<any> {

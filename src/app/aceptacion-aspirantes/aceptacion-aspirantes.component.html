@@ -1,0 +1,54 @@
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+  <label><h2><strong>ACEPTACIÓN DE ASPIRANTES</strong></h2></label>
+<div class="example-header">
+  <div class="left">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+  </div>
+</div>  
+<br><br>
+<div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre_aspirante">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let aspirante"> {{aspirante.nombre_aspirante}} </mat-cell>
+    </ng-container>
+  
+    <!-- Apellido Column -->
+    <ng-container matColumnDef="apellido_aspirante">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </mat-header-cell>
+      <mat-cell *matCellDef="let aspirante"> {{aspirante.apellido_aspirante}} </mat-cell>
+    </ng-container>
+    
+    <!-- Name Column -->
+    <ng-container matColumnDef="titulo_pre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Titulo de Pregrado</mat-header-cell>
+      <mat-cell *matCellDef="let aspirante"> {{aspirante.titulo_pre}} </mat-cell>
+    </ng-container>
+  
+    <!-- Description Column -->
+    <ng-container matColumnDef="aceptado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+      <mat-cell *matCellDef="let aspirante"> {{aspirante.aceptado}} </mat-cell>
+    </ng-container>
+
+    <!-- Opciones Column -->
+    <ng-container matColumnDef="opcion" style="text-align: center;">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Aceptacion </mat-header-cell>
+      <mat-cell *matCellDef="let aspirante">
+        <button mat-icon-button color="primary" (click)="getAspiranteId(aspirante)" [routerLink]="['/aspirantes', aspirante.id_aspirante]" [disabled]="aspirante.aceptado===true">
+          <i class="fa fa-check-square fa-lg"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let aspirante; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
+</div>

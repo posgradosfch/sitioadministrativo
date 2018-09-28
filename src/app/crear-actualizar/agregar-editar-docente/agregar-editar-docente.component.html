@@ -26,7 +26,7 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Formación Academica</mat-label>
-                <input matInput placeholder="Escriba su formación academica" formControlName="formacion" required pattern="[A-Za-z ,]{1,256}">
+                <input matInput placeholder="Escriba su formación academica" formControlName="formacion" required pattern="[A-Za-z, .]{1,256}">
                 <mat-error *ngIf="register.get('formacion').hasError('required')">La formación academica es <strong>requerida</strong></mat-error>
               </mat-form-field> 
               <mat-form-field>
@@ -41,7 +41,7 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-select placeholder="Seleccione Genero" formControlName="genero" required>
-                  <mat-option *ngFor="let genero of generos" [value]="genero.id">
+                  <mat-option *ngFor="let genero of generos" [value]="genero.name">
                     {{genero.name}}
                   </mat-option>
                 </mat-select>
@@ -105,7 +105,7 @@
       <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" routerLink="/mantenimientoDocente" (click)="c('Close click')">Aceptar</button>
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoDocentes" (click)="c('Close click')">Aceptar</button>
     </div>
   </ng-template>
 </div>      
