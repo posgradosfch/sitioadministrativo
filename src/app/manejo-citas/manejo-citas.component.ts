@@ -19,9 +19,13 @@ export class ManejoCitasComponent implements OnInit{
     
   }
 
+<<<<<<< HEAD
   /*newEvent() {
 // let usuarios = new User();
 // this.userService.setter(usuarios);
+=======
+  newEvent() {
+>>>>>>> 264a9b9ca470e0377f6b0f22a820aa5514a8e351
     this.router.navigate(['/agregarCita']);
   }
 
