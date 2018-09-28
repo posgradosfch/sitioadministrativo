@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
-providedIn: 'root'
+  providedIn: 'root'
 })
-
-export class GenerarCodigoService {
+export class CrearCitaService {
 
   constructor(private http: HttpClient) { }
-  generarcodigo(userData): Observable<any> {
-    return this.http.post('https://posgradoscchh.herokuapp.com/generarCodigos/', userData);
+  agendarCita(userData): Observable<any> {
+    return this.http.post('https://posgradoscchh.herokuapp.com/citas/crear/', userData);
+
   }
 }

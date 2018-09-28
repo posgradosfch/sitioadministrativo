@@ -16,8 +16,6 @@ var = 10;
   }
 
   newEvent() {
-// let usuarios = new User();
-// this.userService.setter(usuarios);
     this.router.navigate(['/agregarCita']);
   }
 
