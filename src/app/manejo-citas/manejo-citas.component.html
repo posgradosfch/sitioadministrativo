@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <span class="example-spacer"></span>
     <mat-icon class="example-icon" (click) = "newEvent()" matTooltip="Crear un nueva Cita" style="color: #029ACF;">add_circle</mat-icon>
-    <mat-icon [matBadge]="cantidad" matBadgeColor="warn" class="example-icon">notification_important</mat-icon>
+    <mat-icon [matBadge]="cantidad" matBadgeColor="warn" (click) = "notificaciones()" class="example-icon">notification_important</mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>
 
