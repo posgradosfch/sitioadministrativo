@@ -7,13 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class ObtenerEntidadesService {
 
-  // id_user = localStorage.getItem('id');
- // baseUrl: string = 'https://posgradoscchh.herokuapp.com/citas/crear/' + this.id_user;
+  id_user = localStorage.getItem('id');
+ // console.log(id_user);
+  baseUrl: string = 'https://posgradoscchh.herokuapp.com/citas/entidades/' + this.id_user;
 
  constructor(private http: HttpClient) { }
 
   getEntidades(): Observable<any> {
-    return this.http.get<any>('https://posgradoscchh.herokuapp.com/citas/entidades/1');
+    return this.http.get<any>('https://posgradoscchh.herokuapp.com/citas/entidades/1', this.getAuthHeaders());
   }
 
   private getAuthHeaders() {
