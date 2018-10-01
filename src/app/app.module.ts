@@ -66,6 +66,7 @@ import { AgregarCitaComponent } from './crear-actualizar/agregar-cita/agregar-ci
 import { NotificarCitaComponent } from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
 import { AceptacionAspirantesComponent } from './aceptacion-aspirantes/aceptacion-aspirantes.component';
 import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vista.component';
+import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vis
     NotificarCitaComponent,
     AceptacionAspirantesComponent,
     ManejoCitasVistaComponent,
+    ReprogramarCitasComponent,
     
   ],
   imports: [

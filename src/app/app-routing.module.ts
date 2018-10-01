@@ -85,6 +85,10 @@ const routes: Routes = [
     component: ManejoCitasComponent,
     canActivate: [AuthGuard]
   },
+  /*{path: 'citas/reprogramar/:id', 
+    component: ReprogramarCitasComponent,
+    canActivate: [AuthGuard]
+  },*/
   {path: 'aspirantes', 
     component: AceptacionAspirantesComponent,
     canActivate: [AuthGuard]
