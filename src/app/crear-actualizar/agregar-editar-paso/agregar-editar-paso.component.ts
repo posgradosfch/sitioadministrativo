@@ -32,7 +32,7 @@ export class AgregarEditarPasoComponent implements OnInit {
   closeResult: string;
   hide = true;
   
-  constructor(private pasoServices : MantenimientoPasosService,private procedimientoServices : MantenimientoProcedimientosService,
+  constructor(private pasoServices : MantenimientoPasosService, private procedimientoServices : MantenimientoProcedimientosService,
     private _router:Router, private fb: FormBuilder, private ngModal: NgbModal) { }
   /*
   -Objetivo: Todos los datos contenidos en este metodo son 
@@ -46,7 +46,7 @@ export class AgregarEditarPasoComponent implements OnInit {
     this.register = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      procedimiento: ['', Validators.required]
+      id_proceimiento: ['', Validators.required]
     });
     this.mostrarProcedimiento();
     /*
@@ -81,6 +81,9 @@ export class AgregarEditarPasoComponent implements OnInit {
   */
   openVerticallyCentered(content) {
     this.ngModal.open(content, { centered: true });
+    this.register.value.nombre='';
+    this.register.value.descripcion='';
+    this.register.value.id_proceimiento='';
   }
 
   /*

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterModule, Routes} from '@angular/router';
+import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -126,6 +127,7 @@ import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vis
     MatExpansionModule,
     MatListModule,
     MatStepperModule,
+    MatDialogModule,
     NgbModule.forRoot()
   ],
   exports: [

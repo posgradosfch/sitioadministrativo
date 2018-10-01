@@ -1,5 +1,5 @@
 export class Procedimiento {
-    id: number;
+    id_procedimiento: number;
     nombre: string;
     descripcion: string;
 }
