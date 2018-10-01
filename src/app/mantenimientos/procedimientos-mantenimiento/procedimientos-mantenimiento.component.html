@@ -15,6 +15,12 @@
 	<br><br>
 	<div class="example-container mat-elevation-z8">
 		<mat-table [dataSource]="dataSource" matSort>
+
+			<!-- Number Column -->
+			<ng-container matColumnDef="number">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+				<mat-cell *matCellDef="let procedimiento; let i = index"> {{i+1}} </mat-cell>
+			</ng-container>
 		
 			<!-- Name Column -->
 			<ng-container matColumnDef="nombre">

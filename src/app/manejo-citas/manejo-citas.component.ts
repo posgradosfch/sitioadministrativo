@@ -1,10 +1,22 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
-import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { Cita } from '../clases/cita';
+import { CrearCitaService } from '../servicios/crear-cita.service';
+import { FormGroup } from '@angular/forms';
+import { NotificarCitaService} from '../servicios/notificar-cita-proxima.service';
+
+
+export interface Detalle {
+  evento: string;
+  descripcion: string;
+  fechaHorainicio: Date;
+  fechaHorafin: Date;
+  lugar: string;
+  citaPara: string;
+  citaCon: string;
+  cancelado: boolean;
+}
 
 @Component({
   selector: 'app-manejo-citas',
@@ -14,22 +26,85 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 
 export class ManejoCitasComponent implements OnInit{
 
+  closeResult: string;
+  cantidad: string;
   panelOpenState = false;
+  enero = 1;
+  febrero = 2;
+  marzo = 3;
+  abril = 4;
+  mayo = 5;
+  junio = 6;
+  julio = 7;
+  agosto = 8;
+  septiembre = 9;
+  octubre = 10;
+  noviembre = 11;
+  diciembre = 12;
+  anio= new Date().getFullYear();
+
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  citas: Cita[];
+  citasMes: Cita[];
+  detalle: Detalle[];
+
+  constructor(private ngModal: NgbModal, private router: Router, 
+    private citaService: CrearCitaService, private cantidadNotificacion: NotificarCitaService) {}
+
   ngOnInit() {
+    this.getNumeroBadge();
     
   }
 
-  newEventUno() {
-    this.router.navigate(['/agregarCita']);
+  getCitasAnio(anio: number) {
+    console.log(anio);
+    this.citaService.getCitasAnio(anio).subscribe(data =>{
+      this.citas = data.citas;
+      console.log(this.citas);
+    });
+  }
+
+  getCitasMes(mes: number, anio: number) {
+    this.citaService.getCitasAnioMes(mes, anio).subscribe(data =>{
+      this.citasMes = data.citas;
+      console.log(this.citasMes);
+    });
   }
 
   notificaciones() {
     this.router.navigate(['/notificarCita']);
   }
-  constructor(private modal: NgbModal, private router: Router) {}
 
-  newEvent(): void {
+    newEvent(): void {
     this.router.navigate(['/agregarCita']);
   }
+  
+  /*
+  -Objetivo: Metodo para abrir ventana emergente al cancelar el formulario.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
+  getCitaDetalle(id: number){
+    this.citaService.getDetalleCita(id).subscribe(data =>{
+      this.detalle = data.detalle;
+      console.log(this.detalle);
+    });
+  }
+
+  getNumeroBadge(){
+    this.cantidadNotificacion.getCantidadNotificaciones().subscribe(response => {
+      this.cantidad= response.cantida;
+      console.log(this.cantidad);
+    }, error =>{
+      console.log('error', error)
+    });
+
+  }
+  
 }
 

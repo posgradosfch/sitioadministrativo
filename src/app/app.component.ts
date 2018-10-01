@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
   		});
     this.isLoggedIn$ = this.login.isLoggedIn;
   }
-  private logoutClicked() {
+  logoutClicked() {
   	this.global.me = new User();
   	localStorage.removeItem('token');
   	localStorage.removeItem('account');

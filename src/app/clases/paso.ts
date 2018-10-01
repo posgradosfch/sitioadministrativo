@@ -1,8 +1,8 @@
 import { Procedimiento } from "./procedimiento";
 
 export class Paso {
-    id: number;
+    id_paso: number;
     nombre: string;
-    procedimiento: Procedimiento;
+    id_proceimiento: Procedimiento;
     descripcion: string;
 }

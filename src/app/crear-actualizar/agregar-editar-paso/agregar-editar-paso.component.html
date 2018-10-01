@@ -19,12 +19,12 @@
               <mat-error *ngIf="register.get('descripcion').hasError('required')">La Descripcion es <strong>requerida</strong></mat-error>
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="Seleccione el Procedimiento al que pertenece" formControlName="procedimiento" required>
-                <mat-option *ngFor="let procedimiento of procedimientos" [value]="procedimiento.id">
+              <mat-select placeholder="Seleccione el Procedimiento al que pertenece" formControlName="id_proceimiento" required>
+                <mat-option *ngFor="let procedimiento of procedimientos" [value]="procedimiento.id_procedimiento">
                   {{procedimiento.nombre}}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="register.get('procedimiento').hasError('required')">El procedimiento es <strong>requerido</strong></mat-error>
+              <mat-error *ngIf="register.get('id_proceimiento').hasError('required')">El procedimiento es <strong>requerido</strong></mat-error>
             </mat-form-field>         
             <div class="button-row">
               <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
