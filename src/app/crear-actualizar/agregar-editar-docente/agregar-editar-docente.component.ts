@@ -83,7 +83,7 @@ export class AgregarEditarDocenteComponent implements OnInit {
     this.register = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
-      fech_nacimiento: ['', [Validators.required, Validators.minLength(10)]],
+      fecha_naci: ['', [Validators.required, Validators.minLength(10)]],
       dui: ['', [Validators.required, Validators.minLength(10), Validators.pattern('^[0-9]{8}[-]{1}[0-9]{1}')]],
       formacion: ['', Validators.required],
       titulo: ['', Validators.required],
@@ -125,5 +125,7 @@ export class AgregarEditarDocenteComponent implements OnInit {
   */
   openVerticallyCentered(content) {
     this.ngModal.open(content, { centered: true });
+    console.log(this.register.value.fecha_naci);
+
   }
 }

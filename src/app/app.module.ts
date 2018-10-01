@@ -1,9 +1,10 @@
 //Modulos
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
@@ -22,6 +23,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatBadgeModule } from '@angular/material/badge'
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
+import {MatStepperModule} from '@angular/material/stepper';
 
 //servicios globales
 import { LoginService } from './servicios/login.service';
@@ -123,6 +125,7 @@ import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vis
     MatBadgeModule,
     MatExpansionModule,
     MatListModule,
+    MatStepperModule,
     NgbModule.forRoot()
   ],
   exports: [

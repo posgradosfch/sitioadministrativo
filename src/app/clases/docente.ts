@@ -1,15 +1,15 @@
 export class Docente {
-    id: number;
+    id_docente: number;
     nombre: string;
     apellido: string;
     usuario: string;
     password: string;
     email: string;
-    fecha_naci: Date;
+    fecha_naci: Array<string>;
     genero: string;
     dui: string;
     telefono: string;
     moovil: string;
     formacion: Array<string>[];
-    titulo_pregrado: Array<string>[];
+    titulo: Array<string>[];
 }

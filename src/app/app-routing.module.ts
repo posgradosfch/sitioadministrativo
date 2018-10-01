@@ -23,6 +23,7 @@ import { ManejoCitasComponent } from './manejo-citas/manejo-citas.component';
 import {AgregarCitaComponent} from './crear-actualizar/agregar-cita/agregar-cita.component';
 import {NotificarCitaComponent} from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
 import { AceptacionAspirantesComponent } from './aceptacion-aspirantes/aceptacion-aspirantes.component';
+import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vista.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 

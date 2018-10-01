@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Procedimiento } from '../clases/procedimiento';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { MantenimientoProcedimientosService } from '../servicios/mantenimiento-procedimientos.service';
 
 @Component({
   selector: 'app-manejo-citas-vista',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManejoCitasVistaComponent implements OnInit {
 
-  constructor() { }
+  
+  panelOpenState = false;
+  procedimientos: Procedimiento[];
+  
+  constructor(private modal: NgbModal, private router: Router, 
+    private procedimientoServices: MantenimientoProcedimientosService) {}
 
   ngOnInit() {
+    this.mostrarProcedimiento(); 
+
+  }
+  mostrarProcedimiento(){
+    this.procedimientoServices.getProcedimiento().subscribe(response =>{
+  		this.procedimientos = response;
+  		console.log('procedimientos', response);
+  	}, error =>{
+  		console.log('error', error);
+  	})
   }
 
 }

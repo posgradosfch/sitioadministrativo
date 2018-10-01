@@ -1,10 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
-import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { Cita } from '../clases/cita';
+import { CrearCitaService } from '../servicios/crear-cita.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-manejo-citas',
@@ -15,27 +14,51 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 export class ManejoCitasComponent implements OnInit{
 
   panelOpenState = false;
+  enero = 1;
+  febrero = 2;
+  marzo = 3;
+  abril = 4;
+  mayo = 5;
+  junio = 6;
+  julio = 7;
+  agosto = 8;
+  septiembre = 9;
+  octubre = 10;
+  noviembre = 11;
+  diciembre = 12;
+  anio= new Date().getFullYear();
+
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  citas: Cita[];
+  citasMes: Cita[];
+  constructor(private modal: NgbModal, private router: Router, 
+    private citaService: CrearCitaService) {}
+
   ngOnInit() {
     
   }
 
-<<<<<<< HEAD
-  /*newEvent() {
-// let usuarios = new User();
-// this.userService.setter(usuarios);
-=======
-  newEvent() {
->>>>>>> 264a9b9ca470e0377f6b0f22a820aa5514a8e351
-    this.router.navigate(['/agregarCita']);
+  getCitasAnio(anio: number) {
+    console.log(anio);
+    this.citaService.getCitasAnio(anio).subscribe(data =>{
+      this.citas = data.citas;
+      console.log(this.citas);
+    });
   }
 
-  notificaciones() {
-    this.router.navigate(['/notificarCita']);
-  }*/
-  constructor(private modal: NgbModal, private router: Router) {}
+  getCitasMes(mes: number, anio: number) {
+    this.citaService.getCitasAnioMes(mes, anio).subscribe(data =>{
+      this.citasMes = data.citas;
+      console.log(this.citasMes);
+    });
+  }
 
-  newEvent(): void {
+    newEvent(): void {
     this.router.navigate(['/agregarCita']);
   }
+  
 }
 

@@ -36,8 +36,8 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Fecha de Nacimiento</mat-label>
-                <input matInput type="date" placeholder="Escriba su fecha de nacimiento" formControlName="fech_nacimiento" required>
-                <mat-error *ngIf="register.get('fech_nacimiento').hasError('required')">La fecha de nacimiento <strong>requerida</strong></mat-error>
+                <input matInput type="date" placeholder="Escriba su fecha de nacimiento" formControlName="fecha_naci" required>
+                <mat-error *ngIf="register.get('fecha_naci').hasError('required')">La fecha de nacimiento <strong>requerida</strong></mat-error>
               </mat-form-field>
               <mat-form-field>
                 <mat-select placeholder="Seleccione Genero" formControlName="genero" required>

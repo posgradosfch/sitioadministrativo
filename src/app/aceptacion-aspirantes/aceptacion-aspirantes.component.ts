@@ -42,6 +42,7 @@ export class AceptacionAspirantesComponent implements OnInit {
       this._router.navigate(['/home']);
   }
 }
+  
   getAspirantes(){
     this.aspiranteService.getAspirantes().subscribe(aspirantes =>{
       this.dataSource.data = aspirantes;
