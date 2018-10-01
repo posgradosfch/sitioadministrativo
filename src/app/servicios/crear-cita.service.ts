@@ -37,7 +37,7 @@ export class CrearCitaService {
       
   }
 
-  editarCita(cita: Cita): Observable<any>{
+  updateCita(cita: Cita): Observable<any>{
     const url = `${this.baseUrl}detalle/editar/${cita.id}`;
     return this.http.put(url, cita);
       
