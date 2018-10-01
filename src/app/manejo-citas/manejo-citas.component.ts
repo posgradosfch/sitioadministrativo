@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Cita } from '../clases/cita';
 import { CrearCitaService } from '../servicios/crear-cita.service';
 import { FormGroup } from '@angular/forms';
+import { NotificarCitaService} from '../servicios/notificar-cita-proxima.service';
 
 
 export interface Detalle {
@@ -26,6 +27,7 @@ export interface Detalle {
 export class ManejoCitasComponent implements OnInit{
 
   closeResult: string;
+  cantidad: string;
   panelOpenState = false;
   enero = 1;
   febrero = 2;
@@ -50,9 +52,10 @@ export class ManejoCitasComponent implements OnInit{
   detalle: Detalle[];
 
   constructor(private ngModal: NgbModal, private router: Router, 
-    private citaService: CrearCitaService) {}
+    private citaService: CrearCitaService, private cantidadNotificacion: NotificarCitaService) {}
 
   ngOnInit() {
+    this.getNumeroBadge();
     
   }
 
@@ -92,5 +95,16 @@ export class ManejoCitasComponent implements OnInit{
       console.log(this.detalle);
     });
   }
+
+  getNumeroBadge(){
+    this.cantidadNotificacion.getCantidadNotificaciones().subscribe(response => {
+      this.cantidad= response.cantida;
+      console.log(this.cantidad);
+    }, error =>{
+      console.log('error', error)
+    });
+
+  }
+  
 }
 
