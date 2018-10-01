@@ -98,11 +98,7 @@ import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas
     NotificarCitaComponent,
     AceptacionAspirantesComponent,
     ManejoCitasVistaComponent,
-<<<<<<< HEAD
-    ReprogramarCitaComponent,
-=======
     ReprogramarCitasComponent,
->>>>>>> 73c978db3040290a2f9c171ee57777f4063810f6
     
   ],
   imports: [
