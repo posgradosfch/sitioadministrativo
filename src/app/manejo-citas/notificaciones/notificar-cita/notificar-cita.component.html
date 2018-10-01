@@ -1,3 +1,61 @@
-<p>
-  notificar-cita works!
-</p>
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+	<label><h2><strong>EVENTOS PARA EL DIA DE MAÑANA</strong></h2></label>
+  <div class="example-header">
+	  <div class="left">
+		  <mat-form-field>
+			  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+		  </mat-form-field>
+	  </div>
+
+  </div>  
+  <br><br>
+  <div class="example-container mat-elevation-z8">
+	  <mat-table [dataSource]="dataSource" matSort>
+	  
+		   <!-- nombre Column -->
+		   <ng-container matColumnDef="nombre">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+			<mat-cell *matCellDef="let notificar"> {{notificar.evento}} </mat-cell>
+		  </ng-container>
+		
+		  <!-- descripcion Column -->
+		  <ng-container matColumnDef="descripcion">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
+			<mat-cell *matCellDef="let notificar"> {{notificar.descripcion}}</mat-cell>
+		  </ng-container>
+	  
+		  <!-- fechaI Column -->
+		  <ng-container matColumnDef="fechaI">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha y hora de inicio </mat-header-cell>
+			<mat-cell *matCellDef="let notificar"> {{notificar.FechaHoraInicio}} </mat-cell>
+		  </ng-container>
+	  
+		  <!-- fechaF Column -->
+		  <ng-container matColumnDef="fechaF">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha y hora de fin </mat-header-cell>
+			<mat-cell *matCellDef="let notificar"> {{notificar.FechaHoraFin}}</mat-cell>
+		  </ng-container>
+	  
+		   <!-- lugar Column -->
+		   <ng-container matColumnDef="lugar">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> lugar </mat-header-cell>
+			<mat-cell *matCellDef="let notificar"> {{notificar.lugar}}</mat-cell>
+		  </ng-container>
+	  
+		  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		  <mat-row *matRowDef="let notificar; columns: displayedColumns;">
+		  </mat-row>
+	  </mat-table>
+	  
+		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+		
+		<div class="form-inline" style="display: inline;">
+			
+				 <a href="/citas" class="btn btn-info btn-lg" style="display: right;" >Regresar</a>
+			
+			
+		 
+		</div>
+  </div>
+</div>
+	

@@ -124,7 +124,7 @@ export class AgregarCitaComponent implements OnInit {
       evento : this.eventoNombre.value,
       descripcion : this.descripcionCita.value,
       citaPara : this.citaParaEntidad.value,
-      citaCon : 1,
+      citaCon : this.citaConEntidad.value,
       diaCompleto : this.diaCompletoValor.value,
       FechaHoraInicio : this.fechaInicio.value + ' ' + this.horaInicio.value,
       FechaHoraFin: this.fechaFin.value + ' ' + this.horaFin.value,

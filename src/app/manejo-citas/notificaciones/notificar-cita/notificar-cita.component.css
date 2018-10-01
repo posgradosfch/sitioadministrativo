@@ -1,0 +1,48 @@
+div.input {
+	position: relative;
+}
+div.input label{
+	top:0;;
+	left: 10px;
+	padding: 5px 2px;
+	border-color: black;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    text-align: center;
+  }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    display: block;
+  }
+  
+mat-form-field {
+    font-size: 14px;
+    width: 80%;
+  }
+  
+mat-table {
+    overflow: auto;
+    max-height: 500px;
+    font-size: 14px;
+  }
+  .rigth{
+      float: right;
+      text-align: right;
+  }
+  .left{
+      float: left;
+      text-align: left;
+      width: 80%;
+  }
+.icono{
+  color: #35478C;
+}
+.col{
+  background-color: #029ACF;
+}
