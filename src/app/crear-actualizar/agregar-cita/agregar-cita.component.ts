@@ -1,3 +1,9 @@
+/*
+-Nombre del Módulo: Formulario para crear un evento.
+-Dirección física: src/app/crear-editar/agregar-cita.ts
+-Objetivo: Modulo para crear una cita nueva al sistema.
+-Desarrollado por: Veronica Reyes.
+*/
 import { Component, OnInit,  Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
@@ -12,7 +18,9 @@ import { Usuarios } from '../../clases/usuarios';
 
 @Injectable()
 export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
-
+/*
+-Objetivo: Función encargada de cambiar el formato de la hora de json a hh:mm:ss
+*/
   fromModel(value: string): NgbTimeStruct {
     if (!value) {
       return null;
@@ -55,8 +63,8 @@ export class AgregarCitaComponent implements OnInit {
   successMessage: string;
   closeResult: string;
   cita;
- // checked = true;
-
+  // checked = true;
+  condicion = true;
   usu: Usuarios[];
 
   // show: boolean;
@@ -117,6 +125,10 @@ export class AgregarCitaComponent implements OnInit {
    this.mostrarEntidades();
   }
 
+  soloFechaInicio() {
+   this.condicion = !this.condicion;
+
+  }
 
   agendarCita() {
     console.log(this.nuevaCita.value);
@@ -129,8 +141,6 @@ export class AgregarCitaComponent implements OnInit {
       FechaHoraInicio : this.fechaInicio.value + ' ' + this.horaInicio.value,
       FechaHoraFin: this.fechaFin.value + ' ' + this.horaFin.value,
       lugar: this.lugarCita.value
-      // nombrePara : informatico,
-     // nombreCon : AGU,
     };
     console.log(this.cita);
     console.log('intentando');
