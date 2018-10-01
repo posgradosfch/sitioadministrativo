@@ -8,16 +8,7 @@
         <h1 class="text-center"> <strong>FORMULARIO PARA CREAR UN EVENTO</strong></h1>
         <form [formGroup]="nuevaCita"> 
           <div class="example-container">
-            <!--class="example-full-width"    (submit)="agendarCita()"
-              <mat-form-field>
-                  <mat-label>Nombre del evento</mat-label>
-                  <input matInput placeholder="Escriba el nombre del evento" formControlName="evento" required>
-                  <mat-error *ngIf="nuevaCita.get('evento').hasError('required')">El nombre del evento es un dato <strong>requerido</strong></mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                  <input matInput placeholder="ingresa la descripcion del evento" formControlName="evento" required>
-                  <mat-error *ngIf="nuevaCita.get('evento').hasError('required')">El nombre del evento es un dato <strong>requerido</strong></mat-error>
-              </mat-form-field>-->
+            <!--class="example-full-width"    (submit)="agendarCita()"-->
               <mat-form-field>
                   <mat-label>Nombre del evento</mat-label>
                   <input matInput type="text" placeholder="ingresa la descripcion del evento" formControlName="evento" required>
@@ -26,6 +17,7 @@
               <mat-form-field>
                 <mat-label>Descripcion</mat-label>
                   <textarea matInput type="text" placeholder="ingresa la descripcion del evento"  formControlName="descripcion" required></textarea>
+                  <mat-error *ngIf="nuevaCita.get('descripcion').hasError('required')">la descripcion del evento es un campo<strong>requerido</strong></mat-error>
               </mat-form-field>
               <mat-form-field>
                   <mat-select placeholder="Cita Para" formControlName="citaPara" required>
@@ -35,6 +27,14 @@
                   </mat-select>
                   <mat-error *ngIf="nuevaCita.get('citaPara').hasError('required')">el usuario que tendra la cita es <strong>requerido</strong></mat-error>
                </mat-form-field>
+               <mat-form-field>
+                <mat-select placeholder="Cita Con" formControlName="citaCon" required>
+                    <mat-option *ngFor="let citaParaEntidad of usu" [value]="citaParaEntidad.id">
+                        {{citaParaEntidad.nombre}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="nuevaCita.get('citaCon').hasError('required')">el usuario con el que se tendra la cita es <strong>requerido</strong></mat-error>
+             </mat-form-field>
               <mat-checkbox formControlName="diaCompleto">Evento de un dia</mat-checkbox>
               <mat-form-field>
                   <mat-label>Fecha de Inicio</mat-label>
@@ -45,7 +45,7 @@
               <mat-label>Seleccione la hora de inicio del evento</mat-label>
                <div class="form-group">
               <ngb-timepicker formControlName="HoraInicio" [spinners]="spinners"></ngb-timepicker>
-              <pre>Selected time: {{ horaInicio.value }}</pre>
+          <!--    <pre>Selected time: {{ horaInicio.value }}</pre> -->
               </div>
      <!--  [(ngModel)]="HoraInicio"      <button class="btn btn-sm btn-outline-{{seconds ? 'success' : 'danger'}}" (click)="toggleSeconds()">
                    Seconds - {{seconds ? "ON" : "OFF"}}
@@ -62,19 +62,12 @@
 
 <hr>
 <pre>Selected time: {{ctrl.value | json}}</pre>
-              <mat-form-field>
-                <mat-select placeholder="Seleccione la hora de inicio de la cita" formControlName="genero" required>
-                    <mat-option *ngFor="let genero of generos" [value]="genero.id">
-                        {{genero.name}}
-                    </mat-option>
-                </mat-select>
-                <mat-error *ngIf="register.get('genero').hasError('required')">El genero es <strong>requerido</strong></mat-error>
-             </mat-form-field>-->
+              -->
   <!--  <div> -->
               <mat-form-field>
                   <mat-label>Fecha de Finalizacion</mat-label>
                   <input matInput type="date" placeholder="Escriba la fecha de Finalizacion del evento" formControlName="FechaFin" required>
-               <!--   <mat-error *ngIf="register.get('fech_nacimiento').hasError('required')">La fecha de nacimiento <strong>requerida</strong></mat-error> -->
+            <!--      <mat-error *ngIf="register.get('FechaFin').hasError('required')">La fecha de Fin es <strong>requerida</strong></mat-error> -->
              </mat-form-field>
              <mat-label>Seleccione la hora de fin del evento</mat-label>
             <div class="form-group">
@@ -97,7 +90,7 @@ date time validado
                <!--   <mat-error *ngIf="register.get('evento').hasError('required')">El nombre del evento es <strong>requerido</strong></mat-error> -->
               </mat-form-field>
               <div class="button-row">
-                <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="nuevaCita.invalid || loading">Guardar</button>   
+            <!--    <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="nuevaCita.invalid || loading">Guardar</button>  --> 
                 <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" (click)="agendarCita()">Guardar</button> 
               </div>
           </div>

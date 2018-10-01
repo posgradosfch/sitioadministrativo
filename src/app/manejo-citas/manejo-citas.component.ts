@@ -56,6 +56,10 @@ export class ManejoCitasComponent implements OnInit{
     });
   }
 
+  notificaciones() {
+    this.router.navigate(['/notificarCita']);
+  }
+
     newEvent(): void {
     this.router.navigate(['/agregarCita']);
   }
