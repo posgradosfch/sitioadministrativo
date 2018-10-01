@@ -96,6 +96,20 @@ export class ManejoCitasComponent implements OnInit{
     });
   }
 
+  getCitaEditar(id: number){
+    this.citaService.getDetalleCita(id).subscribe(data =>{
+      this.detalle = data.detalle;
+      console.log(this.detalle);
+    });
+  }
+//actualizar los datos
+  actualizarCita(citas: Cita): void{
+    this.citaService.updateCita(citas).subscribe(data =>{
+     /* this.detalle = data.detalle;
+      console.log(this.detalle);*/
+    });
+  }
+
   getNumeroBadge(){
     this.cantidadNotificacion.getCantidadNotificaciones().subscribe(response => {
       this.cantidad= response.cantida;
