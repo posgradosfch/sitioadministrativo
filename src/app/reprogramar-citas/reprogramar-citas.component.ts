@@ -14,6 +14,7 @@ import { CrearCitaService } from '../servicios/crear-cita.service';
 import { Router } from '@angular/router';
 import { ObtenerEntidadesService } from '../servicios/obtener-entidades.service';
 import { Usuarios } from '../clases/usuarios';
+import { Cita } from '../clases/cita';
 
 
 @Injectable()
@@ -69,7 +70,8 @@ export class ReprogramarCitasComponent implements OnInit {
 
   // show: boolean;
    // this.show = this.diaCompletoValor.value;
-  constructor(private router: Router, private  obtenerEntidadesService: ObtenerEntidadesService, private fb: FormBuilder, private ngModal: NgbModal, private crearCitaService: CrearCitaService ) { }
+  constructor(private router: Router, private  obtenerEntidadesService: ObtenerEntidadesService, 
+    private fb: FormBuilder, private ngModal: NgbModal, private crearCitaService: CrearCitaService ) { }
  /*
   -Objetivo: Obtener los valores del FormBuilder nuevaCita.
   */
@@ -169,6 +171,14 @@ export class ReprogramarCitasComponent implements OnInit {
     console.log(response);
     }, error => {
        console.log('error', error);
+    });
+  }
+
+  //actualizar los datos
+  actualizarCita(citas: Cita): void{
+    this.crearCitaService.updateCita(citas).subscribe(data =>{
+     /* this.detalle = data.detalle;
+      console.log(this.detalle);*/
     });
   }
 

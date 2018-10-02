@@ -22,7 +22,7 @@
         Fecha inicio: {{cita.start}}
         <span class="example-spacer"></span>
         <i class="view fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita)" [routerLink]="['/citas/detalle/editar/', cita.id]" matTooltip="Editar Cita"></i>
+        <!--i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i-->
       </mat-list-item>
     </mat-list> 
   </mat-step>
@@ -113,7 +113,7 @@
           Fecha inicio: {{cita.start}}
           <span class="example-spacer"></span>
           <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita)" matTooltip="Editar Cita"></i>
         </mat-list-item>
       </mat-list>
   </mat-step>

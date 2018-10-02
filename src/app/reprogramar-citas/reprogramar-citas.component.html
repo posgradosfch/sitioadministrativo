@@ -11,7 +11,7 @@
             <!--class="example-full-width"   (submit)="agendarCita()"  -->
               <mat-form-field>
                   <mat-label>Nombre del evento</mat-label>
-                  <input matInput type="text" placeholder="ingresa la descripcion del evento" formControlName="evento" required>
+                  <input matInput type="text" placeholder="ingresa la descripcion del evento" formControlName="evento">
                   <mat-error *ngIf="nuevaCita.get('evento').hasError('required')">El nombre del evento es <strong>requerido</strong></mat-error>
               </mat-form-field>
               <mat-form-field>

@@ -5,6 +5,7 @@ import { Cita } from '../clases/cita';
 import { CrearCitaService } from '../servicios/crear-cita.service';
 import { FormGroup } from '@angular/forms';
 import { NotificarCitaService} from '../servicios/notificar-cita-proxima.service';
+import { CitaDetalle } from '../clases/citaDetalle';
 
 
 export interface Detalle {
@@ -12,6 +13,7 @@ export interface Detalle {
   descripcion: string;
   fechaHorainicio: Date;
   fechaHorafin: Date;
+  diaCompleto: boolean;
   lugar: string;
   citaPara: string;
   citaCon: string;
@@ -50,6 +52,7 @@ export class ManejoCitasComponent implements OnInit{
   citas: Cita[];
   citasMes: Cita[];
   detalle: Detalle[];
+  citaDetalle: CitaDetalle[];
 
   constructor(private ngModal: NgbModal, private router: Router, 
     private citaService: CrearCitaService, private cantidadNotificacion: NotificarCitaService) {}
@@ -99,6 +102,7 @@ export class ManejoCitasComponent implements OnInit{
   getCitaEditar(id: number){
     this.citaService.getDetalleCita(id).subscribe(data =>{
       this.detalle = data.detalle;
+      this.router.navigate(['/citas/detalle/editar/', id]);
       console.log(this.detalle);
     });
   }

@@ -32,7 +32,7 @@ import { MantenimientoRolesService } from './servicios/mantenimiento-roles.servi
 import { MantenimientoNoticiasService } from './servicios/mantenimiento-noticias.service';
 import { UsuarioService } from './servicios/usuario.service';
 import { GlobalService } from './servicios/global.service';
-import { EventService } from "./servicios/event.service";
+import { CrearCitaService } from "./servicios/crear-cita.service";
 
 //guard
 import { AuthGuard } from './guards/auth.guard';
@@ -145,8 +145,8 @@ import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas
     MantenimientoRolesService,
     MantenimientoNoticiasService,
     UsuarioService, 
-    EventService
-  ],
+    CrearCitaService
+ ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
