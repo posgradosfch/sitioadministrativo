@@ -48,7 +48,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
     -Objetivo: Este metodo es para realizar las validaciones del formulario
     */
          this.datosCodigo = this.formBuilder.group({
-        cantidad: [null, [Validators.required, Validators.min(1), Validators.max(100), Validators.pattern('[0-9]')]],
+        cantidad: [null, [Validators.required, Validators.min(1), Validators.max(100)]],
         vigencia: ['', [Validators.required, Validators.minLength(10)]]
           });
        }
@@ -81,7 +81,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
         this.dataSource.data = this.ca;
         this.ngAfterViewInit();
         console.log(this.ca);
-        alert('Codes' + ' ' + 'has been created' );
+    //    alert('Codes' + ' ' + 'has been created' );
         this.router.navigate(['/generarCodigo']);
         },
       error =>  {
