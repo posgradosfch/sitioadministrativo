@@ -27,7 +27,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
   closeResult: string;
   options: FormGroup;
   hide = true;
-  displayedColumns = ['correlativo', 'codigo', 'vigencia'];
+  displayedColumns = ['number', 'codigo', 'vigencia'];
   dataSource = new MatTableDataSource();
 
      @ViewChild('content') content: ElementRef;

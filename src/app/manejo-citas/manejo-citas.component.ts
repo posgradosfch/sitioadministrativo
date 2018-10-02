@@ -92,6 +92,10 @@ export class ManejoCitasComponent implements OnInit{
     this.ngModal.open(content, { centered: true });
   }
 
+  openEdit(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
   getCitaDetalle(id: number){
     this.citaService.getDetalleCita(id).subscribe(data =>{
       this.detalle = data.detalle;
@@ -102,10 +106,10 @@ export class ManejoCitasComponent implements OnInit{
   getCitaEditar(id: number){
     this.citaService.getDetalleCita(id).subscribe(data =>{
       this.detalle = data.detalle;
-      this.router.navigate(['/citas/detalle/editar/', id]);
       console.log(this.detalle);
     });
   }
+
 //actualizar los datos
   actualizarCita(citas: Cita): void{
     this.citaService.updateCita(citas).subscribe(data =>{

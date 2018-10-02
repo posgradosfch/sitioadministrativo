@@ -32,11 +32,11 @@
 -->
              <div class="example-container mat-elevation-z8" style="text-align: center;" id="customers" id="content" #customers>
                 <mat-table [dataSource]="dataSource" matSort id="tabcustomers" #tabcustomers>
-                  <!-- First_Name Column -->
-               <!--    <ng-container matColumnDef="correlativo">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Correlativo </mat-header-cell>
-                    <mat-cell *matCellDef="let ca"> {{ca.id}}</mat-cell>
-                  </ng-container> -->
+                  <!-- Number Column -->
+                  <ng-container matColumnDef="number">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+                    <mat-cell *matCellDef="let ca; let i = index"> {{i+1}} </mat-cell>
+                  </ng-container>
                   
                   <!-- codigo Columna -->
                   <ng-container matColumnDef="codigo">

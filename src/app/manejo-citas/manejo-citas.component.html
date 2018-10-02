@@ -1,8 +1,8 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span class="example-spacer"></span>
-    <mat-icon class="example-icon" (click) = "newEvent()" matTooltip="Crear un nueva Cita" style="color: #029ACF;">add_circle</mat-icon>
-    <mat-icon [matBadge]="cantidad" matBadgeColor="warn" (click) = "notificaciones()" class="example-icon">notification_important</mat-icon>
+    <mat-icon class="example-icon" (click)="newEvent()" matTooltip="Crear un nueva Cita" style="color: #029ACF;">add_circle</mat-icon>
+    <mat-icon [matBadge]="cantidad" matBadgeColor="warn" (click)="notificaciones()" class="example-icon">notification_important</mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -11,203 +11,294 @@
     <mat-icon>calendar_today</mat-icon>
   </ng-template>
   <ng-template matStepperIcon="number">
-      <mat-icon>calendar_today</mat-icon>
-    </ng-template>
+    <mat-icon>calendar_today</mat-icon>
+  </ng-template>
   <mat-step>
-    <ng-template matStepLabel><button mat-button (click) = "getCitasMes(enero, anio)">ENERO</button></ng-template>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(enero, anio)">ENERO</button></ng-template>
     <mat-list>
       <mat-list-item *ngFor="let cita of citasMes; index as i">
         {{i+1}}- {{cita.title}}
         <span class="example-spacer"></span>
         Fecha inicio: {{cita.start}}
         <span class="example-spacer"></span>
-        <i class="view fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
+        <i class="view fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
         <!--i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i-->
       </mat-list-item>
-    </mat-list> 
+    </mat-list>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel><button mat-button (click) = "getCitasMes(febrero, anio)">FEBRERO</button></ng-template>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(febrero, anio)">FEBRERO</button></ng-template>
     <mat-list>
       <mat-list-item *ngFor="let cita of citasMes; index as i">
         {{i+1}}- {{cita.title}}
         <span class="example-spacer"></span>
         Fecha inicio: {{cita.start}}
         <span class="example-spacer"></span>
-        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
-      </mat-list-item>
-    </mat-list>  
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel><button mat-button (click) = "getCitasMes(marzo, anio)">MARZO</button></ng-template>
-    <mat-list>
-      <mat-list-item *ngFor="let cita of citasMes; index as i">
-        {{i+1}}- {{cita.title}}
-        <span class="example-spacer"></span>
-        Fecha inicio: {{cita.start}}
-        <span class="example-spacer"></span>
-        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
         <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
       </mat-list-item>
     </mat-list>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel><button mat-button (click) = "getCitasMes(abril, anio)">ABRIL</button></ng-template>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(marzo, anio)">MARZO</button></ng-template>
     <mat-list>
       <mat-list-item *ngFor="let cita of citasMes; index as i">
         {{i+1}}- {{cita.title}}
         <span class="example-spacer"></span>
         Fecha inicio: {{cita.start}}
         <span class="example-spacer"></span>
-        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
         <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
       </mat-list-item>
-    </mat-list>   
+    </mat-list>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel><button mat-button (click) = "getCitasMes(mayo, anio)">MAYO</button></ng-template>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(abril, anio)">ABRIL</button></ng-template>
     <mat-list>
       <mat-list-item *ngFor="let cita of citasMes; index as i">
         {{i+1}}- {{cita.title}}
         <span class="example-spacer"></span>
         Fecha inicio: {{cita.start}}
         <span class="example-spacer"></span>
-        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
         <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
       </mat-list-item>
-      </mat-list>
+    </mat-list>
   </mat-step>
   <mat-step>
-      <ng-template matStepLabel><button mat-button (click) = "getCitasMes(junio, anio)">JUNIO</button></ng-template>
-      <mat-list>
-        <mat-list-item *ngFor="let cita of citasMes; index as i">
-          {{i+1}}- {{cita.title}}
-          <span class="example-spacer"></span>
-          Fecha inicio: {{cita.start}}
-          <span class="example-spacer"></span>
-          <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
-        </mat-list-item>
-      </mat-list>
-  </mat-step>
-  <mat-step>
-      <ng-template matStepLabel><button mat-button (click) = "getCitasMes(julio, anio)">JULIO</button></ng-template>
-      <mat-list>
-        <mat-list-item *ngFor="let cita of citasMes; index as i">
-          {{i+1}}- {{cita.title}}
-          <span class="example-spacer"></span>
-          Fecha inicio: {{cita.start}}
-          <span class="example-spacer"></span>
-          <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
-        </mat-list-item>
-      </mat-list>
-  </mat-step>
-  <mat-step>
-      <ng-template matStepLabel><button mat-button (click) = "getCitasMes(agosto, anio)">AGOSTO</button></ng-template>
-      <mat-list>
-        <mat-list-item *ngFor="let cita of citasMes; index as i">
-          {{i+1}}- {{cita.title}}
-          <span class="example-spacer"></span>
-          Fecha inicio: {{cita.start}}
-          <span class="example-spacer"></span>
-          <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita)" matTooltip="Editar Cita"></i>
-        </mat-list-item>
-      </mat-list>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel><button mat-button (click) = "getCitasMes(septiembre, anio)">SEPTIEMBRE</button></ng-template>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(mayo, anio)">MAYO</button></ng-template>
     <mat-list>
       <mat-list-item *ngFor="let cita of citasMes; index as i">
         {{i+1}}- {{cita.title}}
         <span class="example-spacer"></span>
         Fecha inicio: {{cita.start}}
         <span class="example-spacer"></span>
-        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
         <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
       </mat-list-item>
-    </mat-list>      
+    </mat-list>
   </mat-step>
   <mat-step>
-      <ng-template matStepLabel><button mat-button (click) = "getCitasMes(octubre, anio)">OCTUBRE</button></ng-template>
-      <mat-list>
-        <mat-list-item *ngFor="let cita of citasMes; index as i">
-          {{i+1}}- {{cita.title}}
-          <span class="example-spacer"></span>
-          Fecha inicio: {{cita.start}}
-          <span class="example-spacer"></span>
-          <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
-        </mat-list-item>
-      </mat-list>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(junio, anio)">JUNIO</button></ng-template>
+    <mat-list>
+      <mat-list-item *ngFor="let cita of citasMes; index as i">
+        {{i+1}}- {{cita.title}}
+        <span class="example-spacer"></span>
+        Fecha inicio: {{cita.start}}
+        <span class="example-spacer"></span>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
+        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+      </mat-list-item>
+    </mat-list>
   </mat-step>
   <mat-step>
-      <ng-template matStepLabel><button mat-button (click) = "getCitasMes(noviembre, anio)">NOVIEMBRE</button></ng-template>
-      <mat-list>
-        <mat-list-item *ngFor="let cita of citasMes; index as i">
-          {{i+1}}- {{cita.title}}
-          <span class="example-spacer"></span>
-          Fecha inicio: {{cita.start}}
-          <span class="example-spacer"></span>
-          <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
-        </mat-list-item>
-      </mat-list>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(julio, anio)">JULIO</button></ng-template>
+    <mat-list>
+      <mat-list-item *ngFor="let cita of citasMes; index as i">
+        {{i+1}}- {{cita.title}}
+        <span class="example-spacer"></span>
+        Fecha inicio: {{cita.start}}
+        <span class="example-spacer"></span>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
+        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+      </mat-list-item>
+    </mat-list>
   </mat-step>
   <mat-step>
-      <ng-template matStepLabel><button mat-button (click) = "getCitasMes(diciembre, anio)">DICIEMBRE</button></ng-template>
-      <mat-list>
-        <mat-list-item *ngFor="let cita of citasMes; index as i">
-          {{i+1}}- {{cita.title}}
-          <span class="example-spacer"></span>
-          Fecha inicio: {{cita.start}}
-          <span class="example-spacer"></span>
-          <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)" matTooltip="Ver Detalles"></i>
-          <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
-        </mat-list-item>
-      </mat-list>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(agosto, anio)">AGOSTO</button></ng-template>
+    <mat-list>
+      <mat-list-item *ngFor="let cita of citasMes; index as i">
+        {{i+1}}- {{cita.title}}
+        <span class="example-spacer"></span>
+        Fecha inicio: {{cita.start}}
+        <span class="example-spacer"></span>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
+        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita)" matTooltip="Editar Cita"></i>
+      </mat-list-item>
+    </mat-list>
   </mat-step>
-  <!--Ventana emergente-->
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title"><strong>Detalle del Evento</strong></h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <h2 style="text-align: center;"><strong>{{detalle.evento}}</strong></h2>
-        <mat-list>
-          <mat-list-item>
-              Descripcion: {{detalle.descripcion}}
-              <span class="example-spacer"></span>
-          </mat-list-item>
-          <mat-list-item>
-              Fecha de inicio: {{detalle.fechaHorainicio}}
-              <span class="example-spacer"></span>
-          </mat-list-item>
-          <mat-list-item>
-              Fecha de Fin: {{detalle.fechaHorafin}}
-              <span class="example-spacer"></span>
-          </mat-list-item>
-          <mat-list-item>
-              Cita Para: {{detalle.citaPara}}
-              <span class="example-spacer"></span>
-          </mat-list-item>
-          <mat-list-item>
-              Cita con: {{detalle.citaCon}}
-              <span class="example-spacer"></span>
-          </mat-list-item>
-          <mat-list-item>
-              Lugar de la Cita: {{detalle.lugar}}
-              <span class="example-spacer"></span>
-          </mat-list-item>
-      </mat-list> 
-    </div>    
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
-    </div>
-  </ng-template>
+  <mat-step>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(septiembre, anio)">SEPTIEMBRE</button></ng-template>
+    <mat-list>
+      <mat-list-item *ngFor="let cita of citasMes; index as i">
+        {{i+1}}- {{cita.title}}
+        <span class="example-spacer"></span>
+        Fecha inicio: {{cita.start}}
+        <span class="example-spacer"></span>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
+        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+      </mat-list-item>
+    </mat-list>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(octubre, anio)">OCTUBRE</button></ng-template>
+    <mat-list>
+      <mat-list-item *ngFor="let cita of citasMes; index as i">
+        {{i+1}}- {{cita.title}}
+        <span class="example-spacer"></span>
+        Fecha inicio: {{cita.start}}
+        <span class="example-spacer"></span>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
+        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+      </mat-list-item>
+    </mat-list>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(noviembre, anio)">NOVIEMBRE</button></ng-template>
+    <mat-list>
+      <mat-list-item *ngFor="let cita of citasMes; index as i">
+        {{i+1}}- {{cita.title}}
+        <span class="example-spacer"></span>
+        Fecha inicio: {{cita.start}}
+        <span class="example-spacer"></span>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
+        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+      </mat-list-item>
+    </mat-list>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel><button mat-button (click)="getCitasMes(diciembre, anio)">DICIEMBRE</button></ng-template>
+    <mat-list>
+      <mat-list-item *ngFor="let cita of citasMes; index as i">
+        {{i+1}}- {{cita.title}}
+        <span class="example-spacer"></span>
+        Fecha inicio: {{cita.start}}
+        <span class="example-spacer"></span>
+        <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
+          matTooltip="Ver Detalles"></i>
+        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+      </mat-list-item>
+    </mat-list>
+  </mat-step>
 </mat-vertical-stepper>
+<!--Ventana emergente-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"><strong>Detalle del Evento</strong></h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h2 style="text-align: center;"><strong>{{detalle.evento}}</strong></h2>
+    <mat-list>
+      <mat-list-item>
+        Descripcion: {{detalle.descripcion}}
+        <span class="example-spacer"></span>
+      </mat-list-item>
+      <mat-list-item>
+        Fecha de inicio: {{detalle.fechaHorainicio}}
+        <span class="example-spacer"></span>
+      </mat-list-item>
+      <mat-list-item>
+        Fecha de Fin: {{detalle.fechaHorafin}}
+        <span class="example-spacer"></span>
+      </mat-list-item>
+      <mat-list-item>
+        Cita Para: {{detalle.citaPara}}
+        <span class="example-spacer"></span>
+      </mat-list-item>
+      <mat-list-item>
+        Cita con: {{detalle.citaCon}}
+        <span class="example-spacer"></span>
+      </mat-list-item>
+      <mat-list-item>
+        Lugar de la Cita: {{detalle.lugar}}
+        <span class="example-spacer"></span>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  </div>
+</ng-template>
+
+<!--Ventana emergente-->
+<ng-template #contentEdit let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"><strong>Editar Evento</strong></h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="updateCita">
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Nombre del evento</mat-label>
+          <input matInput type="text" placeholder="ingresa la descripcion del evento" formControlName="evento">
+          <mat-error *ngIf="updateCita.get('evento').hasError('required')">El nombre del evento es <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Descripcion</mat-label>
+          <textarea matInput type="text" placeholder="ingresa la descripcion del evento" formControlName="descripcion"
+            required></textarea>
+          <mat-error *ngIf="updateCita.get('descripcion').hasError('required')">la descripcion del evento es un campo<strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Cita Para" formControlName="citaPara" required>
+            <mat-option *ngFor="let citaParaEntidad of usu" [value]="citaParaEntidad.id">
+              {{citaParaEntidad.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="updateCita.get('citaPara').hasError('required')">el usuario que tendra la cita es <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Cita Con" formControlName="citaCon" required>
+            <mat-option *ngFor="let citaParaEntidad of usu" [value]="citaParaEntidad.id">
+              {{citaParaEntidad.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="updateCita.get('citaCon').hasError('required')">el usuario con el que se tendra la cita es
+            <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-checkbox (change)="soloFechaInicio()" formControlName="diaCompleto">Evento de un dia</mat-checkbox>
+        <mat-form-field>
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput type="date" placeholder="Escriba la fecha de inicio del evento" formControlName="FechaInicio"
+            required>
+        </mat-form-field>
+        <br>
+        <mat-label>Seleccione la hora de inicio del evento</mat-label>
+        <div class="form-group">
+          <ngb-timepicker formControlName="HoraInicio" [spinners]="spinners"></ngb-timepicker>
+        </div>
+        <div *ngIf="condicion">
+          <mat-form-field>
+            <mat-label>Fecha de Finalizacion</mat-label>
+            <input matInput type="date" placeholder="Escriba la fecha de Finalizacion del evento" formControlName="FechaFin"
+              required>
+          </mat-form-field>
+
+          <div class="form-group">
+            <mat-label>Seleccione la hora de fin del evento</mat-label>
+            <ngb-timepicker formControlName="HoraFin" [spinners]="spinners"></ngb-timepicker>
+          </div>
+        </div>
+        <ng-template #elseBlock>rango de fechas</ng-template>
+
+        <mat-form-field>
+          <mat-label>Lugar</mat-label>
+          <input matInput type="text" placeholder="ingrese el lugar del evento" formControlName="lugar" required>
+        </mat-form-field>
+        <div class="button-row">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;"
+      (click)="agendarCita()">Guardar</button>
+  </div>
+</ng-template>
