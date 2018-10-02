@@ -17,7 +17,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
   account: User = new User();
   userSub: Subscription;
   users: User[];
-  displayedColumns = ['nombre', 'apellido', 'username', 'email', 'opcion'];
+  displayedColumns = ['number', 'nombre', 'apellido', 'username', 'email', /*'opcion'*/];
   dataSource = new MatTableDataSource();
   
   @ViewChild(MatPaginator) paginator: MatPaginator;

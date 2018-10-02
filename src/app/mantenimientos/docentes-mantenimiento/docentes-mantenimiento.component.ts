@@ -17,7 +17,7 @@ export class DocentesMantenimientoComponent implements OnInit {
   account: User = new User();
   userSub: Subscription;
   docentes: Docente[];
-  displayedColumns = ['id','nombre', 'apellido', 'telefono', 'movil', 'email', 'formacion', 'titulo', 'opcion'];
+  displayedColumns = ['number','nombre', 'apellido', 'telefono', 'movil', 'email', 'formacion', 'titulo', /*'opcion'*/];
   dataSource = new MatTableDataSource();
   
   @ViewChild(MatPaginator) paginator: MatPaginator;

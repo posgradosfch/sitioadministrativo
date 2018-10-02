@@ -17,7 +17,7 @@ export class AceptacionAspirantesComponent implements OnInit {
   account: User = new User();
   userSub: Subscription;
   aspirante: Aspirante[];
-  displayedColumns = ['nombre_aspirante', 'apellido_aspirante', 'titulo_pre', 'aceptado', 'opcion'];
+  displayedColumns = ['number', 'nombre_aspirante', 'apellido_aspirante', 'titulo_pre', 'aceptado', 'opcion'];
   dataSource = new MatTableDataSource();
   aceptado: string;
   estado: boolean = null;

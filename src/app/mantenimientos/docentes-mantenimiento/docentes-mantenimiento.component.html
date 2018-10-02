@@ -16,10 +16,10 @@
 	<br><br>
 	<div class="example-container mat-elevation-z8">
 		<mat-table [dataSource]="dataSource" matSort>
-			<!-- Id Column -->
-			<ng-container matColumnDef="id">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-				<mat-cell *matCellDef="let docente"> {{docente.id}} </mat-cell>
+			<!-- Number Column -->
+			<ng-container matColumnDef="number">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+				<mat-cell *matCellDef="let docente; let i = index"> {{i+1}} </mat-cell>
 			</ng-container>
 			<!-- Nombre Column -->
 			<ng-container matColumnDef="nombre">
@@ -57,13 +57,13 @@
 				<mat-cell *matCellDef="let docente"> {{docente.titulo}}</mat-cell>
 			</ng-container>
 			<!-- Opciones Column -->
-			<ng-container matColumnDef="opcion" style="text-align: center;">
+			<!--ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let docente">
 					<i class="edit fa fa-edit fa-lg">   </i>
 					<i class="delete fa fa-trash-o fa-lg">   </i>
 				</mat-cell>
-			</ng-container>
+			</ng-container-->
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 			<mat-row *matRowDef="let docente; columns: displayedColumns;"></mat-row>
 		</mat-table>

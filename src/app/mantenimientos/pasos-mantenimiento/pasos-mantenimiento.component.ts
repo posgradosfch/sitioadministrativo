@@ -14,7 +14,7 @@ import { MantenimientoPasosService } from '../../servicios/mantenimiento-pasos.s
 })
 export class PasosMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'nombre', 'descripcion', 'procedimiento', 'orden', 'opcion'];
+  displayedColumns = ['number', 'nombre', 'descripcion', 'procedimiento', 'orden', /*'opcion'*/];
   pasos: Paso[];
   dataSource = new MatTableDataSource();
   account: User = new User();

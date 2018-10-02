@@ -14,7 +14,7 @@ import { MantenimientoProcedimientosService } from '../../servicios/mantenimient
 })
 export class ProcedimientosMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'nombre', 'descripcion', 'opcion'];
+  displayedColumns = ['number', 'nombre', 'descripcion', /*'opcion'*/];
   procedimientos:Procedimiento[];
   dataSource = new MatTableDataSource();
   account: User = new User();
