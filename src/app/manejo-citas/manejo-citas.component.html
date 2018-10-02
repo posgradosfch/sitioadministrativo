@@ -23,7 +23,7 @@
         <span class="example-spacer"></span>
         <i class="view fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
           matTooltip="Ver Detalles"></i>
-        <!--i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i-->
+        <!--i class="edit fa fa-edit fa-lg example-icon" routerLink="citas/detalle/editar/{{cita.id}}" matTooltip="Reprogramar Cita"></i-->
       </mat-list-item>
     </mat-list>
   </mat-step>
@@ -135,7 +135,7 @@
         <span class="example-spacer"></span>
         <i class="fa fa-eye fa-lg example-icon" (click)="openDialog(content)" (click)="getCitaDetalle(cita.id)"
           matTooltip="Ver Detalles"></i>
-        <i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i>
+        <!--i class="edit fa fa-edit fa-lg example-icon" (click)="getCitaEditar(cita.id)" matTooltip="Editar Cita"></i-->
       </mat-list-item>
     </mat-list>
   </mat-step>
@@ -192,7 +192,7 @@
   </div>
   <div class="modal-body">
     <h2 style="text-align: center;"><strong>{{detalle.evento}}</strong></h2>
-    <mat-list>
+    <mat-list *ngIf="detalle">
       <mat-list-item>
         Descripcion: {{detalle.descripcion}}
         <span class="example-spacer"></span>
@@ -225,9 +225,9 @@
 </ng-template>
 
 <!--Ventana emergente-->
-<ng-template #contentEdit let-c="close" let-d="dismiss">
+<ng-template #contentEdit let-c="close" let-d="dismiss" *ngIf="detalle">
   <div class="modal-header">
-    <h4 class="modal-title"><strong>Editar Evento</strong></h4>
+    <h4 class="modal-title" style="text-align: center;"><strong>Reprogramar Evento</strong></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -237,7 +237,7 @@
       <div class="example-container">
         <mat-form-field>
           <mat-label>Nombre del evento</mat-label>
-          <input matInput type="text" placeholder="ingresa la descripcion del evento" formControlName="evento">
+          <input matInput type="text" placeholder="ingresa la descripcion del evento" formControlName="evento" [(ngModel)]="detalle.evento">
           <mat-error *ngIf="updateCita.get('evento').hasError('required')">El nombre del evento es <strong>requerido</strong></mat-error>
         </mat-form-field>
         <mat-form-field>

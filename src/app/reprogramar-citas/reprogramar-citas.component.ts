@@ -11,7 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Subject} from 'rxjs';
 import {NgbTimeStruct, NgbTimeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import { CrearCitaService } from '../servicios/crear-cita.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ObtenerEntidadesService } from '../servicios/obtener-entidades.service';
 import { Usuarios } from '../clases/usuarios';
 import { Cita } from '../clases/cita';
@@ -71,7 +71,8 @@ export class ReprogramarCitasComponent implements OnInit {
   // show: boolean;
    // this.show = this.diaCompletoValor.value;
   constructor(private router: Router, private  obtenerEntidadesService: ObtenerEntidadesService, 
-    private fb: FormBuilder, private ngModal: NgbModal, private crearCitaService: CrearCitaService ) { }
+    private fb: FormBuilder, private ngModal: NgbModal, private crearCitaService: CrearCitaService,
+    private route: ActivatedRoute, private location: Location  ) { }
  /*
   -Objetivo: Obtener los valores del FormBuilder nuevaCita.
   */
@@ -181,6 +182,21 @@ export class ReprogramarCitasComponent implements OnInit {
       console.log(this.detalle);*/
     });
   }
+
+  /*getHero(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHero(id)
+      .subscribe(hero => this.hero = hero);
+  }
+ 
+  goBack(): void {
+    this.location.back();
+  }
+ 
+ save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
+  }*/
 
 }
 
