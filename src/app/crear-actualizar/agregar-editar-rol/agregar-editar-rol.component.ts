@@ -29,7 +29,7 @@ export class AgregarEditarRolComponent implements OnInit {
   _success = new Subject<string>();
   rol: Roles;
   permisos: Permisos[];
-  displayedColumns: string[] = ['select', 'name'];
+  displayedColumns: string[] = ['select', 'number', 'name'];
   dataSource = new MatTableDataSource<Permisos>();
   selection = new SelectionModel<Permisos>(true, []);
   staticAlertClosed = false;

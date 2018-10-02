@@ -16,6 +16,12 @@
 	<br><br>
 	<div class="example-container mat-elevation-z8" style="text-align: center;">
 		<mat-table [dataSource]="dataSource" matSort>
+			<!-- Number Column -->
+			<ng-container matColumnDef="number">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+				<mat-cell *matCellDef="let user; let i = index"> {{i+1}} </mat-cell>
+			</ng-container>
+
 			<!-- First_Name Column -->
 			<ng-container matColumnDef="nombre">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </mat-header-cell>
@@ -41,13 +47,13 @@
 			</ng-container>
 
 			<!-- Opciones Column -->
-			<ng-container matColumnDef="opcion" style="text-align: center;">
+			<!--ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let user">
 					<i class="edit fa fa-edit fa-lg">   </i>
 					<i class="delete fa fa-trash-o fa-lg">   </i>
 				</mat-cell>
-			</ng-container>
+			</ng-container-->
 		
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 			<mat-row *matRowDef="let user; columns: displayedColumns;">

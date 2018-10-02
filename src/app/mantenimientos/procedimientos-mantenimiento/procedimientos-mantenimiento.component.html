@@ -31,19 +31,17 @@
 			<!-- Description Column -->
 			<ng-container matColumnDef="descripcion">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
-			<mat-cell *matCellDef="let procedimiento">
-        {{procedimiento.descripcion}}
-			</mat-cell>
+			<mat-cell *matCellDef="let procedimiento"> {{procedimiento.descripcion}} </mat-cell>
 			</ng-container>
 
 			<!-- Opciones Column -->
-			<ng-container matColumnDef="opcion" style="text-align: center;">
+			<!--ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let procedimiento">
 					<i class="edit fa fa-edit fa-lg">   </i>
 					<i class="delete fa fa-trash-o fa-lg">   </i>
 				</mat-cell>
-			</ng-container>
+			</ng-container-->
 		
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 			<mat-row *matRowDef="let procedimiento; columns: displayedColumns;">

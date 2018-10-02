@@ -15,7 +15,7 @@ import { Permisos } from '../../clases/permisos';
 })
 export class RolesMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['name', 'permissions', 'opcion'];
+  displayedColumns = ['number', 'name', 'permissions', /*'opcion'*/];
   roles:Roles[];
   dataSource = new MatTableDataSource();
   account: User = new User();
