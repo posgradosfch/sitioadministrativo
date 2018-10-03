@@ -14,7 +14,7 @@ export class ObtenerEntidadesService {
  constructor(private http: HttpClient) { }
 
   getEntidades(): Observable<any> {
-    return this.http.get<any>('https://posgradoscchh.herokuapp.com/citas/entidades/1', this.getAuthHeaders());
+    return this.http.get<any>('https://posgradoscchh.herokuapp.com/citas/entidades/1/', this.getAuthHeaders());
   }
 
   private getAuthHeaders() {
