@@ -3,10 +3,10 @@
   	<span>{{noticia.emcabezado}}</span>
   </h3>
   <h6 class="card-header" style="text-align: right;">
-    <span>{{noticia.fecha}}</span>
+    <span>{{noticia.fecha | date: 'dd/MM/yyyy'}}</span>
   </h6>
   <div class="card-body">
     <p class="card-text">{{noticia.cuerpo}}</p>
   </div>
-  <img style="height: 50%; width: 50%; display: block; align-self: center"  src="https://postgrados.herokuapp.com/media{{noticia.imagen}}" alt="Card image">
+  <img style="height: 50%; width: 50%; display: block; align-self: center"  src="{{noticia.imagenUrl}}" alt="Card image">
 </div>

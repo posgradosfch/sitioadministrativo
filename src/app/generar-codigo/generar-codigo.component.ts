@@ -1,5 +1,10 @@
+/*
+-Nombre del Módulo: generar codigo.
+-Dirección física: src/app/generar-codigo/generar-codigo.ts
+-Objetivo: Modulo para generar codigos para poder ingresar al sitio web de estudiantes.
+-Desarrollado por: Veronica Reyes.
+*/
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ReactiveFormsModule,  } from '@angular/forms';
 import {FormBuilder, FormGroup, FormControl , Validators} from '@angular/forms';
 import { GenerarCodigoService } from './servicios/generar-codigo.service';
 import { CodigosAspirante } from './servicios/codigos';
@@ -34,9 +39,10 @@ import { MatTableDataSource, MatSort } from '@angular/material';
      @ViewChild('customers') customers: ElementRef;
      @ViewChild(MatSort) sort: MatSort;
        constructor(private generarCodService: GenerarCodigoService, private formBuilder: FormBuilder, private router: Router, private ngModal: NgbModal) {
-            }
+      }
          ngOnInit() {
           this.loading = false;
+       
     /*
     -Objetivo: Muestra un mensaje tipo alerta de exito cuando el registro se realiza correctamente.
     */
@@ -81,7 +87,6 @@ import { MatTableDataSource, MatSort } from '@angular/material';
         this.dataSource.data = this.ca;
         this.ngAfterViewInit();
         console.log(this.ca);
-    //    alert('Codes' + ' ' + 'has been created' );
         this.router.navigate(['/generarCodigo']);
         },
       error =>  {
@@ -93,60 +98,42 @@ import { MatTableDataSource, MatSort } from '@angular/material';
        /*
   -Objetivo: Este metodo es para generar un pdf con los datos del codigo generado y su vigencia.
   */
-     public  downloadPDF () {
-      let doc = new jsPDF();
-      let specialElementHandlers = {
-       '#editor': function(element, renderer) {
-          return true;
-          }
-       };
-      const content = this.content.nativeElement;
-      doc.fromHTML(content.innerHTML, 15, 15, {
-        'width': 190,
-        'elementHandlers': specialElementHandlers
-      });
-      doc.save('test.pdf');
-      }
-      // prueba dos
       public  downloadPDFTable () {
           let pdf = new jsPDF('p', 'pt', 'letter');
-          // source can be HTML-formatted string, or a reference
-          // to an actual DOM element from which the text will be scraped.
-       //  const source = '#customers';
            const source = this.customers.nativeElement;
-          // we support special element handlers. Register them with jQuery-style 
-          // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-          // There is no support for any other type of selectors 
-          // (class, of compound) at this time.
          let specialElementHandlers = {
               // element with id of "bypass" - jQuery style selector
               '#bypassme': function (element, renderer) {
-                  // true = "handled elsewhere, bypass text extraction"
+                  // true = "manejado en cualquier lugar, bypass extraccion de texto"
                   return true;
               }
           };
           const margins = {
               top: 80,
               bottom: 60,
-              left: 40,
+              left: 80,
               width: 522
           };
-          // all coords and widths are in jsPDF instance's declared units
-          // 'inches' in this case
+          // todas las coordenadas y anchos estan declaradas en unidades de las instancias de jsPDF 
+          // 'pulgadas' en este caso
           pdf.fromHTML(
-          source, // HTML string or DOM elem ref.
-          margins.left, // x coord
-          margins.top, { // y coord
-              'width': margins.width, // max width of content on PDF
+          source, // cadena HTML o referencia a un elemento del DOM
+          margins.left, // coordenada x
+          margins.top, { // coordenada y
+              'width': margins.width, // maximo ancho del contenido del pdf
               'elementHandlers': specialElementHandlers
           },
           function (dispose) {
-              // dispose: object with X, Y of the last line add to the PDF 
-              //          this allow the insertion of new lines after html
-              pdf.save('Test.pdf');
+              // dispose: objeto con X, Y de la ultima linea agregada al pdf
+              // esto permite la insercion de nuevas lineas despues del html
+              pdf.save('Codigos.pdf');
           }, margins);
-      }
 
+
+     }
+/*
+  -Objetivo: Muestra la paginacion de los datos registrados.
+*/
 ngAfterViewInit() {
   this.dataSource.sort = this.sort;
 }

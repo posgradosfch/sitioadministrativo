@@ -1,8 +1,9 @@
 export class Noticias {
 	id: number;
-	emcabezado: string;
+	encabezado: string;
 	cuerpo: string;
 	fecha: string;
-	id_usuario: number;
-	imagen: string;
+	imagen: String;
+	imagenUrl: String;
+	id_user: number;
 }

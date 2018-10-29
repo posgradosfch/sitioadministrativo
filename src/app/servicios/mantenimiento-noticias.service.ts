@@ -12,13 +12,15 @@ import 'rxjs/add/operator/catch';
 export class MantenimientoNoticiasService {
 
   private noturl='/services/noticia';
-  private url='https://postgrados.herokuapp.com/services/noticia/'
-  private noticia:Noticias;
+//  private urlDos='https://postgrados.herokuapp.com/services/noticia/';
+  private urlDos = 'https://posgradoscchh.herokuapp.com/services/noticia/';
+  private url = 'https://posgradoscchh.herokuapp.com/services/noticia/v2/';
+  private noticia: Noticias;
   private apiUrl = 'https://postgrados.herokuapp.com/services/';
   constructor(private http: HttpClient) { }
 
   getNoticias (): Observable<any>{
-  	return this.http.get(this.url,this.getAuthHeaders());
+  	return this.http.get(this.urlDos,this.getAuthHeaders());
   }
 
   agregarNoticia(userData: any): Observable<any>{

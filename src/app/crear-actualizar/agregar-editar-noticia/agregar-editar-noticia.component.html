@@ -10,8 +10,8 @@
           <div class="example-container">
             <mat-form-field>
 				<mat-label>Titulo</mat-label>
-				<input matInput type="text" placeholder="Escriba el titulo de la noticia" formControlName="emcabezado" required pattern="[A-Za-z ]{1,50}">
-				<mat-error *ngIf="register.get('emcabezado').hasError('required')">El Titulo es <strong>requerido</strong></mat-error>
+				<input matInput type="text" placeholder="Escriba el titulo de la noticia" formControlName="encabezado" required pattern="[A-Za-z ]{1,50}">
+				<mat-error *ngIf="register.get('encabezado').hasError('required')">El Titulo es <strong>requerido</strong></mat-error>
 			</mat-form-field>
 			<mat-form-field>
 				<mat-label>Contenido</mat-label>
@@ -20,7 +20,7 @@
 			</mat-form-field>  
 			<div style="display: block; margin-bottom: 10px;">
 				<label>Subir imagen</label>
-				<input type="file" class="form-control-file" placeholder="Seleccione una imagen">
+				<input type="file" (change)="onFileSelected($event)" class="form-control-file" accept="image/png, image/jpeg" placeholder="Seleccione una imagen">
 			</div> 
                     
             <div class="button-row">
