@@ -27,7 +27,7 @@
   margin: 5px 0;
 }
 
-.example-container .mat-radio-button {
+.example-container{
   margin: 0 5px;
 }
 .card{
@@ -36,4 +36,16 @@
 }
 .row{
   padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  h1{
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  h1{
+    font-size: 1rem;
+  }
 }

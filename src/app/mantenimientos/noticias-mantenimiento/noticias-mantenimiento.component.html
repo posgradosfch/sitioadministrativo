@@ -18,26 +18,26 @@
 			<!-- Number Column -->
 			<ng-container matColumnDef="number">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-				<mat-cell *matCellDef="let noticia; let i = index"> {{i+1}} </mat-cell>
+				<mat-cell *matCellDef="let noticia; let i =index"> {{i+1}} </mat-cell>
 			</ng-container>
 
 			<!-- Titulo Column -->
 			<ng-container matColumnDef="titulo">
-			<mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </mat-header-cell>
-			<mat-cell *matCellDef="let noticia"> {{noticia.emcabezado}} </mat-cell>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </mat-header-cell>
+				<mat-cell *matCellDef="let noticia"> {{noticia.emcabezado}} </mat-cell>
 			</ng-container>
 		
 			<!-- Contenido Column -->
 			<ng-container matColumnDef="cuerpo">
-			<mat-header-cell *matHeaderCellDef mat-sort-header> Contenido </mat-header-cell>
-			<mat-cell *matCellDef="let noticia"> {{noticia.cuerpo}}</mat-cell>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Contenido </mat-header-cell>
+				<mat-cell *matCellDef="let noticia" [innerHTML]="noticia.cuerpo"></mat-cell>
 			</ng-container>
 			
 			<!-- Fecha Column -->
 			<ng-container matColumnDef="fecha">
-					<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
-					<mat-cell *matCellDef="let noticia"> {{noticia.fecha}}</mat-cell>
-					</ng-container>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+				<mat-cell *matCellDef="let noticia"> {{noticia.fecha}}</mat-cell>
+			</ng-container>
 
 			<!-- Opciones Column -->
 			<!--ng-container matColumnDef="opcion" style="text-align: center;">
@@ -55,6 +55,6 @@
 		</mat-table>
 		
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-		</div>
 	</div>
+</div>
 	
