@@ -4,8 +4,7 @@ import { User } from './clases/user';
 import { Subscription, Observable } from 'rxjs';
 import { GlobalService } from './servicios/global.service';
 import { LoginService } from './servicios/login.service';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, OnDestroy} from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
