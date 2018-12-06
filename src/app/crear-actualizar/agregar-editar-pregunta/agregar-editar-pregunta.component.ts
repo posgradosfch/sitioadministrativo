@@ -99,11 +99,25 @@ export class AgregarEditarPreguntaComponent implements OnInit {
   */
   registrarPregunta(){
     this.loading = true;
+    const tipo = 1;
     if (this.register.get('id').value === 1) {
+      this.datosPregunta = {
+        nombre: this.register.get('id').value,
+        id_categoria: this.register.get('clasificacion').value,
+        id_tipo: tipo,
+      };
       
-      console.log(this.register.get('id').value);
+      console.log(this.datosPregunta);
+    } else {
+      this.datosPregunta = {
+        nombre: this.register.get('id').value,
+        id_categoria: this.register.get('categoria').value,
+        id_tipo: this.register.get('tipo').value,
+      };
+      
+      console.log(this.datosPregunta);
     }
-    this.preguntaServices.registrarPregunta(this.register.value).subscribe((
+    this.preguntaServices.registrarPregunta(this.datosPregunta).subscribe((
       response)=>{        
         this.loading = false;
         this._success.next(`pregunta creada exitosamente`);
