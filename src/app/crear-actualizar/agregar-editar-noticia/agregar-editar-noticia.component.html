@@ -9,19 +9,20 @@
         <form (submit)="registrarNoticia()" [formGroup]="register"> 
           <div class="example-container">
             <mat-form-field>
-				<mat-label>Titulo</mat-label>
-				<input matInput type="text" placeholder="Escriba el titulo de la noticia" formControlName="encabezado" required pattern="[A-Za-z ]{1,50}">
-				<mat-error *ngIf="register.get('encabezado').hasError('required')">El Titulo es <strong>requerido</strong></mat-error>
-			</mat-form-field>
-			<mat-form-field>
-				<mat-label>Contenido</mat-label>
-				<input matInput placeholder="Escriba el contenido de la noticia" formControlName="cuerpo" required>
-				<mat-error *ngIf="register.get('cuerpo').hasError('required')">El Contenido de la noticia es <strong>requerido</strong></mat-error>
-			</mat-form-field>  
-			<div style="display: block; margin-bottom: 10px;">
-				<label>Subir imagen</label>
-				<input type="file" (change)="onFileSelected($event)" class="form-control-file" accept="image/png, image/jpeg" placeholder="Seleccione una imagen">
-			</div> 
+              <mat-label>Titulo:</mat-label>
+              <input matInput #nombre type="text" placeholder="Escriba el titulo de la noticia" formControlName="encabezado" required pattern="[A-Za-z1-9]{5,50}">
+              <mat-error *ngIf="register.get('encabezado').hasError('required')">El Titulo es <strong>requerido</strong></mat-error>
+            </mat-form-field>
+            <br>
+            <angular-editor formControlName="cuerpo" [config]="editorConfig"></angular-editor>
+            <small>
+              <mat-error *ngIf="register.get('cuerpo').hasError('required')">El Contenido de la noticia es <strong>requerido</strong></mat-error>
+            </small>
+            <br>
+            <div class="form-group" style="display: block; margin-bottom: 10px;">
+              <label>Subir imagen:</label>
+              <input type="file" (change)="onFileSelected($event)" class="form-control-file" accept="image/png, image/jpeg" placeholder="Seleccione una imagen">
+            </div> 
                     
             <div class="button-row">
               <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
@@ -48,5 +49,3 @@
     </div>
   </ng-template>
 </div>      
-
-

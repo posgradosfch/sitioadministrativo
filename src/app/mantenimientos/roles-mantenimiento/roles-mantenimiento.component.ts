@@ -7,6 +7,7 @@ import { User } from '../../clases/user';
 import { Subscription } from 'rxjs';
 import { GlobalService } from '../../servicios/global.service';
 import { Permisos } from '../../clases/permisos';
+import { MantenimientoPermisosService } from '../../servicios/mantenimiento-permisos.service';
 
 @Component({
   selector: 'app-roles-mantenimiento',
@@ -20,12 +21,12 @@ export class RolesMantenimientoComponent implements OnInit {
   dataSource = new MatTableDataSource();
   account: User = new User();
   userSub: Subscription;
-  permisos: Permisos;
+  permisos: Permisos[];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _rolService : MantenimientoRolesService, private _router:Router, private global: GlobalService) { 
+  constructor(private _rolService : MantenimientoRolesService, private _permisoService : MantenimientoPermisosService, private _router:Router, private global: GlobalService) { 
 
   }
 
@@ -36,6 +37,7 @@ export class RolesMantenimientoComponent implements OnInit {
     if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
       this.global.me = JSON.parse(localStorage.getItem('account'));
       this.getRoles();
+      this.getPermisos();
   } else {
       this._router.navigate(['/home']);
   }
@@ -48,6 +50,15 @@ export class RolesMantenimientoComponent implements OnInit {
       console.log('roles', roles);
     }, error =>{
       console.log('error', error);
+    })
+  }
+
+  getPermisos(){
+    this._permisoService.getPermisos().subscribe(permisos => {
+      this.permisos = permisos;
+      console.log(permisos);
+    }, (error)=> {
+      console.log(error);
     })
   }
 

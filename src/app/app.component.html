@@ -1,24 +1,21 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <app-nav-menu></app-nav-menu>
-  </mat-drawer>
-  <div class="example-sidenav-content">
-    <mat-toolbar *ngIf="isLoggedIn$ | async">
-      <div class="container">
-        <div class="left">
-          <button type="button" mat-button (click)="drawer.toggle()">
-              <i class="fa fa-bars fa-lg"></i>
-          </button>
-        </div>
-        
-        <div class="rigth">
+<div class="example-container">
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #drawer class="example-sidenav" mode="side" >
+      <app-nav-menu></app-nav-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar *ngIf="isLoggedIn$ | async">
+        <mat-toolbar-row>
+          <i (click)="drawer.toggle()" class="fa fa-bars fa-lg" style="cursor: pointer"></i>
+          <span class="example-spacer"></span>
           <span>
             {{account.username}}
           </span>
           <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>account_circle</mat-icon>
           </button>
-          <mat-menu #menu="matMenu">
+          <mat-menu #menu= "matMenu">
             <button mat-menu-item (click)="logoutClicked()">
               <i class="fa fa-sign-out fa-lg"></i>
               <span>Salir</span>
@@ -32,12 +29,13 @@
               <span>Disable alerts</span>
             </button-->
           </mat-menu>
-        </div>
-      </div>
-    </mat-toolbar>    
-    <app-header></app-header>
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
-  </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div *ngIf="isLoggedIn$ | async">
+        <app-navbar></app-navbar>
+      </div>   
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
 
-</mat-drawer-container>

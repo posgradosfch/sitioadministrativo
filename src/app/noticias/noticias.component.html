@@ -1,12 +1,17 @@
-<div class="card mb-3 mt-5" *ngFor='let noticia of noticias'>
-  <h3 class="card-header">
-  	<span>{{noticia.emcabezado}}</span>
-  </h3>
-  <h6 class="card-header" style="text-align: right;">
+<app-header></app-header>
+<div *ngIf="isLoggedOut$ | async">
+	<app-navbar></app-navbar>
+</div>
+<div class="card mb-3 mt-5" *ngFor='let noticia of noticias | paginate: { itemsPerPage: 5, currentPage: p }'>
+  <h3 class="card-header row">
+    <span>{{noticia.emcabezado}}</span>
+    <span class="example-spacer"></span>
     <span>{{noticia.fecha | date: 'dd/MM/yyyy'}}</span>
-  </h6>
+  </h3>
   <div class="card-body">
-    <p class="card-text">{{noticia.cuerpo}}</p>
+    <span class="card-text" [innerHTML]="noticia.cuerpo"></span>
   </div>
   <img style="height: 50%; width: 50%; display: block; align-self: center"  src="{{noticia.imagenUrl}}" alt="Card image">
 </div>
+
+<pagination-controls (pageChange)="p = $event" style="float:right;"></pagination-controls>

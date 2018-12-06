@@ -1,9 +1,9 @@
-<!--ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert-->
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
 <div class="row">
     <div class="col-md-6 mx-auto mt-5">
       <div class="card">
         <div class="card-body">
-            <h1 class="text-center"><strong>INICIO DE SESION</strong></h1>
+            <h1 class="text-center"><strong>Iniciar Sesión</strong></h1>
             <form (submit)="onlogin()" [formGroup]="userLogin">
               <div class="example-container">
                 <mat-form-field>
@@ -19,7 +19,7 @@
                     </mat-error>
                 </mat-form-field>
               </div>
-              <button type="submit" class="btn btn-info btn-lg btn-block" [disabled]="userLogin.invalid || loading">INGRESAR</button>
+              <button type="submit" class="btn btn-info btn-lg btn-block" [disabled]="userLogin.invalid || loading" (click)="changeErrorMessage()">INGRESAR</button>
             </form>
         </div>
       </div>

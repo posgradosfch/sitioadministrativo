@@ -1,30 +1,33 @@
 //Modulos
-import { LOCALE_ID, NgModule } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
-import {MatIconModule} from '@angular/material/icon';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import { MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
+import { MatIconModule} from '@angular/material/icon';
 import { RouterModule, Routes} from '@angular/router';
-import {MatDialogModule} from '@angular/material/dialog';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { HttpClientModule, HttpClient} from '@angular/common/http';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatSelectModule} from '@angular/material/select';
+import { MatDialogModule} from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatMenuModule} from '@angular/material/menu';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material"
 import { AppRoutingModule } from './app-routing.module';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule} from '@angular/material/tooltip';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatBadgeModule } from '@angular/material/badge'
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatListModule} from '@angular/material/list';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatListModule} from '@angular/material/list';
+import { MatStepperModule} from '@angular/material/stepper';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NgxPaginationModule } from 'ngx-pagination';
+//import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "angular5-social-login";
 
 //servicios globales
 import { LoginService } from './servicios/login.service';
@@ -33,6 +36,8 @@ import { MantenimientoNoticiasService } from './servicios/mantenimiento-noticias
 import { UsuarioService } from './servicios/usuario.service';
 import { GlobalService } from './servicios/global.service';
 import { CrearCitaService } from "./servicios/crear-cita.service";
+import { AuthUserService } from './servicios/auth-user.service';
+
 
 //guard
 import { AuthGuard } from './guards/auth.guard';
@@ -66,7 +71,29 @@ import { AgregarCitaComponent } from './crear-actualizar/agregar-cita/agregar-ci
 import { NotificarCitaComponent } from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
 import { AceptacionAspirantesComponent } from './aceptacion-aspirantes/aceptacion-aspirantes.component';
 import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vista.component';
-import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas.component';
+//import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas.component';
+import { PreguntaMantenimientoComponent } from './mantenimientos/pregunta-mantenimiento/pregunta-mantenimiento.component';
+import { AgregarEditarPreguntaComponent } from './crear-actualizar/agregar-editar-pregunta/agregar-editar-pregunta.component';
+import { CallbackPipe } from './pipes/callback.pipe';
+import { AgregarEditarDocumentoComponent } from './crear-actualizar/agregar-editar-documento/agregar-editar-documento.component';
+import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-mantenimiento/documentos-mantenimiento.component';
+
+//Config
+/*export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider("Your-Facebook-app-id")
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("Your-Google-Client-Id")
+        },
+      ]
+  );
+  return config;
+}*/
 
 @NgModule({
   declarations: [
@@ -98,21 +125,26 @@ import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas
     NotificarCitaComponent,
     AceptacionAspirantesComponent,
     ManejoCitasVistaComponent,
-    ReprogramarCitasComponent,
-    
+//    ReprogramarCitasComponent,
+ //   SocialLoginModule,
+    PreguntaMantenimientoComponent,
+    AgregarEditarPreguntaComponent,
+    CallbackPipe,
+    AgregarEditarDocumentoComponent,
+    DocumentosMantenimientoComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule, 
     MatCheckboxModule,
     FormsModule,
-    HttpClientModule,
     MatIconModule,
     MatSidenavModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule ,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatMenuModule,
     MatPaginatorModule, 
@@ -130,6 +162,8 @@ import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas
     MatListModule,
     MatStepperModule,
     MatDialogModule,
+    AngularEditorModule,
+    NgxPaginationModule,
     NgbModule.forRoot()
   ],
   exports: [
@@ -140,13 +174,19 @@ import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas
   ],
   providers: [
     LoginService,
-    AuthGuard,
+    AuthUserService,
     GlobalService,
     MantenimientoRolesService,
     MantenimientoNoticiasService,
     UsuarioService, 
-    CrearCitaService
+    CrearCitaService,
+    /*{
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }*/
+    {provide: LOCALE_ID, useValue: "es"}
  ],
   bootstrap: [AppComponent],
 })
+
 export class AppModule { }

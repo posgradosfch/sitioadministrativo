@@ -1,0 +1,57 @@
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+  	<label><h2><strong>MANTENIMIENTO DE DOCUMENTOS A ENTREGAR</strong></h2></label>
+	<div class="example-header">
+		<div class="left">
+			<mat-form-field class="filter" floatLabel="never">
+				<input matInput placeholder="Buscar por Paso de Procedimiento" (keyup)="applyFilter($event.target.value)">
+			</mat-form-field>
+		</div>
+		<div class="rigth">
+			<button mat-fab class="col" (click) = "newDocumento()" matTooltip="Crear un nuevo Paso">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	</div>  
+	<br><br>
+	<div class="example-container mat-elevation-z8">
+		<mat-table [dataSource]="dataSource">
+			
+			<!-- Number Column -->
+			<ng-container matColumnDef="number">
+        		<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        		<mat-cell *matCellDef= "let documento; let i = index"> {{i+1}} </mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="nombre">
+		        <mat-header-cell *matHeaderCellDef> Nombre del Paso</mat-header-cell>
+		        <mat-cell *matCellDef="let documento"> {{documento.nombre}} </mat-cell>
+			</ng-container>
+      
+		    <!-- Paso Column -->
+			<ng-container matColumnDef="paso">
+		        <mat-header-cell *matHeaderCellDef> Paso al que Pertenece</mat-header-cell>
+		        <mat-cell *matCellDef="let documento">
+			        <div *ngFor="let paso of pasos">
+			        	<span *ngIf= "documento.id === paso.id_paso">{{paso.nombre}}</span>
+			        </div> 
+				</mat-cell>
+		    </ng-container>
+		    
+		    <!-- Opciones Column -->
+			<ng-container matColumnDef="opcion" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+				<mat-cell *matCellDef="let documento">
+					<i class="edit fa fa-edit fa-lg">   </i>
+					<i class="delete fa fa-trash-o fa-lg">   </i>
+				</mat-cell>
+			</ng-container>
+		
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let documento; columns: displayedColumns;">
+			</mat-row>
+		</mat-table>
+		
+		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+	</div>
+</div>

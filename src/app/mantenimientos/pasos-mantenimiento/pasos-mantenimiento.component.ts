@@ -9,11 +9,19 @@ import { Procedimiento } from '../../clases/procedimiento';
 import { MantenimientoPasosService } from '../../servicios/mantenimiento-pasos.service';
 import { MantenimientoProcedimientosService } from '../../servicios/mantenimiento-procedimientos.service';
 
+export interface Paso {
+    id_paso: number;
+    nombre: string;
+    id_proceimiento: number;
+    descripcion: string;
+}
+
 @Component({
   selector: 'app-pasos-mantenimiento',
   templateUrl: './pasos-mantenimiento.component.html',
   styleUrls: ['./pasos-mantenimiento.component.css']
 })
+
 export class PasosMantenimientoComponent implements OnInit {
 
   displayedColumns = ['number', 'nombre', 'descripcion', 'procedimiento', 'orden', /*'opcion'*/];
@@ -22,9 +30,9 @@ export class PasosMantenimientoComponent implements OnInit {
   dataSource = new MatTableDataSource();
   account: User = new User();
   userSub: Subscription;
+
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private pasoService : MantenimientoPasosService, private _router:Router, private global: GlobalService, 
     private procedimientoService : MantenimientoProcedimientosService) { 
@@ -46,10 +54,12 @@ export class PasosMantenimientoComponent implements OnInit {
 
   getPaso(){
     this.pasoService.getPasos().subscribe(pasos =>{
+      pasos.sort(function(a, b){return a.id_proceimiento - b.id_proceimiento})
       this.dataSource.data = pasos;
-      this.ngAfterViewInit();
+      this.dataSource.filterPredicate = (data: Paso, filter: string) => data.id_proceimiento.toString().indexOf(filter) != -1;
       this.pasos = this.pasos;
-      console.log('pasos', pasos);
+      this.ngAfterViewInit();
+      console.log('pasos', pasos.sort(function(a, b){return a.id_proceimiento - b.id_proceimiento}));
     }, error =>{
       console.log('error', error);
     })
@@ -70,15 +80,16 @@ export class PasosMantenimientoComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue= filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
 
-  
+  handleChange(procedimiento) {
+   this.pasos = procedimiento.id_procedimiento;
+  }
 
 }

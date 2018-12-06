@@ -25,10 +25,12 @@ export class AgregarEditarPasoComponent implements OnInit {
   register:FormGroup;
   loading: boolean;
   _success = new Subject<string>();
+  _error = new Subject<string>();
   pasos: Paso[];
   procedimientos: Procedimiento[];
   staticAlertClosed = false;
   successMessage: string;
+  errorMessage: string;
   closeResult: string;
   hide = true;
   
@@ -59,6 +61,16 @@ export class AgregarEditarPasoComponent implements OnInit {
       this.successMessage = null;
       this._router.navigate(['/mantenimientoPasos']);
     });
+    /*
+    -Objetivo: Muestra un mensaje tipo alerta de error cuando el registro se almacena sin exito.
+    */
+    this._error.subscribe((message) => this.errorMessage = message);
+    this._error.pipe(
+      debounceTime(5000)
+    ).subscribe(() => {
+      this.errorMessage = null;
+      this._router.navigate(['/paso']);
+    });
   }
   /*
   -Objetivo: Este metodo es para realizar el registro de los pasos
@@ -72,6 +84,7 @@ export class AgregarEditarPasoComponent implements OnInit {
         console.log(response);
       }, (error)=>{
         this.loading = false;
+        this._error.next(`Error al crear el Paso de procedimiento. Intente nuevamente!!.`);
         console.log(error);
       });
   }

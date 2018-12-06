@@ -1,6 +1,5 @@
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  margin-bottom: 0.5rem;
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
@@ -12,6 +11,59 @@ h1, .h1 {
 
 .jumbotron {
   padding: 1rem 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   background-color: #ADD5F7;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+@media screen and (max-width: 800px) {
+    h2, h3, h4, h5, h6,
+	.h2, .h3, .h4, .h5, .h6 {
+  		font-size: 1rem;
+	}
+	h1, .h1 {
+	  font-size: 1.5rem;
+	}
+	img{
+		width: 75%
+	}
+}
+
+@media screen and (max-width: 600px) {
+    h2, h3, h4, h5, h6,
+	.h2, .h3, .h4, .h5, .h6 {
+  		font-size: 0.8rem;
+	}
+	h1, .h1 {
+	  font-size: 1.3rem;
+	}
+	img{
+		width: 50%;
+		display:none;
+		visibility: hidden;
+	}
+	.example-spacer{
+		flex: 0 0 0 0;
+	}
+}
+
+@media screen and (max-width: 300px) {
+    h2, h3, h4, h5, h6,
+	.h2, .h3, .h4, .h5, .h6 {
+  		font-size: 0.6rem;
+	}
+	h1, .h1 {
+	  font-size: 1rem;
+	}
+	img{
+		width: 40%;
+		display:none;
+		visibility: hidden;
+	}
+	.example-spacer {
+	  	flex: 0.5 0.5 auto;
+	}
 }

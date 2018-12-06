@@ -3,7 +3,7 @@ import { UsuarioService } from '../../servicios/usuario.service';
 import { User } from '../../clases/user';
 import { GlobalService } from '../../servicios/global.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 
@@ -14,11 +14,12 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 })
 export class UsuariosMantenimientoComponent implements OnInit {
   
-  account: User = new User();
+  account: User = new User();//Crea un nuevo usuario.
   userSub: Subscription;
   users: User[];
   displayedColumns = ['number', 'nombre', 'apellido', 'username', 'email', /*'opcion'*/];
   dataSource = new MatTableDataSource();
+  staticAlertClosed = false;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,13 +27,13 @@ export class UsuariosMantenimientoComponent implements OnInit {
   constructor(private userService: UsuarioService, private router: Router, private global: GlobalService) { }
 
   ngOnInit() {
-  	this.userSub = this.global.user.subscribe( me => this.account = me);	
-  	  if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
-        this.global.me = JSON.parse(localStorage.getItem('account'));
-        this.getUsuarios();
-    } else {
-    	  this.router.navigate(['/home']);
-    }
+    setTimeout(() => 20000);
+
+  	this.userSub = this.global.user.subscribe( 
+      me => this.account = me
+      );
+    this.getUsuarios();
+    
   }
   getUsuarios(){
   	this.userService.getUsers().subscribe(users =>{

@@ -2,8 +2,8 @@
   	<label><h2><strong>MANTENIMIENTO DE PASOS DE PROCEDIMIENTOS</strong></h2></label>
 	<div class="example-header">
 		<div class="left">
-			<mat-form-field>
-				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			<mat-form-field class="filter" floatLabel="never">
+				<input matInput placeholder="Buscar por Procedimiento" (keyup)="applyFilter($event.target.value)">
 			</mat-form-field>
 		</div>
 		<div class="rigth">
@@ -14,41 +14,41 @@
 	</div>  
 	<br><br>
 	<div class="example-container mat-elevation-z8">
-		<mat-table [dataSource]="dataSource" matSort>
+		<mat-table [dataSource]="dataSource">
 			
 			<!-- Number Column -->
 			<ng-container matColumnDef="number">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-        <mat-cell *matCellDef="let paso; let i = index"> {{i+1}} </mat-cell>
+        		<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        		<mat-cell *matCellDef= "let paso; let i = index"> {{i+1}} </mat-cell>
 			</ng-container>
 
 			<!-- Name Column -->
 			<ng-container matColumnDef="nombre">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre del Paso</mat-header-cell>
-        <mat-cell *matCellDef="let paso"> {{paso.nombre}} </mat-cell>
+		        <mat-header-cell *matHeaderCellDef> Nombre del Paso</mat-header-cell>
+		        <mat-cell *matCellDef="let paso"> {{paso.nombre}} </mat-cell>
 			</ng-container>
 		
 			<!-- Description Column -->
 			<ng-container matColumnDef="descripcion">
-			<mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
-			<mat-cell *matCellDef="let paso">
-        {{paso.descripcion}}
-			</mat-cell>
-      </ng-container>
+				<mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+				<mat-cell *matCellDef="let paso">{{paso.descripcion}}</mat-cell>
+      		</ng-container>
       
-      <!-- Name Column -->
+		    <!-- Procedimiento Column -->
 			<ng-container matColumnDef="procedimiento">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Procedimiento al que Pertenece</mat-header-cell>
-        <mat-cell *matCellDef="let paso"> {{paso.id_proceimiento}} </mat-cell>
-      </ng-container>
-    
-      <!-- Description Column -->
-      <ng-container matColumnDef="orden">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Orden </mat-header-cell>
-        <mat-cell *matCellDef="let paso">
-          {{paso.orden}}
-        </mat-cell>
-      </ng-container>
+		        <mat-header-cell *matHeaderCellDef> Procedimiento al que Pertenece</mat-header-cell>
+		        <mat-cell *matCellDef="let paso">
+			        <div *ngFor="let procedimiento of procedimientos">
+			        	<span *ngIf="paso.id_proceimiento===procedimiento.id_procedimiento">{{procedimiento.nombre}}</span>
+			        </div> 
+				</mat-cell>
+		    </ng-container>
+		    
+		    <!-- Orden Column -->
+		    <ng-container matColumnDef="orden">
+		        <mat-header-cell *matHeaderCellDef> Orden </mat-header-cell>
+		        <mat-cell *matCellDef="let paso">{{paso.orden}}</mat-cell>
+		    </ng-container>
 
 			<!-- Opciones Column -->
 			<!--ng-container matColumnDef="opcion" style="text-align: center;">

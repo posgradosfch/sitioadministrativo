@@ -2,17 +2,18 @@
 -Nombre del Módulo: Agregar Editar Noticia.
 -Dirección física: src/app/crear-editar/agregar-editar-noticia.ts
 -Objetivo: Modulo para realizar el ingreso y la edicion de un noticia.
--Desarrollado por: Marisol García y Veronica Reyes.
+-Desarrollado por: Marisol García.
 */
 import { Component, OnInit } from '@angular/core';
 import { MantenimientoNoticiasService } from '../../servicios/mantenimiento-noticias.service';
 import { Router } from '@angular/router';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Subject } from '../../../../node_modules/rxjs';
 import { debounceTime } from '../../../../node_modules/rxjs/operators';
 import { GlobalService } from '../../servicios/global.service';
 import { Subscription } from 'rxjs';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-agregar-editar-noticia',
@@ -40,6 +41,18 @@ export class AgregarEditarNoticiaComponent implements OnInit {
   hide = true;
   idUsuario: Number;
   dia = Date.now();
+  name = 'Angular 6';
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '25rem',
+    minHeight: '5rem',
+    placeholder: 'Introduzca el contenido de la noticia*',
+    translate: 'no',
+    uploadUrl: 'v1/images', // if needed
+  };
+
   constructor(private noticiasService : MantenimientoNoticiasService,
     private router:Router, private fb: FormBuilder, private ngModal: NgbModal, private global: GlobalService) {
      }

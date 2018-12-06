@@ -1,22 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../servicios/login.service';
+import { UsuarioService } from '../servicios/usuario.service';
 import { GlobalService } from '../servicios/global.service';
-
+import { AuthUserService } from '../servicios/auth-user.service';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+import { AuthService, GoogleLoginProvider } from 'angular5-social-login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  providers: [UsuarioService],
 })
 export class LoginComponent implements OnInit {
  
   userLogin: FormGroup;
   loading: boolean;
+  private _error = new Subject<string>();
+  errorMessage: string;
 
-  constructor(private loginService: LoginService, private router: Router, private global: GlobalService, private fb: FormBuilder) { 
-    
+  constructor(private userService: UsuarioService, private router: Router, private global: GlobalService, private fb: FormBuilder) { 
     this.userLogin = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -24,31 +29,36 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._error.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.errorMessage = null);
+
     this.loading = false;
-    if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
+    if(localStorage.getItem('token') && localStorage.getItem('account')){
       this.global.me = JSON.parse(localStorage.getItem('account'));
       this.router.navigate(['/mantenimientoUsuarios']);
-    }
+    }    
   }
 
   onlogin(){
     this.loading = true;
-    this.loginService.loginUsuario(this.userLogin.value).subscribe(
+    this.userService.loginUser(this.userLogin.value).subscribe(
       response => {
         this.loading = false;
-        localStorage.setItem('token', response['token'])
+        localStorage.setItem('token', response['token']);
         this.global.me = response['user'];
-        console.log('token', response['token']);
         this.router.navigate(['/mantenimientoUsuarios']);
-      }, error => {
-        this.loginService.logout();
+      }, 
+      error => {
         this.loading = false;
-        console.log('error', error);
-        this.loginService.logout();
+        this.changeErrorMessage();
+        this._error.subscribe((message) => this.errorMessage = message);
+
       })
-    console.log(this.userLogin.value);
-    this.router.navigate(['/home']);
-    
+  }
+
+  public changeErrorMessage() {
+    this._error.next(`Usuario o contraseña incorrectos`);
   }
 
 }

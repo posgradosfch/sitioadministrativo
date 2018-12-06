@@ -24,20 +24,28 @@ import {AgregarCitaComponent} from './crear-actualizar/agregar-cita/agregar-cita
 import {NotificarCitaComponent} from './manejo-citas/notificaciones/notificar-cita/notificar-cita.component';
 import { AceptacionAspirantesComponent } from './aceptacion-aspirantes/aceptacion-aspirantes.component';
 import { ManejoCitasVistaComponent } from './manejo-citas-vista/manejo-citas-vista.component';
-import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas.component';
+//import { ReprogramarCitasComponent } from './reprogramar-citas/reprogramar-citas.component';
+import { PreguntaMantenimientoComponent } from './mantenimientos/pregunta-mantenimiento/pregunta-mantenimiento.component';
+import { AgregarEditarPreguntaComponent } from './crear-actualizar/agregar-editar-pregunta/agregar-editar-pregunta.component';
+import { AgregarEditarDocumentoComponent } from './crear-actualizar/agregar-editar-documento/agregar-editar-documento.component';
+import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-mantenimiento/documentos-mantenimiento.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
     pathMatch: 'full'
   },
+  //Generales
   {path: 'home',
     component: HomeComponent
+  },
+  {path: 'privado', 
+    component: PrivatePageComponent
   },
   {path: 'noticias',
     component: NoticiasComponent
   },
-  {path: 'privado', component: PrivatePageComponent},
-
+  //Mantenimientos
   {path: 'mantenimientoRoles',
     component: RolesMantenimientoComponent,
     canActivate: [AuthGuard]
@@ -62,6 +70,16 @@ const routes: Routes = [
     component: PasosMantenimientoComponent,
     canActivate: [AuthGuard]
   },
+  {path: 'mantenimientoPreguntas', 
+    component: PreguntaMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoDocumentos', 
+    component: DocumentosMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
+
+  //Crear
   {path: 'rol', 
     component: AgregarEditarRolComponent,
     canActivate: [AuthGuard]
@@ -86,10 +104,10 @@ const routes: Routes = [
     component: ManejoCitasComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'citas/reprogramar/:id', 
+ /* {path: 'citas/reprogramar/:id', 
     component: ReprogramarCitasComponent,
     canActivate: [AuthGuard]
-  },
+  },*/
   {path: 'aspirantes', 
     component: AceptacionAspirantesComponent,
     canActivate: [AuthGuard]
@@ -112,6 +130,14 @@ const routes: Routes = [
   },
   {path: 'procedimiento', 
     component: AgregarEditarProcedimientoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'pregunta', 
+    component: AgregarEditarPreguntaComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'documento', 
+    component: AgregarEditarDocumentoComponent,
     canActivate: [AuthGuard]
   },
   {path: '**', 

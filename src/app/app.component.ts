@@ -4,6 +4,7 @@ import { User } from './clases/user';
 import { Subscription, Observable } from 'rxjs';
 import { GlobalService } from './servicios/global.service';
 import { LoginService } from './servicios/login.service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit{
   userSub: Subscription;
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private global: GlobalService, private login: LoginService, private router: Router) {}
+  constructor(private global: GlobalService, 
+  private login: LoginService, private router: Router) {  }
 
   ngOnInit() {
   	this.userSub = this.global.user.subscribe(
@@ -31,4 +33,5 @@ export class AppComponent implements OnInit{
   	this.router.navigate(['/home']);
     this.login.logout();
   }
+  
 }

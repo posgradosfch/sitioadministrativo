@@ -1,0 +1,69 @@
+<!--Alerta-->
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarPregunta()" [formGroup]="register"> 
+          <div class="example-container">
+          <!--Categoria-->
+          	<mat-form-field>
+              <mat-select placeholder="Seleccione Categoria" formControlName="categoria" required [(ngModel)]="myDropDown" (change)="onChangeofOptions($event)">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                    {{categoria.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="register.get('categoria').hasError('required')">La Categoria es <strong>requerida</strong></mat-error>
+            </mat-form-field>
+          <!--Clasificacion-->
+            <mat-form-field [hidden]="myDropDown !== 1">
+              <mat-select placeholder="Seleccione la clasificacion" formControlName="clasificacion">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                    {{categoria.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          <!--Tipo-->
+            <mat-form-field [hidden]="myDropDown !== 2">
+              <mat-select placeholder="Seleccione el Tipo de Pregunta" formControlName="tipo">
+                <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
+                  {{tipo.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          <!--Nombre Pregunta-->
+            <mat-form-field>
+              <mat-label>Pregunta</mat-label>
+              <input matInput type="text" placeholder="Escriba la pregunta" formControlName="nombre" required pattern="[A-Za-z ]{1,50}">
+              <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
+            </mat-form-field>
+        
+            <div class="button-row">
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
+              <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Cancelar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoPreguntas" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
+</div>      
+

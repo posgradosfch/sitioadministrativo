@@ -37,7 +37,10 @@
     <!-- Description Column -->
     <ng-container matColumnDef="aceptado">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
-      <mat-cell *matCellDef="let aspirante"> {{aspirante.aceptado}} </mat-cell>
+      <mat-cell *matCellDef="let aspirante"> 
+          <span *ngIf="aspirante.aceptado===true">Aceptado</span>
+          <span *ngIf="aspirante.aceptado===false">En Proceso</span>
+      </mat-cell>
     </ng-container>
 
     <!-- Opciones Column -->
