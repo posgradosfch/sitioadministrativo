@@ -29,7 +29,9 @@ import { PreguntaMantenimientoComponent } from './mantenimientos/pregunta-manten
 import { AgregarEditarPreguntaComponent } from './crear-actualizar/agregar-editar-pregunta/agregar-editar-pregunta.component';
 import { AgregarEditarDocumentoComponent } from './crear-actualizar/agregar-editar-documento/agregar-editar-documento.component';
 import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-mantenimiento/documentos-mantenimiento.component';
-
+import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evaluacion-docente-mantenimiento/evaluacion-docente-mantenimiento.component';
+import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
+import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -44,6 +46,9 @@ const routes: Routes = [
   },
   {path: 'noticias',
     component: NoticiasComponent
+  },
+  {path: 'generarConsolidado',
+    component: GenerarConsolidadoComponent
   },
   //Mantenimientos
   {path: 'mantenimientoRoles',
@@ -76,6 +81,10 @@ const routes: Routes = [
   },
   {path: 'mantenimientoDocumentos', 
     component: DocumentosMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoEvaluacionDocente', 
+    component: EvaluacionDocenteMantenimientoComponent,
     canActivate: [AuthGuard]
   },
 
@@ -138,6 +147,10 @@ const routes: Routes = [
   },
   {path: 'documento', 
     component: AgregarEditarDocumentoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'evaluacionDocente', 
+    component: CrearEditarEvaluacionComponent,
     canActivate: [AuthGuard]
   },
   {path: '**', 

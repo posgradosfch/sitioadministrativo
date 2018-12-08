@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://postgrados.herokuapp.com/'
-  //apiUrl: 'https://posgradosback.herokuapp.com/'
+  //apiUrl: 'https://postgrados.herokuapp.com/'
+  apiUrl: 'https://posgradosback.herokuapp.com/'
 };
 
 /*

@@ -10,7 +10,6 @@ import { Categoria } from '../clases/categoria';
   providedIn: 'root'
 })
 export class MantenimientoPreguntaService {
-  url: string = environment.apiUrl + "services/";
   baseUrl: string = environment.apiUrl + "services/pregunta/";
 
   constructor(private http: HttpClient) { }
@@ -23,11 +22,11 @@ export class MantenimientoPreguntaService {
     return this.http.get<Pregunta[]>(this.baseUrl, this.getAuthHeaders());
   }
 
-  getCategorias(): Observable<Categoria[]> {
+  mostrarCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.baseUrl + "categoria/", this.getAuthHeaders());
   }
 
-  getTipos(): Observable<Tipo[]> {
+  mostrarTipos(): Observable<Tipo[]> {
     return this.http.get<Tipo[]>(this.baseUrl + "tipo/", this.getAuthHeaders());
   }
 

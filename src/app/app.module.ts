@@ -28,6 +28,7 @@ import { MatStepperModule} from '@angular/material/stepper';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxPaginationModule } from 'ngx-pagination';
 //import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "angular5-social-login";
+import {MatChipsModule} from '@angular/material/chips';
 
 //servicios globales
 import { LoginService } from './servicios/login.service';
@@ -77,6 +78,9 @@ import { AgregarEditarPreguntaComponent } from './crear-actualizar/agregar-edita
 import { CallbackPipe } from './pipes/callback.pipe';
 import { AgregarEditarDocumentoComponent } from './crear-actualizar/agregar-editar-documento/agregar-editar-documento.component';
 import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-mantenimiento/documentos-mantenimiento.component';
+import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evaluacion-docente-mantenimiento/evaluacion-docente-mantenimiento.component';
+import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
+import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -132,6 +136,9 @@ import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-ma
     CallbackPipe,
     AgregarEditarDocumentoComponent,
     DocumentosMantenimientoComponent,
+    EvaluacionDocenteMantenimientoComponent,
+    GenerarConsolidadoComponent,
+    CrearEditarEvaluacionComponent,
   ],
   imports: [
     BrowserModule,
@@ -164,6 +171,7 @@ import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-ma
     MatDialogModule,
     AngularEditorModule,
     NgxPaginationModule,
+    MatChipsModule,
     NgbModule.forRoot()
   ],
   exports: [

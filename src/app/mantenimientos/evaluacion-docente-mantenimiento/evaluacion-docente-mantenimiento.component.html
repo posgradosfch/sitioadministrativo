@@ -1,0 +1,79 @@
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+	<div>
+		<mat-toolbar style="background-color: transparent;">
+		  <mat-toolbar-row>
+		    <span class="example-spacer"></span>
+		    <mat-chip-list>
+			  <mat-chip routerLink="/mantenimientoPreguntas">Gestión de Preguntas del Instrumento de Evaluación</mat-chip>
+			  <mat-chip routerLink="/generarConsolidado">Generar Consolidado de datos del Instrumento de Evaluación</mat-chip>
+			</mat-chip-list>
+		    <span class="example-spacer"></span>
+		  </mat-toolbar-row>
+		</mat-toolbar>
+	</div>
+  	<label><h2><strong>MANTENIMIENTO DEL INSTRUMENTO DE EVALUACIÓN DOCENTE</strong></h2></label>
+	<div class="example-header">
+		<div class="left">
+			<mat-form-field class="filter" floatLabel="never">
+				<input matInput placeholder="Buscar por evaluación" (keyup)="applyFilter($event.target.value)">
+			</mat-form-field>
+		</div>
+		<div class="rigth">
+			<button mat-fab class="col" (click) = "newEvaluacion()" matTooltip="Crear un nuevo Evento de Evaluación Docente">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	</div>  
+	<br><br>
+	<div class="example-container mat-elevation-z8">
+		<mat-table [dataSource]="dataSource">
+			
+			<!-- Number Column -->
+			<ng-container matColumnDef="number">
+        		<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        		<mat-cell *matCellDef= "let evaluacion; let i = index"> {{i+1}} </mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="nombre">
+		        <mat-header-cell *matHeaderCellDef> Evaluación</mat-header-cell>
+		        <mat-cell *matCellDef="let evaluacion"> {{evaluacion.nombre}} </mat-cell>
+			</ng-container>
+		
+			<!-- Objetivo Column -->
+			<ng-container matColumnDef="objetivo">
+				<mat-header-cell *matHeaderCellDef>Objetivo</mat-header-cell>
+				<mat-cell *matCellDef="let evaluacion">{{evaluacion.objetivo}}</mat-cell>
+      		</ng-container>
+		    
+		    <!-- Fecha de Inicio Column -->
+		    <ng-container matColumnDef="fecha_ini">
+		        <mat-header-cell *matHeaderCellDef>Fecha de Inicio</mat-header-cell>
+		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.fecha_ini}}</mat-cell>
+		    </ng-container>
+
+		    <!-- Fecha de Finalizacion Column -->
+			<ng-container matColumnDef="fecha_fin">
+		        <mat-header-cell *matHeaderCellDef>Fecha de Finalización</mat-header-cell>
+		        <mat-cell *matCellDef="let evaluacion">
+			        {{evaluacion.fecha_fin}}
+				</mat-cell>
+		    </ng-container>
+
+			<!-- Opciones Column -->
+			<ng-container matColumnDef="opcion" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+				<mat-cell *matCellDef="let evaluacion">
+					<i class="edit fa fa-edit fa-lg">   </i>
+					<i class="delete fa fa-trash-o fa-lg">   </i>
+				</mat-cell>
+			</ng-container>
+		
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let evaluacion; columns: displayedColumns;">
+			</mat-row>
+		</mat-table>
+		
+		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+	</div>
+</div>

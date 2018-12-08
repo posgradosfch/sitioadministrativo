@@ -1,3 +1,69 @@
-<p>
-  pregunta-mantenimiento works!
-</p>
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+	<div>
+		<mat-toolbar style="background-color: transparent;">
+		  <mat-toolbar-row>
+		    <span class="example-spacer"></span>
+		    <mat-chip-list>
+				<mat-chip routerLink="/mantenimientoEvaluacionDocente" routerLinkActive="active">Regresar</mat-chip>
+			</mat-chip-list>
+		  </mat-toolbar-row>
+		</mat-toolbar>
+	</div>
+  	<label><h2><strong>PREGUNTAS DEL INSTRUMENTO DE EVALUACIÓN DOCENTE</strong></h2></label>
+	<div class="example-header">
+		<div class="left">
+			<mat-form-field class="filter" floatLabel="never">
+				<input matInput placeholder="Buscar por categoria" (keyup)="applyFilter($event.target.value)">
+			</mat-form-field>
+		</div>
+		<div class="rigth">
+			<button mat-fab class="col" matTooltip="Crear una nueva pregunta del instrumento de Evaluación Docente" (click)="newPregunta()">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	</div>  
+	<br><br>
+	<div class="example-container mat-elevation-z8">
+		<mat-table [dataSource]="dataSource">
+			
+			<!-- Number Column -->
+			<ng-container matColumnDef="number">
+        		<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        		<mat-cell *matCellDef= "let pregunta; let i = index"> {{i+1}} </mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="titulo">
+		        <mat-header-cell *matHeaderCellDef> Titulo</mat-header-cell>
+		        <mat-cell *matCellDef="let pregunta"> {{pregunta.nombre}} </mat-cell>
+			</ng-container>
+		
+			<!-- Categoria Column -->
+			<ng-container matColumnDef="categoria">
+				<mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
+				<mat-cell *matCellDef="let pregunta">{{pregunta.id_categoria}}</mat-cell>
+      		</ng-container>
+		    
+		    <!-- Tipo Column -->
+		    <ng-container matColumnDef="tipo">
+		        <mat-header-cell *matHeaderCellDef>Tipo de Pregunta</mat-header-cell>
+		        <mat-cell *matCellDef="let pregunta">{{pregunta.id_tipo}}</mat-cell>
+		    </ng-container>
+
+			<!-- Opciones Column -->
+			<ng-container matColumnDef="opcion" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+				<mat-cell *matCellDef="let pregunta">
+					<i class="edit fa fa-edit fa-lg">   </i>
+					<i class="delete fa fa-trash-o fa-lg">   </i>
+				</mat-cell>
+			</ng-container>
+		
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let pregunta; columns: displayedColumns;">
+			</mat-row>
+		</mat-table>
+		
+		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+	</div>
+</div>
