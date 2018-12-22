@@ -31,7 +31,15 @@ import { AgregarEditarDocumentoComponent } from './crear-actualizar/agregar-edit
 import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-mantenimiento/documentos-mantenimiento.component';
 import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evaluacion-docente-mantenimiento/evaluacion-docente-mantenimiento.component';
 import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
+import { AulasMantenimientoComponent } from './mantenimientos/aulas-mantenimiento/aulas-mantenimiento.component';
 import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
+import { AgregarAulaComponent } from './crear-actualizar/agregar-aula/agregar-aula.component';
+import { HorariosMantenimientoComponent } from './mantenimientos/horarios-mantenimiento/horarios-mantenimiento.component';
+import { AgregarHorariosComponent } from './crear-actualizar/agregar-horarios/agregar-horarios.component';
+import { ProgramasMantenimientoComponent } from './mantenimientos/programas-mantenimiento/programas-mantenimiento.component';
+import { AgregarProgramaComponent } from './crear-actualizar/agregar-programa/agregar-programa.component';
+import { MateriasMantenimientoComponent } from './mantenimientos/materias-mantenimiento/materias-mantenimiento.component';
+import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agregar-materia.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -153,7 +161,39 @@ const routes: Routes = [
     component: CrearEditarEvaluacionComponent,
     canActivate: [AuthGuard]
   },
-  {path: '**', 
+  {path: 'mantenimientoAulas', 
+    component: AulasMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'aula',
+  component: AgregarAulaComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoHorarios',
+   component: HorariosMantenimientoComponent,
+   canActivate: [AuthGuard]
+  },
+  {path: 'horario',
+  component: AgregarHorariosComponent,
+  canActivate: [AuthGuard]
+ },
+ {path: 'mantenimientoProgramas',
+  component: ProgramasMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'programa',
+  component: AgregarProgramaComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'matenimientoMaterias',
+  component: MateriasMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'materia',
+  component: AgregarMateriaComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: '**',
     component: PageNotFoundComponent
   }
   ];

@@ -1,0 +1,90 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarMateria()" [formGroup]="register"> 
+          <div class="example-container">
+            <mat-form-field>
+            <!--codigo-->
+              <mat-label>Codigo</mat-label>
+              <input matInput type="text" placeholder="Escriba el codigo del programa" formControlName="codigo" required >
+              <mat-error *ngIf="register.get('codigo').hasError('required')">El codigo es <strong>requerido</strong></mat-error>
+            </mat-form-field>
+           <!--nombre-->
+           <mat-form-field>
+             <mat-label>Nombre</mat-label>
+             <input matInput type="text" placeholder="Escriba el nombre del programa" formControlName="nombre" required pattern="[A-Za-z ]{1,200}">
+             <mat-error *ngIf="register.get('nombre').hasError('required')"> el nombre es <strong>requerida</strong> </mat-error>
+           </mat-form-field>
+           <!--correlativo-->
+           <mat-form-field>
+            <mat-label>correlativo según programa</mat-label>
+            <input matInput type="number" placeholder="Escriba el correlativo de la materia segun el programa" formControlName="correlativo" required>
+            <mat-error *ngIf="register.get('correlativo').hasError('required')"> el correlativo es <strong>requerido</strong> </mat-error>
+            <mat-error *ngIf="correlativo.errors?.max && correlativo.touched">
+            el correlativo debe ser un número de dos cifras
+         </mat-error>
+          </mat-form-field>
+           <!--prerequisito -->
+          <mat-form-field>
+            <mat-select placeholder="Seleccione la materia de prerrequisito" formControlName="prerequisito" >
+                <mat-option *ngFor="let mat of materias" [value]="mat.id" >
+                    {{mat.nombre}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="register.get('prerequisito').hasError('required')"> la materia de prerequisito es <strong>requerida</strong></mat-error>
+         </mat-form-field>
+          <!--programa -->
+          <mat-form-field>
+              <mat-select placeholder="Seleccione el programa al que pertenece" formControlName="id_programa" required>
+                  <mat-option *ngFor="let programa of programas" [value]="programa.id">
+                      {{programa.nombre}}
+                  </mat-option>
+              </mat-select>
+              <mat-error *ngIf="register.get('id_programa').hasError('required')">el programa de la materia es <strong>requerido</strong></mat-error>
+           </mat-form-field>
+          <!--unidades valorativas-->
+          <mat-form-field>
+            <mat-label>unidades valorativas</mat-label>
+            <input matInput type="number" placeholder="Escriba el total unidades valorativas de la materia" formControlName="unidad_valorativa" required min= "1" max="100">
+            <mat-error *ngIf="register.get('unidad_valorativa').hasError('required')"> las unidades valorativas son <strong>requeridas</strong> </mat-error>
+            <mat-error *ngIf="unidad_valorativa.errors?.max && unidad_valorativa.touched">
+              las unidades valorativas deben ser un número de dos cifras
+           </mat-error>
+          </mat-form-field>
+          <!--ciclo-->
+          <mat-form-field>
+            <mat-label>ciclo al que pertenece</mat-label>
+            <input matInput type="number" placeholder="Escriba el ciclo al que pertenece la materia" formControlName="ciclo" required min= "1" max="50">
+            <mat-error *ngIf="register.get('ciclo').hasError('required')"> el ciclo al que pertenece la materia es <strong>requerido</strong> </mat-error>
+            <mat-error *ngIf="ciclo.errors?.max && ciclo.touched">
+              el numero de ciclo deben ser un número de dos cifras
+           </mat-error>
+          </mat-form-field>
+            <div class="button-row">
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
+              <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Cancelar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoProgramas" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
+</div>      

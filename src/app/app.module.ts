@@ -81,6 +81,14 @@ import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-ma
 import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evaluacion-docente-mantenimiento/evaluacion-docente-mantenimiento.component';
 import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
 import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
+import { AulasMantenimientoComponent } from './mantenimientos/aulas-mantenimiento/aulas-mantenimiento.component';
+import { AgregarAulaComponent } from './crear-actualizar/agregar-aula/agregar-aula.component';
+import { HorariosMantenimientoComponent } from './mantenimientos/horarios-mantenimiento/horarios-mantenimiento.component';
+import { AgregarHorariosComponent } from './crear-actualizar/agregar-horarios/agregar-horarios.component';
+import { ProgramasMantenimientoComponent } from './mantenimientos/programas-mantenimiento/programas-mantenimiento.component';
+import { AgregarProgramaComponent } from './crear-actualizar/agregar-programa/agregar-programa.component';
+import { MateriasMantenimientoComponent } from './mantenimientos/materias-mantenimiento/materias-mantenimiento.component';
+import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agregar-materia.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -139,6 +147,14 @@ import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-
     EvaluacionDocenteMantenimientoComponent,
     GenerarConsolidadoComponent,
     CrearEditarEvaluacionComponent,
+    AulasMantenimientoComponent,
+    AgregarAulaComponent,
+    HorariosMantenimientoComponent,
+    AgregarHorariosComponent,
+    ProgramasMantenimientoComponent,
+    AgregarProgramaComponent,
+    MateriasMantenimientoComponent,
+    AgregarMateriaComponent,
   ],
   imports: [
     BrowserModule,

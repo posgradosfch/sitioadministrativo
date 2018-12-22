@@ -1,0 +1,133 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarPrograma()" [formGroup]="register"> 
+          <div class="example-container">
+            <mat-form-field>
+            <!--codigo-->
+              <mat-label>Codigo</mat-label>
+              <input matInput type="text" placeholder="Escriba el codigo del programa" formControlName="codigo" required >
+              <mat-error *ngIf="register.get('codigo').hasError('required')">El codigo es <strong>requerido</strong></mat-error>
+              <mat-error *ngIf="register.get('codigo').hasError('minlength')">el codigo debe tener al menos <strong> 5 caracteres</strong></mat-error>
+              <mat-error *ngIf="register.get('codigo').hasError('pattern')">el codigo debe tener <strong> letras y números</strong></mat-error>
+            </mat-form-field>        
+           <!--nombre-->
+           <mat-form-field>
+             <mat-label>Nombre</mat-label>
+             <input matInput type="text" placeholder="Escriba el nombre del programa" formControlName="nombre" required pattern="[A-Za-z ]{1,200}">
+             <mat-error *ngIf="register.get('nombre').hasError('required')"> el nombre es <strong>requerida</strong> </mat-error>
+             <mat-error *ngIf="register.get('nombre').hasError('pattern')">el nombre debe tener <strong> solo letras</strong></mat-error>
+           </mat-form-field>
+           <!--descripcion-->
+           <mat-form-field>
+            <mat-label>descripcion</mat-label>
+            <textarea matInput type="text" placeholder="Escriba la descripcion del programa" formControlName="descripcion" required pattern="[A-Za-z ]{1,400}"></textarea>
+            <mat-error *ngIf="register.get('descripcion').hasError('required')"> la descripcion es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="register.get('descripcion').hasError('pattern')">la descripcion debe tener <strong> solo letras</strong></mat-error>
+          </mat-form-field>
+          <!--total de unidades valorativas-->
+          <mat-form-field>
+            <mat-label>total de unidades valorativas</mat-label>
+            <input matInput type="number" placeholder="Escriba el total unidades valorativas del programa" formControlName="totalUV" required min= "1" max="100">
+            <mat-error *ngIf="register.get('totalUV').hasError('required')"> el total de unidades valorativas es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="register.get('totalUV').hasError('minlength')"> el total de unidades valorativas debe tener minimo una cifra </mat-error>
+            <mat-error *ngIf="register.get('totalUV').hasError('max')"> el total de unidades valorativas de ser menor a <strong>200 u.v.</strong> </mat-error>
+          </mat-form-field>
+          <!--Año del plan de estudios-->
+          <mat-form-field>
+            <mat-label>Año del plan de estudios</mat-label>
+            <input matInput type="number" placeholder="Escriba año del plan de estudios del programa" formControlName="plan_estudio" required>
+            <mat-error *ngIf="register.get('plan_estudio').hasError('required')"> el año del plan de estudios es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="register.get('plan_estudio').hasError('pattern')">el año debe contener <strong> 4 cifras</strong></mat-error>
+          </mat-form-field>
+          <!--Año del plan de estudios-->
+          <mat-form-field>
+            <mat-label>Duracion del programa en ciclos</mat-label>
+            <input matInput type="number" placeholder="Escriba la duracion del programa en ciclos" formControlName="duracion_ciclo" required>
+            <mat-error *ngIf="register.get('duracion_ciclo').hasError('required')"> la duracion del programa en ciclos es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="register.get('duracion_ciclo').hasError('minlength')"> la duracion en ciclos debe contener minimo una cifra </mat-error>
+            <mat-error *ngIf="register.get('duracion_ciclo').hasError('max')"> la duracion en ciclos debe ser menor a <strong>15</strong> </mat-error>
+          </mat-form-field>
+          <!--Año del plan de estudios-->
+          <mat-form-field>
+            <mat-label>Duracion en años del programa</mat-label>
+            <input matInput type="number" placeholder="Escriba la duracion en años del programa" formControlName="duracion_anio" required>
+            <mat-error *ngIf="register.get('duracion_anio').hasError('required')"> la duracion del programa en años es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="register.get('duracion_anio').hasError('pattern')">el año debe contener <strong> 4 cifras</strong></mat-error>
+          </mat-form-field>
+          <!--Titulo-->
+          <mat-form-field>
+            <mat-label>Nombre del titulo a otorgar</mat-label>
+            <input matInput type="text" placeholder="Escriba el nombre del titulo a otorgar" formControlName="titulo" required pattern="[A-Za-z ]{1,500}">
+            <mat-error *ngIf="register.get('titulo').hasError('required')"> el nombre del titulo a otorgar es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="register.get('descripcion').hasError('pattern')">la descripcion debe tener <strong> solo letras</strong></mat-error>
+          </mat-form-field>
+          <!--total_asignaturas-->
+          <mat-form-field>
+            <mat-label>total de asignaturas del programa</mat-label>
+            <input matInput type="number" placeholder="Escriba el nombre del titulo a otorgar" formControlName="total_asignaturas" required min="1">
+            <mat-error *ngIf="register.get('total_asignaturas').hasError('required')"> el total de asignaturas del programa es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="register.get('duracion_ciclo').hasError('minlength')"> la duracion en ciclos debe contener minimo una cifra </mat-error>
+            <mat-error *ngIf="register.get('duracion_ciclo').hasError('max')"> la duracion en ciclos debe ser menor a <strong>50</strong> </mat-error>
+          </mat-form-field>
+          <!--nota_minima-->
+          <mat-form-field>
+            <mat-label>Nota minima de aprobación</mat-label>
+            <input matInput type="number" placeholder="Escriba el nombre del titulo a otorgar" formControlName="nota_minima" required step="0.01" min="6.00">
+            <mat-error *ngIf="register.get('nota_minima').hasError('required')"> el total de asignaturas del programa es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="nota_minima.errors?.max && nota_minima.touched">
+              la nota minima debe ser menor a 10.00
+           </mat-error>
+           <mat-error *ngIf="nota_minima.errors?.min && nota_minima.touched">
+            la nota minima debe ser mayor a 6.00
+         </mat-error>
+          </mat-form-field>
+           <!--cum_minimo-->
+           <mat-form-field>
+            <mat-label>CUM minimo de aprobación</mat-label>
+            <input matInput type="number" placeholder="Escriba CUM minimo de aprobación" formControlName="cum_minimo" required  step="0.01" min="6.00">
+            <mat-error *ngIf="register.get('cum_minimo').hasError('required')"> El CUM minimo de aprobación es <strong>requerida</strong> </mat-error>
+            <mat-error *ngIf="cum_minimo.errors?.max && cum_minimo.touched">
+              el numero de cum minimo debe ser menor a 10.00
+           </mat-error>
+           <mat-error *ngIf="cum_minimo.errors?.min && cum_minimo.touched">
+            la nota minima debe ser mayor a 6.00
+         </mat-error>
+          </mat-form-field>
+          <!--caracteristicas-->
+          <mat-form-field>
+            <mat-label>caracteristicas del perfil del profesional del area</mat-label>
+            <input matInput type="text" placeholder="Escriba las caracteristicas del profesional graduado" formControlName="caracteristicas" required>
+            <mat-error *ngIf="register.get('caracteristicas').hasError('required')"> Las caracteristicas del perfil del profesional del area son <strong>requeridas</strong> </mat-error>
+            <mat-error *ngIf="register.get('caracteristicas').hasError('pattern')">deben digitarse <strong> solo letras</strong></mat-error>
+          </mat-form-field>
+
+            <div class="button-row">
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
+              <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Cancelar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoProgramas" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
+</div>      
