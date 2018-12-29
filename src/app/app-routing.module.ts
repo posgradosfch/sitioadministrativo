@@ -40,6 +40,9 @@ import { ProgramasMantenimientoComponent } from './mantenimientos/programas-mant
 import { AgregarProgramaComponent } from './crear-actualizar/agregar-programa/agregar-programa.component';
 import { MateriasMantenimientoComponent } from './mantenimientos/materias-mantenimiento/materias-mantenimiento.component';
 import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agregar-materia.component';
+import { MenuInscripcionComponent} from './mantenimientos/menu-inscripcion/menu-inscripcion.component';
+import { GenerarInscripcionComponent} from './generar-inscripcion/generar-inscripcion.component';
+import { InscripcionMantenimientoComponent } from './mantenimientos/inscripcion-mantenimiento/inscripcion-mantenimiento.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -161,6 +164,7 @@ const routes: Routes = [
     component: CrearEditarEvaluacionComponent,
     canActivate: [AuthGuard]
   },
+  // mantenimientos y crear-actualizar
   {path: 'mantenimientoAulas', 
     component: AulasMantenimientoComponent,
     canActivate: [AuthGuard]
@@ -193,7 +197,20 @@ const routes: Routes = [
   component: AgregarMateriaComponent,
   canActivate: [AuthGuard]
   },
-  {path: '**',
+  // Inscripcion
+  {path: 'menuInscripcion',
+  component: MenuInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'eventoInscripcion',
+  component: GenerarInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoInscripcion',
+  component: InscripcionMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+   {path: '**',
     component: PageNotFoundComponent
   }
   ];

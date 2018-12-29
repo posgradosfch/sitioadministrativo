@@ -42,7 +42,7 @@ export class AgregarMateriaComponent implements OnInit {
     */
    this.register = this.fb.group({
     codigo: ['', Validators.required],
-    nombre: ['', Validators.required],
+    nombre: ['',  [Validators.required, Validators.pattern('^[ A-Za-záéíóúÁÉÍÓÚñ]+$')]],
     correlativo: ['', [Validators.required, Validators.minLength(1), Validators.max(50)]],
     unidad_valorativa: ['', [Validators.required,  Validators.minLength(1), Validators.max(50)]],
     prerequisito: [''],

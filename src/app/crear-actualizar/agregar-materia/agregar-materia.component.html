@@ -17,6 +17,7 @@
              <mat-label>Nombre</mat-label>
              <input matInput type="text" placeholder="Escriba el nombre del programa" formControlName="nombre" required pattern="[A-Za-z ]{1,200}">
              <mat-error *ngIf="register.get('nombre').hasError('required')"> el nombre es <strong>requerida</strong> </mat-error>
+             <mat-error *ngIf="register.get('nombre').hasError('pattern')"> el nombre debe llevar solo <strong>letras</strong> </mat-error>
            </mat-form-field>
            <!--correlativo-->
            <mat-form-field>

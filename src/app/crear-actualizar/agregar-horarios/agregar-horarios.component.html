@@ -12,7 +12,7 @@
             <!--codigo-->
               <mat-label>Codigo</mat-label>
               <input matInput type="text" placeholder="Escriba el codigo del horario" formControlName="codigo" required >
-              <mat-error *ngIf="register.get('codigo').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
+              <mat-error *ngIf="register.get('codigo').hasError('required')">El codigo del aula es <strong>requerido</strong></mat-error>
             </mat-form-field>
            <!--hora de inicio-->
            <div class="form-group">

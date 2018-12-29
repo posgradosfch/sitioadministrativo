@@ -1,0 +1,174 @@
+<div class="col-md-11 mx-auto mt-12">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+           <div class="card">
+              <div class="card-body">
+        <!--Paso 1 (submit)="guardarGT()" -->
+            <mat-step [stepControl]="firstFormGroup">
+               <h1 class="text-center"> <strong>INSCRIPCIÓN PROVISIONAL DE MATERIAS</strong></h1>
+               <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+                <form [formGroup]="firstFormGroup"> 
+                  <div class="example-container">
+        <ng-template matStepLabel>Datos de la inscripción</ng-template>
+     <!--   Value: {{ firstFormGroup.value | json }} -->
+         <!--programa -->
+          <mat-form-field>
+              <mat-select placeholder="Seleccione el programa" formControlName="idPrograma" required>
+                  <mat-option *ngFor="let programa of programas" [value]="programa.id">
+                      {{programa.nombre}}
+                  </mat-option>
+              </mat-select>
+              <mat-error *ngIf="firstFormGroup.get('idPrograma').hasError('required')">el programa de la materia es <strong>requerido</strong></mat-error>
+          </mat-form-field>
+          <!--idMateria -->
+          <mat-form-field>
+            <mat-select placeholder="Seleccione la materia" formControlName="idMateria" required>
+                <mat-option *ngFor="let mat of materias" [value]="mat.id" >
+                    {{mat.nombre}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="firstFormGroup.get('idMateria').hasError('required')"> la materia es <strong>requerida</strong></mat-error>
+         </mat-form-field>
+         <!--idCiclo-->
+         <mat-form-field>
+            <mat-select placeholder="Seleccione el ciclo" formControlName="idCiclo" required>
+                <mat-option *ngFor="let ciclo of ciclos" [value]="ciclo.id" >
+                  ciclo {{ciclo.numero}} - {{ciclo.anio}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="firstFormGroup.get('idCiclo').hasError('required')"> el ciclo es <strong>requerido</strong></mat-error>
+         </mat-form-field>
+         
+         <mat-label>Cree un grupo</mat-label>
+         <!--Datos grupo Teorico-->     
+         <div formArrayName="grupos">
+            
+            <div *ngFor="let grupo of grupoForms.controls; let i=index" [formGroupName]="i">
+    
+                <mat-form-field class="xs" style="padding: 0.5rem;">
+                    <input  type="number" matInput matInput placeholder="Numero de grupo" formControlName="numeroGrupo">
+                </mat-form-field>
+                
+                <mat-form-field class="xs"  style="padding: 0.5rem;">
+                    <input type="number" matInput placeholder="Cupo por grupo" formControlName="cupo" required>
+                    <mat-error *ngIf="grupo.get('cupo').hasError('required')"> el cupo es <strong>requerido</strong></mat-error>
+                  <!--  <mat-error *ngIf="grupo.get('cupo').hasError('min')"> el cupo es <strong>minimo es de 1</strong></mat-error> -->
+                </mat-form-field>
+
+                <mat-form-field class="sm" style="padding: 0.5rem;" >
+                    <mat-select placeholder="Seleccione el Aula" formControlName="idAula" required>
+                        <mat-option *ngFor="let aula of aulas" [value]="aula.id" >
+                           {{aula.codigo}} 
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="grupo.get('idAula').hasError('required')"> el aula es <strong>requerida</strong></mat-error> 
+                 </mat-form-field> 
+                 
+                 <mat-form-field  style="padding: 0.5rem;">
+                    <mat-select placeholder="Seleccione el Horario" formControlName="idHorario" required>
+                        <mat-option *ngFor="let horario of horarios" [value]="horario.id" >
+                            {{horario.horaInicio}} - {{ horario.horaFin }}  
+                        </mat-option>
+                    </mat-select>
+                <mat-error *ngIf="grupo.get('idHorario').hasError('required')"> el horario es <strong>requerido</strong></mat-error>
+                 </mat-form-field> 
+                 
+              <mat-form-field style="padding: 0.5rem;">
+                <mat-select placeholder="Seleccione el docente" formControlName="idDocente" required>
+                   <mat-option *ngFor="let docente of docentes" [value]="docente.id_docente" >
+                         {{docente.nombre}} {{docente.apellido}}
+                   </mat-option>
+                </mat-select>
+              <mat-error *ngIf="grupo.get('idDocente').hasError('required')"> el docente es <strong>requerido</strong></mat-error>
+              </mat-form-field> 
+
+                <mat-form-field style="padding: 0.5rem;">
+                    <mat-select placeholder="dias" formControlName="multiple" multiple required>
+                      <mat-option *ngFor="let dia of ListaDias" [value]="dia">{{dia}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="grupo.get('multiple').hasError('required')"> los dias <strong> son requeridos</strong></mat-error>
+                  </mat-form-field>
+              
+                  
+                <button mat-fab color="warn" (click)="deleteGrupo()"  matTooltip="agregar grupo"> - </button>
+    
+            </div>
+    
+        </div>
+   
+        <button mat-raised-button color="primary" style=" margin-left: 2px; margin-right: 2px; width: 96%;" (click)="addGrupo()">Agregar grupo teorico</button>   
+        <br>
+        
+        <div class="button-row" >
+            <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 48%;" (click)="guardarGT()" [disabled]="firstFormGroup.invalid || loading">Guardar Datos</button>
+            <button mat-raised-button matStepperNext type="submit" class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 48%;" [disabled]="firstFormGroup.invalid || loading">Siguiente Paso</button>
+        </div>    
+        </div>
+      </form>
+     </mat-step>
+    </div>
+    </div>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Período de inscripción</ng-template>
+        <h1 class="text-center"> <strong>PERÍODO DE INSCRIPCIÓN PROVISIONAL</strong></h1>
+        <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+        <div class="example-container">
+         <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" placeholder="Escriba " formControlName="nombre" required>
+            <mat-error *ngIf="secondFormGroup.get('nombre').hasError('required')"> el nombre es <strong>requerido</strong> </mat-error>
+            <mat-error *ngIf="secondFormGroup.get('nombre').hasError('pattern')"> el nombre debe <strong>llevar solo letras</strong> </mat-error>
+          </mat-form-field>
+
+         <mat-form-field>
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput type="date" placeholder="Seleccione la fecha de incio del periodo de inscripcion" formControlName="diaInicio" required>
+            <mat-error *ngIf="secondFormGroup.get('diaInicio').hasError('required')">La fecha de inicio <strong>requerida</strong></mat-error>
+          </mat-form-field> 
+     <!--hora de inicio-->
+               <div class="form-group">
+                <mat-label>Seleccione la hora de inicio</mat-label>
+                <ngb-timepicker formControlName="horaInicio" [spinners]="spinners"></ngb-timepicker>
+              </div>
+        
+      <!--
+          <mat-form-field>
+            <mat-label>Fecha Inicio</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaa"  formControlName="dia"required>
+          <mat-datepicker-toggle matSuffix [for]="picker "></mat-datepicker-toggle>
+          <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+            <mat-error *ngIf="secondFormGroup.get('dia').hasError('required')">La fecha de Inicio es <strong>requerida</strong></mat-error>
+          </mat-form-field>-->
+
+          <mat-form-field>
+            <mat-label>Fecha de Fin</mat-label>
+            <input matInput type="date" placeholder="Seleccione la fecha de incio del periodo de inscripcion" formControlName="diaFin" required>
+            <mat-error *ngIf="secondFormGroup.get('diaFin').hasError('required')">La fecha de finalización es <strong>requerida</strong></mat-error>
+          </mat-form-field> 
+
+              <!--hora de fin-->
+              <div class="form-group">
+                <mat-label>Seleccione la hora de fin</mat-label>
+                <ngb-timepicker formControlName="horaFin" [spinners]="spinners"></ngb-timepicker>
+              </div>
+             
+        <div class="button-row" >
+            <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 48%;" (click)="guardarPeriodoInscripcion()" [disabled]="secondFormGroup.invalid || loading">Guardar Datos</button>
+            <button mat-raised-button matStepperNext type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="secondFormGroup.invalid || loading">Siguiente Paso</button>
+        </div> 
+     </div>  
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Hecho</ng-template>
+      <h1 class="text-center"> <strong>INSCRIPCIÓN PROVISIONAL:</strong></h1>
+      <br>
+     <h3  class="text-center"> El proceso de generación de la incripción provisional ha finalizado. Se ha generado con éxito la incripción provisional</h3>
+      <div>
+        <button mat-raised-button class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 48%;" matStepperPrevious>Back</button>
+        <button mat-raised-button class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 48%;" (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+ 
+</div>

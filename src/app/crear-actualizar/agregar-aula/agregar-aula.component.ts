@@ -38,7 +38,7 @@ hide = true;
       */
      this.register = this.fb.group({
       codigo: ['', Validators.required],
-      ubicacion: ['', Validators.required]
+      ubicacion: ['',  [Validators.required, Validators.pattern('^[ A-Za-záéíóúÁÉÍÓÚñ]+$')]],
      });
      /*
     -Objetivo: Muestra un mensaje tipo alerta de exito cuando el registro se realiza correctamente

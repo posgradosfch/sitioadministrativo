@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
-import { MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatNativeDateModule,  MatButtonToggleModule} from '@angular/material';
 import { MatIconModule} from '@angular/material/icon';
 import { RouterModule, Routes} from '@angular/router';
 import { MatDialogModule} from '@angular/material/dialog';
@@ -89,6 +89,10 @@ import { ProgramasMantenimientoComponent } from './mantenimientos/programas-mant
 import { AgregarProgramaComponent } from './crear-actualizar/agregar-programa/agregar-programa.component';
 import { MateriasMantenimientoComponent } from './mantenimientos/materias-mantenimiento/materias-mantenimiento.component';
 import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agregar-materia.component';
+import { MenuInscripcionComponent } from './mantenimientos/menu-inscripcion/menu-inscripcion.component';
+import { GenerarInscripcionComponent } from './generar-inscripcion/generar-inscripcion.component';
+import { InscripcionMantenimientoComponent } from './mantenimientos/inscripcion-mantenimiento/inscripcion-mantenimiento.component';
+import { ComprobantesInscripcionComponent } from './comprobantes-inscripcion/comprobantes-inscripcion.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -155,6 +159,10 @@ import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agre
     AgregarProgramaComponent,
     MateriasMantenimientoComponent,
     AgregarMateriaComponent,
+    MenuInscripcionComponent,
+    GenerarInscripcionComponent,
+    InscripcionMantenimientoComponent,
+    ComprobantesInscripcionComponent,
   ],
   imports: [
     BrowserModule,
@@ -177,6 +185,7 @@ import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agre
     MatSelectModule,
     AppRoutingModule,
     MatTooltipModule,
+    MatButtonToggleModule,
     AngularSvgIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -194,7 +203,8 @@ import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agre
     MatButtonModule, 
     MatCheckboxModule,
     RouterModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatButtonToggleModule
   ],
   providers: [
     LoginService,
@@ -208,7 +218,9 @@ import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agre
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     }*/
-    {provide: LOCALE_ID, useValue: "es"}
+    { provide: LOCALE_ID, useValue: 'en-US' },
+      //otherProviders...
+  //  {provide: LOCALE_ID, useValue: "es"}
  ],
   bootstrap: [AppComponent],
 })

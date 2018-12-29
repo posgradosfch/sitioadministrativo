@@ -18,6 +18,7 @@
              <mat-label>Ubicacion</mat-label>
              <input matInput type="text" placeholder="Escriba la ubicacion del aula" formControlName="ubicacion" required pattern="[A-Za-z ]{1,200}">
              <mat-error *ngIf="register.get('ubicacion').hasError('required')"> La ubicacion es <strong>requerida</strong> </mat-error>
+             <mat-error *ngIf="register.get('ubicacion').hasError('pattern')">la ubicacion debe tener <strong> solo letras</strong></mat-error>
            </mat-form-field>
             <div class="button-row">
               <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>
