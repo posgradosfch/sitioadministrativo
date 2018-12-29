@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EvaluacionDocente } from '../clases/evaluacion-docente';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,12 @@ export class MantenimientoEvaluacionService {
     return this.http.post(this.baseUrl, evaluacionData, this.getAuthHeaders());
   }
 
-  getEvaluaciones(): Observable<EvaluacionDocente[]> {
-    return this.http.get<EvaluacionDocente[]>(this.baseUrl, this.getAuthHeaders());
+  getEvaluaciones(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + "all/", this.getAuthHeaders());
+  }
+
+  getCiclos(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + "ciclosActivos/", this.getAuthHeaders());
   }
 
   private getAuthHeaders(){

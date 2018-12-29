@@ -4,7 +4,7 @@
 -Objetivo: Modulo para realizar el ingreso y la edicion de un documento a entregar.
 -Desarrollado por: Marisol García.
 */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '../../../../node_modules/@angular/forms';
 import { Subject } from '../../../../node_modules/rxjs';
@@ -12,11 +12,57 @@ import { NgbModal } from '../../../../node_modules/@ng-bootstrap/ng-bootstrap';
 import { debounceTime } from '../../../../node_modules/rxjs/operators';
 import { EvaluacionDocente } from '../../clases/evaluacion-docente';
 import { MantenimientoEvaluacionService } from '../../servicios/mantenimiento-evaluacion.service';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {NgbTimeStruct, NgbTimeAdapter} from '@ng-bootstrap/ng-bootstrap';
+
+/*
+  -Objetivo: Objeto de tipo Genero para generar las opciones del select de genero.
+  */
+  export interface Ciclo {
+    id_ciclo: number;
+    numero: number;
+    anio: number;
+    activo: boolean;
+  }
+
+@Injectable()
+export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
+
+  fromModel(value: string): NgbTimeStruct {
+    if (!value) {
+      return null;
+    }
+    const split = value.split(':');
+    return {
+      hour: parseInt(split[0], 10),
+      minute: parseInt(split[1], 10),
+      second: parseInt(split[2], 10)
+    };
+  }
+
+  toModel(time: NgbTimeStruct): string {
+    if (!time) {
+      return null;
+    }
+    return `${this.pad(time.hour)}:${this.pad(time.minute)}:${this.pad(time.second)}`;
+  }
+
+  private pad(i: number): string {
+    return i < 10 ? `0${i}` : `${i}`;
+  }
+}
+
 
 @Component({
   selector: 'app-crear-editar-evaluacion',
   templateUrl: './crear-editar-evaluacion.component.html',
-  styleUrls: ['./crear-editar-evaluacion.component.css']
+  styleUrls: ['./crear-editar-evaluacion.component.css'],
+  providers: [
+    // The locale would typically be provided on the root module of your application. We do it at
+    // the component level here, due to limitations of our example generation script.
+    {provide: MAT_DATE_LOCALE, useValue: 'es-SV'},
+    {provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}
+  ]
 })
 export class CrearEditarEvaluacionComponent implements OnInit {
 
@@ -28,7 +74,9 @@ export class CrearEditarEvaluacionComponent implements OnInit {
   successMessage: string;
   closeResult: string;
   hide = true;
-  
+  time: '13:30:00';
+  ciclos: Ciclo[];
+
   constructor(private evaluacionServices : MantenimientoEvaluacionService,
     private _router:Router, private fb: FormBuilder, private ngModal: NgbModal) { }
   /*
@@ -41,12 +89,16 @@ export class CrearEditarEvaluacionComponent implements OnInit {
     -Objetivo: Este metodo es para realizar las validaciones del formulario
     */
     this.register = this.fb.group({
-      evaluacion: ['', Validators.required],
+      titulo: ['', Validators.required],
       objetivo: ['', Validators.required],
       instrucciones: ['', Validators.required],
-      fecha_ini: ['', Validators.required],
-      fecha_fin: ['', Validators.required]
+      id_ciclo: ['', Validators.required],
+      fecha_inicio: ['', Validators.required],
+      fecha_fin: ['', Validators.required],
+      hora_inicio: ['', Validators.required],
+      hora_fin: ['', Validators.required]
     });
+    this.mostrarCiclos();
     /*
     -Objetivo: Muestra un mensaje tipo alerta de exito cuando el registro se realiza correctamente
     tiene una duracion de 5 segundos.
@@ -84,4 +136,15 @@ export class CrearEditarEvaluacionComponent implements OnInit {
     //this.register.value.id_paso='';
   }
 
+  /*
+  Objetivo: Metodo para enlistar los pasos en un select.
+  */
+  mostrarCiclos(){
+    this.evaluacionServices.getCiclos().subscribe(response =>{
+      this.ciclos = response.ciclos;
+      console.log('ciclos', response);
+    }, error =>{
+      console.log('error', error);
+    })
+  }
 }

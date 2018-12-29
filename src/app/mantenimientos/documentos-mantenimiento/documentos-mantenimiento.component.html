@@ -31,10 +31,14 @@
 		    <!-- Paso Column -->
 			<ng-container matColumnDef="paso">
 		        <mat-header-cell *matHeaderCellDef> Paso al que Pertenece</mat-header-cell>
-		        <mat-cell *matCellDef="let documento">
-			        <div *ngFor="let paso of pasos">
-			        	<span *ngIf= "documento.id === paso.id_paso">{{paso.nombre}}</span>
-			        </div> 
+		        <mat-cell *matCellDef="let documento"> {{documento.id_paso}}
+				</mat-cell>
+		    </ng-container>
+
+		    <!-- Orden Column -->
+			<ng-container matColumnDef="orden">
+		        <mat-header-cell *matHeaderCellDef>Orden</mat-header-cell>
+		        <mat-cell *matCellDef="let documento"> {{documento.orden}}
 				</mat-cell>
 		    </ng-container>
 		    

@@ -37,7 +37,7 @@
 			<!-- Name Column -->
 			<ng-container matColumnDef="nombre">
 		        <mat-header-cell *matHeaderCellDef> Evaluación</mat-header-cell>
-		        <mat-cell *matCellDef="let evaluacion"> {{evaluacion.nombre}} </mat-cell>
+		        <mat-cell *matCellDef="let evaluacion"> {{evaluacion.titulo}} </mat-cell>
 			</ng-container>
 		
 			<!-- Objetivo Column -->
@@ -47,9 +47,9 @@
       		</ng-container>
 		    
 		    <!-- Fecha de Inicio Column -->
-		    <ng-container matColumnDef="fecha_ini">
+		    <ng-container matColumnDef="fecha_inicio">
 		        <mat-header-cell *matHeaderCellDef>Fecha de Inicio</mat-header-cell>
-		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.fecha_ini}}</mat-cell>
+		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.fecha_inicio}}</mat-cell>
 		    </ng-container>
 
 		    <!-- Fecha de Finalizacion Column -->

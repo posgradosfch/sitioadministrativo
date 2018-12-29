@@ -44,31 +44,30 @@ export class PreguntaMantenimientoComponent implements OnInit {
 }
 
   getPreguntas(){
-    this.preguntaService.getPreguntas().subscribe(preguntas =>{
+    this.preguntaService.getPreguntas().subscribe(response =>{
       //evaluaciones.sort(function(a, b){return a.fecha_ini - b.fecha_ini})
-      this.dataSource.data = preguntas;
-      this.dataSource.filterPredicate = (data: Pregunta, filter: string) => data.nombre.toString().indexOf(filter) != -1;
-      this.preguntas = this.preguntas;
+      this.dataSource.data = response.preguntas;
+      this.dataSource.filterPredicate = (data: Pregunta, filter: string) => data.titulo.toString().indexOf(filter) != -1;
       this.ngAfterViewInit();
-      console.log('preguntas', preguntas);
+      console.log('preguntas', this.dataSource.data);
     }, error =>{
       console.log('error', error);
     })
   }
 
   getCategorias(){
-    this.preguntaService.mostrarCategorias().subscribe(categorias =>{
-      this.categorias = categorias;
-      console.log('categorias', categorias);
+    this.preguntaService.mostrarCategorias().subscribe(response =>{
+      this.categorias = response;
+      console.log('categorias', response);
     }, error =>{
       console.log('error', error);
     })
   }
 
   getTipos(){
-    this.preguntaService.mostrarTipos().subscribe(tipos =>{
-      this.tipos = tipos;
-      console.log('tipos', tipos);
+    this.preguntaService.mostrarTipos().subscribe(response =>{
+      this.tipos = response.tipos;
+      console.log('tipos', response.tipos);
     }, error =>{
       console.log('error', error);
     })

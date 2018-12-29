@@ -17,6 +17,16 @@ import { MantenimientoPasosService } from '../../servicios/mantenimiento-pasos.s
 import { MantenimientoProcedimientosService } from '../../servicios/mantenimiento-procedimientos.service';
 import { MantenimientoDocumentosService } from '../../servicios/mantenimiento-documentos.service';
 
+/*
+  -Objetivo: Objeto de tipo Genero para generar las opciones del select de genero.
+  */
+  export interface Ciclo {
+    id_ciclo: number;
+    numero: number;
+    anio: number;
+    activo: boolean;
+  }
+
 @Component({
   selector: 'app-agregar-editar-documento',
   templateUrl: './agregar-editar-documento.component.html',
@@ -34,6 +44,7 @@ export class AgregarEditarDocumentoComponent implements OnInit {
   successMessage: string;
   closeResult: string;
   hide = true;
+  ciclos: Ciclo[];
   
   constructor(private pasoServices : MantenimientoPasosService,
     private procedimientoServices : MantenimientoProcedimientosService, 
@@ -43,7 +54,7 @@ export class AgregarEditarDocumentoComponent implements OnInit {
   -Objetivo: Todos los datos contenidos en este metodo son 
   inicializadas al cargar la vista.
   */
-  ngOnInit(): void{
+  ngOnInit() {
     this.loading = false;
     /*
     -Objetivo: Este metodo es para realizar las validaciones del formulario

@@ -16,8 +16,8 @@ export class MantenimientoDocumentosService {
     return this.http.post(this.baseUrl, documentoData, this.getAuthHeaders());
   }
 
-  getDocumentos(): Observable<Documento[]> {
-    return this.http.get<Documento[]>(this.baseUrl, this.getAuthHeaders());
+  getDocumentos(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'all', this.getAuthHeaders());
   }
 
   private getAuthHeaders(){

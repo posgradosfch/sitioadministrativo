@@ -10,7 +10,7 @@
           <div class="example-container">
             <mat-form-field>
             <!--nombre-->
-              <mat-label>Nombre</mat-label>
+              <mat-label>Descripcion</mat-label>
               <input matInput type="text" placeholder="Escriba el nombre del documento a entregar" formControlName="nombre" required pattern="[A-Za-z ]{1,50}">
               <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
             </mat-form-field>
@@ -18,7 +18,7 @@
             <mat-form-field>
               <mat-label>Procedimiento</mat-label>
               <mat-select placeholder="Seleccione el Procedimiento" formControlName="id_procedimiento" required>
-                <mat-option *ngFor="let procedimiento of procedimientos" [value]="procedimiento.id_procedimiento" (click)="handleChange(procedimiento.nombre)">
+                <mat-option *ngFor="let procedimiento of procedimientos" [value]="procedimiento.id_procedimiento">
                   {{procedimiento.nombre}}
                 </mat-option>
               </mat-select>
@@ -28,7 +28,7 @@
             <mat-form-field>
               <mat-label>Paso de Asistente</mat-label>
               <mat-select placeholder="Seleccione el paso del Asistente a que pertenece" formControlName="id_paso" required>
-                <mat-option *ngFor="let paso of pasos" [value]="paso.id_paso" (click)="handleChange(paso.nombre)">
+                <mat-option *ngFor="let paso of pasos" [value]="paso.id_paso">
                   {{paso.nombre}}
                 </mat-option>
               </mat-select>

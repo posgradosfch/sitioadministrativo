@@ -10,24 +10,31 @@ import { Categoria } from '../clases/categoria';
   providedIn: 'root'
 })
 export class MantenimientoPreguntaService {
-  baseUrl: string = environment.apiUrl + "services/pregunta/";
+  preUrl: string = environment.apiUrl + "services/pregunta/";
+  tipoUrl: string = environment.apiUrl + "services/tipos/all/";
+  catUrl: string = environment.apiUrl + "services/categorias/all/";
+  claUrl: string = environment.apiUrl + "services/clasificacion/all/";
 
   constructor(private http: HttpClient) { }
 
   registrarPregunta(preguntaData: any): Observable<any> {
-    return this.http.post(this.baseUrl, preguntaData, this.getAuthHeaders());
+    return this.http.post(this.preUrl, preguntaData, this.getAuthHeaders());
   }
 
-  getPreguntas(): Observable<Pregunta[]> {
-    return this.http.get<Pregunta[]>(this.baseUrl, this.getAuthHeaders());
+  getPreguntas(): Observable<any> {
+    return this.http.get<any>(this.preUrl + "all/", this.getAuthHeaders());
   }
 
   mostrarCategorias(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(this.baseUrl + "categoria/", this.getAuthHeaders());
+    return this.http.get<Categoria[]>(this.catUrl, this.getAuthHeaders());
   }
 
-  mostrarTipos(): Observable<Tipo[]> {
-    return this.http.get<Tipo[]>(this.baseUrl + "tipo/", this.getAuthHeaders());
+  mostrarClasificacion(): Observable<any> {
+    return this.http.get<any>(this.claUrl, this.getAuthHeaders());
+  }
+
+  mostrarTipos(): Observable<any> {
+    return this.http.get<any>(this.tipoUrl, this.getAuthHeaders());
   }
 
   private getAuthHeaders(){

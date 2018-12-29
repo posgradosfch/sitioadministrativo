@@ -29,6 +29,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxPaginationModule } from 'ngx-pagination';
 //import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "angular5-social-login";
 import {MatChipsModule} from '@angular/material/chips';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 //servicios globales
 import { LoginService } from './servicios/login.service';
@@ -172,7 +173,8 @@ import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-
     AngularEditorModule,
     NgxPaginationModule,
     MatChipsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    NgxMaterialTimepickerModule.forRoot()
   ],
   exports: [
     MatButtonModule, 

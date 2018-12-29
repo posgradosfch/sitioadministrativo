@@ -47,6 +47,7 @@
     "jspdf": "^1.4.1",
     "ng-fullcalendar": "^1.6.2",
     "ng2-select": "^2.0.0",
+    "ngx-material-timepicker": "^2.11.0",
     "ngx-pagination": "^3.2.1",
     "path": "^0.12.7",
     "popper.js": "^1.14.3",

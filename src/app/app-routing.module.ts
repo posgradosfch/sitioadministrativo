@@ -76,8 +76,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: 'mantenimientoPreguntas', 
-    component: PreguntaMantenimientoComponent,
-    canActivate: [AuthGuard]
+    component: PreguntaMantenimientoComponent/*,
+    canActivate: [AuthGuard]*/
   },
   {path: 'mantenimientoDocumentos', 
     component: DocumentosMantenimientoComponent,
@@ -142,8 +142,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: 'pregunta', 
-    component: AgregarEditarPreguntaComponent,
-    canActivate: [AuthGuard]
+    component: AgregarEditarPreguntaComponent/*,
+    canActivate: [AuthGuard]*/
   },
   {path: 'documento', 
     component: AgregarEditarDocumentoComponent,

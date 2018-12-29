@@ -16,7 +16,7 @@ import { MantenimientoDocumentosService } from '../../servicios/mantenimiento-do
 })
 export class DocumentosMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'nombre', 'paso', 'opcion'];
+  displayedColumns = ['number', 'nombre', 'paso', 'orden', 'opcion'];
   pasos: Paso[];
   documentos: Documento[];
   dataSource = new MatTableDataSource();
@@ -46,12 +46,12 @@ export class DocumentosMantenimientoComponent implements OnInit {
 
   getDocumentos(){
     this.documentoService.getDocumentos().subscribe(documentos =>{
-      documentos.sort(function(a, b){return a.id_paso - b.id_paso})
-      this.dataSource.data = documentos;
-      this.dataSource.filterPredicate = (data: Paso, filter: string) => data.id_proceimiento.toString().indexOf(filter) != -1;
+      //documentos.sort(function(a, b){return a.id_paso.nombre - b.id_paso.nombre})
+      this.dataSource.data = documentos.documentos;
+      //this.dataSource.filterPredicate = (data: Paso, filter: string) => data.id_proceimiento.toString().indexOf(filter) != -1;
       this.documentos = this.documentos;
       this.ngAfterViewInit();
-      console.log('documentos', documentos.sort(function(a, b){return a.id_paso - b.id_paso}));
+      console.log('documentos', documentos);
     }, error =>{
       console.log('error', error);
     })

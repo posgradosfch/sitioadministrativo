@@ -47,7 +47,7 @@ export class EvaluacionDocenteMantenimientoComponent implements OnInit {
     this.evaluacionService.getEvaluaciones().subscribe(evaluaciones =>{
       //evaluaciones.sort(function(a, b){return a.fecha_ini - b.fecha_ini})
       this.dataSource.data = evaluaciones;
-      this.dataSource.filterPredicate = (data: EvaluacionDocente, filter: string) => data.fecha_ini.toString().indexOf(filter) != -1;
+      this.dataSource.filterPredicate = (data: EvaluacionDocente, filter: string) => data.fecha_inicio.toString().indexOf(filter) != -1;
       this.evaluaciones = this.evaluaciones;
       this.ngAfterViewInit();
       console.log('evaluaciones', evaluaciones);
@@ -67,7 +67,7 @@ export class EvaluacionDocenteMantenimientoComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue= filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filterPredicate = (data: EvaluacionDocente, filter: string) => data.fecha_ini.toString().indexOf(filter) != -1;
+    this.dataSource.filterPredicate = (data: EvaluacionDocente, filter: string) => data.fecha_inicio.toString().indexOf(filter) != -1;
   }
 
 }

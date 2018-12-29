@@ -1,6 +1,6 @@
 export class Pregunta {
 	id: number;
-	nombre: string;
+	titulo: string;
 	id_categoria: number;
 	id_tipo: number;
 }
