@@ -43,7 +43,7 @@ import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agre
 import { MenuInscripcionComponent} from './mantenimientos/menu-inscripcion/menu-inscripcion.component';
 import { GenerarInscripcionComponent} from './generar-inscripcion/generar-inscripcion.component';
 import { InscripcionMantenimientoComponent } from './mantenimientos/inscripcion-mantenimiento/inscripcion-mantenimiento.component';
-
+import { ComprobantesInscripcionComponent } from './comprobantes-inscripcion/comprobantes-inscripcion.component';
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
     pathMatch: 'full'
@@ -208,6 +208,10 @@ const routes: Routes = [
   },
   {path: 'mantenimientoInscripcion',
   component: InscripcionMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'comprobantes',
+  component: ComprobantesInscripcionComponent,
   canActivate: [AuthGuard]
   },
    {path: '**',

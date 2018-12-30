@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class GestionInscripcionService {
   baseUrl: string = environment.apiUrl + 'services/ciclos/all/';
   baseUrlDos: string = environment.apiUrl + 'services/gruposT/';
+  baseUrlTres: string = environment.apiUrl + 'services/inscripciones/';
+  baseUrlCuatro: string = environment.apiUrl + 'services/inscripciones/all/';
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +23,7 @@ export class GestionInscripcionService {
   }
 
   periodoInscripcion(Data: any) {
-    return this.http.post('http://postgradosv2.herokuapp.com/services/inscripciones/', Data, this.getAuthHeaders());
+    return this.http.post(this.baseUrlTres, Data, this.getAuthHeaders());
   }
   private getAuthHeaders() {
     const token = localStorage.getItem('token');
@@ -30,12 +32,11 @@ export class GestionInscripcionService {
   }
 
   getInscripciones(): Observable<any> {
-    return this.http.get<any>('http://postgradosv2.herokuapp.com/services/inscripciones/all/', this.getAuthHeaders());
+    return this.http.get<any>(this.baseUrlCuatro, this.getAuthHeaders());
   }
 
   deshabilitarInscripcion(id: number): Observable<any> {
-  //  const url = `${this.baseUrlDos}unable/${id}/`;
-  const url = `${'http://postgradosv2.herokuapp.com/services/inscripciones/'}unable/${id}/`;
+    const url = `${this.baseUrlTres}unable/${id}/`;
     return this.http.put(url, this.getAuthHeaders());
  }
 

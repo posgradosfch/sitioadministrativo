@@ -45,7 +45,8 @@
             <div *ngFor="let grupo of grupoForms.controls; let i=index" [formGroupName]="i">
     
                 <mat-form-field class="xs" style="padding: 0.5rem;">
-                    <input  type="number" matInput matInput placeholder="Numero de grupo" formControlName="numeroGrupo">
+                    <input  type="number" matInput placeholder="Número de grupo" formControlName="numeroGrupo" required>
+                    <mat-error *ngIf="grupo.get('numeroGrupo').hasError('required')"> el numero del grupo es <strong>requerido</strong></mat-error>
                 </mat-form-field>
                 
                 <mat-form-field class="xs"  style="padding: 0.5rem;">

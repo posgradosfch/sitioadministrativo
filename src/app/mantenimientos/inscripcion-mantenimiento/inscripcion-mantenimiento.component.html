@@ -26,7 +26,7 @@
 			<!-- Apellidos Column -->
 			<ng-container matColumnDef="ciclo">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> ciclo de la inscripcion </mat-header-cell>
-				<mat-cell *matCellDef="let inscripciones"> {{ inscripciones.ciclo}} </mat-cell> -->
+				<mat-cell *matCellDef="let inscripciones"> ciclo {{ inscripciones.ciclo}} </mat-cell> -->
       </ng-container>
       <!-- Apellidos Column -->
 			<ng-container matColumnDef="Fecha y hora de inicio">
@@ -41,7 +41,11 @@
      <!--Estado-->
 			<ng-container matColumnDef="Estado">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
-				<mat-cell *matCellDef="let inscripciones"> {{inscripciones.estado}} </mat-cell> 
+				<mat-cell *matCellDef="let inscripciones"> 
+					<p *ngIf= "inscripciones.estado; else inactivo"> Activo </p> 
+					<ng-template #inactivo>
+				     <p>Inactivo</p>	
+				  </ng-template></mat-cell> 
       </ng-container>
 				<!-- Opciones Column -->
 			<ng-container matColumnDef="acciones" style="text-align: center;">

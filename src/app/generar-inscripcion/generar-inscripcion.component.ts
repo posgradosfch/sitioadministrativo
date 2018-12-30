@@ -77,7 +77,7 @@ export class GenerarInscripcionComponent implements OnInit {
   firstFormGroup: FormGroup; // primer Formulario del stepper
   secondFormGroup: FormGroup; // segundo formulario del stepper
   // variables usadas para el select de dias
-  ListaDias: string[] = ['Lunes', 'Master', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  ListaDias: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   // variables usadas para la configiracion de los Time picker de ngbootstrap
   time: '13:30:00';
   seconds = true;

@@ -14,12 +14,11 @@ import { Subject } from '../../../../node_modules/rxjs';
   selector: 'app-inscripcion-mantenimiento',
   templateUrl: './inscripcion-mantenimiento.component.html',
   styleUrls: ['./inscripcion-mantenimiento.component.css'],
- // providers: [ { provide: LOCALE_ID, useValue: 'es-ES' }, ]
 })
 export class InscripcionMantenimientoComponent implements OnInit {
   account: User = new User();
   userSub: Subscription;
-  // 
+  // datos data table
   displayedColumns = ['id', 'nombre', 'ciclo', 'Fecha y hora de inicio', 'Fecha y hora de fin', 'Estado', 'acciones'];
   dataSource = new MatTableDataSource();
   inscripciones: Inscripcion[];
