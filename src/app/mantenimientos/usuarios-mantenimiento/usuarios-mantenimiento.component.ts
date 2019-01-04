@@ -77,7 +77,7 @@ export class UsuariosMantenimientoComponent implements OnInit {
 
   unableUsuario(user: User): void {
     //this.loading = true;
-    if (confirm('Deseas eliminar la materia seleccionada?')){
+    if (confirm('Deseas eliminar el usuario seleccionado?')){
       this.userService.unableUsuario(user.id).subscribe(
         data => {
           console.log(data);
