@@ -125,6 +125,7 @@ export class AgregarEditarDocenteComponent implements OnInit {
   */
   openVerticallyCentered(content) {
     this.ngModal.open(content, { centered: true });
+    this.register.value.titulo = "";
     console.log(this.register.value.fecha_naci);
 
   }

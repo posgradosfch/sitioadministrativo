@@ -32,6 +32,7 @@ import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-ma
 import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evaluacion-docente-mantenimiento/evaluacion-docente-mantenimiento.component';
 import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
 import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
+import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -50,6 +51,7 @@ const routes: Routes = [
   {path: 'generarConsolidado',
     component: GenerarConsolidadoComponent
   },
+  
   //Mantenimientos
   {path: 'mantenimientoRoles',
     component: RolesMantenimientoComponent,
@@ -151,6 +153,10 @@ const routes: Routes = [
   },
   {path: 'evaluacionDocente', 
     component: CrearEditarEvaluacionComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'tomaDecision', 
+    component: TomaDecisionComponent,
     canActivate: [AuthGuard]
   },
   {path: '**', 

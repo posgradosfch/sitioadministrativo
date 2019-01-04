@@ -1,11 +1,15 @@
+import { Time } from '@angular/common';
+
 export class EvaluacionDocente {
-	id_evaluacion: number;
+	id_encuesta: number;
 	titulo: string;
 	objetivo: string;
 	instrucciones: string;
 	id_ciclo: number;
-	fecha_inicio: string;
-	fecha_fin: string;
-	hora_inicio: string;
-	hora_fin: string;
+	fecha_inicio: Date;
+	fecha_fin: Date;
+	hora_inicio: Time;
+	hora_fin: Time;
+	activo: boolean;
+	anio_ciclo: number;
 }

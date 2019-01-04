@@ -1,6 +1,6 @@
 <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">Bienvenido {{ account.username }}!!</ngb-alert>
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
-	<label><h2><strong>MANTENIMIENTO DE USUARIOS</strong></h2></label>	
+	<label><h2><strong>GESTIÓN DE USUARIOS</strong></h2></label>	
 	
 	<div class="example-header">
 		<div class="left">
@@ -42,19 +42,25 @@
 			</ng-container>
 
 			<!-- Email Column -->
-			<ng-container matColumnDef="email">
+			<!--ng-container matColumnDef="email">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
 				<mat-cell *matCellDef="let user"> {{user.email}}</mat-cell>
-			</ng-container>
+			</ng-container-->
 
 			<!-- Opciones Column -->
-			<!--ng-container matColumnDef="opcion" style="text-align: center;">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+			<ng-container matColumnDef="opcion" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let user">
-					<i class="edit fa fa-edit fa-lg">   </i>
-					<i class="delete fa fa-trash-o fa-lg">   </i>
+					<button mat-icon-button (click)="openDialog(content)" matTooltip="Ver Detalles">
+						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
+					<button mat-icon-button (click)="editUsuario(user)" matTooltip="Editar">
+					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
+			        </button>
+					<button mat-icon-button (click)="unableUsuario(user)" matTooltip="Eliminar">
+			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
+			        </button>
 				</mat-cell>
-			</ng-container-->
+			</ng-container>
 		
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 			<mat-row *matRowDef="let user; columns: displayedColumns;">
@@ -64,3 +70,50 @@
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 	</div>
 </div>
+
+<!--Ventana emergente-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"><strong>Detalle del Docente</strong></h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <mat-list>
+      <mat-list-item>
+        <span><strong>Nombres: </strong> Jose Antonio</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Apellidos: </strong> Perez</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>DUI: </strong> 04545455-9</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Formacion Academica: </strong> Licenciatura</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Titulo Pregrado: </strong> Licenciado en Ciencias de la Computacion</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Fecha de Nacimiento: </strong> 12/12/2018</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Genero: </strong> Masculino</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Telefono Fijo: </strong> 2245-5696</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Telefono Movil: </strong> 7245-5698</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span><strong>Email: </strong> jose@gmail.com</span>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  </div>
+</ng-template>

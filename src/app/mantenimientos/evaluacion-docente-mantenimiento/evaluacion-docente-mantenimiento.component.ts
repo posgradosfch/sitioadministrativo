@@ -8,6 +8,9 @@ import { EvaluacionDocente } from '../../clases/evaluacion-docente';
 import { Procedimiento } from '../../clases/procedimiento';
 import { MantenimientoEvaluacionService } from '../../servicios/mantenimiento-evaluacion.service';
 import { MantenimientoProcedimientosService } from '../../servicios/mantenimiento-procedimientos.service';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-evaluacion-docente-mantenimiento',
@@ -16,18 +19,20 @@ import { MantenimientoProcedimientosService } from '../../servicios/mantenimient
 })
 export class EvaluacionDocenteMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'nombre', 'objetivo', 'fecha_ini', 'fecha_fin', 'opcion'];
-  evaluaciones: EvaluacionDocente[];
-  procedimientos: Procedimiento[];
+  displayedColumns = ['number', 'titulo', 'fecha_inicio', 'hora_inicio', 'fecha_fin', 'hora_fin', 'id_ciclo', /*'activo',*/ 'opcion'];
+  evaluacion: EvaluacionDocente[];
   dataSource = new MatTableDataSource();
   account: User = new User();
   userSub: Subscription;
+  loading: boolean;
+  _success = new Subject<string>();
+  successMessage: string;
 
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private evaluacionService : MantenimientoEvaluacionService, private _router:Router, private global: GlobalService, 
-    private procedimientoService : MantenimientoProcedimientosService) { 
+    private procedimientoService : MantenimientoProcedimientosService, private ngModal: NgbModal,) { 
 
   }
 
@@ -41,16 +46,20 @@ export class EvaluacionDocenteMantenimientoComponent implements OnInit {
   } else {
       this._router.navigate(['/home']);
   }
+
+  this._success.subscribe((message) => this.successMessage = message);
+   this._success.pipe(
+     debounceTime(5000)
+   ).subscribe(() => this.successMessage = null);
 }
 
   getEvaluacion(){
-    this.evaluacionService.getEvaluaciones().subscribe(evaluaciones =>{
+    this.evaluacionService.getEvaluaciones().subscribe(response =>{
       //evaluaciones.sort(function(a, b){return a.fecha_ini - b.fecha_ini})
-      this.dataSource.data = evaluaciones;
+      this.dataSource.data = response.encuestas;
       this.dataSource.filterPredicate = (data: EvaluacionDocente, filter: string) => data.fecha_inicio.toString().indexOf(filter) != -1;
-      this.evaluaciones = this.evaluaciones;
       this.ngAfterViewInit();
-      console.log('evaluaciones', evaluaciones);
+      console.log('evaluaciones', response.encuestas);
     }, error =>{
       console.log('error', error);
     })
@@ -68,6 +77,23 @@ export class EvaluacionDocenteMantenimientoComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue= filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filterPredicate = (data: EvaluacionDocente, filter: string) => data.fecha_inicio.toString().indexOf(filter) != -1;
+  }
+
+  unableEvaluacion(evaluacion: EvaluacionDocente): void {
+    this.loading = true;
+    if (confirm('Deseas calcelar la evaluación docente seleccionada')){
+      this.evaluacionService.unableEvaluacion(evaluacion.id_encuesta).subscribe(
+        data => {
+          console.log(data);
+          this.loading = false;
+          this._success.next('Evaluacion Docente cancelada exitosamente');
+          this.getEvaluacion();
+        }, (error)=>{
+          this.loading = false;
+          console.log(error);
+        });
+    }
+    
   }
 
 }

@@ -10,7 +10,7 @@
           <i (click)="drawer.toggle()" class="fa fa-bars fa-lg" style="cursor: pointer"></i>
           <span class="example-spacer"></span>
           <span>
-            {{account.username}}
+            {{account.first_name}} {{account.last_name}}
           </span>
           <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>account_circle</mat-icon>

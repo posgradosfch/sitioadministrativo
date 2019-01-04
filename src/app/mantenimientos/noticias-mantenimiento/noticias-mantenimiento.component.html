@@ -1,5 +1,5 @@
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
-	<label><h2><strong>MANTENIMIENTO DE NOTICIAS</strong></h2></label>
+	<label><h2><strong>GESTIÓN DE NOTICIAS</strong></h2></label>
 	<div class="example-header">
 		<div class="left">
 			<mat-form-field>
@@ -40,13 +40,19 @@
 			</ng-container>
 
 			<!-- Opciones Column -->
-			<!--ng-container matColumnDef="opcion" style="text-align: center;">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
-				<mat-cell *matCellDef="let noticia">
-					<i class="edit fa fa-edit fa-lg">   </i>
-					<i class="delete fa fa-trash-o fa-lg">   </i>
+			<ng-container matColumnDef="opcion" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+				<mat-cell *matCellDef="let documento">
+					<button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
+						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
+					<button mat-icon-button (click)="editDocumento(documento)" matTooltip="Editar">
+					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
+			        </button>
+					<button mat-icon-button (click)="unableDocumento(documento)" matTooltip="Eliminar">
+			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
+			        </button>
 				</mat-cell>
-			</ng-container-->
+			</ng-container>
 	
 			
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

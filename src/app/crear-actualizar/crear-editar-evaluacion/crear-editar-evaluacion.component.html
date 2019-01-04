@@ -21,17 +21,17 @@
               <mat-error *ngIf="register.get('titulo').hasError('required')">El titulo es <strong>requerido</strong></mat-error>
             </mat-form-field>
            <!--Objetivo-->
-            <mat-form-field>
+            <!--mat-form-field>
               <mat-label>Objetivo</mat-label>
               <textarea matInput type="text" placeholder="Escriba el objetivo de la Evaluación Docente" formControlName="objetivo" required pattern="[A-Za-z -.,0-9áéíóúüñ]{1,1000}"></textarea>
               <mat-error *ngIf="register.get('objetivo').hasError('required')">El objetivo es <strong>requerido</strong></mat-error>
-            </mat-form-field>
+            </mat-form-field-->
             <!--Instrucciones-->
-            <mat-form-field>
+            <!--mat-form-field>
               <mat-label>Instrucciones</mat-label>
               <textarea matInput type="text" placeholder="Escriba las instrucciones para responder la Evaluación Docente" formControlName="instrucciones" required pattern="[A-Za-z -.,0-9áéíóúüñ]{1,1500}"></textarea>
               <mat-error *ngIf="register.get('instrucciones').hasError('required')">Las instrucciones son <strong>requeridas</strong></mat-error>
-            </mat-form-field>
+            </mat-form-field-->
             <!--Ciclo-->
             <mat-form-field>
               <mat-label>Ciclo</mat-label>
@@ -45,9 +45,7 @@
            <!--Fecha Inicio-->
             <mat-form-field>
               <mat-label>Fecha Inicio</mat-label>
-              <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaa" formControlName="fecha_inicio" required>
-  			      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    		      <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+              <input matInput type="date" placeholder="dd/mm/aaa" formControlName="fecha_inicio" required>
               <mat-error *ngIf="register.get('fecha_inicio').hasError('required')">La fecha de Inicio es <strong>requerida</strong></mat-error>
             </mat-form-field>
             <!--Hora de Inicio-->
@@ -62,10 +60,8 @@
             <!--Fecha Finalizacion-->
             <mat-form-field>
               <mat-label>Fecha Finalización</mat-label>
-              <input matInput [matDatepicker]="picker2" placeholder="dd/mm/aaa" formControlName="fecha_fin" required>
-  			      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    		      <mat-datepicker #picker2 [startAt]="startDate"></mat-datepicker>
-              <mat-error *ngIf="register.get('fecha_fin').hasError('required')">La fecha de Finalización es <strong>requerida</strong></mat-error>
+              <input matInput type="date" placeholder="dd/mm/aaa" formControlName="fecha_fin" required>
+  			      <mat-error *ngIf="register.get('fecha_fin').hasError('required')">La fecha de Finalización es <strong>requerida</strong></mat-error>
             </mat-form-field>
             <!--Hora Fin-->
             <mat-form-field>

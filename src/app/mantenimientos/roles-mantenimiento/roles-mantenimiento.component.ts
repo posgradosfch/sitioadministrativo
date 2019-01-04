@@ -8,6 +8,9 @@ import { Subscription } from 'rxjs';
 import { GlobalService } from '../../servicios/global.service';
 import { Permisos } from '../../clases/permisos';
 import { MantenimientoPermisosService } from '../../servicios/mantenimiento-permisos.service';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-roles-mantenimiento',
@@ -16,17 +19,21 @@ import { MantenimientoPermisosService } from '../../servicios/mantenimiento-perm
 })
 export class RolesMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'name', 'permissions', /*'opcion'*/];
+  displayedColumns = ['number', 'name', /*'permissions', */'opcion'];
   roles:Roles[];
   dataSource = new MatTableDataSource();
   account: User = new User();
   userSub: Subscription;
   permisos: Permisos[];
+  loading: boolean;
+  _success = new Subject<string>();
+  successMessage: string;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _rolService : MantenimientoRolesService, private _permisoService : MantenimientoPermisosService, private _router:Router, private global: GlobalService) { 
+  constructor(private _rolService : MantenimientoRolesService, private _permisoService : MantenimientoPermisosService, 
+    private _router:Router, private global: GlobalService, private ngModal: NgbModal) { 
 
   }
 
@@ -77,5 +84,16 @@ export class RolesMantenimientoComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
+  openDialogCancel(cancelContent, rol: Roles) {
+    this.ngModal.open(cancelContent, { centered: true });
   }
 }

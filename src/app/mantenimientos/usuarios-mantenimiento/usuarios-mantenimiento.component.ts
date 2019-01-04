@@ -5,7 +5,9 @@ import { GlobalService } from '../../servicios/global.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-usuarios-mantenimiento',
@@ -17,14 +19,19 @@ export class UsuariosMantenimientoComponent implements OnInit {
   account: User = new User();//Crea un nuevo usuario.
   userSub: Subscription;
   users: User[];
-  displayedColumns = ['number', 'nombre', 'apellido', 'username', 'email', /*'opcion'*/];
+  user: User[];
+  displayedColumns = ['number', 'nombre', 'apellido', 'username', /*'email',*/ 'opcion'];
   dataSource = new MatTableDataSource();
   staticAlertClosed = false;
+  loading: boolean;
+  _success = new Subject<string>();
+  successMessage: string;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: UsuarioService, private router: Router, private global: GlobalService) { }
+  constructor(private userService: UsuarioService, private router: Router, 
+    private global: GlobalService, private ngModal: NgbModal) { }
 
   ngOnInit() {
     setTimeout(() => 20000);
@@ -66,5 +73,44 @@ export class UsuariosMantenimientoComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  unableUsuario(user: User): void {
+    //this.loading = true;
+    if (confirm('Deseas eliminar la materia seleccionada?')){
+      this.userService.unableUsuario(user.id).subscribe(
+        data => {
+          console.log(data);
+          //this.loading = false;
+          this._success.next('Usuario eliminado exitosamente');
+          this.getUsuarios();
+        }, (error)=>{
+          //this.loading = false;
+          console.log(error);
+        });
+    }
+    
+  }
+
+  detUsuario(id: number): void {
+    this.userService.detUsuario(id).subscribe(
+      data => {
+        this.user = data.user;
+        console.log(this.user);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
+  openDialogCancel(cancelContent, documento: User) {
+    this.ngModal.open(cancelContent, { centered: true });
   }
 }

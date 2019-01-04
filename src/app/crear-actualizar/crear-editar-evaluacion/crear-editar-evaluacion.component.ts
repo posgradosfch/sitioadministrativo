@@ -79,6 +79,11 @@ export class CrearEditarEvaluacionComponent implements OnInit {
 
   constructor(private evaluacionServices : MantenimientoEvaluacionService,
     private _router:Router, private fb: FormBuilder, private ngModal: NgbModal) { }
+  
+  get fechaInicio(){
+    return this.register.get('fecha_inicio');
+  }
+
   /*
   -Objetivo: Todos los datos contenidos en este metodo son 
   inicializadas al cargar la vista.
@@ -90,14 +95,17 @@ export class CrearEditarEvaluacionComponent implements OnInit {
     */
     this.register = this.fb.group({
       titulo: ['', Validators.required],
-      objetivo: ['', Validators.required],
-      instrucciones: ['', Validators.required],
+      /*objetivo: ['', Validators.required],
+      instrucciones: ['', Validators.required],*/
       id_ciclo: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
       hora_inicio: ['', Validators.required],
       hora_fin: ['', Validators.required]
     });
+
+    //const dia = this.fechaInicio.value.getFullYear();
+    //console.log(dia);
     this.mostrarCiclos();
     /*
     -Objetivo: Muestra un mensaje tipo alerta de exito cuando el registro se realiza correctamente
@@ -111,12 +119,19 @@ export class CrearEditarEvaluacionComponent implements OnInit {
       this.successMessage = null;
       this._router.navigate(['/mantenimientoEvaluacionDocente']);
     });
+    const fecha = new Date().getDate();
+    //const dia = 
+    console.log('fechaActual', fecha);
   }
   /*
   -Objetivo: Este metodo es para realizar el registro de los documentos
   */
   registrarEvaluacion(){
     this.loading = true;
+    const fech = this.fechaInicio;
+    const fecha = new Date();
+    const dia = this.fechaInicio.value;
+    console.log('dia', dia, 'fechaActual', fecha, 'fech', fech);
     this.evaluacionServices.registrarEvaluacion(this.register.value).subscribe((
       response)=>{        
         this.loading = false;

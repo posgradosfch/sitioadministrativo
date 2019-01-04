@@ -8,6 +8,9 @@ import { Paso } from '../../clases/paso';
 import { Documento } from '../../clases/documento';
 import { MantenimientoPasosService } from '../../servicios/mantenimiento-pasos.service';
 import { MantenimientoDocumentosService } from '../../servicios/mantenimiento-documentos.service';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-documentos-mantenimiento',
@@ -18,16 +21,19 @@ export class DocumentosMantenimientoComponent implements OnInit {
 
   displayedColumns = ['number', 'nombre', 'paso', 'orden', 'opcion'];
   pasos: Paso[];
-  documentos: Documento[];
+  documento: Documento[];
   dataSource = new MatTableDataSource();
   account: User = new User();
   userSub: Subscription;
-
+  loading: boolean;
+  _success = new Subject<string>();
+  successMessage: string;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private pasoService : MantenimientoPasosService, private _router:Router, private global: GlobalService, 
-    private documentoService : MantenimientoDocumentosService) { 
+    private documentoService : MantenimientoDocumentosService,
+    private ngModal: NgbModal) { 
 
   }
 
@@ -49,9 +55,8 @@ export class DocumentosMantenimientoComponent implements OnInit {
       //documentos.sort(function(a, b){return a.id_paso.nombre - b.id_paso.nombre})
       this.dataSource.data = documentos.documentos;
       //this.dataSource.filterPredicate = (data: Paso, filter: string) => data.id_proceimiento.toString().indexOf(filter) != -1;
-      this.documentos = this.documentos;
       this.ngAfterViewInit();
-      console.log('documentos', documentos);
+      console.log('documentos', documentos.documentos);
     }, error =>{
       console.log('error', error);
     })
@@ -79,5 +84,45 @@ export class DocumentosMantenimientoComponent implements OnInit {
     filterValue= filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+
+  unableDocumento(documento: Documento): void {
+    //this.loading = true;
+    if (confirm('Deseas eliminar documento seleccionado?')){
+      this.documentoService.unableDocumento(documento.id_documento).subscribe(
+        data => {
+          console.log(data);
+          //this.loading = false;
+          this._success.next('Documento eliminado exitosamente');
+          this.getDocumentos();
+        }, (error)=>{
+          //this.loading = false;
+          console.log(error);
+        });
+    }
+    
+  }
+
+  detDocumento(id_documento: number): void {
+    this.documentoService.detDocumento(id_documento).subscribe(
+      data => {
+        this.documento = data.documento;
+        console.log(this.documento);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
+  openDialogCancel(cancelContent, documento: Documento) {
+    this.ngModal.open(cancelContent, { centered: true });
+  }
+  
 
 }

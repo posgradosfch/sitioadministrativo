@@ -14,7 +14,7 @@ import { GlobalService } from '../../servicios/global.service';
 })
 export class NoticiasMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'titulo', 'cuerpo', 'fecha', /*'opcion'*/];
+  displayedColumns = ['number', 'titulo', /*'cuerpo',*/ 'fecha', 'opcion'];
   noticias:Noticias[];
   dataSource = new MatTableDataSource();
   account: User = new User();

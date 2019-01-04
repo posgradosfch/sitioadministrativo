@@ -48,7 +48,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Aceptacion </mat-header-cell>
       <mat-cell *matCellDef="let aspirante">
         <button mat-icon-button color="primary" (click)="getAspiranteId(aspirante)" [routerLink]="['/aspirantes', aspirante.id_aspirante]" [disabled]="aspirante.aceptado===true">
-          <i class="fa fa-check-square fa-lg"></i>
+          <a href="/aspirantes"><i class="fa fa-check-square fa-lg"></i></a>
         </button>
       </mat-cell>
     </ng-container>

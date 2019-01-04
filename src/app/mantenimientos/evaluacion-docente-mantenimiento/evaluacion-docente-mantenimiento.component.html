@@ -35,21 +35,21 @@
 			</ng-container>
 
 			<!-- Name Column -->
-			<ng-container matColumnDef="nombre">
+			<ng-container matColumnDef="titulo">
 		        <mat-header-cell *matHeaderCellDef> Evaluación</mat-header-cell>
 		        <mat-cell *matCellDef="let evaluacion"> {{evaluacion.titulo}} </mat-cell>
 			</ng-container>
 		
-			<!-- Objetivo Column -->
-			<ng-container matColumnDef="objetivo">
-				<mat-header-cell *matHeaderCellDef>Objetivo</mat-header-cell>
-				<mat-cell *matCellDef="let evaluacion">{{evaluacion.objetivo}}</mat-cell>
-      		</ng-container>
-		    
-		    <!-- Fecha de Inicio Column -->
+			<!-- Fecha de Inicio Column -->
 		    <ng-container matColumnDef="fecha_inicio">
 		        <mat-header-cell *matHeaderCellDef>Fecha de Inicio</mat-header-cell>
 		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.fecha_inicio}}</mat-cell>
+		    </ng-container>
+		    
+		    <!-- Hora de Inicio Column -->
+		    <ng-container matColumnDef="hora_inicio">
+		        <mat-header-cell *matHeaderCellDef>Hora de Inicio</mat-header-cell>
+		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.hora_inicio}}</mat-cell>
 		    </ng-container>
 
 		    <!-- Fecha de Finalizacion Column -->
@@ -60,12 +60,30 @@
 				</mat-cell>
 		    </ng-container>
 
-			<!-- Opciones Column -->
+		    <!-- Hora de Finalizacion Column -->
+		    <ng-container matColumnDef="hora_fin">
+		        <mat-header-cell *matHeaderCellDef>Hora de Finalizacion</mat-header-cell>
+		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.hora_fin}}</mat-cell>
+		    </ng-container>
+
+		    <!-- Ciclo Column -->
+		    <ng-container matColumnDef="id_ciclo">
+		        <mat-header-cell *matHeaderCellDef>Ciclo</mat-header-cell>
+		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.id_ciclo}}-{{evaluacion.anio_ciclo}}</mat-cell>
+		    </ng-container>
+
+		    <!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let evaluacion">
-					<i class="edit fa fa-edit fa-lg">   </i>
-					<i class="delete fa fa-trash-o fa-lg">   </i>
+					<!--button mat-icon-button (click)="openDialog(content)" (click)="detEvaluacion(evaluacion.id_evaluacion)" matTooltip="Ver Detalles">
+						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
+					<button mat-icon-button (click)="editEvaluacion(evaluacion)" matTooltip="Editar">
+					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
+			        </button-->
+					<button mat-icon-button (click)="unableEvaluacion(evaluacion)" matTooltip="Eliminar">
+			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
+			        </button>
 				</mat-cell>
 			</ng-container>
 		

@@ -82,6 +82,7 @@ import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-ma
 import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evaluacion-docente-mantenimiento/evaluacion-docente-mantenimiento.component';
 import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
 import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
+import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -140,6 +141,7 @@ import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-
     EvaluacionDocenteMantenimientoComponent,
     GenerarConsolidadoComponent,
     CrearEditarEvaluacionComponent,
+    TomaDecisionComponent,
   ],
   imports: [
     BrowserModule,

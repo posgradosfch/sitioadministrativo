@@ -11,7 +11,7 @@
             <mat-form-field>
             <!--nombre-->
               <mat-label>Descripcion</mat-label>
-              <input matInput type="text" placeholder="Escriba el nombre del documento a entregar" formControlName="nombre" required pattern="[A-Za-z ]{1,50}">
+              <input matInput type="text" placeholder="Escriba el nombre del documento a entregar" formControlName="nombre" required pattern="[A-Za-z 0-9.,:;%]{1,50}">
               <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
             </mat-form-field>
            <!--Procedimiento-->

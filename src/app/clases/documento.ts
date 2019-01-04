@@ -1,9 +1,9 @@
 import { Paso } from '../clases/paso';
 
 export class Documento {
-	id: number;
+	id_documento: number;
     nombre: string;
-    id_paso: Paso[];
+    id_paso: number;
     orden: number;
-    entregado: boolean;
+    activo: boolean;
 }

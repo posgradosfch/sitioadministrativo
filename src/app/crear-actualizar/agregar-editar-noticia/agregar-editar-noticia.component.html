@@ -10,7 +10,7 @@
           <div class="example-container">
             <mat-form-field>
               <mat-label>Titulo:</mat-label>
-              <input matInput #nombre type="text" placeholder="Escriba el titulo de la noticia" formControlName="encabezado" required pattern="[A-Za-z1-9]{5,50}">
+              <input matInput #nombre type="text" placeholder="Escriba el titulo de la noticia" formControlName="encabezado" required pattern="[A-Za-z 0-9.,:;áéíóúü ¿ ? ¡ ! ( )]{5,50}">
               <mat-error *ngIf="register.get('encabezado').hasError('required')">El Titulo es <strong>requerido</strong></mat-error>
             </mat-form-field>
             <br>
@@ -45,7 +45,7 @@
       <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" routerLink="/mantenimientoUsuarios" (click)="c('Close click')">Aceptar</button>
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoNoticiass" (click)="c('Close click')">Aceptar</button>
     </div>
   </ng-template>
 </div>      
