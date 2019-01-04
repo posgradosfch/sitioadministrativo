@@ -1,0 +1,96 @@
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+    <label><h2><strong>CONSOLIDADO DE DATOS INSCRIPCIÓN PROVISIONAL DE MATERIAS</strong></h2></label>	
+  <br><br>
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" matSort>
+          <!-- Nombre Column -->
+        <ng-container matColumnDef="carnet">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Carnet </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1">  {{ ELEMENT1.carnet }} </mat-cell> 
+        </ng-container>
+        <!-- Number Column -->
+        <ng-container matColumnDef="Nombre del estudiante">
+          <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Nombre del estudiante </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center;"> {{ ELEMENT1.nombre }}</mat-cell> 
+        </ng-container>
+       <!-- Apellidos Column -->
+        <ng-container matColumnDef="Codigo del programa">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo del programa </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.codigo }}</mat-cell>  
+        </ng-container>
+        <!-- Apellidos Column -->
+        <ng-container matColumnDef="Nombre del programa">
+          <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Nombre del programa</mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.programa}}  </mat-cell> 
+        </ng-container>
+       <!-- Apellidos Column -->
+       <ng-container matColumnDef="Ciclo y año">
+          <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Ciclo y año</mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.ciclo}}  </mat-cell> 
+        </ng-container>
+         <!-- Apellidos Column -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    
+    </div>
+<br>
+<br>
+<br>
+<br>
+
+  <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSource2" matSort>
+          <!-- Nombre Column -->
+        <ng-container matColumnDef="carnet">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Carnet </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT2">  {{ ELEMENT2.carnet }} </mat-cell> 
+        </ng-container>
+        <!-- Number Column -->
+        <ng-container matColumnDef="Email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Email </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center;"> {{ ELEMENT2.email }}</mat-cell> 
+        </ng-container>
+       <!-- Apellidos Column -->
+        <ng-container matColumnDef="Telefono">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT2">{{ ELEMENT2.telefono }}</mat-cell>  
+        </ng-container>
+        <!-- Apellidos Column -->
+        <ng-container matColumnDef="Programa que estudia">
+          <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Programa que estudia</mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.programa}}  </mat-cell> 
+        </ng-container>
+       <!-- Apellidos Column -->
+       <ng-container matColumnDef="Materia">
+          <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Materia</mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.materia}}  </mat-cell> 
+        </ng-container>
+        <ng-container matColumnDef="Matricula">
+            <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Matricula</mat-header-cell>
+            <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.matricula}}  </mat-cell> 
+          </ng-container>
+          <ng-container matColumnDef="Grupo teórico">
+              <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Grupo teórico</mat-header-cell>
+              <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.grupoT}}  </mat-cell> 
+            </ng-container>
+            <ng-container matColumnDef="Horario">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Horario</mat-header-cell>
+                <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.horario}}  </mat-cell> 
+              </ng-container>
+              <ng-container matColumnDef="Aula">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Aula</mat-header-cell>
+                  <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.aula}}  </mat-cell> 
+                </ng-container>
+         <!-- Apellidos Column -->
+        <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  <div class="button-row" style="padding: 2rem; text-align: center; align-content: center;" >
+      <button mat-raised-button color="warn" (click)='cancelarInscripcion()' style="margin-left: 2px; margin-right: 2px; width: 30%;" >Cancelar inscripcion</button>    
+      <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 30%;" (click)="regresar()" >Regresar</button>
+      <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 30%;">Imprimir comprobantes de inscripcion</button>
+  </div> 

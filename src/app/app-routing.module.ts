@@ -31,8 +31,29 @@ import { AgregarEditarDocumentoComponent } from './crear-actualizar/agregar-edit
 import { DocumentosMantenimientoComponent } from './mantenimientos/documentos-mantenimiento/documentos-mantenimiento.component';
 import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evaluacion-docente-mantenimiento/evaluacion-docente-mantenimiento.component';
 import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
+import { AulasMantenimientoComponent } from './mantenimientos/aulas-mantenimiento/aulas-mantenimiento.component';
 import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
 import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
+import { AgregarAulaComponent } from './crear-actualizar/agregar-aula/agregar-aula.component';
+import { HorariosMantenimientoComponent } from './mantenimientos/horarios-mantenimiento/horarios-mantenimiento.component';
+import { AgregarHorariosComponent } from './crear-actualizar/agregar-horarios/agregar-horarios.component';
+import { ProgramasMantenimientoComponent } from './mantenimientos/programas-mantenimiento/programas-mantenimiento.component';
+import { AgregarProgramaComponent } from './crear-actualizar/agregar-programa/agregar-programa.component';
+import { MateriasMantenimientoComponent } from './mantenimientos/materias-mantenimiento/materias-mantenimiento.component';
+import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agregar-materia.component';
+import { MenuInscripcionComponent} from './mantenimientos/menu-inscripcion/menu-inscripcion.component';
+import { GenerarInscripcionComponent} from './generar-inscripcion/generar-inscripcion.component';
+import { InscripcionMantenimientoComponent } from './mantenimientos/inscripcion-mantenimiento/inscripcion-mantenimiento.component';
+import { ComprobantesInscripcionComponent } from './comprobantes-inscripcion/comprobantes-inscripcion.component';
+import { VerDetalleInscripcionComponent } from './ver-detalle-inscripcion/ver-detalle-inscripcion.component';
+import { ReaperturarInscripcionComponent } from './reaperturar-inscripcion/reaperturar-inscripcion.component';
+import { DetalleInscripcionCanceladaComponent } from './detalle-inscripcion-cancelada/detalle-inscripcion-cancelada.component';
+import { ExportarDatosEstudianteComponent } from './exportar-datos-estudiante/exportar-datos-estudiante.component';
+import { DetalleEstudianteComponent } from './detalle-estudiante/detalle-estudiante.component';
+import { MenuPagosComponent } from './menu-pagos/menu-pagos.component';
+import { ConsultarPagoComponent } from './consultar-pago/consultar-pago.component';
+import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
+import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -159,7 +180,93 @@ const routes: Routes = [
     component: TomaDecisionComponent,
     canActivate: [AuthGuard]
   },
-  {path: '**', 
+  // mantenimientos y crear-actualizar
+  {path: 'mantenimientoAulas', 
+    component: AulasMantenimientoComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'aula',
+  component: AgregarAulaComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoHorarios',
+   component: HorariosMantenimientoComponent,
+   canActivate: [AuthGuard]
+  },
+  {path: 'horario',
+  component: AgregarHorariosComponent,
+  canActivate: [AuthGuard]
+ },
+ {path: 'mantenimientoProgramas',
+  component: ProgramasMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'programa',
+  component: AgregarProgramaComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'matenimientoMaterias',
+  component: MateriasMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'materia',
+  component: AgregarMateriaComponent,
+  canActivate: [AuthGuard]
+  },
+  // Inscripcion
+  {path: 'menuInscripcion',
+  component: MenuInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'eventoInscripcion',
+  component: GenerarInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoInscripcion',
+  component: InscripcionMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'comprobantes',
+  component: ComprobantesInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'detalleInscripcion',
+  component: VerDetalleInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'reaperturarInscripcion',
+  component: ReaperturarInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+   {path: 'detalleInscripcionCancelada',
+  component: DetalleInscripcionCanceladaComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'datosEstudiantes',
+  component: ExportarDatosEstudianteComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'detalleEstudiante',
+  component: DetalleEstudianteComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'menuPagos',
+  component: MenuPagosComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'consultarPagos',
+  component: ConsultarPagoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'detallePagos',
+  component: DetallePagoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'guardarPago',
+  component: GuardarPagoComponent,
+  canActivate: [AuthGuard]
+  },
+   {path: '**',
     component: PageNotFoundComponent
   }
   ];

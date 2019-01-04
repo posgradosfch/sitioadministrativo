@@ -1,0 +1,38 @@
+.dark-modal .modal-content {
+    background-color: #292b2c;
+    color: white;
+  }
+  .dark-modal .close {
+    color: white;
+  }
+  .light-blue-backdrop {
+    background-color: #5cb3fd;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  
+  .example-container form {
+    margin-bottom: 20px;
+  }
+  
+  .example-container form > * {
+    margin: 5px 0;
+  }
+  
+  .example-container .mat-radio-button {
+    margin: 0 5px;
+  }
+  .card{
+    box-shadow: 2px 2px 4px #7F8489;   
+}
+  .row{
+    padding-bottom: 2rem;
+  }

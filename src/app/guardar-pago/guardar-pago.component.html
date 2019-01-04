@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-center"> <strong>GUARDAR PAGO REALIZADO</strong></h1>
+          <form> 
+            <div class="example-container">
+             <!--codigo-->
+             <div class="button-row" class="center" >
+               <mat-form-field>
+                <label>Busque el estudiante que desea por carnet</label>
+                <input matInput type="text" value= "Juan" required >
+              </mat-form-field>   <!--margin-right: 2px; margin-right: 2px;-->
+              <button mat-raised-button type="submit"  class="btn-info" style="color: white; width: 10%;" (click)="regresar()" >Buscar</button>
+              </div>
+              <div class="example-container mat-elevation-z8">
+                  <mat-table [dataSource]="dataSource" matSort>
+                      <!-- Nombre Column -->
+                    <ng-container matColumnDef="carnet">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Carnet </mat-header-cell>
+                      <mat-cell *matCellDef="let ELEMENT1">  {{ ELEMENT1.carnet }} </mat-cell> 
+                    </ng-container>
+                    
+                    <!-- Number Column -->
+                    <ng-container matColumnDef="Nombre del estudiante">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Nombre del estudiante </mat-header-cell>
+                      <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center;"> {{ ELEMENT1.nombre }}</mat-cell> 
+                    </ng-container>
+                   <!-- Apellidos Column -->
+                    <ng-container matColumnDef="Codigo del programa">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo del programa </mat-header-cell>
+                      <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.codigo }}</mat-cell>  
+                    </ng-container>
+                    <!-- Apellidos Column -->
+                    <ng-container matColumnDef="Nombre del programa">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Nombre del programa</mat-header-cell>
+                      <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.programa}}  </mat-cell> 
+                    </ng-container>
+                   <!-- Apellidos Column -->
+                   <ng-container matColumnDef="Plan de estudios">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Plan de estudios</mat-header-cell>
+                      <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.plan}}  </mat-cell> 
+                    </ng-container>
+                     <!-- Apellidos Column -->
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                
+                </div>
+              <mat-form-field>
+                  <mat-label>Año en el que se registra el pago</mat-label>
+                  <input matInput type="number" value= "2018" required >
+                </mat-form-field> 
+                   
+                 <mat-form-field>
+                      <mat-label>Fecha en que se realizo el pago segun recibo:</mat-label>
+                      <input matInput type="date" value= "15/09/1993" required >
+                    </mat-form-field>  
+                    <mat-label>Arrancel o cuota pagada</mat-label>
+              
+                        
+                        
+                         <mat-checkbox>Pre Inscripcion</mat-checkbox>
+                        <!--margin-right: 2px; margin-right: 2px;-->
+                       
+                    
+                   
+                      
+                        
+                        
+                          <mat-checkbox>Ingreso a posgrados</mat-checkbox>
+                         <!--margin-right: 2px; margin-right: 2px;-->
+                        
+                    
+                        
+                        
+                            <mat-checkbox>Matricula Anual</mat-checkbox>
+                           <!--margin-right: 2px; margin-right: 2px;-->
+                           <br>
+                           <br>
+                           <mat-label> Cuotas pagadas </mat-label>
+                       
+                          
+                          
+<mat-form-field>
+    <mat-select placeholder="Cuotas" [formControl]="Cuotas" multiple>
+      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+      <mat-label>Ingrese el numero del recibo</mat-label>
+      <input matInput type="number"  required >
+    </mat-form-field> 
+    <mat-form-field>
+    <mat-label>Ingrese el codigo de barra</mat-label>
+    <input matInput type="number"  required >
+  </mat-form-field> 
+                  
+              <div class="button-row">
+                <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;">Guardar Pago</button>
+                <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="exportarFicha()">Cancelar</button>    
+              </div>
+            </div>     
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>

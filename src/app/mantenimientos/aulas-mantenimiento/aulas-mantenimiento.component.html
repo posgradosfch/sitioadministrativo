@@ -1,0 +1,67 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+	<label><h2><strong>MANTENIMIENTO DE AULAS</strong></h2></label>	
+	
+	<div class="example-header">
+		<div class="left">
+			<mat-form-field>
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		</div>
+		<div class="rigth">
+			<button mat-fab class="col" (click) = "newAulas()" matTooltip="Crear una nueva aula">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	</div>
+	<br><br>
+	<div class="example-container mat-elevation-z8">
+		<mat-table [dataSource]="dataSource" matSort>
+			<!-- Number Column -->
+			<ng-container matColumnDef="No">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+				<mat-cell *matCellDef="let aulas; let i = index"> {{i+1}} </mat-cell>
+			</ng-container>
+			<!-- Nombre Column -->
+			<ng-container matColumnDef="codigo">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
+				<mat-cell *matCellDef="let aulas"> {{aulas.codigo}} </mat-cell>
+			</ng-container>
+			<!-- Apellidos Column -->
+			<ng-container matColumnDef="ubicacion">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Ubicacion </mat-header-cell>
+				<mat-cell *matCellDef="let aulas"> {{aulas.ubicacion}} </mat-cell>
+			</ng-container>
+				<!-- Opciones Column -->
+			<ng-container matColumnDef="acciones" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+				<mat-cell *matCellDef="let aulas">
+					<button mat-icon-button color= "warn" (click)="onDelete(aulas.id)"><mat-icon>delete_outline</mat-icon></button>
+					<!--(click)="open('autofocus')"-->
+				</mat-cell>
+			</ng-container>
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let aulas; columns: displayedColumns;"></mat-row>
+		</mat-table>
+		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+	</div>
+</div>
+
+<!--Modal- Deshabilitar Aula
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Eliminar Aula</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>Esta seguro que desea eliminar el aula seleccionada? <span class="text-primary"></span> </strong></p>
+    <p>
+    <span class="text-danger"></span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="activar()" >Aceptar</button>
+  </div>-->

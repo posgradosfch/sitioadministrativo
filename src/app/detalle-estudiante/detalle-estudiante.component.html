@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-center"> <strong>DETALLE ESTUDIANTE</strong></h1>
+          <form> 
+            <div class="example-container">
+             <!--codigo-->
+               <mat-form-field>
+                <label>Nombres</label>
+                <input matInput type="text" disabled value= "Juan" required >
+              </mat-form-field>   
+              <mat-form-field>
+                  <label>Apellidos</label>
+                  <input matInput type="text" disabled value= "Perez" required >
+                </mat-form-field> 
+                   
+                <mat-form-field>
+                    <label>Genero</label>
+                    <input matInput type="text" disabled value= "Masculino" required >
+                  </mat-form-field>  
+                  <mat-form-field>
+                      <label>Fecha Nacimiento</label>
+                      <input matInput type="text" disabled value= "15/09/1993" required >
+                    </mat-form-field>  
+                    <mat-form-field>
+                        <label>Dirección</label>
+                        <input matInput type="text" disabled value= "final calle principal mejicanos" required >
+                      </mat-form-field>  
+                      <mat-form-field>
+                          <label>Departamento</label>
+                          <input matInput type="text" disabled value= "San Salvador" required >
+                        </mat-form-field>  
+              <mat-form-field>
+                    <label>Municipio</label>
+                    <input matInput type="text" disabled value= "Mejicanos" required >
+              </mat-form-field> 
+              <mat-form-field>
+                  <label>DUI</label>
+                  <input matInput type="text" disabled value= "50667766-5" required >
+                </mat-form-field>  
+                <mat-form-field>
+                    <label>NIT</label>
+                    <input matInput type="text" disabled value= "0614-250093-118-5" required >
+                  </mat-form-field>  
+                  <mat-form-field>
+                      <label>Telefono Fijo</label>
+                      <input matInput type="text" disabled value= "2233-3322" required >
+                    </mat-form-field> 
+                    <mat-form-field>
+                        <label>Telefono Movil</label>
+                        <input matInput type="text" disabled value= "7877-6543" required >
+                      </mat-form-field> 
+                      <mat-form-field>
+                          <label>Email</label>
+                          <input matInput type="text" disabled value= "Juan@gmail.com" required >
+                        </mat-form-field> 
+                        <mat-form-field>
+                            <label>Titulo pregrado</label>
+                            <input matInput type="text" disabled value= "Licenciado en Psicologia" required >
+                          </mat-form-field> 
+                          <mat-form-field>
+                              <label>Universidad de procedencia</label>
+                              <input matInput type="text" disabled value= "Universidad de El Salvador" required >
+                            </mat-form-field>             
+              <div class="button-row">
+                <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;">Exportar Ficha</button>
+                <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="exportarFicha()">Regresar</button>    
+              </div>
+            </div>     
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>

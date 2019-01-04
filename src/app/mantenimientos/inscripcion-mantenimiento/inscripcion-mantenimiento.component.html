@@ -1,0 +1,81 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+	<label><h2><strong>MANTENIMIENTO INSCRIPCIÓN PROVISIONAL DE MATERIAS</strong></h2></label>	
+	
+	<div class="example-header">
+		<div class="left">
+			<mat-form-field>
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		</div>
+	</div>
+	<br><br>
+	<div class="example-container mat-elevation-z8">
+		<mat-table [dataSource]="dataSource" matSort>
+			<!-- Number Column -->
+			<ng-container matColumnDef="id">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Id de la inscripcion </mat-header-cell>
+				<mat-cell *matCellDef="let inscripciones"> {{inscripciones.id}} </mat-cell> 
+			</ng-container>
+			<!-- Nombre Column -->
+			<ng-container matColumnDef="nombre">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de la inscripcion </mat-header-cell>
+				<mat-cell *matCellDef="let inscripciones"> {{inscripciones.nombre}} </mat-cell> 
+			</ng-container>
+			<!-- Apellidos Column -->
+			<ng-container matColumnDef="ciclo">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> ciclo de la inscripcion </mat-header-cell>
+				<mat-cell *matCellDef="let inscripciones"> ciclo {{ inscripciones.ciclo}} </mat-cell> -->
+      </ng-container>
+      <!-- Apellidos Column -->
+			<ng-container matColumnDef="Fecha y hora de inicio">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha y hora de inicio </mat-header-cell>
+				<mat-cell *matCellDef="let inscripciones"> {{inscripciones.diaInicio | date: 'dd/MM/yy, h:mm a'}} </mat-cell>  
+      </ng-container>
+      <!-- Fecha y hora Column -->
+			<ng-container matColumnDef="Fecha y hora de fin">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha y hora de fin </mat-header-cell>
+				<mat-cell *matCellDef="let inscripciones"> {{ inscripciones.diaFin  | date: 'dd/MM/yy, h:mm a' }} </mat-cell> 
+      </ng-container>
+     <!--Estado-->
+			<ng-container matColumnDef="Estado">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+				<mat-cell *matCellDef="let inscripciones"> 
+					<p *ngIf= "inscripciones.estado; else inactivo"> Activo </p> 
+					<ng-template #inactivo>
+				     <p>Inactivo</p>	
+				  </ng-template></mat-cell> 
+      </ng-container>
+				<!-- Opciones Column -->
+			<ng-container matColumnDef="acciones" style="text-align: center;">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+				<mat-cell *matCellDef="let inscripciones">
+					<button mat-icon-button color= "warn" (click)="onDelete(inscripciones.id)"><mat-icon>delete_outline</mat-icon></button>
+					<!--(click)="open('autofocus')"             -->
+				</mat-cell>
+			</ng-container>
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let inscripciones; columns: displayedColumns;"></mat-row>
+		</mat-table>
+		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+	</div>
+</div>
+
+<!--Modal- Deshabilitar Aula
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Eliminar Aula</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>Esta seguro que desea eliminar el aula seleccionada? <span class="text-primary"></span> </strong></p>
+    <p>
+    <span class="text-danger"></span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="activar()" >Aceptar</button>
+  </div>-->

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
-import { MatButtonModule, MatCheckboxModule, MatNativeDateModule} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatNativeDateModule,  MatButtonToggleModule} from '@angular/material';
 import { MatIconModule} from '@angular/material/icon';
 import { RouterModule, Routes} from '@angular/router';
 import { MatDialogModule} from '@angular/material/dialog';
@@ -83,6 +83,27 @@ import { EvaluacionDocenteMantenimientoComponent } from './mantenimientos/evalua
 import { GenerarConsolidadoComponent } from './generar-consolidado/generar-consolidado.component';
 import { CrearEditarEvaluacionComponent } from './crear-actualizar/crear-editar-evaluacion/crear-editar-evaluacion.component';
 import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
+import { AulasMantenimientoComponent } from './mantenimientos/aulas-mantenimiento/aulas-mantenimiento.component';
+import { AgregarAulaComponent } from './crear-actualizar/agregar-aula/agregar-aula.component';
+import { HorariosMantenimientoComponent } from './mantenimientos/horarios-mantenimiento/horarios-mantenimiento.component';
+import { AgregarHorariosComponent } from './crear-actualizar/agregar-horarios/agregar-horarios.component';
+import { ProgramasMantenimientoComponent } from './mantenimientos/programas-mantenimiento/programas-mantenimiento.component';
+import { AgregarProgramaComponent } from './crear-actualizar/agregar-programa/agregar-programa.component';
+import { MateriasMantenimientoComponent } from './mantenimientos/materias-mantenimiento/materias-mantenimiento.component';
+import { AgregarMateriaComponent } from './crear-actualizar/agregar-materia/agregar-materia.component';
+import { MenuInscripcionComponent } from './mantenimientos/menu-inscripcion/menu-inscripcion.component';
+import { GenerarInscripcionComponent } from './generar-inscripcion/generar-inscripcion.component';
+import { InscripcionMantenimientoComponent } from './mantenimientos/inscripcion-mantenimiento/inscripcion-mantenimiento.component';
+import { ComprobantesInscripcionComponent } from './comprobantes-inscripcion/comprobantes-inscripcion.component';
+import { VerDetalleInscripcionComponent } from './ver-detalle-inscripcion/ver-detalle-inscripcion.component';
+import { ReaperturarInscripcionComponent } from './reaperturar-inscripcion/reaperturar-inscripcion.component';
+import { DetalleInscripcionCanceladaComponent } from './detalle-inscripcion-cancelada/detalle-inscripcion-cancelada.component';
+import { ExportarDatosEstudianteComponent } from './exportar-datos-estudiante/exportar-datos-estudiante.component';
+import { DetalleEstudianteComponent } from './detalle-estudiante/detalle-estudiante.component';
+import { MenuPagosComponent } from './menu-pagos/menu-pagos.component';
+import { ConsultarPagoComponent } from './consultar-pago/consultar-pago.component';
+import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
+import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -142,6 +163,27 @@ import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
     GenerarConsolidadoComponent,
     CrearEditarEvaluacionComponent,
     TomaDecisionComponent,
+    AulasMantenimientoComponent,
+    AgregarAulaComponent,
+    HorariosMantenimientoComponent,
+    AgregarHorariosComponent,
+    ProgramasMantenimientoComponent,
+    AgregarProgramaComponent,
+    MateriasMantenimientoComponent,
+    AgregarMateriaComponent,
+    MenuInscripcionComponent,
+    GenerarInscripcionComponent,
+    InscripcionMantenimientoComponent,
+    ComprobantesInscripcionComponent,
+    VerDetalleInscripcionComponent,
+    ReaperturarInscripcionComponent,
+    DetalleInscripcionCanceladaComponent,
+    ExportarDatosEstudianteComponent,
+    DetalleEstudianteComponent,
+    MenuPagosComponent,
+    ConsultarPagoComponent,
+    DetallePagoComponent,
+    GuardarPagoComponent,
   ],
   imports: [
     BrowserModule,
@@ -164,6 +206,7 @@ import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
     MatSelectModule,
     AppRoutingModule,
     MatTooltipModule,
+    MatButtonToggleModule,
     AngularSvgIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -182,7 +225,8 @@ import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
     MatButtonModule, 
     MatCheckboxModule,
     RouterModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatButtonToggleModule
   ],
   providers: [
     LoginService,
@@ -196,7 +240,9 @@ import { TomaDecisionComponent } from './toma-decision/toma-decision.component';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     }*/
-    {provide: LOCALE_ID, useValue: "es"}
+    { provide: LOCALE_ID, useValue: 'en-US' },
+      //otherProviders...
+  //  {provide: LOCALE_ID, useValue: "es"}
  ],
   bootstrap: [AppComponent],
 })
