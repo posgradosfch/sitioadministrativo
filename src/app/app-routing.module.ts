@@ -44,6 +44,16 @@ import { MenuInscripcionComponent} from './mantenimientos/menu-inscripcion/menu-
 import { GenerarInscripcionComponent} from './generar-inscripcion/generar-inscripcion.component';
 import { InscripcionMantenimientoComponent } from './mantenimientos/inscripcion-mantenimiento/inscripcion-mantenimiento.component';
 import { ComprobantesInscripcionComponent } from './comprobantes-inscripcion/comprobantes-inscripcion.component';
+import { VerDetalleInscripcionComponent } from './ver-detalle-inscripcion/ver-detalle-inscripcion.component';
+import { ReaperturarInscripcionComponent } from './reaperturar-inscripcion/reaperturar-inscripcion.component';
+import { DetalleInscripcionCanceladaComponent } from './detalle-inscripcion-cancelada/detalle-inscripcion-cancelada.component';
+import { ExportarDatosEstudianteComponent } from './exportar-datos-estudiante/exportar-datos-estudiante.component';
+import { DetalleEstudianteComponent } from './detalle-estudiante/detalle-estudiante.component';
+import { MenuPagosComponent } from './menu-pagos/menu-pagos.component';
+import { ConsultarPagoComponent } from './consultar-pago/consultar-pago.component';
+import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
+import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
+
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
     pathMatch: 'full'
@@ -212,6 +222,42 @@ const routes: Routes = [
   },
   {path: 'comprobantes',
   component: ComprobantesInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'detalleInscripcion',
+  component: VerDetalleInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'reaperturarInscripcion',
+  component: ReaperturarInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+   {path: 'detalleInscripcionCancelada',
+  component: DetalleInscripcionCanceladaComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'datosEstudiantes',
+  component: ExportarDatosEstudianteComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'detalleEstudiante',
+  component: DetalleEstudianteComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'menuPagos',
+  component: MenuPagosComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'consultarPagos',
+  component: ConsultarPagoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'detallePagos',
+  component: DetallePagoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'guardarPago',
+  component: GuardarPagoComponent,
   canActivate: [AuthGuard]
   },
    {path: '**',

@@ -1,0 +1,73 @@
+<div class="input" style="padding: 2rem; text-align: center; align-content: center;">
+    <label><h2><strong>CONSOLIDAD DE DATOS INSCRIPCIÓN PROVISIONAL DE MATERIAS</strong></h2></label>	
+    
+    <div class="example-header">
+      <div class="left">
+       
+      </div> 
+         <div class="button-row" class="right" >
+            <mat-form-field style="width: 600px; padding: 2rem; text-align: left; align-content: left;">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+       </mat-form-field>
+         <button mat-raised-button color="warn" style="color: white; margin-right: 2px; margin-right: 2px; width: 10%;" (click)="regresar()" >Regresar</button>
+         <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 15%;" (click)="regresar()" >Generar Ficha</button>
+         </div>
+        
+         
+    </div>
+   <div class="example-container mat-elevation-z8">
+
+      <mat-table [dataSource]="dataSource" matSort>
+        <!-- Number Column -->
+        <ng-container matColumnDef="Nombre del estudiante">
+          <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Nombre del estudiante </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center;"> {{ ELEMENT1.nombre }}</mat-cell> 
+        </ng-container>
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="Nombre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1">  {{ ELEMENT1.nombre }} </mat-cell> 
+        </ng-container>
+        <!-- Apellidos Column -->
+        <ng-container matColumnDef="Apellido">
+          <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Apellido </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.apellido}}  </mat-cell> 
+        </ng-container>
+        <!-- Apellidos Column -->
+        <ng-container matColumnDef="Programa de estudio">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Programa de estudio </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.programa }}</mat-cell>  
+        </ng-container>
+        <ng-container matColumnDef="Año de ingreso">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Año de ingreso </mat-header-cell>
+            <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.anioIngreso }}</mat-cell>  
+          </ng-container>
+          <!--
+          <ng-container matColumnDef="Exportar Ficha">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Exportar Ficha </mat-header-cell>
+              <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.exportado }}</mat-cell>  
+            </ng-container>-->
+            <ng-container matColumnDef="Exportar Ficha" style="text-align: center;">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Exportar Ficha </mat-header-cell>
+                <mat-cell *matCellDef="let ELEMENT1">
+                  <button mat-icon-button color="primary" [disabled]="ELEMENT1.exportado===true">
+                    <i class="fa fa-check-square fa-lg"></i>
+                  </button>
+                </mat-cell>
+              </ng-container>
+          <!-- Opciones Column -->
+        <ng-container matColumnDef="acciones" style="text-align: center;">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Ver detalle </mat-header-cell>
+          <mat-cell *matCellDef="let ELEMENT1">
+            <button mat-icon-button color= "success" (click)="verDetalleInscrip()"><mat-icon>visibility</mat-icon></button>
+            <!--(click)="open('autofocus')"             -->
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+
+ 

@@ -93,6 +93,15 @@ import { MenuInscripcionComponent } from './mantenimientos/menu-inscripcion/menu
 import { GenerarInscripcionComponent } from './generar-inscripcion/generar-inscripcion.component';
 import { InscripcionMantenimientoComponent } from './mantenimientos/inscripcion-mantenimiento/inscripcion-mantenimiento.component';
 import { ComprobantesInscripcionComponent } from './comprobantes-inscripcion/comprobantes-inscripcion.component';
+import { VerDetalleInscripcionComponent } from './ver-detalle-inscripcion/ver-detalle-inscripcion.component';
+import { ReaperturarInscripcionComponent } from './reaperturar-inscripcion/reaperturar-inscripcion.component';
+import { DetalleInscripcionCanceladaComponent } from './detalle-inscripcion-cancelada/detalle-inscripcion-cancelada.component';
+import { ExportarDatosEstudianteComponent } from './exportar-datos-estudiante/exportar-datos-estudiante.component';
+import { DetalleEstudianteComponent } from './detalle-estudiante/detalle-estudiante.component';
+import { MenuPagosComponent } from './menu-pagos/menu-pagos.component';
+import { ConsultarPagoComponent } from './consultar-pago/consultar-pago.component';
+import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
+import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -163,6 +172,15 @@ import { ComprobantesInscripcionComponent } from './comprobantes-inscripcion/com
     GenerarInscripcionComponent,
     InscripcionMantenimientoComponent,
     ComprobantesInscripcionComponent,
+    VerDetalleInscripcionComponent,
+    ReaperturarInscripcionComponent,
+    DetalleInscripcionCanceladaComponent,
+    ExportarDatosEstudianteComponent,
+    DetalleEstudianteComponent,
+    MenuPagosComponent,
+    ConsultarPagoComponent,
+    DetallePagoComponent,
+    GuardarPagoComponent,
   ],
   imports: [
     BrowserModule,
