@@ -54,6 +54,11 @@ import { MenuPagosComponent } from './menu-pagos/menu-pagos.component';
 import { ConsultarPagoComponent } from './consultar-pago/consultar-pago.component';
 import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
 import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
+import { VerificarPagoComponent } from './verificar-pago/verificar-pago.component';
+import { ArancelesMantenimientoComponent } from '././mantenimientos/aranceles-mantenimiento/aranceles-mantenimiento.component';
+import { AgregarArancelComponent } from '././crear-actualizar/agregar-arancel/agregar-arancel.component';
+import { DescuentosMantenimientoComponent } from '././mantenimientos/descuentos-mantenimiento/descuentos-mantenimiento.component';
+import { AgregarDescuentoComponent } from './crear-actualizar/agregar-descuento/agregar-descuento.component'; 
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -226,6 +231,18 @@ const routes: Routes = [
   component: InscripcionMantenimientoComponent,
   canActivate: [AuthGuard]
   },
+  {path: 'mantenimientoAranceles',
+  component: ArancelesMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'arancel',
+  component: AgregarArancelComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'mantenimientoDescuentos',
+  component: DescuentosMantenimientoComponent,
+  canActivate: [AuthGuard]
+  },
   {path: 'comprobantes',
   component: ComprobantesInscripcionComponent,
   canActivate: [AuthGuard]
@@ -264,6 +281,14 @@ const routes: Routes = [
   },
   {path: 'guardarPago',
   component: GuardarPagoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'verificarPago',
+  component: VerificarPagoComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'descuento',
+  component: AgregarDescuentoComponent,
   canActivate: [AuthGuard]
   },
    {path: '**',
