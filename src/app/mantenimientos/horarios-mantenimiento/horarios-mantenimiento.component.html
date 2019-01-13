@@ -37,7 +37,9 @@
 			<ng-container matColumnDef="acciones" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let horarios">
-					<button mat-icon-button color= "warn" (click)="onDelete(horarios.id)"><mat-icon>delete_outline</mat-icon></button>
+					<button mat-icon-button (click)="onDelete(horarios.id)" matTooltip="Eliminar">
+							<i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
+						</button>
 					<!--(click)="open('autofocus')"-->
 				</mat-cell>
 			</ng-container>

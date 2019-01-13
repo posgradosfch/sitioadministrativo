@@ -50,3 +50,20 @@ mat-table {
 .col{
   background-color: #029ACF;
 }
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+mat-chip-list mat-chip{
+  background-color: rgb(218, 39, 39);;
+  color: white;
+  cursor: pointer
+}
+
+ .view{
+    color: #427F00;
+  }

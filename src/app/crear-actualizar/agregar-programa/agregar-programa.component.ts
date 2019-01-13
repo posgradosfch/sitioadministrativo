@@ -44,7 +44,7 @@ export class AgregarProgramaComponent implements OnInit {
     totalUV: ['',  [Validators.required,  Validators.minLength(1), Validators.max(200)]],
     plan_estudio: ['', [Validators.required, Validators.pattern('[0-9][0-9][0-9][0-9]')]],
     duracion_ciclo: ['', [Validators.required,  Validators.minLength(1), Validators.max(15)]],
-    duracion_anio: ['', [Validators.required, Validators.pattern('[0-9][0-9][0-9][0-9]')]],
+    duracion_anio: ['', [Validators.required,  Validators.minLength(1), Validators.max(15)]],
     titulo: ['',  [Validators.required, Validators.pattern('^[ A-Za-záéíóúÁÉÍÓÚñ]+$')]],
     total_asignaturas: ['',  [Validators.required,  Validators.minLength(1), Validators.max(50)]],
     nota_minima: ['', [Validators.required, Validators.min(6.00), Validators.max(10.00)]],
@@ -63,7 +63,7 @@ export class AgregarProgramaComponent implements OnInit {
     this.router.navigate(['/mantenimientoProgramas']);
   });
   }
-  
+
   get cum_minimo() {
     return this.register.get('cum_minimo');
   }

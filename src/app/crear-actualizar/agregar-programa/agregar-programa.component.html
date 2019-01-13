@@ -57,7 +57,8 @@
             <mat-label>Duracion en años del programa</mat-label>
             <input matInput type="number" placeholder="Escriba la duracion en años del programa" formControlName="duracion_anio" required>
             <mat-error *ngIf="register.get('duracion_anio').hasError('required')"> la duracion del programa en años es <strong>requerida</strong> </mat-error>
-            <mat-error *ngIf="register.get('duracion_anio').hasError('pattern')">el año debe contener <strong> 4 cifras</strong></mat-error>
+            <mat-error *ngIf="register.get('duracion_anio').hasError('minlength')"> la duracion en años debe contener minimo una cifra </mat-error>
+            <mat-error *ngIf="register.get('duracion_anio').hasError('max')"> la duracion en años debe ser menor a <strong>15</strong> </mat-error>
           </mat-form-field>
           <!--Titulo-->
           <mat-form-field>
