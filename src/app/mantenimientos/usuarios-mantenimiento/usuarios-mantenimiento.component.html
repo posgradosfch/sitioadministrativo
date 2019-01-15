@@ -51,7 +51,7 @@
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let user">
-					<button mat-icon-button (click)="openDialog(content)" matTooltip="Ver Detalles">
+					<button mat-icon-button (click)="openDialog(content)"  (click)="detUsuario(user.id)" matTooltip="Ver Detalles">
 						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
 					<button mat-icon-button (click)="editUsuario(user)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
@@ -73,27 +73,74 @@
 
 <!--Ventana emergente-->
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title"><strong>Detalle del Usuario</strong></h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <mat-list>
-      <mat-list-item>
-        <span><strong>Nombres: </strong> Pedro</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Apellidos: </strong> Perez</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Usuario: </strong> pedro01</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Email: </strong> pedro@gmail.com</span>
-      </mat-list-item>
-    </mat-list>
+  	<div class="modal-header">
+    	<h4 class="modal-title"><strong>Detalle del Usuario</strong></h4>
+    	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+  	</div>
+  	<div class="modal-body">
+    	<div class="example-container" *ngIf="user">
+       		<mat-form-field>
+        		<label>Nombres:</label>
+        		<input matInput type="text" disabled value= "{{user.first_name}}" required >
+      		</mat-form-field>
+
+      <mat-form-field>
+          <label>Apellidos</label>
+          <input matInput type="text" disabled value= "Perez" required >
+        </mat-form-field> 
+           
+        <mat-form-field>
+            <label>Genero</label>
+            <input matInput type="text" disabled value= "Masculino" required >
+          </mat-form-field>  
+          <mat-form-field>
+              <label>Fecha Nacimiento</label>
+              <input matInput type="text" disabled value= "15/09/1993" required >
+            </mat-form-field>  
+            <mat-form-field>
+                <label>Dirección</label>
+                <input matInput type="text" disabled value= "final calle principal mejicanos" required >
+              </mat-form-field>  
+              <mat-form-field>
+                  <label>Departamento</label>
+                  <input matInput type="text" disabled value= "San Salvador" required >
+                </mat-form-field>  
+      <mat-form-field>
+            <label>Municipio</label>
+            <input matInput type="text" disabled value= "Mejicanos" required >
+      </mat-form-field> 
+      <mat-form-field>
+          <label>DUI</label>
+          <input matInput type="text" disabled value= "50667766-5" required >
+        </mat-form-field>  
+        <mat-form-field>
+            <label>NIT</label>
+            <input matInput type="text" disabled value= "0614-250093-118-5" required >
+          </mat-form-field>  
+          <mat-form-field>
+              <label>Telefono Fijo</label>
+              <input matInput type="text" disabled value= "2233-3322" required >
+            </mat-form-field> 
+            <mat-form-field>
+                <label>Telefono Movil</label>
+                <input matInput type="text" disabled value= "7877-6543" required >
+              </mat-form-field> 
+              <mat-form-field>
+                  <label>Email</label>
+                  <input matInput type="text" disabled value= "Juan@gmail.com" required >
+                </mat-form-field> 
+                <mat-form-field>
+                    <label>Titulo pregrado</label>
+                    <input matInput type="text" disabled value= "Licenciado en Psicologia" required >
+                  </mat-form-field> 
+                  <mat-form-field>
+                      <label>Universidad de procedencia</label>
+                      <input matInput type="text" disabled value= "Universidad de El Salvador" required >
+                    </mat-form-field>             
+
+    </div>     
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>

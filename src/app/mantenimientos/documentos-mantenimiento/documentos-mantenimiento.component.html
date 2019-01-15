@@ -47,7 +47,8 @@
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let documento">
 					<button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
-						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
+						<i class="view fa fa-eye fa-lg example-icon"></i>
+					</button>
 					<button mat-icon-button matTooltip="Editar" (click)="editDocumento(documento)">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
 			        </button>

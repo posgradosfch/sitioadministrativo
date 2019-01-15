@@ -50,7 +50,7 @@ export class UsuarioService {
   }
 
   detUsuario<Data>(id: number): Observable<any> {
-    const url = `${this.baseUrl}${id}`;
+    const url = `${this.userUrl}${id}/`;
     return this.http.get<any[]>(url);
   }
 
