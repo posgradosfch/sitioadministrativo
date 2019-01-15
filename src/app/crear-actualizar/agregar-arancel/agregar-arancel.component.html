@@ -1,0 +1,61 @@
+<!--Alerta-->
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
+        <form (submit)="registrarArancel()"> 
+          <div class="example-container">
+              <mat-form-field>
+                <mat-label>Nombre de la cuota o arancel</mat-label>
+                <input matInput type="text" placeholder="Escriba su nombre"  required pattern="[A-Za-z ]{1,50}">
+          <!--  <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Descripcion del arancel</mat-label>
+                <input matInput placeholder="Escriba sus apellidos"  required pattern="[A-Za-z ]{1,50}">
+          <!--   <mat-error *ngIf="register.get('apellido').hasError('required')">Los apellidos son <strong>requeridos</strong></mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Codigo del arancel</mat-label>
+                <input matInput placeholder="Escriba su numero de DUI"  required maxlength="10" minlength="10">
+            <!--<mat-error *ngIf="register.get('dui').hasError('required')">El numero de DUI es <strong>requerido</strong></mat-error>
+                <mat-error *ngIf="register.get('dui').hasError('minlength') || register.get('dui').hasError('pattern')">Formato Incorrecto, debe tener 10 caracteres en formato 00000000-0</mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Monto del arancel</mat-label>
+                <input matInput placeholder="Escriba su formación academica"  required pattern="[A-Za-z, .]{1,256}">
+             <!--   <mat-error *ngIf="register.get('formacion').hasError('required')">La formación academica es <strong>requerida</strong></mat-error> -->
+              </mat-form-field> 
+              <mat-form-field>
+                <mat-label>Programa al que pertenece</mat-label>
+                <input matInput placeholder="Escriba su titulo de pregrado"  required pattern="[A-Za-z ]{1,100}">
+              <!--  <mat-error *ngIf="register.get('titulo').hasError('required')">El titulo de pregrado es <strong>requerido</strong></mat-error> [disabled]="register.invalid || loading"-->
+              </mat-form-field>
+            <div class="button-row">
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" >Guardar</button>
+              <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
+            </div>
+          </div>     
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title"><strong>Cancelar</strong></h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoArancel" (click)="c('Close click')">Aceptar</button>
+    </div>
+  </ng-template>
+</div> 

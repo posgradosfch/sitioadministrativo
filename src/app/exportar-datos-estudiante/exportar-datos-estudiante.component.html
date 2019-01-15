@@ -1,20 +1,30 @@
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
-    <label><h2><strong>CONSOLIDAD DE DATOS INSCRIPCIÓN PROVISIONAL DE MATERIAS</strong></h2></label>	
+    <label><h2><strong>CONSOLIDADO DE DATOS INSCRIPCIÓN PROVISIONAL DE MATERIAS</strong></h2></label>	
     
     <div class="example-header">
-      <div class="left">
+         <div class="button-row"  >
+           
        
-      </div> 
-         <div class="button-row" class="right" >
+        <mat-toolbar style="background-color: transparent;">
+         <div div class="button-row" class="right"> 
+          <mat-toolbar-row>
             <mat-form-field style="width: 600px; padding: 2rem; text-align: left; align-content: left;">
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
        </mat-form-field>
-         <button mat-raised-button color="warn" style="color: white; margin-right: 2px; margin-right: 2px; width: 10%;" (click)="regresar()" >Regresar</button>
-         <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-right: 2px; margin-right: 2px; width: 15%;" (click)="regresar()" >Generar Ficha</button>
+            <span class="example-spacer"></span>
+            <mat-chip-list>
+            <mat-chip color="warn">Regresar</mat-chip>
+            <mat-chip class="btn-info">Generar Ficha</mat-chip>
+          </mat-chip-list>
+            <span class="example-spacer"></span>
+          </mat-toolbar-row>
+           </div>
+        </mat-toolbar>
          </div>
         
          
     </div>
+
    <div class="example-container mat-elevation-z8">
 
       <mat-table [dataSource]="dataSource" matSort>
@@ -59,7 +69,8 @@
         <ng-container matColumnDef="acciones" style="text-align: center;">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Ver detalle </mat-header-cell>
           <mat-cell *matCellDef="let ELEMENT1">
-            <button mat-icon-button color= "success" (click)="verDetalleInscrip()"><mat-icon>visibility</mat-icon></button>
+              <button mat-icon-button (click)="verDetalleInscrip()" matTooltip="Ver Detalles">
+                  <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
             <!--(click)="open('autofocus')"             -->
           </mat-cell>
         </ng-container>

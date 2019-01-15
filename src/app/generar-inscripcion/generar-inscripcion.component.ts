@@ -73,7 +73,7 @@ export class GenerarInscripcionComponent implements OnInit {
   closeResult: String;
   hide = true;
   // parametros que utiliza el stepper
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup; // primer Formulario del stepper
   secondFormGroup: FormGroup; // segundo formulario del stepper
   // variables usadas para el select de dias

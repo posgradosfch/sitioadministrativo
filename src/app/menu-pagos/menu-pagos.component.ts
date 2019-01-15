@@ -22,10 +22,10 @@ export class MenuPagosComponent implements OnInit {
   }
 
   verificarPago() {
-    //this.router.navigate(['/reaperturarInscripcion']);
+    this.router.navigate(['/verificarPago']);
   }
 
   arrancelesCuotas() {
-  //  this.router.navigate(['/datosEstudiantes']);
+    this.router.navigate(['/mantenimientoAranceles']);
   }
 }

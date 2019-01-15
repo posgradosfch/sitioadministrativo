@@ -1,3 +1,13 @@
+div.input {
+	position: relative;
+}
+div.input label{
+	top:0;;
+	left: 10px;
+	padding: 5px 2px;
+	border-color: black;
+}
+
 .example-container {
     display: flex;
     flex-direction: column;
@@ -19,6 +29,7 @@ mat-form-field {
 mat-table {
     overflow: auto;
     max-height: 500px;
+    font-size: 14px;
   }
   .rigth{
       float: right;
@@ -36,11 +47,23 @@ mat-table {
   .delete{
     color: #A10000;
   }
+.col{
+  background-color: #029ACF;
+}
 
-  .col{
-    background-color: #029ACF;
-  }
+.example-icon {
+  padding: 0 14px;
+}
 
-  .view{
-    color: #427F00;
+.example-spacer {
+  flex: 1 1 auto;
+}
+mat-chip-list mat-chip{
+  background-color: #35478C;
+  color: white;
+  cursor: pointer
+}
+
+.example-full-width {
+    width: 400px;
   }

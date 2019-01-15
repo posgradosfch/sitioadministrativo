@@ -21,7 +21,7 @@ export interface Element {
   Ciclo: number;
   NumeroRecibo: number;
   numcod: string;
- // Verificado: string;
+  Verificado: boolean;
 }
 
 const ELEMENT1: ElementDos[] = [
@@ -32,50 +32,30 @@ const ELEMENT1: ElementDos[] = [
 
 const ELEMENT2: Element[] = [
   {Arrancel: 'Ingreso a posgrados', Monto: 11.43, Anio: 2018,
-  Fecha: '10/08/2018', Estado: 'Cancelado',  Ciclo: 1, NumeroRecibo: 1060000028, numcod: '203342106106990028' },
- // {nombre: 'Ana Perez', carnet: 'PR15001', plan: 2009, codigo: 'MQR1009', programa: 'Maestria en traduccion', ciclo: 'ciclo I 2018'} Verificado: 'si',
+  Fecha: '10/08/2018', Estado: 'Cancelado',  Ciclo: 1, NumeroRecibo: 1060000028, numcod: '203342106106990028',  Verificado: false},
+ // {nombre: 'Ana Perez', carnet: 'PR15001', plan: 2009, codigo: 'MQR1009', programa: 'Maestria en traduccion', ciclo: 'ciclo I 2018'},
 ];
-
 @Component({
-  selector: 'app-detalle-pago',
-  templateUrl: './detalle-pago.component.html',
-  styleUrls: ['./detalle-pago.component.css']
+  selector: 'app-verificar-pago',
+  templateUrl: './verificar-pago.component.html',
+  styleUrls: ['./verificar-pago.component.css']
 })
-export class DetallePagoComponent implements OnInit {
+export class VerificarPagoComponent implements OnInit {
   displayedColumns = ['carnet', 'Nombre del estudiante', 'Codigo del programa' ,
   'Nombre del programa', 'Plan de estudios'];
 
   displayedColumns2 = ['Arrancel o cuota', 'Monto', 'Año' ,
-  'Fecha', 'Estado', 'Ciclo', 'Numero de recibo', 'Numero del codigo de barras' ];
-// 'Verificado', 'acciones' 
+  'Fecha', 'Estado', 'Ciclo', 'Numero de recibo', 'Numero del codigo de barras', 'Verificar Pago' ];
+// 'Verificado', 'acciones'
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   dataSource = ELEMENT1;
   dataSource2 = ELEMENT2;
-  constructor(private router: Router) { }
+
+  constructor() { }
 
   ngOnInit() {
   }
 
-  regresar() {
-    this.router.navigate(['/comprobantes']);
-  }
-
-  cancelarInscripcion() {
-    if (confirm('Deseas cancelar la inscripcion del estudiante seleccionado?')) {
-    }
-  }
-/*
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  applyFilter (filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
-  */
 }

@@ -106,6 +106,11 @@ import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
 import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
 import { EditarDocumentoComponent } from './editar/editar-documento/editar-documento.component';
 import { AgregarDocumentoComponent } from './agregar/agregar-documento/agregar-documento.component';
+import { VerificarPagoComponent } from './verificar-pago/verificar-pago.component';
+import { ArancelesMantenimientoComponent } from './mantenimientos/aranceles-mantenimiento/aranceles-mantenimiento.component';
+import { AgregarArancelComponent } from './crear-actualizar/agregar-arancel/agregar-arancel.component';
+import { DescuentosMantenimientoComponent } from './mantenimientos/descuentos-mantenimiento/descuentos-mantenimiento.component';
+import { AgregarDescuentoComponent } from './crear-actualizar/agregar-descuento/agregar-descuento.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -188,6 +193,11 @@ import { AgregarDocumentoComponent } from './agregar/agregar-documento/agregar-d
     GuardarPagoComponent,
     EditarDocumentoComponent,
     AgregarDocumentoComponent,
+    VerificarPagoComponent,
+    ArancelesMantenimientoComponent,
+    AgregarArancelComponent,
+    DescuentosMantenimientoComponent,
+    AgregarDescuentoComponent,
   ],
   imports: [
     BrowserModule,

@@ -35,7 +35,9 @@
 			<ng-container matColumnDef="acciones" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let ELEMENT1">
-					<button mat-icon-button color= "success" (click)="verDetalleInscrip()"><mat-icon>visibility</mat-icon></button>
+				
+					<button mat-icon-button (click)="verDetalleInscrip()" matTooltip="Ver Detalles">
+							<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
 					<!--(click)="open('autofocus')"             -->
 				</mat-cell>
 			</ng-container>
