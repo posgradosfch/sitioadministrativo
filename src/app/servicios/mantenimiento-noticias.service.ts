@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { environment } from '../../environments/environment';
 import { Noticias } from '../clases/noticias';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -11,20 +11,21 @@ import 'rxjs/add/operator/catch';
 })
 export class MantenimientoNoticiasService {
 
-  private noturl='/services/noticia';
+  baseUrl: string = environment.apiUrl;
+  noturl='/services/noticia';
 //  private urlDos='https://postgrados.herokuapp.com/services/noticia/';
-  private urlDos = 'https://posgradoscchh.herokuapp.com/services/noticia/';
-  private url = 'https://posgradoscchh.herokuapp.com/services/noticia/v2/';
-  private noticia: Noticias;
-  private apiUrl = 'https://postgrados.herokuapp.com/services/';
+  urlDos = this.baseUrl + 'services/noticia/';
+  url = this.baseUrl + 'services/noticia/v2/';
+  noticia: Noticias;
+  apiUrl = this.baseUrl + 'services/';
   constructor(private http: HttpClient) { }
 
   getNoticias (): Observable<any>{
   	return this.http.get(this.urlDos,this.getAuthHeaders());
   }
 
-  agregarNoticia(userData: any): Observable<any>{
-  	return this.http.post(this.url,userData,this.getAuthHeaders());
+  agregarNoticia(notiData: any): Observable<any>{
+  	return this.http.post(this.url,notiData,this.getAuthHeaders());
   }
 
   public setter(noticia : Noticias) {

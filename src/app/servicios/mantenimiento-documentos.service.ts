@@ -37,8 +37,21 @@ export class MantenimientoDocumentosService {
   }
 
   detDocumento<Data>(id_documento: number): Observable<any> {
-    const url = `${this.baseUrl}${id_documento}`;
+    const url = `${this.baseUrl}${id_documento}/`;
     return this.http.get<any[]>(url);
+  }
+
+  updateDocumento<Data>(id_documento: number, data): Observable<any> {
+    const url = `${this.unableUrl}${id_documento}/`;
+    return this.http.put(url, data, this.getAuthHeaders())
+      .pipe(
+        map(documentos => documentos[0]),
+        tap(h => {
+          const outcome = h ? `fetched` : `did not find`;id_documento
+          this.log(`${outcome} documento id_documento=${id_documento}`);  
+        }),
+        catchError(this.handleError<Documento>(`unableDocumento id_documento=${id_documento}`))
+      )
   }
 
   private getAuthHeaders(){

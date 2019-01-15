@@ -104,6 +104,8 @@ import { MenuPagosComponent } from './menu-pagos/menu-pagos.component';
 import { ConsultarPagoComponent } from './consultar-pago/consultar-pago.component';
 import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
 import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
+import { EditarDocumentoComponent } from './editar/editar-documento/editar-documento.component';
+import { AgregarDocumentoComponent } from './agregar/agregar-documento/agregar-documento.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -184,6 +186,8 @@ import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
     ConsultarPagoComponent,
     DetallePagoComponent,
     GuardarPagoComponent,
+    EditarDocumentoComponent,
+    AgregarDocumentoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">Bienvenido {{ account.username }}!!</ngb-alert>
+<ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">Bienvenido {{account.first_name}} {{account.last_name}}!!</ngb-alert>
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
 	<label><h2><strong>GESTIÓN DE USUARIOS</strong></h2></label>	
 	
@@ -74,7 +74,7 @@
 <!--Ventana emergente-->
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title"><strong>Detalle del Docente</strong></h4>
+    <h4 class="modal-title"><strong>Detalle del Usuario</strong></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -82,38 +82,40 @@
   <div class="modal-body">
     <mat-list>
       <mat-list-item>
-        <span><strong>Nombres: </strong> Jose Antonio</span>
+        <span><strong>Nombres: </strong> Pedro</span>
       </mat-list-item>
       <mat-list-item>
         <span><strong>Apellidos: </strong> Perez</span>
       </mat-list-item>
       <mat-list-item>
-        <span><strong>DUI: </strong> 04545455-9</span>
+        <span><strong>Usuario: </strong> pedro01</span>
       </mat-list-item>
       <mat-list-item>
-        <span><strong>Formacion Academica: </strong> Licenciatura</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Titulo Pregrado: </strong> Licenciado en Ciencias de la Computacion</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Fecha de Nacimiento: </strong> 12/12/2018</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Genero: </strong> Masculino</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Telefono Fijo: </strong> 2245-5696</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Telefono Movil: </strong> 7245-5698</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Email: </strong> jose@gmail.com</span>
+        <span><strong>Email: </strong> pedro@gmail.com</span>
       </mat-list-item>
     </mat-list>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  </div>
+</ng-template>
+
+<!--Ventana emergente-->
+<ng-template #contentCancel let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Profile deletion</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>Are you sure you want to delete <span class="text-primary">"John Doe"</span> profile?</strong></p>
+    <p>All information associated to this user profile will be permanently deleted.
+    <span class="text-danger">This operation can not be undone.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modal.close('Ok click')">Ok</button>
   </div>
 </ng-template>

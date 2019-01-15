@@ -30,13 +30,15 @@ export class UsuariosMantenimientoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  withAutofocus = `<button type="button" ngbAutofocus class="btn btn-danger"
+      (click)="modal.close('Ok click')">Ok</button>`;
+
   constructor(private userService: UsuarioService, private router: Router, 
     private global: GlobalService, private ngModal: NgbModal) { }
 
   ngOnInit() {
-    setTimeout(() => 20000);
-
-  	this.userSub = this.global.user.subscribe( 
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this.userSub = this.global.user.subscribe( 
       me => this.account = me
       );
     this.getUsuarios();

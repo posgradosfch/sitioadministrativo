@@ -66,6 +66,7 @@ export class AceptacionAspirantesComponent implements OnInit {
 
   getAspiranteId(aspirante: Aspirante): void {
     this.aspiranteService.getAspiranteId(aspirante.id_aspirante).subscribe(data => {
+      this.getAspirantes();
       console.log(data);
     });
   }

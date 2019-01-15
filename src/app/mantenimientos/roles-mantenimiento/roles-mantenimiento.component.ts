@@ -44,7 +44,6 @@ export class RolesMantenimientoComponent implements OnInit {
     if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
       this.global.me = JSON.parse(localStorage.getItem('account'));
       this.getRoles();
-      this.getPermisos();
   } else {
       this._router.navigate(['/home']);
   }
@@ -73,6 +72,23 @@ export class RolesMantenimientoComponent implements OnInit {
     let rol = new Roles();
     this._rolService.setter(rol);
     this._router.navigate(['/rol']);
+  }
+
+  unableRol(rol: Roles): void {
+    //this.loading = true;
+    if (confirm('Deseas eliminar el rol seleccionado?')){
+      this._rolService.unableRol(rol.id).subscribe(
+        data => {
+          console.log(data);
+          //this.loading = false;
+          this._success.next('Rol eliminado exitosamente');
+          this.getRoles();
+        }, (error)=>{
+          //this.loading = false;
+          console.log(error);
+        });
+    }
+    
   }
 
   ngAfterViewInit() {

@@ -5,13 +5,13 @@
   <div class="col-md-6 mx-auto mt-5">
     <div class="card">
       <div class="card-body">
-        <h1 class="text-center"> <strong>TOMA DE DECISION</strong></h1>
-        <form (submit)="registrarDecision()" [formGroup]="register"> 
+        <h1 class="text-center"> <strong>EDITAR DOCUMENTO</strong></h1>
+        <form (submit)="updateDocumento(documento.id_documento)" [formGroup]="register"> 
           <div class="example-container">
             <mat-form-field>
             <!--nombre-->
               <mat-label>Descripcion</mat-label>
-              <input matInput type="text" placeholder="Escriba el nombre del documento a entregar" formControlName="nombre" required pattern="[A-Za-z 0-9.,:;%]{1,50}">
+              <input matInput type="text" placeholder="Escriba el nombre del documento a entregar" formControlName="nombre" required pattern="[A-Za-z 0-9.,:;%]{1,50}" [(ngModel)]="documento.nombre">
               <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error>
             </mat-form-field>
            <!--Procedimiento-->

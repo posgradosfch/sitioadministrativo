@@ -54,6 +54,8 @@ import { MenuPagosComponent } from './menu-pagos/menu-pagos.component';
 import { ConsultarPagoComponent } from './consultar-pago/consultar-pago.component';
 import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
 import { GuardarPagoComponent } from './guardar-pago/guardar-pago.component';
+import { EditarDocumentoComponent } from './editar/editar-documento/editar-documento.component';
+import { AgregarDocumentoComponent } from './agregar/agregar-documento/agregar-documento.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -71,6 +73,12 @@ const routes: Routes = [
   },
   {path: 'generarConsolidado',
     component: GenerarConsolidadoComponent
+  },
+
+//editar
+  {path: 'documento/:id_documento', 
+    component: EditarDocumentoComponent,
+    canActivate: [AuthGuard]
   },
   
   //Mantenimientos
@@ -99,8 +107,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: 'mantenimientoPreguntas', 
-    component: PreguntaMantenimientoComponent/*,
-    canActivate: [AuthGuard]*/
+    component: PreguntaMantenimientoComponent,
+    canActivate: [AuthGuard]
   },
   {path: 'mantenimientoDocumentos', 
     component: DocumentosMantenimientoComponent,
@@ -165,11 +173,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: 'pregunta', 
-    component: AgregarEditarPreguntaComponent/*,
-    canActivate: [AuthGuard]*/
+    component: AgregarEditarPreguntaComponent,
+    canActivate: [AuthGuard]
   },
   {path: 'documento', 
-    component: AgregarEditarDocumentoComponent,
+    component: AgregarDocumentoComponent,
     canActivate: [AuthGuard]
   },
   {path: 'evaluacionDocente', 

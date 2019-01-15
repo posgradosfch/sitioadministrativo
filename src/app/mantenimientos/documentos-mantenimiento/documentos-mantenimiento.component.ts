@@ -113,6 +113,12 @@ export class DocumentosMantenimientoComponent implements OnInit {
       });
   }
 
+  editDocumento(documento: Documento): void {
+    localStorage.removeItem("editDocumentoId");
+    localStorage.setItem("editDocumentoId", documento.id_documento.toString());
+    this._router.navigate(['documento', documento.id_documento]);
+  };
+
   /*
   -Objetivo: Metodo para abrir ventana emergente.
   */
