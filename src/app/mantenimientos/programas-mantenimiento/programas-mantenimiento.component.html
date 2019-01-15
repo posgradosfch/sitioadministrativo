@@ -55,6 +55,8 @@
 					<button mat-icon-button (click)="onDelete(programas.id)" matTooltip="Eliminar">
 							<i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
 						</button>
+						<button mat-icon-button (click)= "openDialog(content, programas.id)" matTooltip="Ver Detalles">
+								<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
 					<!--(click)="open('autofocus')"-->
 				</mat-cell>
 			</ng-container>
@@ -81,4 +83,39 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
     <button type="button" class="btn btn-danger" (click)="activar()" >Aceptar</button>
-  </div>-->
+	</div>-->
+	
+	<!--Ventana emergente-->
+<ng-template id="myModal" #content let-c="close" let-d="dismiss">
+		<div class="modal-header">
+			<h4 class="modal-title"><strong>Detalle del programa</strong></h4>
+			<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+				<mat-form-field>
+						<label>Codigo:</label>
+						<input matInput type="text" disabled value= "{{ programas2.codigo  }}" required >
+				</mat-form-field> 
+				<mat-form-field>
+						<label>Nombre:</label>
+						<input matInput type="text" disabled value= "{{ programas2.nombre  }}" required >
+				</mat-form-field> 
+				<mat-form-field>
+						<label>Total Unidades de valorativas:</label>
+						<input matInput type="text" disabled value= "{{ programas2.totalUV  }}" required >
+				</mat-form-field> 
+				<mat-form-field>
+						<label>Plan de estudios:</label>
+						<input matInput type="text" disabled value= "{{ programas2.plan_estudio  }}" required >
+				</mat-form-field> 
+				<mat-form-field>
+						<label>Duración del programa en ciclos:</label>
+						<input matInput type="text" disabled value= "{{ programas2.duracion_ciclo  }}" required >
+				</mat-form-field> 
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+		</div>
+</ng-template>

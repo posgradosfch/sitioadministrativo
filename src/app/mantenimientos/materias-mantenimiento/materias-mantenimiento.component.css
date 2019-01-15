@@ -40,3 +40,7 @@ mat-table {
   .col{
     background-color: #029ACF;
   }
+
+  .view{
+    color: #427F00;
+  }

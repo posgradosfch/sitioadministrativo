@@ -21,6 +21,7 @@ export class AulasMantenimientoComponent implements OnInit {
   displayedColumns = ['No', 'codigo', 'ubicacion', 'acciones'];
   dataSource = new MatTableDataSource();
   aulas: Aulas[];
+  aulas2: Aulas;
   prueba: number; // puede ser borrada solo almacena el id
   // variables usadas para mostrar mensajes
   loading: boolean;
@@ -34,7 +35,7 @@ export class AulasMantenimientoComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private global: GlobalService, private router: Router, private AulasService: MantenimientoAulasService,
-     private changeDetectorRefs: ChangeDetectorRef) { }
+     private changeDetectorRefs: ChangeDetectorRef, private ngModal: NgbModal) { }
 
   ngOnInit() {
     this.loading = false;
@@ -108,5 +109,25 @@ export class AulasMantenimientoComponent implements OnInit {
         });
        }
     }
+
+         /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+ openDialog(content, id: number) {
+  console.log(id);
+  this.AulasService.detalleAula(id).subscribe((
+    response) => {
+      this.aulas2 = response.aula;
+      console.log(this.aulas2);
+      this.ngModal.open(content, { centered: true });
+    }, (error) => {
+      console.log(error);
+    });
+}
+
+openDialogCancel(cancelContent) {
+  this.ngModal.open(cancelContent, { centered: true });
+}
+
 }
 

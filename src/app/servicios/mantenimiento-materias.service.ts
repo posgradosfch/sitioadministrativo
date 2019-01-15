@@ -29,4 +29,9 @@ export class MantenimientoMateriasService {
     return {headers: headers};
   }
 
+  detalleMateria(id: number): Observable<any> {
+    const url = `${this.baseUrlDos}${id}/`;
+    return this.http.get<any>(url, this.getAuthHeaders());
+  }
+
 }

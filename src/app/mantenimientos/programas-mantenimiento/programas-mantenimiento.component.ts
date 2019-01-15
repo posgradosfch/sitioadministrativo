@@ -22,6 +22,7 @@ export class ProgramasMantenimientoComponent implements OnInit {
   displayedColumns = ['No', 'codigo', 'nombre', 'plan de estudio', 'duracion', 'total unidades valorativas', 'acciones'];
   dataSource = new MatTableDataSource();
   programas: Programas[];
+  programas2: Programas;
   prueba: number; // puede ser borrada solo almacena el id
   // variables usadas para mostrar mensajes
   loading: boolean;
@@ -35,7 +36,7 @@ export class ProgramasMantenimientoComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private global: GlobalService, private router: Router, private ProgramasService: MantenimientoProgramasService,
-    private changeDetectorRefs: ChangeDetectorRef) { }
+    private changeDetectorRefs: ChangeDetectorRef, private ngModal: NgbModal) { }
 
   ngOnInit() {
     this.loading = false;
@@ -109,5 +110,22 @@ export class ProgramasMantenimientoComponent implements OnInit {
         }
      }
 
+        /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+ openDialog(content, id: number) {
+  console.log(id);
+  this.ProgramasService.detallePrograma(id).subscribe((
+    response) => {
+      this.programas2 = response.programa;
+      console.log(this.programas2);
+      this.ngModal.open(content, { centered: true });
+    }, (error) => {
+      console.log(error);
+    });
+}
 
+openDialogCancel(cancelContent) {
+  this.ngModal.open(cancelContent, { centered: true });
+}
 }

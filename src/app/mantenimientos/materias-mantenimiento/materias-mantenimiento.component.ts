@@ -23,6 +23,7 @@ export class MateriasMantenimientoComponent implements OnInit {
   materias: Materia[];
   prueba: number; // puede ser borrada solo almacena el id
   // variables usadas para mostrar mensajes
+  materias2: any;
   loading: boolean;
   _success = new Subject<String>();
   staticAlertClosed = false;
@@ -34,7 +35,7 @@ export class MateriasMantenimientoComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private global: GlobalService, private router: Router, private MateriasService: MantenimientoMateriasService,
-     private changeDetectorRefs: ChangeDetectorRef) { }
+     private changeDetectorRefs: ChangeDetectorRef, private ngModal: NgbModal) { }
 
   ngOnInit() {
     this.loading = false;
@@ -110,4 +111,22 @@ export class MateriasMantenimientoComponent implements OnInit {
        }
     }
 
+         /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+ openDialog(content, id: number) {
+  console.log(id);
+  this.MateriasService.detalleMateria(id).subscribe((
+    response) => {
+      this.materias2 = response.materias;
+      console.log(this.materias2);
+      this.ngModal.open(content, { centered: true });
+    }, (error) => {
+      console.log(error);
+    });
+}
+
+openDialogCancel(cancelContent) {
+  this.ngModal.open(cancelContent, { centered: true });
+  }
 }

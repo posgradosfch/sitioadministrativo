@@ -60,6 +60,8 @@
 					<button mat-icon-button (click)="onDelete(materias.id)" matTooltip="Eliminar">
 							<i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
 						</button>
+					<button mat-icon-button (click)= "openDialog(content, materias.id)" matTooltip="Ver Detalles">
+							<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
 					<!--(click)="open('autofocus')"-->
 				</mat-cell>
 			</ng-container>
@@ -86,4 +88,51 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
     <button type="button" class="btn btn-danger" (click)="activar()" >Aceptar</button>
-  </div>-->
+	</div>-->
+	
+	<!--Ventana emergente-->
+<ng-template id="myModal" #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title"><strong>Detalle de la materia</strong></h4>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+				<mat-form-field>
+						<label>Codigo:</label>
+						<input matInput type="text" disabled value= "{{ materias2.codigo }}" required >
+					</mat-form-field> 
+					<mat-form-field>
+							<label>Nombre:</label>
+							<input matInput type="text" disabled value= "{{ materias2.nombre }}" required >
+						</mat-form-field> 
+					<mat-form-field>
+								<label>Programa al que pertenece:</label>
+								<input matInput type="text" disabled value= "{{ materias2.programa }}" required >
+					</mat-form-field> 
+					<mat-form-field>
+							<label>Ciclo al que pertenece:</label>
+							<input matInput type="text" disabled value= "{{ materias2.ciclo }}" required >
+				</mat-form-field> 
+				<mat-form-field>
+						<label>Nombre de la materia de prerequisito:</label>
+						<input matInput type="text" disabled value= "{{ materias2.prerequisitoNombre }}" required >
+			</mat-form-field>
+			<mat-form-field>
+					<label>Codigo de la materia de prerequisito:</label>
+					<input matInput type="text" disabled value= "{{ materias2.prerrequisitoCodigo }}" required >
+		</mat-form-field>  
+		<mat-form-field>
+				<label>Unidad valorativa:</label>
+				<input matInput type="text" disabled value= "{{ materias2.unidadValorativa }}" required >
+	</mat-form-field> 
+	<mat-form-field>
+			<label>Correlativo segun programa:</label>
+			<input matInput type="text" disabled value= "{{ materias2.correlativo }}" required >
+</mat-form-field>  
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+	</div>
+	</ng-template>

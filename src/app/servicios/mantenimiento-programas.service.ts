@@ -29,4 +29,9 @@ baseUrlDos: string = environment.apiUrl + 'services/programas/';
     const  headers = new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});
     return {headers: headers};
   }
+
+  detallePrograma(id: number): Observable<any> {
+    const url = `${this.baseUrlDos}${id}/`;
+    return this.http.get<any>(url, this.getAuthHeaders());
+  }
 }
