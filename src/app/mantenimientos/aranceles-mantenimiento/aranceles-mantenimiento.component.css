@@ -42,3 +42,12 @@ mat-table {
   .col{
     background-color: #029ACF;
   }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  mat-chip-list mat-chip{
+    background-color: #35478C;
+    color: white;
+    cursor: pointer
+  }

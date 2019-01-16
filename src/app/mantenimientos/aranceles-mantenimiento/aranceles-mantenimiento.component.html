@@ -1,17 +1,26 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
     <!--  <label><h2><strong>DATOS SOBRE PAGOS REALIZADOS</strong></h2></label>	-->
       <label><h2><strong>MANTENIMIENTO DE ARANCELES Y CUOTAS</strong></h2></label>	
     <br><br>
+    <div>
+      <mat-toolbar style="background-color: transparent;">
+        <mat-toolbar-row>
+          <span class="example-spacer"></span>
+          <mat-chip-list>
+          <mat-chip routerLink="/arancel">Crear nuevo arancel</mat-chip>
+          <mat-chip (click)= "openDialogCuota(contentCuota)">Generar cuotas</mat-chip>
+        </mat-chip-list>
+          <span class="example-spacer"></span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
     <div class="example-header">
         <div class="left">
           <mat-form-field>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
           </mat-form-field>
-        </div>
-        <div class="rigth">
-          <button mat-fab class="col" (click) = "newArancel()" matTooltip="Crear un nuevo arancel o cuota">
-            <mat-icon>add</mat-icon>
-          </button>
         </div>
       </div>
       <br><br>
@@ -20,77 +29,117 @@
             <!-- Nombre Column -->
           <ng-container matColumnDef="codigo">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT1">  {{ ELEMENT1.codigo }} </mat-cell> 
+            <mat-cell *matCellDef="let aranceles">  {{ aranceles.codigo }} </mat-cell> 
           </ng-container>
           <!-- Number Column -->
           <ng-container matColumnDef="Nombre del arrancel">
             <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Nombre del arancel o cuota </mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center;"> {{ ELEMENT1.nombre }}</mat-cell> 
+            <mat-cell *matCellDef="let aranceles"  style=" text-align: center;"> {{ aranceles.nombre }}</mat-cell> 
           </ng-container>
          <!-- Apellidos Column -->
           <ng-container matColumnDef="monto">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Monto </mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.monto }}</mat-cell>  
+            <mat-cell *matCellDef="let aranceles">{{ aranceles.monto }}</mat-cell>  
           </ng-container>
           <!-- Apellidos Column -->
           <ng-container matColumnDef="descripcion">
             <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Descripcion</mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.descripcion}}  </mat-cell> 
+            <mat-cell *matCellDef="let aranceles"  style=" text-align: center; align-content: center;">{{ aranceles.descripcion}}  </mat-cell> 
           </ng-container>
-         <!-- Apellidos Column -->
+          <ng-container matColumnDef="Estado">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let aranceles"> 
+              <p *ngIf= "aranceles.estado; else inactivo"> Activo </p> 
+              <ng-template #inactivo>
+                 <p>Inactivo</p>	
+              </ng-template></mat-cell> 
+          </ng-container>
+         <!-- Apellidos Column 
          <ng-container matColumnDef="Programa al que pertenece">
             <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Programa al que pertenece</mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.programa}}  </mat-cell> 
-          </ng-container>
+            <mat-cell *matCellDef="let aranceles"  style=" text-align: center; align-content: center;">{{ aranceles.programa}}  </mat-cell> 
+          </ng-container>-->
           <ng-container matColumnDef="opcion" style="text-align: center;">
               <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-              <mat-cell *matCellDef="let ELEMENT1">
-                <button mat-icon-button (click)="openDialog(content)" matTooltip="Ver Detalles">
+              <mat-cell *matCellDef="let aranceles">
+                <button mat-icon-button (click)="onDelete(aranceles.id)" matTooltip="Eliminar">
+                  <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
+                </button>
+              <button mat-icon-button (click)= "openDialog(content, aranceles.id)" matTooltip="Ver Detalles">
                   <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-           <!--     <button mat-icon-button (click)="editUsuario(user)" matTooltip="Editar">
-                <i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
-                    </button> -->
-                <button mat-icon-button (click)="unableArancel(ELEMENT1)" matTooltip="Eliminar">
-                      <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
-                    </button>
               </mat-cell>
             </ng-container>
            <!-- Apellidos Column -->
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <mat-row *matRowDef="let aranceles; columns: displayedColumns;"></mat-row>
         </mat-table>
       
       </div>
 </div>
 
 <!--Ventana emergente-->
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title"><strong>Detalle del Docente</strong></h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <mat-list>
-      <mat-list-item>
-        <span><strong>Nombre: </strong> Ingreso a posgrados  </span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>descripcion: </strong> valor a aplicarse a toda maestria y doctorado al incio</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Monto: </strong>11.43 </span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Codigo: </strong> 100 </span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Programa al que pertenece: </strong> Maestrias y doctorados</span>
-      </mat-list-item>
-      </mat-list>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
-  </div>
-</ng-template>
+<ng-template id="myModal" #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title"><strong>Detalle del Arancel</strong></h4>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+			<mat-form-field>
+				<label>Codigo:</label>
+				<input matInput type="text" disabled value= "{{ aranceles.codigo }}" required >
+			</mat-form-field> 
+			<mat-form-field>
+				<label>Nombre:</label>
+				<input matInput type="text" disabled value= "{{ aranceles.nombre }}" required >
+      </mat-form-field>  
+      <mat-form-field>
+				<label>Descripcion:</label>
+				<input matInput type="text" disabled value= "{{ aranceles.descripcion }}" required >
+      </mat-form-field> 
+      <mat-form-field>
+				<label>Monto:</label>
+				<input matInput type="text" disabled value= "{{ aranceles.monto }}" required >
+      </mat-form-field> 
+      <mat-form-field>
+				<label>Estado:</label>
+				<input matInput type="text" disabled required > 
+        <p *ngIf= " aranceles.estado; else inactivo "> Activo </p> 
+        <ng-template #inactivo>
+           <p>Inactivo</p>	
+        </ng-template>
+			</mat-form-field>   
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+	</div>
+  </ng-template>
+  
+  <!--Ventana emergente-->
+<ng-template id="myModal" #contentCuota let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title"><strong>Crear cuota</strong></h4>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+      <form (submit)="crearCuota()" [formGroup]="register"> 
+          <div class="example-container">
+      <mat-form-field class="center" >
+        <mat-label>Ingrese el año del cual se generaran las cuotas:</mat-label>
+        <input matInput type="number" placeholder="Escriba año del que desea generar las cuotas" formControlName="anio" required>
+        <mat-error *ngIf="register.get('anio').hasError('required')"> el año es <strong>requerida</strong> </mat-error>
+        <mat-error *ngIf="register.get('anio').hasError('pattern')">el año debe contener <strong> 4 cifras</strong></mat-error>
+      </mat-form-field> 
+      <div class="button-row">
+          <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" [disabled]="register.invalid || loading">Guardar</button>   
+      </div>
+          </div>
+</form> 
+</div> 
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+	</div>
+	</ng-template>
