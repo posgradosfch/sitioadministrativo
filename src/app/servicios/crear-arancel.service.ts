@@ -8,12 +8,26 @@ import { Observable } from 'rxjs';
 })
 export class CrearArancelService {
   baseUrl: string = environment.apiUrl + 'services/descuentos/all/';
-
+  baseUrlDos: string = environment.apiUrl + 'services/descuentos/';
   constructor(private http: HttpClient) { }
 
   getDescuento(): Observable<any> {
     return this.http.get<any>(this.baseUrl, this.getAuthHeaders());
   }
+
+  registrarDescuento(arancelesData: any): Observable<any> {
+    return this.http.post(this.baseUrlDos , arancelesData, this.getAuthHeaders());
+}
+
+deshabilitarDescuento(id: number): Observable<any> {
+ const url = `${this.baseUrlDos}unable/${id}/`;
+  return this.http.put(url, this.getAuthHeaders());
+}
+
+detalleDescuento(id: number): Observable<any> {
+ const url = `${this.baseUrlDos}${id}/`;
+ return this.http.get<any>(url, this.getAuthHeaders());
+}
 
   private getAuthHeaders() {
     const token = localStorage.getItem('token');
