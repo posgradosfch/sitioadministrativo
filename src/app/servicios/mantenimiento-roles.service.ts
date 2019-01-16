@@ -42,9 +42,13 @@ export class MantenimientoRolesService {
       )
   }
 
-  detUsuario<Data>(id: number): Observable<any> {
-    const url = `${this.baseUrl}${id}`;
+  detRol<Data>(id: number): Observable<any> {
+    const url = `${this.baseUrl}${id}/`;
     return this.http.get<any[]>(url);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(this.baseUrl + id + '/');
   }
 
   errorHandler(error:Response){

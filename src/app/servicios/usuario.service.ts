@@ -33,7 +33,7 @@ export class UsuarioService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl, this.getAuthHeaders());
+    return this.http.get<User[]>(this.userUrl + "all/", this.getAuthHeaders());
   }
 
   unableUsuario<Data>(id: number): Observable<any> {
@@ -52,6 +52,10 @@ export class UsuarioService {
   detUsuario<Data>(id: number): Observable<any> {
     const url = `${this.userUrl}${id}/`;
     return this.http.get<any[]>(url);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(this.userUrl + id + '/');
   }
 
   private getAuthHeaders(){

@@ -19,7 +19,7 @@ import {debounceTime} from 'rxjs/operators';
 })
 export class EvaluacionDocenteMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'titulo', 'fecha_inicio', 'hora_inicio', 'fecha_fin', 'hora_fin', 'id_ciclo', /*'activo',*/ 'opcion'];
+  displayedColumns = ['number', 'titulo', 'fecha_inicio', 'hora_inicio', /*'fecha_fin', 'hora_fin',*/ 'id_ciclo', /*'activo',*/ 'opcion'];
   evaluacion: EvaluacionDocente[];
   dataSource = new MatTableDataSource();
   account: User = new User();
@@ -32,7 +32,7 @@ export class EvaluacionDocenteMantenimientoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private evaluacionService : MantenimientoEvaluacionService, private _router:Router, private global: GlobalService, 
-    private procedimientoService : MantenimientoProcedimientosService, private ngModal: NgbModal,) { 
+    private procedimientoService : MantenimientoProcedimientosService, private ngModal: NgbModal) { 
 
   }
 
@@ -94,6 +94,24 @@ export class EvaluacionDocenteMantenimientoComponent implements OnInit {
         });
     }
     
+  }
+
+  detEvaluacion(id_encuesta: number): void {
+    this.evaluacionService.detEvaluacion(id_encuesta).subscribe(
+      data => {
+        this.evaluacion = data.encuesta;
+        console.log(this.evaluacion);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
   }
 
 }

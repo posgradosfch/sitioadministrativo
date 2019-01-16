@@ -53,13 +53,14 @@
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-				<mat-cell *matCellDef="let documento">
-					<button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
-						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-					<button mat-icon-button (click)="editDocumento(documento)" matTooltip="Editar">
+				<mat-cell *matCellDef="let paso">
+					<button mat-icon-button (click)="openDialog(content)" (click)="detPaso(paso.id_paso)" matTooltip="Ver Detalles">
+						<i class="view fa fa-eye fa-lg example-icon"></i>			        
+					</button>
+					<!--button mat-icon-button (click)="editDocumento(noticia)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
-			        </button>
-					<button mat-icon-button (click)="unableDocumento(documento)" matTooltip="Eliminar">
+			        </button-->
+					<button mat-icon-button (click)="deleteUser(paso)" matTooltip="Eliminar">
 			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
 			        </button>
 				</mat-cell>
@@ -73,3 +74,42 @@
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 	</div>
 </div>
+
+<!--Ventana emergente-->
+<ng-template #content let-c="close" let-d="dismiss">
+  	<div class="modal-header">
+    	<h4 class="modal-title"><strong>Detalle Paso de Procedimiento</strong></h4>
+    	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+  	</div>
+  	<div class="modal-body" style="align-items: center;">
+    	<div *ngIf="paso">
+       		<mat-form-field>
+        		<label>Nombre:</label>
+        		<input matInput type="text" disabled value= "{{paso.nombre}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Procedimiento:</label>
+        		<div *ngFor="let procedimiento of procedimientos">
+        			<span *ngIf="paso.id_proceimiento===procedimiento.id_procedimiento">
+        				<input matInput type="text" disabled value= "{{procedimiento.nombre}}" required >
+        			</span>
+        		</div>
+      		</mat-form-field> 
+
+	        <mat-form-field>
+        		<label>Descripcion:</label>
+        		<textarea matInput type="text" disabled value= "{{paso.nombre}}" required ></textarea>
+      		</mat-form-field>
+      		<mat-form-field>
+        		<label>Orden:</label>
+        		<input matInput type="text" disabled value= "{{paso.orden}}" required >
+      		</mat-form-field>        
+    	</div>     
+  	</div>
+  	<div class="modal-footer">
+    	<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  	</div>
+</ng-template>

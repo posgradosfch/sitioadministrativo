@@ -6,6 +6,9 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { User } from '../../clases/user';
 import { Subscription } from 'rxjs';
 import { GlobalService } from '../../servicios/global.service';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-noticias-mantenimiento',
@@ -15,6 +18,7 @@ import { GlobalService } from '../../servicios/global.service';
 export class NoticiasMantenimientoComponent implements OnInit {
 
   displayedColumns = ['number', 'titulo', /*'cuerpo',*/ 'fecha', 'opcion'];
+  noticia:Noticias[];
   noticias:Noticias[];
   dataSource = new MatTableDataSource();
   account: User = new User();
@@ -23,7 +27,8 @@ export class NoticiasMantenimientoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  constructor(private noticiaService : MantenimientoNoticiasService, private _router:Router, private global: GlobalService) { 
+  constructor(private noticiaService : MantenimientoNoticiasService, private _router:Router,
+    private global: GlobalService, private ngModal: NgbModal) { 
 
 
   }
@@ -63,5 +68,41 @@ export class NoticiasMantenimientoComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  detNoticia(id: number): void {
+    this.noticiaService.detNoticia(id).subscribe(
+      data => {
+        this.noticia = data;
+        console.log(this.noticia);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  deleteUser(noticia: Noticias): void {
+    if (confirm('Deseas eliminar el noticia seleccionado?')){
+    this.noticiaService.deleteUser(noticia.id)
+      .subscribe( data => {
+        //this.pasos = this.pasos.filter(u => u !== noticia);
+          //this.loading = false;
+          //this._success.next('Rol eliminado exitosamente');
+          this.getNoticias();
+        }, (error)=>{
+          //this.loading = false;
+          console.log(error);
+        });
+    }
+  };
+  /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
+  openDialogCancel(cancelContent, documento: User) {
+    this.ngModal.open(cancelContent, { centered: true });
   }
 }
