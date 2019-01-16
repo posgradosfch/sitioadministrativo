@@ -19,8 +19,9 @@ import {debounceTime} from 'rxjs/operators';
 })
 export class RolesMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'name', /*'permissions', */'opcion'];
+  displayedColumns = ['number', 'name', /*'permissions',*/ 'opcion'];
   roles:Roles[];
+  rol:Roles[];
   dataSource = new MatTableDataSource();
   account: User = new User();
   userSub: Subscription;
@@ -90,6 +91,36 @@ export class RolesMantenimientoComponent implements OnInit {
     }
     
   }
+
+  editRol(){
+
+  }
+
+  detRol(id: number): void {
+    this._rolService.detRol(id).subscribe(
+      data => {
+        this.rol = data;
+        console.log(this.rol);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  deleteUser(rol: Roles): void {
+    if (confirm('Deseas eliminar el rol seleccionado?')){
+    this._rolService.deleteUser(rol.id)
+      .subscribe( data => {
+        this.roles = this.roles.filter(u => u !== rol);
+          //this.loading = false;
+          this._success.next('Rol eliminado exitosamente');
+          this.getRoles();
+        }, (error)=>{
+          //this.loading = false;
+          console.log(error);
+        });
+    }
+  };
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

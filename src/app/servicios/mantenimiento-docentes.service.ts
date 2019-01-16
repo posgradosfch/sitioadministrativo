@@ -23,6 +23,12 @@ export class MantenimientoDocentesService {
     return this.http.get<Docente[]>(this.baseUrl, this.getAuthHeaders());
   }
 
+  detDocente<Data>(id: number): Observable<any> {
+    const url = `${this.baseUrl}${id}/`;
+    return this.http.get<any[]>(url);
+  }
+
+
   private getAuthHeaders(){
   	const token = localStorage.getItem('token');
   	const  headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});

@@ -8,6 +8,9 @@ import { Paso } from '../../clases/paso';
 import { Procedimiento } from '../../clases/procedimiento';
 import { MantenimientoPasosService } from '../../servicios/mantenimiento-pasos.service';
 import { MantenimientoProcedimientosService } from '../../servicios/mantenimiento-procedimientos.service';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 export interface Paso {
     id_paso: number;
@@ -24,8 +27,9 @@ export interface Paso {
 
 export class PasosMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'nombre', 'descripcion', 'procedimiento', 'orden', /*'opcion'*/];
+  displayedColumns = ['number', 'nombre', /*'descripcion', 'procedimiento', 'orden', */'opcion'];
   pasos: Paso[];
+  paso: Paso[];
   procedimientos: Procedimiento[];
   dataSource = new MatTableDataSource();
   account: User = new User();
@@ -35,7 +39,7 @@ export class PasosMantenimientoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private pasoService : MantenimientoPasosService, private _router:Router, private global: GlobalService, 
-    private procedimientoService : MantenimientoProcedimientosService) { 
+    private procedimientoService : MantenimientoProcedimientosService, private ngModal: NgbModal) { 
 
   }
 
@@ -78,6 +82,32 @@ export class PasosMantenimientoComponent implements OnInit {
     this._router.navigate(['/paso']);
   }
 
+  detPaso(id_paso: number): void {
+    this.pasoService.detPaso(id_paso).subscribe(
+      data => {
+        this.paso = data;
+        console.log(this.paso);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  deleteUser(paso: Paso): void {
+    if (confirm('Deseas eliminar el paso seleccionado?')){
+    this.pasoService.deleteUser(paso.id_paso)
+      .subscribe( data => {
+        //this.pasos = this.pasos.filter(u => u !== paso);
+          //this.loading = false;
+          //this._success.next('Rol eliminado exitosamente');
+          this.getPaso();
+        }, (error)=>{
+          //this.loading = false;
+          console.log(error);
+        });
+    }
+  };
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -91,5 +121,16 @@ export class PasosMantenimientoComponent implements OnInit {
   handleChange(procedimiento) {
    this.pasos = procedimiento.id_procedimiento;
   }
+
+/*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
+  openDialogCancel(cancelContent, documento: User) {
+    this.ngModal.open(cancelContent, { centered: true });
+  }  
 
 }

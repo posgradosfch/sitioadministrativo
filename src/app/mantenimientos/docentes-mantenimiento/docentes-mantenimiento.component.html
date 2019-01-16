@@ -59,13 +59,13 @@
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-				<mat-cell *matCellDef="let documento">
-					<button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
+				<mat-cell *matCellDef="let docente">
+					<button mat-icon-button (click)="openDialog(content)" (click)="detDocente(docente.id_docente)" matTooltip="Ver Detalles">
 						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-					<button mat-icon-button (click)="editDocumento(documento)" matTooltip="Editar">
+					<button mat-icon-button (click)="editDocumento(docente)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
 			        </button>
-					<button mat-icon-button (click)="unableDocumento(documento)" matTooltip="Eliminar">
+					<button mat-icon-button (click)="unableDocumento(docente)" matTooltip="Eliminar">
 			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
 			        </button>
 				</mat-cell>
@@ -76,3 +76,73 @@
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 	</div>
 </div>
+<!--Ventana emergente-->
+<ng-template #content let-c="close" let-d="dismiss">
+  	<div class="modal-header">
+    	<h4 class="modal-title"><strong>Detalle Docente</strong></h4>
+    	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+  	</div>
+  	<div class="modal-body" style="align-items: center;">
+    	<div class="example-container" *ngIf="docente">
+       		<mat-form-field>
+        		<label>Nombres:</label>
+        		<input matInput type="text" disabled value= "{{docente.nombre}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Apellidos:</label>
+        		<input matInput type="text" disabled value= "{{docente.apellido}}" required >
+      		</mat-form-field> 
+           
+	        <mat-form-field>
+        		<label>Usuario:</label>
+        		<input matInput type="text" disabled value= "{{docente.usuario}}" required >
+      		</mat-form-field> 
+
+            <mat-form-field>
+        		<label>Email:</label>
+        		<input matInput type="text" disabled value= "{{docente.email}}" required >
+      		</mat-form-field>      
+
+      		<mat-form-field>
+        		<label>Dui:</label>
+        		<input matInput type="text" disabled value= "{{docente.dui}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Fecha de Nacimiento:</label>
+        		<input matInput type="text" disabled value= "{{docente.fecha_naci}}" required >
+      		</mat-form-field> 
+           
+           <mat-form-field>
+        		<label>Genero:</label>
+        		<input matInput type="text" disabled value= "{{docente.genero}}" required >
+      		</mat-form-field>
+
+	        <mat-form-field>
+        		<label>Telefono Fijo:</label>
+        		<input matInput type="text" disabled value= "{{docente.telefono}}" required >
+      		</mat-form-field> 
+
+            <mat-form-field>
+        		<label>Telefono Movil:</label>
+        		<input matInput type="text" disabled value= "{{docente.movil}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Formacion Academica:</label>
+        		<input matInput type="text" disabled value= "{{docente.formacion}}" required >
+      		</mat-form-field> 
+
+            <mat-form-field>
+        		<label>Titulo:</label>
+        		<input matInput type="text" disabled value= "{{docente.titulo}}" required >
+      		</mat-form-field>    
+    	</div>     
+  	</div>
+  	<div class="modal-footer">
+    	<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  	</div>
+</ng-template>

@@ -46,7 +46,6 @@ export class UsuariosMantenimientoComponent implements OnInit {
   }
   getUsuarios(){
   	this.userService.getUsers().subscribe(users =>{
-      this.users = users;
       this.dataSource.data = users;
       this.ngAfterViewInit();
       this.users = users;
@@ -97,13 +96,30 @@ export class UsuariosMantenimientoComponent implements OnInit {
   detUsuario(id: number): void {
     this.userService.detUsuario(id).subscribe(
       data => {
-        this.user = data.user;
+        this.user = data;
         console.log(this.user);
       }, (error)=>{
         //this.loading = false;
         console.log(error);
       });
   }
+
+  deleteUser(user: User): void {
+    //this.loading = true;
+    if (confirm('Deseas eliminar el usuario seleccionado?')){
+    this.userService.deleteUser(user.id)
+      .subscribe( data => {
+          console.log(data);
+          this.users = this.users.filter(u => u !== user);
+          //this.loading = false;
+          this._success.next('Usuario eliminado exitosamente');
+          this.getUsuarios();
+        }, (error)=>{
+          //this.loading = false;
+          console.log(error);
+        });
+    }
+  };
 
   /*
   -Objetivo: Metodo para abrir ventana emergente.

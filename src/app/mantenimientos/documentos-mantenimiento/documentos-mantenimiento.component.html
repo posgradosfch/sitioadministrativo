@@ -49,9 +49,9 @@
 					<button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
 						<i class="view fa fa-eye fa-lg example-icon"></i>
 					</button>
-					<button mat-icon-button matTooltip="Editar" (click)="editDocumento(documento)">
+					<!--button mat-icon-button matTooltip="Editar" (click)="editDocumento(documento)">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
-			        </button>
+			        </button-->
 					<button mat-icon-button (click)="unableDocumento(documento)"  matTooltip="Eliminar">
 			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
 			        </button>
@@ -69,7 +69,7 @@
 <!--Ventana emergente-->
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title"><strong>Detalle del Documento</strong></h4>
+    <h4 class="modal-title"><strong>Detalle Documento</strong></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
