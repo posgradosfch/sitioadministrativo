@@ -1,46 +1,70 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
+import {Estudiantes} from '../clases/estudiantes';
+import { User } from '../clases/user';
+import { Subscription } from 'rxjs';
+import { GlobalService } from '../servicios/global.service';
+import { ConsultarPagoService } from '../servicios/consultar-pago.service';
+import { Subject } from 'rxjs';
 
-export interface Element {
-  nombre: string;
-  carnet: string;
-  codigoPrograma: string;
-  programa: string;
-  planEstudios: number;
-  email: string;
-}
-
-const ELEMENT1: Element[] = [
-  {nombre: 'Juan Perez', carnet: 'PG15001',
-  codigoPrograma: 'PQR1009', programa: 'Maestria en Métodos y Tecnicas de Investigacion Social',
-   planEstudios: 2001, email: 'Juan@gmail.com'},
- // {nombre: 'Ana Perez', carnet: 'PR15001', programa: 'Maestria en traduccion', materias: 1, estado: 'reaperturada'},
-];
 @Component({
   selector: 'app-consultar-pago',
   templateUrl: './consultar-pago.component.html',
   styleUrls: ['./consultar-pago.component.css']
 })
 export class ConsultarPagoComponent implements OnInit {
-  displayedColumns = [ 'carnet', 'Nombre del estudiante', 'Codigo del programa',
-'Nombre del Programa', 'Plan de estudios', 'Email', 'acciones'];
+  displayedColumns = [ 'Nombre del estudiante', 'Codigo del programa',
+'Nombre del Programa', 'Plan de estudios', 'acciones'];
+// , 'Email'
+  dataSource = new MatTableDataSource();
+  account: User = new User();
+  userSub: Subscription;
+  estudiante: Estudiantes[];
 
  @ViewChild(MatPaginator) paginator: MatPaginator;
  @ViewChild(MatSort) sort: MatSort;
 
- dataSource = ELEMENT1;
-
-  constructor(private router: Router) { }
+  constructor(private router: Router, private global: GlobalService, private _router: Router, 
+    private consultarPago: ConsultarPagoService) { }
 
   ngOnInit() {
+      // mostrar mensaje
+      this.userSub = this.global.user.subscribe(me => this.account = me);	
+      // Verificar el logueo
+      if (localStorage.getItem('token') && localStorage.getItem('account')){     // 
+        this.global.me = JSON.parse(localStorage.getItem('account'));
+        this.getEstudiantes();
+    } else {
+        this._router.navigate(['/home']);
+    }
   }
 
   regresar() {
     this.router.navigate(['/menuInscripcion']);
   }
-
-  consultaPagoEstudiante() {
-    this.router.navigate(['/detallePagos']);
+  getEstudiantes() {
+    this.consultarPago.getEstudiante().subscribe( response => {
+      this.estudiante = response.Estudiantes;
+      this.dataSource.data = this.estudiante;
+   //   this.dataSource.filterPredicate = (data: Aulas, filter: string) => data.codigo.toString().indexOf(filter) !== -1;
+      this.ngAfterViewInit();
+      console.log('esto tiene Estudiantes');
+      console.log('Estudiantes', this.estudiante);
+    }, error => {
+      console.log('error', error);
+    });
   }
+  consultaPagoEstudiante(estudiante: Estudiantes) {
+    localStorage.removeItem('estudianteId');
+    localStorage.setItem('estudianteId', estudiante.id_estudiante.toString());
+    this._router.navigate(['detallePagos', estudiante.id_estudiante]);
+  //  this.router.navigate(['/detallePagos']);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+ 
 }

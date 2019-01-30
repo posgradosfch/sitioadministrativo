@@ -283,7 +283,7 @@ const routes: Routes = [
   component: ConsultarPagoComponent,
   canActivate: [AuthGuard]
   },
-  {path: 'detallePagos',
+  {path: 'detallePagos/:id_estudiante',
   component: DetallePagoComponent,
   canActivate: [AuthGuard]
   },

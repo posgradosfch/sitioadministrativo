@@ -1,3 +1,4 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
   <!--  <label><h2><strong>DATOS SOBRE PAGOS REALIZADOS</strong></h2></label>	-->
     <label><h2><strong>MANTENIMIENTO DE DESCUENTOS</strong></h2></label>	
@@ -20,34 +21,47 @@
           <!-- Nombre Column -->
         <ng-container matColumnDef="Nombre">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1">  {{ ELEMENT1.nombre }} </mat-cell> 
+          <mat-cell *matCellDef="let descuento">  {{ descuento.nombre }} </mat-cell> 
         </ng-container>
         <!-- Number Column -->
         <ng-container matColumnDef="Porcentaje de descuento">
           <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Porcentaje de descuento </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center;"> {{ ELEMENT1.porcentaje }}% </mat-cell> 
+          <mat-cell *matCellDef="let descuento"  style=" text-align: center;"> {{ descuento.monto }}% </mat-cell> 
         </ng-container>
-       <!-- Apellidos Column -->
+        <!-- Number Column -->
+        <ng-container matColumnDef="Descripcion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Descripcion </mat-header-cell>
+          <mat-cell *matCellDef="let descuento"  style=" text-align: center;"> {{ descuento.descripcion }} </mat-cell> 
+        </ng-container>
+        <ng-container matColumnDef="Estado">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+          <mat-cell *matCellDef="let descuento"> 
+            <p *ngIf= "descuento.estado; else inactivo"> Activo </p> 
+            <ng-template #inactivo>
+               <p>Inactivo</p>	
+            </ng-template></mat-cell> 
+        </ng-container>
+       <!-- Apellidos Column 
         <ng-container matColumnDef="Beneficiados">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiados </mat-header-cell>
           <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.Beneficiados }}</mat-cell>  
-        </ng-container>
-        <!-- Apellidos Column -->
+        </ng-container>-->
+        <!-- Apellidos Column
         <ng-container matColumnDef="Programa con descuento">
           <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Programa con descuento</mat-header-cell>
           <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.programa}}  </mat-cell> 
-        </ng-container>
+        </ng-container> -->
         <ng-container matColumnDef="opcion" style="text-align: center;">
             <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT1">
-              <button mat-icon-button (click)="openDialog(content)" matTooltip="Ver Detalles">
-                <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
+            <mat-cell *matCellDef="let descuento">
          <!--     <button mat-icon-button (click)="editUsuario(user)" matTooltip="Editar">
               <i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
                   </button> -->
-              <button mat-icon-button (click)="unableArancel(ELEMENT1)" matTooltip="Eliminar">
+              <button mat-icon-button (click)="onDelete(descuento.id)" matTooltip="Eliminar">
                     <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
                   </button>
+                  <button mat-icon-button (click)= "openDialog(content, descuento.id)" matTooltip="Ver Detalles">
+                    <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
             </mat-cell>
           </ng-container>
          <!-- Apellidos Column -->
@@ -59,36 +73,36 @@
 </div>
 
 <!--Ventana emergente-->
-<ng-template #content let-c="close" let-d="dismiss">
-<div class="modal-header">
-  <h4 class="modal-title"><strong>Detalle del Docente</strong></h4>
-  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <mat-list>
-    <mat-list-item>
-      <span><strong>Nombre: </strong> Descuento para docentes y administrativos ues  </span>
-    </mat-list-item>
-    <mat-list-item>
-      <span><strong>descripcion: </strong> Descuento solo para colegiatura </span>
-    </mat-list-item>
-    <mat-list-item>
-      <span><strong>Porcentaje de descuento: </strong>10% </span>
-    </mat-list-item>
-    <mat-list-item>
-      <span><strong>Beneficiados: </strong>Empleados de la escuela de posgrados de cchh </span>
-    </mat-list-item>
-    <mat-list-item>
-      <span><strong>Programa con descuentos: </strong> Maestrias y doctorados</span>
-    </mat-list-item>
-    <mat-list-item>
-      <span><strong>Pagos con descuentos: </strong>Cuotas </span>
-    </mat-list-item>
-    </mat-list>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
-</div>
-</ng-template>
+<ng-template id="myModal" #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title"><strong>Detalle del descuento</strong></h4>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+			<mat-form-field>
+				<label>Nombre:</label>
+				<input matInput type="text" disabled value= "{{ descuentos2.nombre }}" required >
+			</mat-form-field> 
+      <mat-form-field>
+				<label>Descripcion:</label>
+				<input matInput type="text" disabled value= "{{ descuentos2.descripcion }}" required >
+      </mat-form-field> 
+      <mat-form-field>
+				<label>Monto:</label>
+				<input matInput type="text" disabled value= "{{ descuentos2.monto }}" required >
+      </mat-form-field> 
+      <mat-form-field>
+				<label>Estado:</label>
+				<input matInput type="text" disabled required > 
+        <p *ngIf= " descuentos2.estado; else inactivo "> Activo </p> 
+        <ng-template #inactivo>
+           <p>Inactivo</p>	
+        </ng-template>
+			</mat-form-field>   
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+	</div>
+  </ng-template>

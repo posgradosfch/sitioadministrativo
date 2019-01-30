@@ -6,44 +6,33 @@
     <div class="card">
       <div class="card-body">
         <h1 class="text-center"> <strong>FORMULARIO DE REGISTRO</strong></h1>
-        <form (submit)="registrarArancel()"> 
+        <form (submit)="registrarDescuento()"  [formGroup]="register">  
           <div class="example-container">
-              <mat-form-field>
-                <mat-label>Nombre del descuento</mat-label>
-                <input matInput type="text" placeholder="Escriba su nombre"  required pattern="[A-Za-z ]{1,50}">
-          <!--  <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error> -->
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Descripcion</mat-label>
-                <input matInput placeholder="Escriba sus apellidos"  required pattern="[A-Za-z ]{1,50}">
-          <!--   <mat-error *ngIf="register.get('apellido').hasError('required')">Los apellidos son <strong>requeridos</strong></mat-error> -->
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Porcentaje de descuento</mat-label>
-                <input matInput placeholder="Escriba su numero de DUI"  required maxlength="10" minlength="10">
-            <!--<mat-error *ngIf="register.get('dui').hasError('required')">El numero de DUI es <strong>requerido</strong></mat-error>
-                <mat-error *ngIf="register.get('dui').hasError('minlength') || register.get('dui').hasError('pattern')">Formato Incorrecto, debe tener 10 caracteres en formato 00000000-0</mat-error> -->
-              </mat-form-field> 
-              <mat-form-field style="padding: 0.5rem;">
-                <mat-select placeholder="Beneficiados"  multiple required>
-                  <mat-option *ngFor="let dia of ListaDias3" [value]="dia">{{dia}}</mat-option>
-                </mat-select>
-          <!--      <mat-error *ngIf="grupo.get('multiple').hasError('required')"> los dias <strong> son requeridos</strong></mat-error> -->
-              </mat-form-field>
-              <mat-form-field style="padding: 0.5rem;">
-                <mat-select placeholder="Programa a los que aplica el descuento"  multiple required>
-                  <mat-option *ngFor="let dia of ListaDias2" [value]="dia">{{dia}}</mat-option>
-                </mat-select>
-          <!--      <mat-error *ngIf="grupo.get('multiple').hasError('required')"> los dias <strong> son requeridos</strong></mat-error> -->
-              </mat-form-field>
-              <mat-form-field style="padding: 0.5rem;">
-                <mat-select placeholder="Pagos con descuento"  multiple required>
-                  <mat-option *ngFor="let dia of ListaDias" [value]="dia">{{dia}}</mat-option>
-                </mat-select>
-          <!--      <mat-error *ngIf="grupo.get('multiple').hasError('required')"> los dias <strong> son requeridos</strong></mat-error> -->
-              </mat-form-field>
+            <mat-form-field>
+              <mat-label>Nombre del descuento</mat-label>
+              <input matInput type="text" placeholder="Escriba su nombre" formControlName="nombre" required>
+          <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error> 
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Descripcion del descuento</mat-label>
+              <input matInput placeholder="Escriba sus apellidos" formControlName="descripcion" required>
+          <mat-error *ngIf="register.get('descripcion').hasError('required')">La descripcion es <strong>requeridos</strong></mat-error> 
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Porcentaje del descuento</mat-label>
+              <input matInput type="number" placeholder="Escriba el Porcentaje del descuento" formControlName="monto" required  step="0.01">
+              <mat-error *ngIf="register.get('monto').hasError('required')">el Porcentaje del descuento es <strong>requerida</strong></mat-error>
+              <mat-error *ngIf="register.get('monto').hasError('min')"> el Porcentaje del descuento minimo es de 1.00</mat-error>
+              <!-- <mat-error *ngIf="register.get('cum_minimo').hasError('required')"> El CUM minimo de aprobación es <strong>requerida</strong> </mat-error>
+              <mat-error *ngIf="cum_minimo.errors?.max && cum_minimo.touched">
+                el numero de cum minimo debe ser menor a 10.00
+             </mat-error>
+             <mat-error *ngIf="cum_minimo.errors?.min && cum_minimo.touched">
+              la nota minima debe ser mayor a 6.00
+           </mat-error> -->
+            </mat-form-field>
             <div class="button-row">
-              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" >Guardar</button>
+              <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;"  [disabled]="register.invalid || loading">Guardar</button>
               <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>    
             </div>
           </div>     
@@ -63,7 +52,7 @@
       <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" routerLink="/mantenimientoArancel" (click)="c('Close click')">Aceptar</button>
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoDescuentos" (click)="c('Close click')">Aceptar</button>
     </div>
   </ng-template>
 </div> 

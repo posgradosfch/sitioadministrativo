@@ -4,34 +4,34 @@
   <br><br>
     <div class="example-container mat-elevation-z8">
       <mat-table [dataSource]="dataSource" matSort>
-          <!-- Nombre Column -->
+          <!-- Nombre Column 
         <ng-container matColumnDef="carnet">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Carnet </mat-header-cell>
           <mat-cell *matCellDef="let ELEMENT1">  {{ ELEMENT1.carnet }} </mat-cell> 
-        </ng-container>
-        <!-- Number Column -->
+        </ng-container>-->
+        <!-- Number Column mat-sort-header -->
         <ng-container matColumnDef="Nombre del estudiante">
-          <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Nombre del estudiante </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center;"> {{ ELEMENT1.nombre }}</mat-cell> 
+          <mat-header-cell *matHeaderCellDef   mat-sort-header style=" text-align: center;"> Nombre del estudiante</mat-header-cell>
+          <mat-cell *matCellDef="let estudiantes"  style=" text-align: center;"> {{ estudiantes.nombre }}  </mat-cell> 
         </ng-container>
-       <!-- Apellidos Column -->
+       <!-- Apellidos Column-->
         <ng-container matColumnDef="Codigo del programa">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo del programa </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.codigo }}</mat-cell>  
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Codigo del programa </mat-header-cell>
+          <mat-cell *matCellDef="let estudiantes">{{ estudiantes.codigo_programa }}</mat-cell>  
         </ng-container>
         <!-- Apellidos Column -->
         <ng-container matColumnDef="Nombre del programa">
-          <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Nombre del programa</mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.programa}}  </mat-cell> 
+          <mat-header-cell *matHeaderCellDef   mat-sort-header style=" text-align: center; align-content: center;"> Nombre del programa</mat-header-cell>
+          <mat-cell *matCellDef="let estudiantes"  style=" text-align: center; align-content: center;">{{ estudiantes.nombre_programa}}  </mat-cell> 
         </ng-container>
        <!-- Apellidos Column -->
        <ng-container matColumnDef="Plan de estudios">
-          <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Plan de estudios</mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.plan}}  </mat-cell> 
+          <mat-header-cell *matHeaderCellDef  mat-sort-header style=" text-align: center; align-content: center;"> Plan de estudios</mat-header-cell>
+          <mat-cell *matCellDef="let estudiantes"  style=" text-align: center; align-content: center;">{{ estudiantes.plan_estudio}}  </mat-cell> 
         </ng-container>
          <!-- Apellidos Column -->
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let estudiantes; columns: displayedColumns;"></mat-row>
       </mat-table>
     
     </div>
@@ -52,54 +52,55 @@
           <!-- Nombre Column -->
         <ng-container matColumnDef="Arrancel o cuota">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Arrancel o cuota </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT2">  {{ ELEMENT2.Arrancel }} </mat-cell> 
+          <mat-cell *matCellDef="let cuotasEstudiante">  {{ cuotasEstudiante.arancel }} </mat-cell> 
         </ng-container>
         <!-- Number Column -->
         <ng-container matColumnDef="Monto">
           <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Monto </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center;"> {{ ELEMENT2.Monto }}</mat-cell> 
+          <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center;"> {{ cuotasEstudiante.monto }}</mat-cell> 
         </ng-container>
        <!-- Apellidos Column -->
         <ng-container matColumnDef="Año">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Año </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT2">{{ ELEMENT2.Anio }}</mat-cell>  
+          <mat-cell *matCellDef="let cuotasEstudiante">{{ cuotasEstudiante.anio }}</mat-cell>  
         </ng-container>
         <!-- Apellidos Column -->
         <ng-container matColumnDef="Fecha">
           <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Fecha</mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.Fecha}}  </mat-cell> 
+          <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.fecha_recibido}}  </mat-cell> 
         </ng-container>
        <!-- Apellidos Column -->
        <ng-container matColumnDef="Estado">
           <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Estado</mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.Estado}}  </mat-cell> 
+          <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.cancelado}}  </mat-cell> 
         </ng-container>
+        <!--
         <ng-container matColumnDef="Ciclo">
             <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Ciclo</mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.Ciclo}}  </mat-cell> 
-          </ng-container>
+            <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.Ciclo}}  </mat-cell> 
+          </ng-container>  -->
           <ng-container matColumnDef="Numero de recibo">
               <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Numero de recibo</mat-header-cell>
-              <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.NumeroRecibo}}  </mat-cell> 
+              <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.numero_recibido}}  </mat-cell> 
             </ng-container>
             <ng-container matColumnDef="Numero del codigo de barras">
                 <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Numero del codigo de barras</mat-header-cell>
-                <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.numcod}}  </mat-cell> 
+                <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.codigo_barra}}  </mat-cell> 
               </ng-container>
               
               <ng-container matColumnDef="Verificado" style="text-align: center; align-content: center;">
                   <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;">Verificado</mat-header-cell>
-                  <mat-cell *matCellDef="let ELEMENT2"  style=" text-align: center; align-content: center;">{{ ELEMENT2.Verificado}}  </mat-cell> 
+                  <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.verificado}}  </mat-cell> 
                 </ng-container>
-                <ng-container matColumnDef="acciones" style="text-align: center;">
+                <ng-container matColumnDef="Acciones" style="text-align: center;">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
-                    <mat-cell *matCellDef="let ELEMENT2">
+                    <mat-cell *matCellDef="let cuotasEstudiante">
                       <button mat-icon-button color= "success" (click)="verDetalleInscrip()"><mat-icon>visibility</mat-icon></button>
                      </mat-cell>
                   </ng-container>
          <!-- Apellidos Column -->
         <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
-        <mat-row *matRowDef="let ELEMENT2; columns: displayedColumns2;"></mat-row>
+        <mat-row *matRowDef="let cuotasEstudiante; columns: displayedColumns2;"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
     </div>
