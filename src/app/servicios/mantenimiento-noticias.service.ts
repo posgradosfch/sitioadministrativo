@@ -43,20 +43,29 @@ export class MantenimientoNoticiasService {
   }
   addnoticias(model: any): Observable<any> {
     return this.http.post(this.getUrl('noticia/?format=json'), model).map(this.getDatos).catch(this.error);
-}
-getDatos(data: Response) {
-  let datos = data.json();
-  console.log(datos);
-  return datos || [];
-}
-private getUrl(modelo: String) {
-  // console.log(this.apiUrl +modelo);
-  return this.apiUrl + modelo;
-}
-private error(error:any){
-  let msg= (error.message) ? error.message: 'Error desconocido en la conexion con la Api con noticia';
-  console.error(msg);
-  return Observable.throw(msg);
-}
+  }
+  getDatos(data: Response) {
+    let datos = data.json();
+    console.log(datos);
+    return datos || [];
+  }
+  private getUrl(modelo: String) {
+    // console.log(this.apiUrl +modelo);
+    return this.apiUrl + modelo;
+  }
+  private error(error:any){
+    let msg= (error.message) ? error.message: 'Error desconocido en la conexion con la Api con noticia';
+    console.error(msg);
+    return Observable.throw(msg);
+  }
+
+  detNoticia<Data>(id: number): Observable<any> {
+    const url = `${this.urlDos}${id}/`;
+    return this.http.get<any[]>(url);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(this.urlDos + id + '/');
+  }
 
 }

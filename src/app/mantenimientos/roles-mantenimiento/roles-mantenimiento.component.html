@@ -39,13 +39,14 @@
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-				<mat-cell *matCellDef="let documento">
-					<button mat-icon-button (click)="openDialog(content)" matTooltip="Ver Detalles">
-						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-					<button mat-icon-button (click)="editDocumento(documento)" matTooltip="Editar">
+				<mat-cell *matCellDef="let rol">
+					<button mat-icon-button (click)="detRol(rol.id)" (click)="openDialog(content)" matTooltip="Ver Detalles">
+						<i class="view fa fa-eye fa-lg example-icon"></i>			        
+					</button>
+					<!--button mat-icon-button (click)="editDocumento(noticia)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
-			        </button>
-					<button mat-icon-button (click)="unableRol(rol)" matTooltip="Eliminar">
+			        </button-->
+					<button mat-icon-button (click)="deleteUser(rol)" matTooltip="Eliminar">
 			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
 			        </button>
 				</mat-cell>
@@ -62,24 +63,26 @@
 
 <!--Ventana emergente-->
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title"><strong>Detalle del Rol</strong></h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <mat-list>
-      <mat-list-item>
-        <span><strong>Nombre del rol: </strong> Directora</span>
-      </mat-list-item>
-      <mat-list-item>
-        <span><strong>Permisos Asignados: </strong>
-        <br>Can add log entry, Can Change log entry, Can delete log entry, Can add group</span>
-      </mat-list-item>
-    </mat-list>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
-  </div>
+  	<div class="modal-header">
+    	<h4 class="modal-title"><strong>Detalle Rol</strong></h4>
+    	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+  	</div>
+  	<div class="modal-body">
+    	<div class="example-container" *ngIf="rol">
+       		<mat-form-field>
+        		<label>Nombre:</label>
+        		<input matInput type="text" disabled value= "{{rol.name}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Permisos Asignados:</label>
+        		<textarea matInput type="text" disabled value= "{{rol.permissions}}" required ></textarea>
+      		</mat-form-field>          
+    	</div>
+  	</div>
+  	<div class="modal-footer">
+    	<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  	</div>
 </ng-template>

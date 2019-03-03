@@ -36,19 +36,19 @@
 			<!-- Fecha Column -->
 			<ng-container matColumnDef="fecha">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
-				<mat-cell *matCellDef="let noticia"> {{noticia.fecha}}</mat-cell>
+				<mat-cell *matCellDef="let noticia"> {{noticia.fecha | date: 'dd/MM/yyyy'}}</mat-cell>
 			</ng-container>
 
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-				<mat-cell *matCellDef="let documento">
-					<button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
+				<mat-cell *matCellDef="let noticia">
+					<button mat-icon-button (click)="openDialog(content)" (click)="detNoticia(noticia.id)" matTooltip="Ver Detalles">
 						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-					<button mat-icon-button (click)="editDocumento(documento)" matTooltip="Editar">
+					<!--button mat-icon-button (click)="editDocumento(noticia)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
-			        </button>
-					<button mat-icon-button (click)="unableDocumento(documento)" matTooltip="Eliminar">
+			        </button-->
+					<button mat-icon-button (click)="deleteUser(noticia)" matTooltip="Eliminar">
 			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
 			        </button>
 				</mat-cell>
@@ -63,4 +63,36 @@
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 	</div>
 </div>
-	
+
+<!--Ventana emergente-->
+<ng-template #content let-c="close" let-d="dismiss">
+  	<div class="modal-header">
+    	<h4 class="modal-title"><strong>Detalle Noticia</strong></h4>
+    	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+  	</div>
+  	<div class="modal-body">
+    	<div class="example-container" *ngIf="noticia">
+       		<mat-form-field>
+        		<label>Fecha de Publicacion:</label>
+        		<input matInput type="text" disabled value= "{{noticia.fecha | date: 'dd/MM/yyyy'}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Titulo:</label>
+        		<input matInput type="text" disabled value= "{{noticia.emcabezado}}" required >
+      		</mat-form-field> 
+
+        	<label style="text-align: left;">Contenido:</label>
+      		<div>
+      			<span [innerHTML]="noticia.cuerpo"></span>
+      		</div>
+      		<br>
+      		<img style="height: 50%; width: 50%; display: block; align-self: center"  src="{{noticia.imagenUrl}}" alt="Card image">
+    	</div>     
+  	</div>
+  	<div class="modal-footer">
+    	<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  	</div>
+</ng-template>	

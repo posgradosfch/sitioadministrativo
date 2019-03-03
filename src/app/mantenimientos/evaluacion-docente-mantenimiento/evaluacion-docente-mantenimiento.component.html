@@ -43,7 +43,7 @@
 			<!-- Fecha de Inicio Column -->
 		    <ng-container matColumnDef="fecha_inicio">
 		        <mat-header-cell *matHeaderCellDef>Fecha de Inicio</mat-header-cell>
-		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.fecha_inicio}}</mat-cell>
+		        <mat-cell *matCellDef="let evaluacion">{{evaluacion.fecha_inicio | date: 'dd/MM/yyyy'}}</mat-cell>
 		    </ng-container>
 		    
 		    <!-- Hora de Inicio Column -->
@@ -56,7 +56,7 @@
 			<ng-container matColumnDef="fecha_fin">
 		        <mat-header-cell *matHeaderCellDef>Fecha de Finalización</mat-header-cell>
 		        <mat-cell *matCellDef="let evaluacion">
-			        {{evaluacion.fecha_fin}}
+			        {{evaluacion.fecha_fin | date: 'dd/MM/yyyy'}}
 				</mat-cell>
 		    </ng-container>
 
@@ -76,9 +76,10 @@
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let evaluacion">
-					<!--button mat-icon-button (click)="openDialog(content)" (click)="detEvaluacion(evaluacion.id_evaluacion)" matTooltip="Ver Detalles">
-						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-					<button mat-icon-button (click)="editEvaluacion(evaluacion)" matTooltip="Editar">
+					<button mat-icon-button (click)="openDialog(content)" (click)="detEvaluacion(evaluacion.id_encuesta)" matTooltip="Ver Detalles">
+						<i class="view fa fa-eye fa-lg example-icon"></i>    
+					</button>
+					<!--button mat-icon-button (click)="editEvaluacion(evaluacion)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
 			        </button-->
 					<button mat-icon-button (click)="unableEvaluacion(evaluacion)" matTooltip="Eliminar">
@@ -95,3 +96,59 @@
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 	</div>
 </div>
+
+<!--Ventana emergente-->
+<ng-template #content let-c="close" let-d="dismiss">
+  	<div class="modal-header">
+    	<h4 class="modal-title"><strong>Detalle Evaluacion Docente</strong></h4>
+    	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+  	</div>
+  	<div class="modal-body" style="align-items: center;">
+    	<div class="example-container" *ngIf="evaluacion">
+       		<mat-form-field>
+        		<label>Titulo:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.titulo}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Objetivo:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.objetivo}}" required >
+      		</mat-form-field> 
+           
+	        <mat-form-field>
+        		<label>Instrucciones:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.instrucciones}}" required >
+      		</mat-form-field> 
+
+            <mat-form-field>
+        		<label>Ciclo:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.id_ciclo}}-{{evaluacion.anio_ciclo}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Fecha de Inicio:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.fecha_inicio}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Hora de Inicio:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.hora_inicio}}" required >
+      		</mat-form-field> 
+           
+	        <mat-form-field>
+        		<label>Fecha de Finalizacion:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.fecha_fin}}" required >
+      		</mat-form-field> 
+
+            <mat-form-field>
+        		<label>Hora de Finalizacion:</label>
+        		<input matInput type="text" disabled value= "{{evaluacion.hora_fin}}" required >
+      		</mat-form-field>         
+    	</div>     
+  	</div>
+  	<div class="modal-footer">
+    	<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  	</div>
+</ng-template>

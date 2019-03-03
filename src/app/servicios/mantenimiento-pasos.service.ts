@@ -20,9 +20,19 @@ export class MantenimientoPasosService {
     return this.http.get<Paso[]>(this.baseUrl, this.getAuthHeaders());
   }
 
+  detPaso<Data>(id: number): Observable<any> {
+    const url = `${this.baseUrl}${id}/`;
+    return this.http.get<any[]>(url);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(this.baseUrl + id + '/');
+  }
+
   private getAuthHeaders(){
     const token = localStorage.getItem('token');
     const  headers= new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});
     return {headers: headers};
   }
+
 }

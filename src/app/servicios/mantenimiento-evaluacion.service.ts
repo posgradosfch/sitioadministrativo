@@ -45,6 +45,10 @@ export class MantenimientoEvaluacionService {
       )
   }
 
+  detEvaluacion<Data>(id_encuesta: number): Observable<any> {
+    const url = `${this.baseUrl}${id_encuesta}/`;
+    return this.http.get<any[]>(url);
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.

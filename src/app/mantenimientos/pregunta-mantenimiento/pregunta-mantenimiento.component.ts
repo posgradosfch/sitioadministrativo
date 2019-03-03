@@ -8,6 +8,7 @@ import { Pregunta } from '../../clases/pregunta';
 import { Categoria } from '../../clases/categoria';
 import { Tipo } from '../../clases/tipo';
 import { MantenimientoPreguntaService } from '../../servicios/mantenimiento-pregunta.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pregunta-mantenimiento',
@@ -16,8 +17,8 @@ import { MantenimientoPreguntaService } from '../../servicios/mantenimiento-preg
 })
 export class PreguntaMantenimientoComponent implements OnInit {
 
-  displayedColumns = ['number', 'titulo', 'categoria', 'tipo', 'opcion'];
-  preguntas: Pregunta[];
+  displayedColumns = ['number', 'titulo', /*'categoria', 'tipo', */'opcion'];
+  pregunta: Pregunta[];
   categorias: Categoria[];
   tipos: Tipo[];
   dataSource = new MatTableDataSource();
@@ -27,7 +28,8 @@ export class PreguntaMantenimientoComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private preguntaService : MantenimientoPreguntaService, private _router:Router, private global: GlobalService) { 
+  constructor(private preguntaService : MantenimientoPreguntaService, private _router:Router,
+    private global: GlobalService, private ngModal: NgbModal) { 
 
   }
 
@@ -86,5 +88,24 @@ export class PreguntaMantenimientoComponent implements OnInit {
     filterValue= filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+
+  detPregunta(id_pregunta: number): void {
+    this.preguntaService.detPregunta(id_pregunta).subscribe(
+      data => {
+        this.pregunta = data.pregunta;
+        console.log(this.pregunta);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
 
 }

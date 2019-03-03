@@ -10,7 +10,7 @@ import { Categoria } from '../clases/categoria';
   providedIn: 'root'
 })
 export class MantenimientoPreguntaService {
-  preUrl: string = environment.apiUrl + "services/pregunta/";
+  baseUrl: string = environment.apiUrl + "services/pregunta/";
   tipoUrl: string = environment.apiUrl + "services/tipos/all/";
   catUrl: string = environment.apiUrl + "services/categorias/all/";
   claUrl: string = environment.apiUrl + "services/clasificacion/all/";
@@ -18,11 +18,11 @@ export class MantenimientoPreguntaService {
   constructor(private http: HttpClient) { }
 
   registrarPregunta(preguntaData: any): Observable<any> {
-    return this.http.post(this.preUrl, preguntaData, this.getAuthHeaders());
+    return this.http.post(this.baseUrl, preguntaData, this.getAuthHeaders());
   }
 
   getPreguntas(): Observable<any> {
-    return this.http.get<any>(this.preUrl + "all/", this.getAuthHeaders());
+    return this.http.get<any>(this.baseUrl + "all/", this.getAuthHeaders());
   }
 
   mostrarCategorias(): Observable<Categoria[]> {
@@ -35,6 +35,11 @@ export class MantenimientoPreguntaService {
 
   mostrarTipos(): Observable<any> {
     return this.http.get<any>(this.tipoUrl, this.getAuthHeaders());
+  }
+
+  detPregunta<Data>(id_pregunta: number): Observable<any> {
+    const url = `${this.baseUrl}${id_pregunta}/`;
+    return this.http.get<any[]>(url);
   }
 
   private getAuthHeaders(){

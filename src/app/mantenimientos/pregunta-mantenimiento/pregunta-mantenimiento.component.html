@@ -53,10 +53,11 @@
 			<!-- Opciones Column -->
 			<ng-container matColumnDef="opcion" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-				<mat-cell *matCellDef="let documento">
-					<!--button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
-						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-					<button mat-icon-button (click)="editDocumento(documento)" matTooltip="Editar">
+				<mat-cell *matCellDef="let pregunta">
+					<button mat-icon-button (click)="openDialog(content)" (click)="detPregunta(pregunta.id_pregunta)" matTooltip="Ver Detalles">
+						<i class="view fa fa-eye fa-lg example-icon"></i>			        
+					</button>
+					<!--button mat-icon-button (click)="editDocumento(documento)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
 			        </button-->
 					<button mat-icon-button (click)="unableDocumento(documento)" matTooltip="Eliminar">
@@ -73,3 +74,34 @@
 		<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 	</div>
 </div>
+
+<!--Ventana emergente-->
+<ng-template #content let-c="close" let-d="dismiss">
+  	<div class="modal-header">
+    	<h4 class="modal-title"><strong>Detalle Pregunta</strong></h4>
+    	<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      		<span aria-hidden="true">&times;</span>
+    	</button>
+  	</div>
+  	<div class="modal-body" style="align-items: center;">
+    	<div class="example-container" *ngIf="pregunta">
+       		<mat-form-field>
+        		<label>Titulo:</label>
+        		<input matInput type="text" disabled value= "{{pregunta.titulo}}" required >
+      		</mat-form-field>
+
+      		<mat-form-field>
+        		<label>Clasificacion:</label>
+        		<input matInput type="text" disabled value= "{{pregunta.id_categoria}}" required >
+      		</mat-form-field> 
+
+      		<mat-form-field>
+        		<label>Tipo de Pregunta:</label>
+        		<input matInput type="text" disabled value= "{{pregunta.id_tipo}}" required >
+      		</mat-form-field>    
+    	</div>     
+  	</div>
+  	<div class="modal-footer">
+    	<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+  	</div>
+</ng-template>

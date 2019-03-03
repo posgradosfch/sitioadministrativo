@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { User } from '../../clases/user';
+import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-docentes-mantenimiento',
@@ -17,14 +20,15 @@ export class DocentesMantenimientoComponent implements OnInit {
   account: User = new User();
   userSub: Subscription;
   docentes: Docente[];
-  displayedColumns = ['number','nombre', 'apellido', 'telefono', 'movil', 'email', 'formacion', 'titulo', /*'opcion'*/];
+  docente: Docente[];
+  displayedColumns = ['number','nombre', 'apellido', /*'telefono', 'movil', 'email', 'formacion',*/ 'titulo', 'opcion'];
   dataSource = new MatTableDataSource();
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private docenteService: MantenimientoDocentesService, private router: Router, 
-    private global: GlobalService) { }
+    private global: GlobalService, private ngModal: NgbModal) { }
 
   ngOnInit() {
   	this.userSub = this.global.user.subscribe( me => this.account = me);	
@@ -68,4 +72,25 @@ export class DocentesMantenimientoComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
+  detDocente(id_docente: number): void {
+    this.docenteService.detDocente(id_docente).subscribe(
+      data => {
+        this.docente = data;
+        console.log(this.docente);
+      }, (error)=>{
+        //this.loading = false;
+        console.log(error);
+      });
+  }
+
+  /*
+  -Objetivo: Metodo para abrir ventana emergente.
+  */
+  openDialog(content) {
+    this.ngModal.open(content, { centered: true });
+  }
+
+  openDialogCancel(cancelContent, documento: User) {
+    this.ngModal.open(cancelContent, { centered: true });
+  }
 }
