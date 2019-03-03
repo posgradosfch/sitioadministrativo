@@ -10,17 +10,17 @@
           <div class="example-container">
               <mat-form-field>
                 <mat-label>Nombre de la cuota o arancel</mat-label>
-                <input matInput type="text" placeholder="Escriba su nombre" formControlName="nombre" required>
+                <input matInput type="text" placeholder="" formControlName="nombre" required>
           <!--  <mat-error *ngIf="register.get('nombre').hasError('required')">El nombre es <strong>requerido</strong></mat-error> -->
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Descripcion del arancel</mat-label>
-                <input matInput placeholder="Escriba sus apellidos" formControlName="descripcion" required>
+                <input matInput placeholder="" formControlName="descripcion" required>
           <!--   <mat-error *ngIf="register.get('apellido').hasError('required')">Los apellidos son <strong>requeridos</strong></mat-error> -->
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Codigo del arancel</mat-label>
-                <input matInput placeholder="Escriba su numero de DUI" formControlName="codigo" required>
+                <input matInput placeholder="" formControlName="codigo" required>
             <!--<mat-error *ngIf="register.get('dui').hasError('required')">El numero de DUI es <strong>requerido</strong></mat-error>
                 <mat-error *ngIf="register.get('dui').hasError('minlength') || register.get('dui').hasError('pattern')">Formato Incorrecto, debe tener 10 caracteres en formato 00000000-0</mat-error> -->
               </mat-form-field>
@@ -79,7 +79,7 @@
       <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" routerLink="/mantenimientoArancel" (click)="c('Close click')">Aceptar</button>
+      <button type="button" class="btn btn-light" routerLink="/mantenimientoAranceles" (click)="c('Close click')">Aceptar</button>
     </div>
   </ng-template>
 </div> 
