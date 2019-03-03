@@ -41,7 +41,7 @@
 <br>
 <div class="example-header">
     <div class="left">
-      <mat-form-field>
+      <mat-form-field class="filter" floatLabel="never">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
       </mat-form-field>
     </div>
@@ -72,7 +72,13 @@
        <!-- Apellidos Column -->
        <ng-container matColumnDef="Estado">
           <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Estado</mat-header-cell>
-          <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.cancelado}}  </mat-cell> 
+          <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">
+            <p *ngIf= "cuotasEstudiante.cancelado; else inactivo"> Cancelado </p> 
+            <ng-template #inactivo>
+               <p>Pendiente</p>	
+            </ng-template>
+          </mat-cell> 
+          
         </ng-container>
         <!--
         <ng-container matColumnDef="Ciclo">
@@ -90,14 +96,22 @@
               
               <ng-container matColumnDef="Verificado" style="text-align: center; align-content: center;">
                   <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;">Verificado</mat-header-cell>
-                  <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.verificado}}  </mat-cell> 
-                </ng-container>
+                <!--  <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">{{ cuotasEstudiante.verificado}}  </mat-cell> -->
+                <mat-cell *matCellDef="let cuotasEstudiante"  style=" text-align: center; align-content: center;">
+                <p *ngIf= "cuotasEstudiante.verificado; else inactivo"> Si </p> 
+              <ng-template #inactivo>
+                 <p>No</p>	
+              </ng-template></mat-cell>
+              </ng-container>
+                <!--
                 <ng-container matColumnDef="Acciones" style="text-align: center;">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
                     <mat-cell *matCellDef="let cuotasEstudiante">
-                      <button mat-icon-button color= "success" (click)="verDetalleInscrip()"><mat-icon>visibility</mat-icon></button>
+                      <button mat-icon-button (click)="openDialog(content)" (click)="detDocumento(documento.id_documento)" matTooltip="Ver Detalles">
+                        <i class="view fa fa-eye fa-lg example-icon"></i>
+                      </button>
                      </mat-cell>
-                  </ng-container>
+                  </ng-container>-->
          <!-- Apellidos Column -->
         <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
         <mat-row *matRowDef="let cuotasEstudiante; columns: displayedColumns2;"></mat-row>

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ConsultarPagoService {
   baseUrl: string = environment.apiUrl + 'services/estudiantes/all/';
   baseUrlDos: string = environment.apiUrl + 'services/estudiantes/';
-  baseUrlTres: string = environment.apiUrl + '/services/consultarPagos/estudiante/';
+  baseUrlTres: string = environment.apiUrl + 'services/consultarPagos/estudiante/';
 
   constructor(private http: HttpClient) { }
   getEstudiante(): Observable<any> {

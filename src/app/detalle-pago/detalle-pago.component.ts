@@ -13,13 +13,14 @@ export interface ElementDos {
   codigo_programa: string;
   plan_estudio: number;
 }
-
+/*
 const ELEMENT1: ElementDos[] = [
   {nombre: 'Juan Perez', carnet: 'PG15001', nombre_programa: 'Maestría Investigación Social',
-  ciclo: 'ciclo II 2018', codigo_programa: 'PQR1009',  plan_estudio: 2001 },
- // {nombre: 'Ana Perez', carnet: 'PR15001', plan: 2009, codigo: 'MQR1009', programa: 'Maestria en traduccion', ciclo: 'ciclo I 2018'},
+   codigo_programa: 'PQR1009',  plan_estudio: 2001 },
+ // ciclo: 'ciclo II 2018', {nombre: 'Ana Perez', carnet: 'PR15001', plan: 2009, codigo: 
+ // 'MQR1009', programa: 'Maestria en traduccion', ciclo: 'ciclo I 2018'},
 ];
-
+*/
 @Component({
   selector: 'app-detalle-pago',
   templateUrl: './detalle-pago.component.html',
@@ -36,8 +37,8 @@ export class DetallePagoComponent implements OnInit {
   'Nombre del programa', 'Plan de estudios'];
 
   displayedColumns2 = ['Arrancel o cuota', 'Monto', 'Año' ,
-  'Fecha', 'Estado', 'Ciclo', 'Numero de recibo', 'Numero del codigo de barras', 'Verificado', 'Acciones' ];
-
+  'Fecha', 'Estado', 'Numero de recibo', 'Numero del codigo de barras', 'Verificado' ];
+// 'Ciclo', , 'Acciones'
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -70,7 +71,7 @@ export class DetallePagoComponent implements OnInit {
       this.consultarPagoServices.cuotasEstudiante(id_estudiante, n).subscribe(
         data => {
           this.cuotasEstudiante = data.cuotas;
-          this.dataSource.data = this.cuotasEstudiante;
+          this.dataSource2.data = this.cuotasEstudiante;
        //   this.ngAfterViewInit();
         console.log('esto tiene cuotas');
         console.log(this.cuotasEstudiante);
@@ -79,12 +80,15 @@ export class DetallePagoComponent implements OnInit {
         });
 
   }
-
+ 
+  ngAfterViewInit() {
+    this.dataSource2.paginator = this.paginator;
+  }
 
 applyFilter (filterValue: string) {
   filterValue = filterValue.trim(); // Remove whitespace
   filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-  this.dataSource.filter = filterValue;
+  this.dataSource2.filter = filterValue;
 }
 
    regresar() {
