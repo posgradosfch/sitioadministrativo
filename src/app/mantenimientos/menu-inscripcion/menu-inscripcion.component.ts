@@ -15,7 +15,7 @@ export class MenuInscripcionComponent implements OnInit {
   }
 
   crearInscripcion() {
-    this.router.navigate(['/eventoInscripcion']);
+    this.router.navigate(['/mantenimientoInscripcion']);
   }
 
   comprobantesInscrip() {

@@ -9,23 +9,28 @@
 				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
 			</mat-form-field>
 		</div>
+		<div class="rigth">
+			<button mat-fab class="col" (click) = "newEventoInscrip()" matTooltip="Crear un nuevo evento de inscripcion">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
 	</div>
 	<br><br>
 	<div class="example-container mat-elevation-z8">
 		<mat-table [dataSource]="dataSource" matSort>
-			<!-- Number Column -->
+			<!-- Number Column Id de la inscripcion-->
 			<ng-container matColumnDef="id">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> Id de la inscripcion </mat-header-cell>
+				<mat-header-cell *matHeaderCellDef mat-sort-header>Programas Asignados</mat-header-cell>
 				<mat-cell *matCellDef="let inscripciones"> {{inscripciones.id}} </mat-cell> 
 			</ng-container>
 			<!-- Nombre Column -->
 			<ng-container matColumnDef="nombre">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de la inscripcion </mat-header-cell>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
 				<mat-cell *matCellDef="let inscripciones"> {{inscripciones.nombre}} </mat-cell> 
 			</ng-container>
 			<!-- Apellidos Column -->
 			<ng-container matColumnDef="ciclo">
-				<mat-header-cell *matHeaderCellDef mat-sort-header> ciclo de la inscripcion </mat-header-cell>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> ciclo  </mat-header-cell>
 				<mat-cell *matCellDef="let inscripciones"> ciclo {{ inscripciones.ciclo}} </mat-cell> -->
       </ng-container>
       <!-- Apellidos Column -->
@@ -51,10 +56,19 @@
 			<ng-container matColumnDef="acciones" style="text-align: center;">
 				<mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
 				<mat-cell *matCellDef="let inscripciones">
-			<!--		<button mat-icon-button color= "warn" (click)="onDelete(inscripciones.id)"><mat-icon>delete_outline</mat-icon></button> -->
-					<button mat-icon-button (click)="onDelete(inscripciones.id)" matTooltip="Eliminar">
+			<!--		<button mat-icon-button color= "warn" (click)="onDelete(inscripciones.id)"><mat-icon>delete_outline</mat-icon></button> style="color: white; margin-right: 1px; margin-right: 1px; width: 90%;" -->
+			<mat-chip-list>
+				<mat-chip class="btn-info" (click)="programasXInscripcion()">Programas</mat-chip>
+			</mat-chip-list>
+			<button mat-icon-button (click)="onDelete(inscripciones.id)" matTooltip="Eliminar">
 							<i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
-						</button>
+					</button>
+					<button mat-icon-button (click)="openDialog(content)"  (click)="detUsuario(user.id)" matTooltip="Ver Detalles">
+							<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
+					<button mat-icon-button (click)="editUsuario(user)" matTooltip="Editar">
+					  	<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
+					</button>
+				
 					<!--(click)="open('autofocus')"             -->
 				</mat-cell>
 			</ng-container>

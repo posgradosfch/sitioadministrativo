@@ -60,7 +60,10 @@ import { VerificarPagoComponent } from './verificar-pago/verificar-pago.componen
 import { ArancelesMantenimientoComponent } from '././mantenimientos/aranceles-mantenimiento/aranceles-mantenimiento.component';
 import { AgregarArancelComponent } from '././crear-actualizar/agregar-arancel/agregar-arancel.component';
 import { DescuentosMantenimientoComponent } from '././mantenimientos/descuentos-mantenimiento/descuentos-mantenimiento.component';
-import { AgregarDescuentoComponent } from './crear-actualizar/agregar-descuento/agregar-descuento.component'; 
+import { AgregarDescuentoComponent } from './crear-actualizar/agregar-descuento/agregar-descuento.component';
+import { CrearEventoInscripcionComponent } from './crear-actualizar/crear-evento-inscripcion/crear-evento-inscripcion.component';
+import { MostrarProgramasComponent } from './mostrar-programas/mostrar-programas.component';
+import { MostrarMateriasComponent } from './mostrar-materias/mostrar-materias.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', 
@@ -169,32 +172,32 @@ const routes: Routes = [
     component:  NotificarCitaComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'paso', 
+  {path: 'paso',
     component: AgregarEditarPasoComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'procedimiento', 
+  {path: 'procedimiento',
     component: AgregarEditarProcedimientoComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'pregunta', 
+  {path: 'pregunta',
     component: AgregarEditarPreguntaComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'documento', 
+  {path: 'documento',
     component: AgregarDocumentoComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'evaluacionDocente', 
+  {path: 'evaluacionDocente',
     component: CrearEditarEvaluacionComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'tomaDecision', 
+  {path: 'tomaDecision',
     component: TomaDecisionComponent,
     canActivate: [AuthGuard]
   },
   // mantenimientos y crear-actualizar
-  {path: 'mantenimientoAulas', 
+  {path: 'mantenimientoAulas',
     component: AulasMantenimientoComponent,
     canActivate: [AuthGuard]
   },
@@ -227,6 +230,18 @@ const routes: Routes = [
   canActivate: [AuthGuard]
   },
   // Inscripcion
+  {path: 'crearEventoInscripcion',
+  component: CrearEventoInscripcionComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'mostrarProgramas',
+  component: MostrarProgramasComponent,
+  canActivate: [AuthGuard]
+  },
+  {path: 'mostrarMaterias',
+  component: MostrarMateriasComponent,
+  canActivate: [AuthGuard]
+  },
   {path: 'menuInscripcion',
   component: MenuInscripcionComponent,
   canActivate: [AuthGuard]

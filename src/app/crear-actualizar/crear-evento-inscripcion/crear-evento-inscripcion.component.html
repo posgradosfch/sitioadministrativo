@@ -1,0 +1,96 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+<div class="row">
+  <div class="col-md-6 mx-auto mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center"> <strong>FORMULARIO DE CREACIÓN DEL PERÍODO DE INSCRIPCIÓN PROVISIONAL</strong></h1>
+        <form  [formGroup]="register"> 
+          <div class="example-container">
+
+                <mat-form-field>
+                  <mat-label>Nombre</mat-label>
+                  <input matInput type="text" placeholder="Escriba " formControlName="nombre" required>
+         <!--         <mat-error *ngIf="secondFormGroup.get('nombre').hasError('required')"> el nombre es <strong>requerido</strong> </mat-error>
+                  <mat-error *ngIf="secondFormGroup.get('nombre').hasError('pattern')"> el nombre debe <strong>llevar solo letras</strong> </mat-error>
+         -->
+                </mat-form-field>
+      
+               <mat-form-field>
+                  <mat-label>Fecha de Inicio</mat-label>
+                  <input matInput type="date" placeholder="Seleccione la fecha de incio del periodo de inscripcion" formControlName="diaInicio" required>
+          <!--        <mat-error *ngIf="secondFormGroup.get('diaInicio').hasError('required')">La fecha de inicio <strong>requerida</strong></mat-error>
+               -->  </mat-form-field>
+           <!--hora de inicio-->
+           <mat-form-field>
+              <div class="toggle-example">
+                <input matInput placeholder="Hora de Inicio" [ngxTimepicker]="fullTime" [format]="24" formControlName="horaInicio" readonly required>
+                <!--ngx-material-timepicker-toggle [for]="fullTime"></ngx-material-timepicker-toggle-->
+                <ngx-material-timepicker #fullTime [enableKeyboardInput]="true"></ngx-material-timepicker>
+              </div>
+              <mat-error *ngIf="register.get('horaInicio').hasError('required')">La hora de inicio es <strong>requerida</strong></mat-error>
+            </mat-form-field>
+              
+            <!--
+                <mat-form-field>
+                  <mat-label>Fecha Inicio</mat-label>
+                  <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaa"  formControlName="dia"required>
+                <mat-datepicker-toggle matSuffix [for]="picker "></mat-datepicker-toggle>
+                <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+                  <mat-error *ngIf="secondFormGroup.get('dia').hasError('required')">La fecha de Inicio es <strong>requerida</strong></mat-error>
+                </mat-form-field>-->
+      
+                <mat-form-field>
+                  <mat-label>Fecha de Fin</mat-label>
+                  <input matInput type="date" placeholder="Seleccione la fecha de incio del periodo de inscripcion" formControlName="diaFin" required>
+                <!--  <mat-error *ngIf="secondFormGroup.get('diaFin').hasError('required')">La fecha de finalización es <strong>requerida</strong></mat-error>
+                -->
+                </mat-form-field> 
+      
+                <mat-form-field>
+                    <div class="toggle-example">
+                      <input matInput placeholder="Hora de Finalizacion" [ngxTimepicker]="fullTime2" [format]="24" formControlName="horaFin" readonly required>
+                      <!--ngx-material-timepicker-toggle [for]="fullTime"></ngx-material-timepicker-toggle-->
+                      <ngx-material-timepicker #fullTime2 [enableKeyboardInput]="true"></ngx-material-timepicker>
+                    </div>
+                    <mat-error *ngIf="register.get('horaFin').hasError('required')">La Hora de finalizacion es <strong>requerida</strong></mat-error>
+                  </mat-form-field>    
+                
+                  <mat-form-field>
+                      <mat-label>Año academico</mat-label>
+                      <input matInput type="number" placeholder="Escriba el año academico " formControlName="anioAcademico" required>
+             <!--         <mat-error *ngIf="secondFormGroup.get('nombre').hasError('required')"> el nombre es <strong>requerido</strong> </mat-error>
+                      <mat-error *ngIf="secondFormGroup.get('nombre').hasError('pattern')"> el nombre debe <strong>llevar solo letras</strong> </mat-error>
+             -->
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <label>Ciclo academico:</label>
+                      <input matInput type="text" disabled value= "ciclo I" required >
+                    </mat-form-field>
+    
+                <div class="button-row">
+                  <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;" (click)="registrarEvento()" [disabled]="register.invalid || loading">Guardar</button>
+                  <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="openVerticallyCentered(content)">Cancelar</button>   
+                </div>
+              </div>     
+            </form>
+          </div>
+        </div>
+      </div>
+             <!--Ventana emergente-->
+  <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Cancelar</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Se eliminaran los cambios que haya realizado ¿Desea Continuar?&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" routerLink="/mantenimientoProgramas" (click)="c('Close click')">Aceptar</button>
+      </div>
+    </ng-template>
+  </div>  

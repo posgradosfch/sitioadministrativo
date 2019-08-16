@@ -36,10 +36,11 @@ mat-table {
   .delete{
     color: #A10000;
   }
-  .view{
-    color: #427F00;
-  }
 
   .col{
     background-color: #029ACF;
+  }
+
+  .view{
+    color: #427F00;
   }
