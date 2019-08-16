@@ -165,7 +165,7 @@ deleteGrupo(i) {
 }
 
    /*Objetivo:
-  Devolver un listado de materias para se usado en el combox 
+  Devolver un listado de materias para se usado en el combox
   */
   getMaterias() {
     this.MateriasService.getMaterias().subscribe( response => {

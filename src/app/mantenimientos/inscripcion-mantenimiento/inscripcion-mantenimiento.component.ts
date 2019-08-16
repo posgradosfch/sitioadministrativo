@@ -60,6 +60,10 @@ export class InscripcionMantenimientoComponent implements OnInit {
       });
   }
 
+  newEventoInscrip() {
+    this.router.navigate(['/crearEventoInscripcion']);
+  }
+
   getInscripciones() {
     this.inscripcionService.getInscripciones().subscribe( response => {
       this.inscripciones = response.inscripciones;
@@ -105,5 +109,9 @@ export class InscripcionMantenimientoComponent implements OnInit {
           console.log(error);
         });
        }
+    }
+
+    programasXInscripcion() {
+      this.router.navigate(['/mostrarProgramas']);
     }
 }

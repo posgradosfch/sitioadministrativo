@@ -111,6 +111,9 @@ import { ArancelesMantenimientoComponent } from './mantenimientos/aranceles-mant
 import { AgregarArancelComponent } from './crear-actualizar/agregar-arancel/agregar-arancel.component';
 import { DescuentosMantenimientoComponent } from './mantenimientos/descuentos-mantenimiento/descuentos-mantenimiento.component';
 import { AgregarDescuentoComponent } from './crear-actualizar/agregar-descuento/agregar-descuento.component';
+import { CrearEventoInscripcionComponent } from './crear-actualizar/crear-evento-inscripcion/crear-evento-inscripcion.component';
+import { MostrarProgramasComponent } from './mostrar-programas/mostrar-programas.component';
+import { MostrarMateriasComponent } from './mostrar-materias/mostrar-materias.component';
 
 //Config
 /*export function getAuthServiceConfigs() {
@@ -198,6 +201,9 @@ import { AgregarDescuentoComponent } from './crear-actualizar/agregar-descuento/
     AgregarArancelComponent,
     DescuentosMantenimientoComponent,
     AgregarDescuentoComponent,
+    CrearEventoInscripcionComponent,
+    MostrarProgramasComponent,
+    MostrarMateriasComponent,
   ],
   imports: [
     BrowserModule,
