@@ -1,5 +1,5 @@
 <div class="input" style="padding: 2rem; text-align: center; align-content: center;">
-    <label><h2><strong>CONSOLIDADO DE DATOS INSCRIPCIÓN PROVISIONAL DE MATERIAS</strong></h2></label>	
+    <label><h2><strong>EXPORTAR DATOS DE ESTUDIANTES</strong></h2></label>	
     
     <div class="example-header">
          <div class="button-row"  >
@@ -28,35 +28,39 @@
    <div class="example-container mat-elevation-z8">
 
       <mat-table [dataSource]="dataSource" matSort>
-        <!-- Number Column -->
+        <!-- Number Column 
         <ng-container matColumnDef="Nombre del estudiante">
           <mat-header-cell *matHeaderCellDef mat-sort-header style=" text-align: center;"> Nombre del estudiante </mat-header-cell>
           <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center;"> {{ ELEMENT1.nombre }}</mat-cell> 
-        </ng-container>
+        </ng-container>-->
         <!-- Nombre Column -->
         <ng-container matColumnDef="Nombre">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1">  {{ ELEMENT1.nombre }} </mat-cell> 
+          <mat-cell *matCellDef="let Estudiante">  {{ Estudiante.nombre }} </mat-cell> 
         </ng-container>
-        <!-- Apellidos Column -->
+        <!-- Apellidos Column 
         <ng-container matColumnDef="Apellido">
           <mat-header-cell *matHeaderCellDef mat-sort-header  style=" text-align: center; align-content: center;"> Apellido </mat-header-cell>
           <mat-cell *matCellDef="let ELEMENT1"  style=" text-align: center; align-content: center;">{{ ELEMENT1.apellido}}  </mat-cell> 
-        </ng-container>
+        </ng-container>-->
         <!-- Apellidos Column -->
         <ng-container matColumnDef="Programa de estudio">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Programa de estudio </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.programa }}</mat-cell>  
+          <mat-cell *matCellDef="let Estudiante">{{ Estudiante.nombre_programa }}</mat-cell>  
         </ng-container>
-        <ng-container matColumnDef="Año de ingreso">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Año de ingreso </mat-header-cell>
-            <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.anioIngreso }}</mat-cell>  
+        <ng-container matColumnDef="Codigo de programa">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo de programa </mat-header-cell>
+            <mat-cell *matCellDef="let Estudiante">{{ Estudiante.codigo_programa }}</mat-cell>  
+          </ng-container>
+          <ng-container matColumnDef="Plan de estudio">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Plan de estudio </mat-header-cell>
+            <mat-cell *matCellDef="let Estudiante">{{ Estudiante.plan_estudio }}</mat-cell>  
           </ng-container>
           <!--
           <ng-container matColumnDef="Exportar Ficha">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Exportar Ficha </mat-header-cell>
               <mat-cell *matCellDef="let ELEMENT1">{{ ELEMENT1.exportado }}</mat-cell>  
-            </ng-container>-->
+            </ng-container>
             <ng-container matColumnDef="Exportar Ficha" style="text-align: center;">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Exportar Ficha </mat-header-cell>
                 <mat-cell *matCellDef="let ELEMENT1">
@@ -64,11 +68,11 @@
                     <i class="fa fa-check-square fa-lg"></i>
                   </button>
                 </mat-cell>
-              </ng-container>
+              </ng-container>-->
           <!-- Opciones Column -->
         <ng-container matColumnDef="acciones" style="text-align: center;">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Ver detalle </mat-header-cell>
-          <mat-cell *matCellDef="let ELEMENT1">
+          <mat-cell *matCellDef="">
               <button mat-icon-button (click)="verDetalleInscrip()" matTooltip="Ver Detalles">
                   <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
             <!--(click)="open('autofocus')"             -->

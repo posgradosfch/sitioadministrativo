@@ -11,6 +11,7 @@ export class GestionInscripcionService {
   baseUrlDos: string = environment.apiUrl + 'services/gruposT/';
   baseUrlTres: string = environment.apiUrl + 'services/inscripciones/';
   baseUrlCuatro: string = environment.apiUrl + 'services/inscripciones/all/';
+  baseUrlCinco = 'http://apicchh19.herokuapp.com/services/inscripciones/';
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +26,11 @@ export class GestionInscripcionService {
   periodoInscripcion(Data: any) {
     return this.http.post(this.baseUrlTres, Data, this.getAuthHeaders());
   }
+
+  guardarPI(Data: any) {
+    return this.http.post(this.baseUrlCinco, Data, this.getAuthHeaders());
+  }
+
   private getAuthHeaders() {
     const token = localStorage.getItem('token');
     const  headers = new HttpHeaders({'Content-Type': 'application/json; charset-utf-8', 'Authorization': 'token ' + token});

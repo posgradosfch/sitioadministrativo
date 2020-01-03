@@ -97,6 +97,8 @@ get horaInicio() {   return this.register.get('horaInicio'); }
 get diaInicio() { return this.register.get('diaInicio'); }
 get diaFin() {  return this.register.get('diaFin'); }
 get nombre() { return this.register.get('nombre'); }
+get anioAcademico() { return this.register.get('anioAcademico'); }
+
 // get idCiclo() { return this.firstFormGroup.get('idCiclo'); }
 // get idPrograma() { return this.firstFormGroup.get('idPrograma'); }
 
@@ -104,17 +106,16 @@ get nombre() { return this.register.get('nombre'); }
       this.loading = true;
       console.log(this.register.value);
       this.datosPeriodoInscripcion = {
-        idCiclo: 1,
+        anio:  this.anioAcademico.value,
         nombre: this.nombre.value,
         diaInicio: this.diaInicio.value + ' ' + this.horaInicio.value,
         diaFin: this.diaFin.value + ' ' +  this.horaFin.value,
-       id_programa: 7,
       };
       console.log(this.datosPeriodoInscripcion);
       console.log('esto se mandara a la ruta');
       console.log(this.datosPeriodoInscripcion);
 
-      this.inscripcionService.periodoInscripcion(this.datosPeriodoInscripcion).subscribe(
+      this.inscripcionService.guardarPI(this.datosPeriodoInscripcion).subscribe(
        response => {
          this.loading = false;
          this._success.next('periodo de inscripcion creado exitosamente');
