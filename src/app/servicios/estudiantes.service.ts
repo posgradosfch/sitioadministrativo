@@ -11,12 +11,19 @@ import { Estudiantes } from '../clases/estudiantes';
 })
 export class EstudiantesService {
   baseUrl: string = environment.apiUrl + "services/estudiantes/all/";
+  baseUrlDos: string = environment.apiUrl + "services/estudiantes/full/";
+
   constructor(private http: HttpClient) {
   }
 
   getEstudiante(): Observable<any> {
     return this.http.get<any>(this.baseUrl, this.getAuthHeaders());
   }
+
+  getDetalleEstudiante(id: number): Observable<any> {
+    const url = `${this.baseUrlDos}${id}/`;
+    return this.http.get<any>(url, this.getAuthHeaders());
+   }
 
   private getAuthHeaders(){
   	const token = localStorage.getItem('token');

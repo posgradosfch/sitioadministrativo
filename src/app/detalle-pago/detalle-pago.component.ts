@@ -5,6 +5,7 @@ import { ConsultarPagoService } from '../servicios/consultar-pago.service';
 import { Estudiantes } from '../clases/estudiantes';
 import { Cuota } from '../clases/cuota';
 
+/*
 export interface ElementDos {
   nombre: string;
   carnet: string;
@@ -13,7 +14,7 @@ export interface ElementDos {
   codigo_programa: string;
   plan_estudio: number;
 }
-/*
+
 const ELEMENT1: ElementDos[] = [
   {nombre: 'Juan Perez', carnet: 'PG15001', nombre_programa: 'Maestría Investigación Social',
    codigo_programa: 'PQR1009',  plan_estudio: 2001 },

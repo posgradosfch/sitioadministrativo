@@ -72,8 +72,8 @@
           <!-- Opciones Column -->
         <ng-container matColumnDef="acciones" style="text-align: center;">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Ver detalle </mat-header-cell>
-          <mat-cell *matCellDef="">
-              <button mat-icon-button (click)="verDetalleInscrip()" matTooltip="Ver Detalles">
+          <mat-cell *matCellDef="let Estudiante">
+              <button mat-icon-button (click)= "verDetalleEstudiante(Estudiante)" matTooltip="Ver Detalles">
                   <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
             <!--(click)="open('autofocus')"             -->
           </mat-cell>

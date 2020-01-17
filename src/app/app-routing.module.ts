@@ -286,7 +286,7 @@ const routes: Routes = [
   component: ExportarDatosEstudianteComponent,
   canActivate: [AuthGuard]
   },
-  {path: 'detalleEstudiante',
+  {path: 'detalleEstudiante/:id_estudiante',
   component: DetalleEstudianteComponent,
   canActivate: [AuthGuard]
   },

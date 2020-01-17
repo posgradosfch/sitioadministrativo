@@ -8,64 +8,63 @@
              <!--codigo-->
                <mat-form-field>
                 <label>Nombres</label>
-                <input matInput type="text" disabled value= "Juan" required >
+                <input matInput type="text" disabled value= "{{ detalleEstudiante.nombre }}" required >
               </mat-form-field>   
               <mat-form-field>
                   <label>Apellidos</label>
-                  <input matInput type="text" disabled value= "Perez" required >
+                  <input matInput type="text" disabled value= "{{ detalleEstudiante.apellido }}" required >
                 </mat-form-field> 
                    
                 <mat-form-field>
                     <label>Genero</label>
-                    <input matInput type="text" disabled value= "Masculino" required >
+                    <input matInput type="text" disabled value= "{{ detalleEstudiante.genero }}" required >
                   </mat-form-field>  
                   <mat-form-field>
                       <label>Fecha Nacimiento</label>
-                      <input matInput type="text" disabled value= "15/09/1993" required >
+                      <input matInput type="text" disabled value= "{{ detalleEstudiante.fechaNacimiento }}" required >
                     </mat-form-field>  
                     <mat-form-field>
                         <label>Dirección</label>
-                        <input matInput type="text" disabled value= "final calle principal mejicanos" required >
+                        <input matInput type="text" disabled value= "{{ detalleEstudiante.direccion }}" required >
                       </mat-form-field>  
-                      <mat-form-field>
-                          <label>Departamento</label>
-                          <input matInput type="text" disabled value= "San Salvador" required >
-                        </mat-form-field>  
-              <mat-form-field>
-                    <label>Municipio</label>
-                    <input matInput type="text" disabled value= "Mejicanos" required >
-              </mat-form-field> 
+                     
               <mat-form-field>
                   <label>DUI</label>
-                  <input matInput type="text" disabled value= "50667766-5" required >
-                </mat-form-field>  
+                  <input matInput type="text" disabled value= "{{ detalleEstudiante.dui }}" required >
+                </mat-form-field> 
+                <!-- 
                 <mat-form-field>
                     <label>NIT</label>
                     <input matInput type="text" disabled value= "0614-250093-118-5" required >
-                  </mat-form-field>  
+                  </mat-form-field>  -->
+
                   <mat-form-field>
                       <label>Telefono Fijo</label>
-                      <input matInput type="text" disabled value= "2233-3322" required >
+                      <input matInput type="text" disabled value= "{{ detalleEstudiante.telefonoFijo }}" required >
                     </mat-form-field> 
                     <mat-form-field>
                         <label>Telefono Movil</label>
-                        <input matInput type="text" disabled value= "7877-6543" required >
+                        <input matInput type="text" disabled value= "{{ detalleEstudiante.telefonoMovil }}" required >
                       </mat-form-field> 
                       <mat-form-field>
                           <label>Email</label>
-                          <input matInput type="text" disabled value= "Juan@gmail.com" required >
+                          <input matInput type="text" disabled value= "{{ detalleEstudiante.email }}" required >
                         </mat-form-field> 
                         <mat-form-field>
                             <label>Titulo pregrado</label>
-                            <input matInput type="text" disabled value= "Licenciado en Psicologia" required >
+                            <input matInput type="text" disabled value= "{{ detalleEstudiante.titulo_pre }}" required >
                           </mat-form-field> 
                           <mat-form-field>
-                              <label>Universidad de procedencia</label>
-                              <input matInput type="text" disabled value= "Universidad de El Salvador" required >
+                            <label>Universidad de procedencia</label>
+                            <input matInput type="text" disabled value= "{{ detalleEstudiante.institucion }}" required >
+                          </mat-form-field> 
+                          <mat-form-field>
+                              <label>Codigo del programa que estudia</label>
+                              <input matInput type="text" disabled value= "{{ detalleEstudiante.codigo_programa }}" required >
                             </mat-form-field>             
               <div class="button-row">
                 <button mat-raised-button type="submit" class="btn-info" style="color: white; margin-left: 2px; margin-right: 2px; width: 48%;">Exportar Ficha</button>
-                <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="exportarFicha()">Regresar</button>    
+                <button mat-raised-button color="warn" style="margin-left: 2px; margin-right: 2px; width: 48%;" (click)="regresar()">Regresar</button>    
               </div>
             </div>     
           </form>
