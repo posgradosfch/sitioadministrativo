@@ -51,6 +51,8 @@
     "ngx-pagination": "^3.2.1",
     "path": "^0.12.7",
     "popper.js": "^1.14.3",
+    "primeicons": "^2.0.0",
+    "primeng": "^9.0.0-rc.4",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.1",
     "satellizer": "^0.15.5",
