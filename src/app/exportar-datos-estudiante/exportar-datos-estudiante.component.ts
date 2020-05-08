@@ -3,6 +3,9 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 import { EstudiantesService } from '../../app/servicios/estudiantes.service';
 import { Estudiantes } from '../clases/estudiantes';
+import {DetalleEstudiante} from '../clases/detalle-estudiante';
+import { NgbModal, NgbActiveModal} from '../../../node_modules/@ng-bootstrap/ng-bootstrap';
+
 /*
 export interface Element {
   nombre: string;
@@ -28,6 +31,7 @@ const ELEMENT1: Element[] = [
 })
 export class ExportarDatosEstudianteComponent implements OnInit {
   Estudiante: Estudiantes[];
+  detalleEstudiante: DetalleEstudiante;
   dataSource = new MatTableDataSource();
   displayedColumns = ['Nombre', 'Programa de estudio', 'Codigo de programa', 'Plan de estudio', 'acciones'];
 // dataSource = new MatTableDataSource();
@@ -35,7 +39,8 @@ export class ExportarDatosEstudianteComponent implements OnInit {
  @ViewChild(MatPaginator) paginator: MatPaginator;
  @ViewChild(MatSort) sort: MatSort;
  // this.dataSource.data = this.aulas;
-  constructor(private router: Router, private _router: Router, private EstudianteService: EstudiantesService ) { }
+  constructor(private router: Router, private ngModal: NgbModal, private _router: Router, 
+    private EstudianteService: EstudiantesService ) { }
 
   ngOnInit() {
 
@@ -69,19 +74,23 @@ applyFilter (filterValue: string) {
   regresar() {
     this.router.navigate(['/menuInscripcion']);
   }
-/*
-  openDialog( id: number) {
+
+  openDialog(content, id: number) {
     console.log(id);
-    this.MateriasService.detalleMateria(id).subscribe((
+    this.EstudianteService.getDetalleEstudiante(id).subscribe((
       response) => {
-        this.materias2 = response.materias;
-        console.log(this.materias2);
+        this.detalleEstudiante = response.Estudiante;
+        console.log(this.detalleEstudiante);
         this.ngModal.open(content, { centered: true });
       }, (error) => {
         console.log(error);
       });
   }
-*/
+
+  openDialogCancel(cancelContent) {
+    this.ngModal.open(cancelContent, { centered: true });
+    }
+
    verDetalleEstudiante(estudiante: Estudiantes) {
     localStorage.removeItem('estudianteId');
     localStorage.setItem('estudianteId', estudiante.id_estudiante.toString());

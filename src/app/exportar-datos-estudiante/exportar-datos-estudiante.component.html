@@ -73,9 +73,15 @@
         <ng-container matColumnDef="acciones" style="text-align: center;">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Ver detalle </mat-header-cell>
           <mat-cell *matCellDef="let Estudiante">
+
+            <button mat-icon-button (click)= "openDialog(content, Estudiante.id_estudiante)" matTooltip="Ver Detalles">
+              <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
+              
+       <!--
               <button mat-icon-button (click)= "verDetalleEstudiante(Estudiante)" matTooltip="Ver Detalles">
                   <i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-            <!--(click)="open('autofocus')"             -->
+            -->
+                  <!--(click)="open('autofocus')"             -->
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -84,5 +90,71 @@
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
+
+  <!--Ventana emergente-->
+<ng-template id="myModal" #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title"><strong>Detalle del Estudiante</strong></h4>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+
+          <mat-form-field>
+            <label>Nombres</label>
+            <input matInput type="text" disabled value= "{{ detalleEstudiante.nombre }}" required >
+          </mat-form-field>   
+          <mat-form-field>
+            <label>Apellidos</label>
+            <input matInput type="text" disabled value= "{{ detalleEstudiante.apellido }}" required >
+          </mat-form-field> 
+             
+          <mat-form-field>
+              <label>Genero</label>
+              <input matInput type="text" disabled value= "{{ detalleEstudiante.genero }}" required >
+            </mat-form-field>  
+            <mat-form-field>
+                <label>Fecha Nacimiento</label>
+                <input matInput type="text" disabled value= "{{ detalleEstudiante.fechaNacimiento }}" required >
+              </mat-form-field>  
+              <mat-form-field>
+                  <label>Dirección</label>
+                  <input matInput type="text" disabled value= "{{ detalleEstudiante.direccion }}" required >
+                </mat-form-field>          
+          <mat-form-field>
+            <label>DUI</label>
+            <input matInput type="text" disabled value= "{{ detalleEstudiante.dui }}" required >
+          </mat-form-field> 
+              <mat-form-field>
+                <label>Telefono Fijo</label>
+                <input matInput type="text" disabled value= "{{ detalleEstudiante.telefonoFijo }}" required >
+              </mat-form-field> 
+              <mat-form-field>
+                  <label>Telefono Movil</label>
+                  <input matInput type="text" disabled value= "{{ detalleEstudiante.telefonoMovil }}" required >
+                </mat-form-field> 
+                <mat-form-field>
+                    <label>Email</label>
+                    <input matInput type="text" disabled value= "{{ detalleEstudiante.email }}" required >
+                  </mat-form-field> 
+                  <mat-form-field>
+                      <label>Titulo pregrado</label>
+                      <input matInput type="text" disabled value= "{{ detalleEstudiante.titulo_pre }}" required >
+                    </mat-form-field> 
+                    <mat-form-field>
+                      <label>Universidad de procedencia</label>
+                      <input matInput type="text" disabled value= "{{ detalleEstudiante.institucion }}" required >
+                    </mat-form-field> 
+                    <mat-form-field>
+                        <label>Codigo del programa que estudia</label>
+                        <input matInput type="text" disabled value= "{{ detalleEstudiante.codigo_programa }}" required >
+                      </mat-form-field>     
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="c('Close click')">Regresar</button>
+	</div>
+	</ng-template>
 
  

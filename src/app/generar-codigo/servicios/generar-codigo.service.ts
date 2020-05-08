@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../../environments/environment';
 
 @Injectable({
 providedIn: 'root'
 })
 
 export class GenerarCodigoService {
-
+  baseUrl: string = environment.apiUrl + 'generarCodigos/';
   constructor(private http: HttpClient) { }
   generarcodigo(userData): Observable<any> {
-    return this.http.post('https://posgradoscchh.herokuapp.com/generarCodigos/', userData);
+    return this.http.post(this.baseUrl, userData);
   }
 }
