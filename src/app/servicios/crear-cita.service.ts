@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Cita } from '../clases/cita';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrearCitaService {
+  // baseUrl: string = environment.apiUrl + 'citas/crear/';
+   baseUrl: string = "https://posgradoscchh.herokuapp.com/citas/";
 
-  baseUrl: string = "https://posgradoscchh.herokuapp.com/citas/";
   constructor(private http: HttpClient) { }
 
   private getAuthHeaders(){
@@ -18,7 +20,7 @@ export class CrearCitaService {
   }
 
   agendarCita(userData): Observable<any> {
-    return this.http.post('https://posgradoscchh.herokuapp.com/citas/crear/', userData);
+    return this.http.post(this.baseUrl, userData);
 
   }
   getCitas(): Observable<Cita[]> {

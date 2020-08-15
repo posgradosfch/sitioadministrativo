@@ -62,12 +62,12 @@
 				<mat-cell *matCellDef="let docente">
 					<button mat-icon-button (click)="openDialog(content)" (click)="detDocente(docente.id_docente)" matTooltip="Ver Detalles">
 						<i class="view fa fa-eye fa-lg example-icon"></i>			        </button>
-					<button mat-icon-button (click)="editDocumento(docente)" matTooltip="Editar">
+					<!-- <button mat-icon-button (click)="editDocumento(docente)" matTooltip="Editar">
 					<i class="edit fa fa-edit fa-lg" style="cursor: pointer;"></i>
-			        </button>
-					<button mat-icon-button (click)="unableDocumento(docente)" matTooltip="Eliminar">
+			        </button> -->
+					<!-- <button mat-icon-button (click)="unableDocumento(docente)" matTooltip="Eliminar">
 			          <i class="delete fa fa-trash-o fa-lg" style="cursor: pointer;"></i>
-			        </button>
+			        </button> -->
 				</mat-cell>
 			</ng-container>
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
